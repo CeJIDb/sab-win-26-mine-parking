@@ -1,0 +1,134 @@
+@use 'tokens';
+
+/* Lists */
+.wf-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  @include tokens.wf-list-container;
+}
+
+.wf-list li {
+  padding: 0.5em var(--wf-pad);
+  border-bottom: var(--wf-border);
+  background: #fff;
+}
+
+.wf-list li:last-child {
+  border-bottom: none;
+}
+
+.wf-list--compact li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.25em var(--wf-pad);
+}
+
+.wf-list--compact button {
+  margin: 0;
+}
+
+/* Dashboard blocks */
+.wf-grid {
+  display: grid;
+  gap: var(--wf-gap);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.wf-card {
+  @include tokens.wf-panel;
+}
+
+/* Table placeholder */
+.wf-table-wrap {
+  overflow-x: auto;
+  border: var(--wf-border);
+}
+
+.wf-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.wf-table th,
+.wf-table td {
+  padding: 0.4em 0.6em;
+  border: var(--wf-border);
+  text-align: left;
+}
+
+.wf-table th {
+  background: var(--wf-block);
+}
+
+/* Карта парковки по Схема парковки AS-IS.md */
+.wf-parking-map {
+  border: var(--wf-border);
+  background: #fff;
+  padding: var(--wf-pad);
+  font-size: 0.9rem;
+}
+
+.wf-parking-map__kpp {
+  background: var(--wf-block);
+  border: 2px solid #333;
+  padding: 0.5em 1em;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 16rem;
+}
+
+.wf-parking-map__zones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--wf-gap);
+  margin: var(--wf-gap) 0;
+}
+
+.wf-parking-map__column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wf-gap);
+}
+
+.wf-parking-map__zone {
+  border: var(--wf-border);
+  padding: 0.5em var(--wf-pad);
+  background: #fafafa;
+}
+
+.wf-parking-map__zone-title {
+  font-weight: 600;
+  margin: 0 0 0.25em 0;
+}
+
+.wf-parking-map__zone-meta {
+  color: var(--wf-muted);
+  font-size: 0.85em;
+  margin: 0;
+}
+
+.wf-parking-map--compact .wf-parking-map__zone {
+  padding: 0.35em 0.5em;
+  font-size: 0.85rem;
+}
+
+.wf-parking-map__legend {
+  margin-top: var(--wf-gap);
+  padding-top: var(--wf-gap);
+  border-top: var(--wf-border);
+  font-size: 0.85em;
+  color: var(--wf-muted);
+}
+
+.wf-parking-map__legend span {
+  margin-right: 1em;
+}
+
+.wf-parking-map__total {
+  margin-top: 0.5em;
+  font-weight: 600;
+}
+

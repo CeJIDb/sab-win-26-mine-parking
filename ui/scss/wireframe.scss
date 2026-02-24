@@ -1,0 +1,10 @@
+/* Wireframe styles — цифровая платформа парковки.
+ * Точка входа SCSS: собирает partials.
+ */
+
+@use 'tokens';
+@use 'layout';
+@use 'forms';
+@use 'modals';
+@use 'lk';
+

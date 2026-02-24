@@ -1,5 +1,7 @@
-/* Wireframe styles — цифровая платформа парковки. По Карте навигации и артефактам docs/artifacts/ */
-
+@charset "UTF-8";
+/* Wireframe styles — цифровая платформа парковки.
+ * Точка входа SCSS: собирает partials.
+ */
 :root {
   --wf-border: 1px solid #333;
   --wf-bg: #f5f5f5;
@@ -10,6 +12,9 @@
   --wf-gap: 0.75rem;
 }
 
+/* Wireframe styles — цифровая платформа парковки.
+ * Точка входа SCSS: собирает partials.
+ */
 * {
   box-sizing: border-box;
 }
@@ -31,7 +36,7 @@ body {
 }
 
 /* Header */
-header[role="banner"],
+header[role=banner],
 .wf-header {
   border: var(--wf-border);
   background: var(--wf-block);
@@ -98,6 +103,75 @@ section,
   margin-bottom: 0;
 }
 
+/* Muted text */
+.wf-muted {
+  color: var(--wf-muted);
+  font-size: 0.9em;
+}
+
+/* Breadcrumb / context */
+.wf-context {
+  margin-bottom: var(--wf-gap);
+  font-size: 0.9em;
+  color: var(--wf-muted);
+}
+
+.wf-context a {
+  color: var(--wf-text);
+  text-decoration: underline;
+}
+
+/* Footer — служебные ссылки (не акцентировать) */
+.wf-footer {
+  margin-top: var(--wf-gap);
+  padding: var(--wf-pad) 0;
+  border-top: 1px solid #ddd;
+  font-size: 0.8rem;
+  color: var(--wf-muted);
+}
+
+.wf-footer__service a {
+  color: var(--wf-muted);
+  text-decoration: none;
+}
+
+.wf-footer__service a:hover {
+  text-decoration: underline;
+  color: var(--wf-text);
+}
+
+/* WF-05: Skip link — скрыт по умолчанию, виден при фокусе */
+.wf-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 999;
+  padding: 0.5em 1em;
+  background: var(--wf-block);
+  border: var(--wf-border);
+  color: var(--wf-text);
+  text-decoration: underline;
+  font-size: 1rem;
+}
+
+.wf-skip-link:focus {
+  left: var(--wf-pad);
+  top: var(--wf-pad);
+}
+
+/* WF-06: Видимое состояние фокуса для доступности */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #333;
+  outline-offset: 2px;
+}
+
+/* Wireframe styles — цифровая платформа парковки.
+ * Точка входа SCSS: собирает partials.
+ */
 /* Forms */
 form,
 .wf-form {
@@ -111,17 +185,20 @@ form,
 .wf-field--inline-control {
   margin-bottom: var(--wf-gap);
 }
+
 .wf-field--inline-control .wf-inline {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
-.wf-field--inline-control .wf-inline input[type="tel"],
-.wf-field--inline-control .wf-inline input[type="email"],
-.wf-field--inline-control .wf-inline input[type="date"],
+
+.wf-field--inline-control .wf-inline input[type=tel],
+.wf-field--inline-control .wf-inline input[type=email],
+.wf-field--inline-control .wf-inline input[type=date],
 .wf-field--inline-control .wf-inline select {
   flex: 1 1 auto;
 }
+
 .wf-field--inline-control .wf-inline .wf-btn-link {
   padding: 0.35em 0.75em;
   border: var(--wf-border);
@@ -130,6 +207,7 @@ form,
   text-decoration: none;
   white-space: nowrap;
 }
+
 .wf-field--inline-control .wf-inline .wf-btn-link:hover {
   background: #ccc;
 }
@@ -140,24 +218,29 @@ form,
   align-items: flex-end;
   gap: 0.5rem 1rem;
 }
+
 .sessions-filters .wf-field {
   margin-bottom: 0;
 }
+
 .sessions-filters .wf-field label {
   margin-bottom: 0.15em;
   font-size: 0.9em;
 }
-.sessions-filters input[type="date"],
+
+.sessions-filters input[type=date],
 .sessions-filters select {
   width: auto;
   min-width: 9rem;
   padding: 0.3em 0.4em;
 }
+
 .sessions-filters .filter-actions {
   display: flex;
   align-items: flex-end;
   gap: 0.5rem;
 }
+
 .sessions-filters .filter-actions button {
   padding: 0.35em 0.6em;
 }
@@ -185,7 +268,8 @@ form,
   cursor: pointer;
   font-weight: normal;
 }
-.wf-field--checkbox input[type="checkbox"] {
+
+.wf-field--checkbox input[type=checkbox] {
   width: auto;
   flex-shrink: 0;
   margin-top: 0.2em;
@@ -196,8 +280,14 @@ form,
   font-size: 0.9em;
   color: var(--wf-muted);
 }
-.wf-notice strong { color: var(--wf-text); }
-.wf-notice a { text-decoration: underline; }
+
+.wf-notice strong {
+  color: var(--wf-text);
+}
+
+.wf-notice a {
+  text-decoration: underline;
+}
 
 .wf-actions {
   margin-top: 1rem;
@@ -205,7 +295,7 @@ form,
 
 button,
 .wf-btn,
-input[type="submit"] {
+input[type=submit] {
   padding: 0.5em 1em;
   border: var(--wf-border);
   background: var(--wf-block);
@@ -227,6 +317,24 @@ a.wf-btn {
   color: inherit;
 }
 
+/* WF-07: Блок сообщений об ошибках */
+.wf-error {
+  margin-bottom: var(--wf-gap);
+  padding: 0.5em;
+  border: 1px solid #a00;
+  background: #ffe0e0;
+  color: #800;
+  font-size: 0.95em;
+}
+
+.wf-error:empty,
+.wf-error[aria-hidden=true] {
+  display: none;
+}
+
+/* Wireframe styles — цифровая платформа парковки.
+ * Точка входа SCSS: собирает partials.
+ */
 /* Modal (generic) */
 .wf-modal {
   position: fixed;
@@ -238,9 +346,11 @@ a.wf-btn {
   padding: 1rem;
   z-index: 1000;
 }
+
 .wf-modal:target {
   display: flex;
 }
+
 .wf-modal__dialog {
   background: #fff;
   border: var(--wf-border);
@@ -248,6 +358,7 @@ a.wf-btn {
   width: 100%;
   padding: var(--wf-pad);
 }
+
 .wf-modal__header {
   display: flex;
   align-items: center;
@@ -255,10 +366,14 @@ a.wf-btn {
   gap: 1rem;
   margin-bottom: 0.5rem;
 }
+
 .wf-modal__close {
   font-size: 0.9rem;
 }
 
+/* Wireframe styles — цифровая платформа парковки.
+ * Точка входа SCSS: собирает partials.
+ */
 /* Lists */
 .wf-list {
   list-style: none;
@@ -284,6 +399,7 @@ a.wf-btn {
   gap: 0.5rem;
   padding: 0.25em var(--wf-pad);
 }
+
 .wf-list--compact button {
   margin: 0;
 }
@@ -323,83 +439,6 @@ a.wf-btn {
   background: var(--wf-block);
 }
 
-/* Muted text */
-.wf-muted {
-  color: var(--wf-muted);
-  font-size: 0.9em;
-}
-
-/* Breadcrumb / context */
-.wf-context {
-  margin-bottom: var(--wf-gap);
-  font-size: 0.9em;
-  color: var(--wf-muted);
-}
-
-.wf-context a {
-  color: var(--wf-text);
-  text-decoration: underline;
-}
-
-/* Footer — служебные ссылки (не акцентировать) */
-.wf-footer {
-  margin-top: var(--wf-gap);
-  padding: var(--wf-pad) 0;
-  border-top: 1px solid #ddd;
-  font-size: 0.8rem;
-  color: var(--wf-muted);
-}
-.wf-footer__service a {
-  color: var(--wf-muted);
-  text-decoration: none;
-}
-.wf-footer__service a:hover {
-  text-decoration: underline;
-  color: var(--wf-text);
-}
-
-/* WF-05: Skip link — скрыт по умолчанию, виден при фокусе */
-.wf-skip-link {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  z-index: 999;
-  padding: 0.5em 1em;
-  background: var(--wf-block);
-  border: var(--wf-border);
-  color: var(--wf-text);
-  text-decoration: underline;
-  font-size: 1rem;
-}
-.wf-skip-link:focus {
-  left: var(--wf-pad);
-  top: var(--wf-pad);
-}
-
-/* WF-06: Видимое состояние фокуса для доступности */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid #333;
-  outline-offset: 2px;
-}
-
-/* WF-07: Блок сообщений об ошибках */
-.wf-error {
-  margin-bottom: var(--wf-gap);
-  padding: 0.5em;
-  border: 1px solid #a00;
-  background: #ffe0e0;
-  color: #800;
-  font-size: 0.95em;
-}
-.wf-error:empty,
-.wf-error[aria-hidden="true"] {
-  display: none;
-}
-
 /* Карта парковки по Схема парковки AS-IS.md */
 .wf-parking-map {
   border: var(--wf-border);
@@ -407,6 +446,7 @@ textarea:focus-visible {
   padding: var(--wf-pad);
   font-size: 0.9rem;
 }
+
 .wf-parking-map__kpp {
   background: var(--wf-block);
   border: 2px solid #333;
@@ -415,25 +455,42 @@ textarea:focus-visible {
   margin: 0 auto;
   max-width: 16rem;
 }
+
 .wf-parking-map__zones {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--wf-gap);
   margin: var(--wf-gap) 0;
 }
+
 .wf-parking-map__column {
   display: flex;
   flex-direction: column;
   gap: var(--wf-gap);
 }
+
 .wf-parking-map__zone {
   border: var(--wf-border);
   padding: 0.5em var(--wf-pad);
   background: #fafafa;
 }
-.wf-parking-map__zone-title { font-weight: 600; margin: 0 0 0.25em 0; }
-.wf-parking-map__zone-meta { color: var(--wf-muted); font-size: 0.85em; margin: 0; }
-.wf-parking-map--compact .wf-parking-map__zone { padding: 0.35em 0.5em; font-size: 0.85rem; }
+
+.wf-parking-map__zone-title {
+  font-weight: 600;
+  margin: 0 0 0.25em 0;
+}
+
+.wf-parking-map__zone-meta {
+  color: var(--wf-muted);
+  font-size: 0.85em;
+  margin: 0;
+}
+
+.wf-parking-map--compact .wf-parking-map__zone {
+  padding: 0.35em 0.5em;
+  font-size: 0.85rem;
+}
+
 .wf-parking-map__legend {
   margin-top: var(--wf-gap);
   padding-top: var(--wf-gap);
@@ -441,5 +498,12 @@ textarea:focus-visible {
   font-size: 0.85em;
   color: var(--wf-muted);
 }
-.wf-parking-map__legend span { margin-right: 1em; }
-.wf-parking-map__total { margin-top: 0.5em; font-weight: 600; }
+
+.wf-parking-map__legend span {
+  margin-right: 1em;
+}
+
+.wf-parking-map__total {
+  margin-top: 0.5em;
+  font-weight: 600;
+}

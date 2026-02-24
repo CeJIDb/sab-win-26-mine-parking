@@ -1,0 +1,38 @@
+@use 'tokens';
+
+/* Modal (generic) */
+.wf-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 1000;
+}
+
+.wf-modal:target {
+  display: flex;
+}
+
+.wf-modal__dialog {
+  background: #fff;
+  border: var(--wf-border);
+  max-width: 32rem;
+  width: 100%;
+  padding: var(--wf-pad);
+}
+
+.wf-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.wf-modal__close {
+  font-size: 0.9rem;
+}
+

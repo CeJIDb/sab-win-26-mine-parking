@@ -1,0 +1,148 @@
+@use 'tokens';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--wf-text);
+  background: var(--wf-bg);
+}
+
+/* Layout */
+.wf-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--wf-pad);
+}
+
+/* Header */
+header[role='banner'],
+.wf-header {
+  @include tokens.wf-panel;
+  margin-bottom: var(--wf-gap);
+}
+
+.wf-header h1 {
+  margin: 0 0 0.5em 0;
+  font-size: 1.25rem;
+}
+
+/* Nav */
+nav,
+.wf-nav {
+  @include tokens.wf-main-block;
+  margin-bottom: var(--wf-gap);
+}
+
+.wf-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em 1em;
+}
+
+.wf-nav a {
+  color: var(--wf-text);
+  text-decoration: underline;
+}
+
+.wf-nav a:hover {
+  color: var(--wf-muted);
+}
+
+/* Main */
+main,
+.wf-main {
+  @include tokens.wf-main-block;
+  margin-bottom: var(--wf-gap);
+}
+
+.wf-main h2 {
+  margin: 0 0 0.5em 0;
+  font-size: 1.1rem;
+}
+
+/* Sections */
+section,
+.wf-section {
+  @include tokens.wf-panel;
+  margin-bottom: var(--wf-gap);
+}
+
+.wf-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Muted text */
+.wf-muted {
+  color: var(--wf-muted);
+  font-size: 0.9em;
+}
+
+/* Breadcrumb / context */
+.wf-context {
+  margin-bottom: var(--wf-gap);
+  font-size: 0.9em;
+  color: var(--wf-muted);
+}
+
+.wf-context a {
+  color: var(--wf-text);
+  text-decoration: underline;
+}
+
+/* Footer — служебные ссылки (не акцентировать) */
+.wf-footer {
+  margin-top: var(--wf-gap);
+  padding: var(--wf-pad) 0;
+  border-top: 1px solid #ddd;
+  font-size: 0.8rem;
+  color: var(--wf-muted);
+}
+
+.wf-footer__service a {
+  color: var(--wf-muted);
+  text-decoration: none;
+}
+
+.wf-footer__service a:hover {
+  text-decoration: underline;
+  color: var(--wf-text);
+}
+
+/* WF-05: Skip link — скрыт по умолчанию, виден при фокусе */
+.wf-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 999;
+  padding: 0.5em 1em;
+  background: var(--wf-block);
+  border: var(--wf-border);
+  color: var(--wf-text);
+  text-decoration: underline;
+  font-size: 1rem;
+}
+
+.wf-skip-link:focus {
+  left: var(--wf-pad);
+  top: var(--wf-pad);
+}
+
+/* WF-06: Видимое состояние фокуса для доступности */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #333;
+  outline-offset: 2px;
+}
+

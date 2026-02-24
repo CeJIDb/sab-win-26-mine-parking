@@ -8,7 +8,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:templates": "node ./scripts/build-templates.mjs"
+    "build:css": "sass ui/scss/wireframe.scss ui/wireframe.css --no-source-map",
+    "build:templates": "node ./scripts/build-templates.mjs",
+    "build": "npm run build:css && npm run build:templates"
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,7 @@
   },
   "homepage": "https://github.com/CeJIDb/sab-win-26-mine-parking#readme",
   "devDependencies": {
-    "nunjucks": "^3.2.4"
+    "nunjucks": "^3.2.4",
+    "sass": "^1.77.0"
   }
 }
