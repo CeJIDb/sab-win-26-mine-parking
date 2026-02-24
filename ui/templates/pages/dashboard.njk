@@ -1,34 +1,9 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Личный кабинет клиента — Цифровая платформа парковки</title>
-  <link rel="stylesheet" href="../wireframe.css">
-</head>
-<body>
-  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
-  <div class="wf-page">
-    <header class="wf-header" role="banner">
-      <h1>Личный кабинет клиента</h1>
-      <p class="wf-muted">Consumer App — вход после авторизации клиента</p>
-    </header>
-    <nav class="wf-nav" aria-label="Навигация ЛК клиента">
-  <ul>
-    <li><a href="dashboard.html">Главная</a></li>
-    <li><a href="bookings.html">Бронирование</a></li>
-    <li><a href="contracts.html">Договоры</a></li>
-    <li><a href="sessions-history.html">История сессий</a></li>
-    <li><a href="vehicles.html">Список ТС</a></li>
-    <li><a href="payment-settings.html">Оплаты</a></li>
-    <li><a href="appeals.html">Обращения</a></li>
-    <li><a href="notifications.html">Уведомления</a></li>
-    <li><a href="profile.html">Профиль</a></li>
-  </ul>
-</nav>
+{% extends "layouts/lk.njk" %}
 
-    <main id="main-content" class="wf-main">
-      
+{% block title %}Личный кабинет клиента — Цифровая платформа парковки{% endblock %}
+{% block header_subtitle %}Consumer App — вход после авторизации клиента{% endblock %}
+
+{% block content %}
   <p class="wf-context"><a href="dashboard.html">Главная ЛК</a></p>
   <h2>Главная страница ЛК</h2>
   <div class="wf-grid">
@@ -81,13 +56,4 @@
       <p class="wf-parking-map__total">Всего 600 мест · свободно: 222 · занято: 378 (загрузка ~63%).</p>
     </div>
   </section>
-
-    </main>
-    <footer class="wf-footer">
-      <div class="wf-footer__service">
-        <a href="../site/index.html">На сайт парковки</a>
-      </div>
-    </footer>
-  </div>
-</body>
-</html>
+{% endblock %}

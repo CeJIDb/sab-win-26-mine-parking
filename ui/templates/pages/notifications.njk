@@ -1,0 +1,63 @@
+{% extends "layouts/lk.njk" %}
+
+{% block title %}Уведомления — ЛК клиента{% endblock %}
+{% block header_subtitle %}События по сессиям, бронированиям, договорам и оплатам{% endblock %}
+
+{% block content %}
+  <p class="wf-context"><a href="dashboard.html">Главная ЛК</a> → Уведомления</p>
+  <h2>Уведомления</h2>
+
+  <section class="wf-section">
+    <h3>Фильтр уведомлений</h3>
+    <form class="wf-form">
+      <div class="wf-field wf-field--inline-control">
+        <label for="notif-type">Тип уведомлений</label>
+        <div class="wf-inline">
+          <select id="notif-type">
+            <option value="">Все типы</option>
+            <option value="sessions">Парковочные сессии</option>
+            <option value="bookings">Бронирования</option>
+            <option value="contracts">Договоры</option>
+            <option value="payments">Оплаты</option>
+            <option value="appeals">Обращения</option>
+            <option value="system">Системные</option>
+          </select>
+          <button type="button">Применить</button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <section class="wf-section">
+    <h3>Последние уведомления</h3>
+    <ul class="wf-list">
+      <li>
+        <strong>24.02.2026 10:20</strong> — Оплата
+        <br>Оплата парковочной сессии <a href="sessions-history.html">S-1001</a> на сумму 350 ₽ прошла успешно.
+        <br><span class="wf-muted">Подробности в разделе «Оплаты».</span>
+      </li>
+      <li>
+        <strong>24.02.2026 09:00</strong> — Договор
+        <br>Срок действия договора №1001 истекает через <strong>5 дней</strong>.
+        <br><span class="wf-muted">Продлите договор в разделе «Договоры», чтобы сохранить доступ к ПМ.</span>
+      </li>
+      <li>
+        <strong>23.02.2026 18:45</strong> — Бронирование
+        <br>Создано бронирование <a href="bookings.html">B-204</a> на ПМ 12, сектор A на сегодня в 19:00.
+        <br><span class="wf-muted">Не забудьте вовремя заехать на парковку.</span>
+      </li>
+      <li>
+        <strong>23.02.2026 12:10</strong> — Обращения
+        <br>Получен ответ по обращению <a href="appeals.html">#AP-002</a>: «Вопрос по автосписанию по договору».
+        <br><span class="wf-muted">Ознакомьтесь с ответом в разделе «Обращения».</span>
+      </li>
+      <li>
+        <strong>22.02.2026 21:30</strong> — Ошибка оплаты
+        <br>Не удалось списать оплату за парковочную сессию <a href="sessions-history.html">S-0998</a>.
+        <br><span class="wf-muted">Проверьте способ оплаты в разделе «Оплаты» и повторите платеж.</span>
+      </li>
+    </ul>
+    <p class="wf-muted">[Пагинация, если уведомлений много.]</p>
+  </section>
+{% endblock %}
+

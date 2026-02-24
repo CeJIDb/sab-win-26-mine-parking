@@ -1,0 +1,20 @@
+{% extends "layouts/lk.njk" %}
+
+{% block title %}Список ТС — ЛК клиента{% endblock %}
+{% block header_subtitle %}Список транспортных средств (ТС){% endblock %}
+
+{% block content %}
+  <p class="wf-context"><a href="dashboard.html">Главная ЛК</a> → Список ТС</p>
+  <h2>Управление списком транспортных средств</h2>
+  <section class="wf-section">
+    <h3>Мои ТС</h3>
+    <ul class="wf-list">
+      <li>А123БВ777 — Toyota Camry — Легковой — <button type="button">Редактировать</button> <button type="button">Удалить</button></li>
+      <li>В456ГД177 — Honda Civic — Легковой — <button type="button">Редактировать</button> <button type="button">Удалить</button></li>
+    </ul>
+    <div class="wf-actions">
+      <a href="#vehicle-add-modal" class="wf-btn">Добавить ТС</a>
+    </div>
+  </section>
+  {% include "partials/vehicles-add-modal.njk" %}
+{% endblock %}

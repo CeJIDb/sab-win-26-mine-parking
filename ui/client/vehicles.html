@@ -14,58 +14,76 @@
       <p class="wf-muted">Список транспортных средств (ТС)</p>
     </header>
     <nav class="wf-nav" aria-label="Навигация ЛК клиента">
-      <ul>
-        <li><a href="dashboard.html">Главная</a></li>
-        <li><a href="bookings.html">Бронирование</a></li>
-        <li><a href="contracts.html">Договоры</a></li>
-        <li><a href="sessions-history.html">История сессий</a></li>
-        <li><a href="vehicles.html">Список ТС</a></li>
-        <li><a href="payment-settings.html">Настройки оплаты</a></li>
-        <li><a href="profile.html">Профиль</a></li>
-        <li><a href="../site/index.html">На сайт</a></li>
-        <li><a href="../site/login.html">Выход</a></li>
-      </ul>
-    </nav>
+  <ul>
+    <li><a href="dashboard.html">Главная</a></li>
+    <li><a href="bookings.html">Бронирование</a></li>
+    <li><a href="contracts.html">Договоры</a></li>
+    <li><a href="sessions-history.html">История сессий</a></li>
+    <li><a href="vehicles.html">Список ТС</a></li>
+    <li><a href="payment-settings.html">Оплаты</a></li>
+    <li><a href="appeals.html">Обращения</a></li>
+    <li><a href="notifications.html">Уведомления</a></li>
+    <li><a href="profile.html">Профиль</a></li>
+  </ul>
+</nav>
+
     <main id="main-content" class="wf-main">
-      <p class="wf-context"><a href="dashboard.html">Главная ЛК</a> → Список ТС</p>
-      <h2>Управление списком транспортных средств</h2>
-      <section class="wf-section">
-        <h3>Мои ТС</h3>
-        <ul class="wf-list">
-          <li>А123БВ777 — Toyota Camry — Легковой — <button type="button">Редактировать</button> <button type="button">Удалить</button></li>
-          <li>В456ГД177 — Honda Civic — Легковой — <button type="button">Редактировать</button> <button type="button">Удалить</button></li>
-        </ul>
-      </section>
-      <section class="wf-section">
-        <h3>Добавить ТС</h3>
-        <form class="wf-form">
-          <div class="wf-field">
-            <label for="veh-grz">ГРЗ (государственный регистрационный знак)</label>
-            <input id="veh-grz" type="text" placeholder="А123БВ777" required>
-          </div>
-          <div class="wf-field">
-            <label for="veh-brand">Марка</label>
-            <input id="veh-brand" type="text" placeholder="Например: Toyota">
-          </div>
-          <div class="wf-field">
-            <label for="veh-model">Модель</label>
-            <input id="veh-model" type="text" placeholder="Например: Camry">
-          </div>
-          <div class="wf-field">
-            <label for="veh-type">Тип / категория ТС</label>
-            <select id="veh-type">
-              <option value="">— выбрать —</option>
-              <option value="car">Легковой</option>
-              <option value="moto">Мотоцикл</option>
-              <option value="other">Другое</option>
-            </select>
-          </div>
-          <div class="wf-actions">
-            <button type="submit">Добавить ТС</button>
-          </div>
-        </form>
-      </section>
+      
+  <p class="wf-context"><a href="dashboard.html">Главная ЛК</a> → Список ТС</p>
+  <h2>Управление списком транспортных средств</h2>
+  <section class="wf-section">
+    <h3>Мои ТС</h3>
+    <ul class="wf-list">
+      <li>А123БВ777 — Toyota Camry — Легковой — <button type="button">Редактировать</button> <button type="button">Удалить</button></li>
+      <li>В456ГД177 — Honda Civic — Легковой — <button type="button">Редактировать</button> <button type="button">Удалить</button></li>
+    </ul>
+    <div class="wf-actions">
+      <a href="#vehicle-add-modal" class="wf-btn">Добавить ТС</a>
+    </div>
+  </section>
+  <section id="vehicle-add-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="vehicle-add-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="vehicle-add-title">Добавить ТС</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <form class="wf-form">
+      <div class="wf-field">
+        <label for="veh-grz">ГРЗ (государственный регистрационный знак)</label>
+        <input id="veh-grz" type="text" placeholder="А123БВ777" required>
+      </div>
+      <div class="wf-field">
+        <label for="veh-brand">Марка</label>
+        <input id="veh-brand" type="text" placeholder="Например: Toyota">
+      </div>
+      <div class="wf-field">
+        <label for="veh-model">Модель</label>
+        <input id="veh-model" type="text" placeholder="Например: Camry">
+      </div>
+      <div class="wf-field">
+        <label for="veh-type">Тип / категория ТС</label>
+        <select id="veh-type">
+          <option value="">— выбрать —</option>
+          <option value="car">Легковой</option>
+          <option value="moto">Мотоцикл</option>
+          <option value="other">Другое</option>
+        </select>
+      </div>
+      <div class="wf-actions">
+        <button type="submit">Добавить ТС</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+
+
     </main>
+    <footer class="wf-footer">
+      <div class="wf-footer__service">
+        <a href="../site/index.html">На сайт парковки</a>
+      </div>
+    </footer>
   </div>
 </body>
 </html>

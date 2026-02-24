@@ -14,44 +14,51 @@
       <p class="wf-muted">Оплата бронирования</p>
     </header>
     <nav class="wf-nav" aria-label="Навигация ЛК клиента">
-      <ul>
-        <li><a href="dashboard.html">Главная</a></li>
-        <li><a href="bookings.html">Бронирование</a></li>
-        <li><a href="contracts.html">Договоры</a></li>
-        <li><a href="sessions-history.html">История сессий</a></li>
-        <li><a href="vehicles.html">Список ТС</a></li>
-        <li><a href="payment-settings.html">Настройки оплаты</a></li>
-        <li><a href="profile.html">Профиль</a></li>
-        <li><a href="../site/index.html">На сайт</a></li>
-        <li><a href="../site/login.html">Выход</a></li>
-      </ul>
-    </nav>
+  <ul>
+    <li><a href="dashboard.html">Главная</a></li>
+    <li><a href="bookings.html">Бронирование</a></li>
+    <li><a href="contracts.html">Договоры</a></li>
+    <li><a href="sessions-history.html">История сессий</a></li>
+    <li><a href="vehicles.html">Список ТС</a></li>
+    <li><a href="payment-settings.html">Оплаты</a></li>
+    <li><a href="appeals.html">Обращения</a></li>
+    <li><a href="notifications.html">Уведомления</a></li>
+    <li><a href="profile.html">Профиль</a></li>
+  </ul>
+</nav>
+
     <main id="main-content" class="wf-main">
-      <p class="wf-context"><a href="dashboard.html">Главная ЛК</a> → <a href="bookings.html">Бронирование</a> → Оплата</p>
-      <h2>Оплата бронирования</h2>
-      <!-- WF-01: Шаг оплаты после создания брони (П. 1, 3 — ключевой сценарий бронирование+оплата) -->
-      <p class="wf-error" role="alert" aria-live="polite" aria-hidden="true"></p>
-      <section class="wf-section">
-        <p class="wf-muted">[Данные брони: дата, время, ПМ, тариф.]</p>
-        <div class="wf-card">
-          <p><strong>Сумма к оплате:</strong> [сумма] ₽</p>
-        </div>
-        <form class="wf-form" action="dashboard.html" method="get">
-          <div class="wf-field">
-            <label for="pay-method">Способ оплаты</label>
-            <select id="pay-method">
-              <option value="">— выбрать —</option>
-              <option value="card">Банковская карта</option>
-              <option value="sbp">СБП</option>
-            </select>
-          </div>
-          <div class="wf-actions">
-            <button type="submit">Оплатить</button>
-            <a href="bookings.html" class="wf-btn">Вернуться к бронированию</a>
-          </div>
-        </form>
-      </section>
+      
+  <p class="wf-context"><a href="dashboard.html">Главная ЛК</a> → <a href="bookings.html">Бронирование</a> → Оплата</p>
+  <h2>Оплата бронирования</h2>
+  <p class="wf-error" role="alert" aria-live="polite" aria-hidden="true"></p>
+  <section class="wf-section">
+    <p class="wf-muted">[Данные брони: дата, время, ПМ, тариф.]</p>
+    <div class="wf-card">
+      <p><strong>Сумма к оплате:</strong> [сумма] ₽</p>
+    </div>
+    <form class="wf-form" action="dashboard.html" method="get">
+      <div class="wf-field">
+        <label for="pay-method">Способ оплаты</label>
+        <select id="pay-method">
+          <option value="">— выбрать —</option>
+          <option value="card">Банковская карта</option>
+          <option value="sbp">СБП</option>
+        </select>
+      </div>
+      <div class="wf-actions">
+        <button type="submit">Оплатить</button>
+        <a href="bookings.html" class="wf-btn">Вернуться к бронированию</a>
+      </div>
+    </form>
+  </section>
+
     </main>
+    <footer class="wf-footer">
+      <div class="wf-footer__service">
+        <a href="../site/index.html">На сайт парковки</a>
+      </div>
+    </footer>
   </div>
 </body>
 </html>

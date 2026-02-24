@@ -14,157 +14,185 @@
       <p class="wf-muted">Настройки профиля</p>
     </header>
     <nav class="wf-nav" aria-label="Навигация ЛК клиента">
-      <ul>
-        <li><a href="dashboard.html">Главная</a></li>
-        <li><a href="bookings.html">Бронирование</a></li>
-        <li><a href="contracts.html">Договоры</a></li>
-        <li><a href="sessions-history.html">История сессий</a></li>
-        <li><a href="vehicles.html">Список ТС</a></li>
-        <li><a href="payment-settings.html">Настройки оплаты</a></li>
-        <li><a href="profile.html">Профиль</a></li>
-        <li><a href="../site/index.html">На сайт</a></li>
-        <li><a href="../site/login.html">Выход</a></li>
-      </ul>
-    </nav>
+  <ul>
+    <li><a href="dashboard.html">Главная</a></li>
+    <li><a href="bookings.html">Бронирование</a></li>
+    <li><a href="contracts.html">Договоры</a></li>
+    <li><a href="sessions-history.html">История сессий</a></li>
+    <li><a href="vehicles.html">Список ТС</a></li>
+    <li><a href="payment-settings.html">Оплаты</a></li>
+    <li><a href="appeals.html">Обращения</a></li>
+    <li><a href="notifications.html">Уведомления</a></li>
+    <li><a href="profile.html">Профиль</a></li>
+  </ul>
+</nav>
+
     <main id="main-content" class="wf-main">
-      <p class="wf-context"><a href="dashboard.html">Главная ЛК</a> → Настройки профиля</p>
-      <h2>Настройки профиля</h2>
-      <form class="wf-form">
-        <div class="wf-field wf-field--inline-control">
-          <label for="prof-phone">Текущий телефон</label>
-          <div class="wf-inline">
-            <input id="prof-phone" type="tel" placeholder="+7 …" readonly>
-            <a href="#phone-change-modal" class="wf-btn-link">Изменить номер</a>
-          </div>
-        </div>
-        <div class="wf-field wf-field--inline-control">
-          <label for="prof-email">E-mail</label>
-          <div class="wf-inline">
-            <input id="prof-email" type="email" placeholder="email@example.com" readonly>
-            <a href="#email-change-modal" class="wf-btn-link">Изменить e-mail</a>
-          </div>
-        </div>
-        <div class="wf-field">
-          <label for="prof-name">ФИО</label>
-          <input id="prof-name" type="text" placeholder="Фамилия Имя Отчество">
-        </div>
-        <div class="wf-field wf-field--checkbox">
-          <label for="prof-marketing">
-            <input id="prof-marketing" type="checkbox">
-            <span>Согласен на получение маркетинговых рассылок (акции, новости парковки)</span>
-          </label>
-        </div>
-        <div class="wf-field wf-field--checkbox">
-          <label for="prof-events">
-            <input id="prof-events" type="checkbox" checked>
-            <span>Получать уведомления о статусах сессий, бронирований, договоров и других операций</span>
-          </label>
-        </div>
-        <div class="wf-actions">
-          <button type="submit">Сохранить</button>
-        </div>
-      </form>
-      <section id="phone-change-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="phone-change-title">
-        <div class="wf-modal__dialog wf-section">
-          <header class="wf-modal__header">
-            <h3 id="phone-change-title">Смена номера телефона</h3>
-            <a href="#main-content" class="wf-modal__close">Закрыть</a>
-          </header>
-          <form class="wf-form">
-          <p class="wf-notice"><strong>Шаг 1.</strong> Подтвердите, что вы владеете текущим номером телефона.</p>
-          <div class="wf-field">
-            <label for="phone-current">Текущий номер телефона</label>
-            <input id="phone-current" type="tel" placeholder="+7 …">
-          </div>
-          <div class="wf-field">
-            <button type="button">Отправить код по SMS</button>
-          </div>
-          <div class="wf-field">
-            <label for="phone-current-code">Код из SMS</label>
-            <input id="phone-current-code" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="●●●●">
-          </div>
-          <div class="wf-actions">
-            <button type="submit">Подтвердить текущий номер</button>
-          </div>
-        </form>
-          <form class="wf-form">
-          <p class="wf-notice"><strong>Шаг 2.</strong> Укажите новый номер и подтвердите его.</p>
-          <div class="wf-field">
-            <label for="phone-new">Новый номер телефона</label>
-            <input id="phone-new" type="tel" placeholder="+7 …" disabled>
-          </div>
-          <div class="wf-field">
-            <button type="button" disabled>Отправить код по SMS</button>
-          </div>
-          <div class="wf-field">
-            <label for="phone-new-code">Код из SMS</label>
-            <input id="phone-new-code" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="●●●●" disabled>
-          </div>
-          <div class="wf-actions">
-            <button type="submit" disabled>Сохранить новый номер</button>
-          </div>
-        </form>
-        </div>
-      </section>
-      <section id="email-change-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="email-change-title">
-        <div class="wf-modal__dialog wf-section">
-          <header class="wf-modal__header">
-            <h3 id="email-change-title">Смена e-mail</h3>
-            <a href="#main-content" class="wf-modal__close">Закрыть</a>
-          </header>
-          <form class="wf-form">
-            <p class="wf-notice"><strong>Шаг 1.</strong> Подтвердите, что вы владеете текущим адресом e-mail.</p>
-            <div class="wf-field">
-              <label for="email-current">Текущий e-mail</label>
-              <input id="email-current" type="email" placeholder="email@example.com">
-            </div>
-            <div class="wf-field">
-              <button type="button">Отправить код на e-mail</button>
-            </div>
-            <div class="wf-field">
-              <label for="email-current-code">Код из письма</label>
-              <input id="email-current-code" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="●●●●">
-            </div>
-            <div class="wf-actions">
-              <button type="submit">Подтвердить текущий e-mail</button>
-            </div>
-          </form>
-          <form class="wf-form">
-            <p class="wf-notice"><strong>Шаг 2.</strong> Укажите новый e-mail и подтвердите его.</p>
-            <div class="wf-field">
-              <label for="email-new">Новый e-mail</label>
-              <input id="email-new" type="email" placeholder="email@example.com" disabled>
-            </div>
-            <div class="wf-field">
-              <button type="button" disabled>Отправить код на e-mail</button>
-            </div>
-            <div class="wf-field">
-              <label for="email-new-code">Код из письма</label>
-              <input id="email-new-code" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="●●●●" disabled>
-            </div>
-            <div class="wf-actions">
-              <button type="submit" disabled>Сохранить новый e-mail</button>
-            </div>
-          </form>
-        </div>
-      </section>
-      <section class="wf-section">
-        <h3>Смена пароля</h3>
-        <form class="wf-form">
-          <div class="wf-field">
-            <label for="prof-old-pwd">Текущий пароль</label>
-            <input id="prof-old-pwd" type="password" placeholder="Текущий пароль">
-          </div>
-          <div class="wf-field">
-            <label for="prof-new-pwd">Новый пароль</label>
-            <input id="prof-new-pwd" type="password" placeholder="Новый пароль">
-          </div>
-          <div class="wf-actions">
-            <button type="submit">Изменить пароль</button>
-          </div>
-        </form>
-      </section>
+      
+  <p class="wf-context"><a href="dashboard.html">Главная ЛК</a> → Настройки профиля</p>
+  <h2>Настройки профиля</h2>
+  <form class="wf-form">
+    <div class="wf-field wf-field--inline-control">
+      <label for="prof-phone">Текущий телефон</label>
+      <div class="wf-inline">
+        <input id="prof-phone" type="tel" placeholder="+7 …" readonly>
+        <a href="#phone-change-modal" class="wf-btn-link">Изменить номер</a>
+      </div>
+    </div>
+    <div class="wf-field wf-field--inline-control">
+      <label for="prof-email">E-mail</label>
+      <div class="wf-inline">
+        <input id="prof-email" type="email" placeholder="email@example.com" readonly>
+        <a href="#email-change-modal" class="wf-btn-link">Изменить e-mail</a>
+      </div>
+    </div>
+    <div class="wf-field">
+      <a href="#password-change-modal" class="wf-btn">Изменить пароль</a>
+    </div>
+    <div class="wf-field">
+      <label for="prof-name">ФИО</label>
+      <input id="prof-name" type="text" placeholder="Фамилия Имя Отчество">
+    </div>
+    <div class="wf-field wf-field--checkbox">
+      <label for="prof-marketing">
+        <input id="prof-marketing" type="checkbox">
+        <span>Согласен на получение маркетинговых рассылок (акции, новости парковки)</span>
+      </label>
+    </div>
+    <div class="wf-field wf-field--checkbox">
+      <label for="prof-events">
+        <input id="prof-events" type="checkbox" checked>
+        <span>Получать уведомления о статусах сессий, бронирований, договоров и других операций</span>
+      </label>
+    </div>
+    <div class="wf-actions">
+      <button type="submit">Сохранить</button>
+      <a href="../site/login.html" class="wf-btn">Выход</a>
+    </div>
+  </form>
+
+  <section id="phone-change-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="phone-change-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="phone-change-title">Смена номера телефона</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <form class="wf-form">
+      <p class="wf-notice"><strong>Шаг 1.</strong> Подтвердите, что вы владеете текущим номером телефона.</p>
+      <div class="wf-field">
+        <label for="phone-current">Текущий номер телефона</label>
+        <input id="phone-current" type="tel" placeholder="+7 …">
+      </div>
+      <div class="wf-field">
+        <button type="button">Отправить код по SMS</button>
+      </div>
+      <div class="wf-field">
+        <label for="phone-current-code">Код из SMS</label>
+        <input id="phone-current-code" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="●●●●">
+      </div>
+      <div class="wf-actions">
+        <button type="submit">Подтвердить текущий номер</button>
+      </div>
+    </form>
+    <form class="wf-form">
+      <p class="wf-notice"><strong>Шаг 2.</strong> Укажите новый номер и подтвердите его.</p>
+      <div class="wf-field">
+        <label for="phone-new">Новый номер телефона</label>
+        <input id="phone-new" type="tel" placeholder="+7 …" disabled>
+      </div>
+      <div class="wf-field">
+        <button type="button" disabled>Отправить код по SMS</button>
+      </div>
+      <div class="wf-field">
+        <label for="phone-new-code">Код из SMS</label>
+        <input id="phone-new-code" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="●●●●" disabled>
+      </div>
+      <div class="wf-actions">
+        <button type="submit" disabled>Сохранить новый номер</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+
+  <section id="email-change-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="email-change-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="email-change-title">Смена e-mail</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <form class="wf-form">
+      <p class="wf-notice"><strong>Шаг 1.</strong> Подтвердите, что вы владеете текущим адресом e-mail.</p>
+      <div class="wf-field">
+        <label for="email-current">Текущий e-mail</label>
+        <input id="email-current" type="email" placeholder="email@example.com">
+      </div>
+      <div class="wf-field">
+        <button type="button">Отправить код на e-mail</button>
+      </div>
+      <div class="wf-field">
+        <label for="email-current-code">Код из письма</label>
+        <input id="email-current-code" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="●●●●">
+      </div>
+      <div class="wf-actions">
+        <button type="submit">Подтвердить текущий e-mail</button>
+      </div>
+    </form>
+    <form class="wf-form">
+      <p class="wf-notice"><strong>Шаг 2.</strong> Укажите новый e-mail и подтвердите его.</p>
+      <div class="wf-field">
+        <label for="email-new">Новый e-mail</label>
+        <input id="email-new" type="email" placeholder="email@example.com" disabled>
+      </div>
+      <div class="wf-field">
+        <button type="button" disabled>Отправить код на e-mail</button>
+      </div>
+      <div class="wf-field">
+        <label for="email-new-code">Код из письма</label>
+        <input id="email-new-code" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="●●●●" disabled>
+      </div>
+      <div class="wf-actions">
+        <button type="submit" disabled>Сохранить новый e-mail</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+
+  <section id="password-change-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="password-change-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="password-change-title">Смена пароля</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <form class="wf-form">
+      <div class="wf-field">
+        <label for="prof-old-pwd">Текущий пароль</label>
+        <input id="prof-old-pwd" type="password" placeholder="Текущий пароль">
+      </div>
+      <div class="wf-field">
+        <label for="prof-new-pwd">Новый пароль</label>
+        <input id="prof-new-pwd" type="password" placeholder="Новый пароль">
+      </div>
+      <div class="wf-field">
+        <label for="prof-new-pwd-confirm">Подтверждение нового пароля</label>
+        <input id="prof-new-pwd-confirm" type="password" placeholder="Повторите новый пароль">
+      </div>
+      <div class="wf-actions">
+        <button type="submit">Изменить пароль</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+
+
     </main>
+    <footer class="wf-footer">
+      <div class="wf-footer__service">
+        <a href="../site/index.html">На сайт парковки</a>
+      </div>
+    </footer>
   </div>
 </body>
 </html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Обращения — ЛК клиента</title>
+  <link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header" role="banner">
+      <h1>Личный кабинет клиента</h1>
+      <p class="wf-muted">Обращения в службу поддержки</p>
+    </header>
+    <nav class="wf-nav" aria-label="Навигация ЛК клиента">
+  <ul>
+    <li><a href="dashboard.html">Главная</a></li>
+    <li><a href="bookings.html">Бронирование</a></li>
+    <li><a href="contracts.html">Договоры</a></li>
+    <li><a href="sessions-history.html">История сессий</a></li>
+    <li><a href="vehicles.html">Список ТС</a></li>
+    <li><a href="payment-settings.html">Оплаты</a></li>
+    <li><a href="appeals.html">Обращения</a></li>
+    <li><a href="notifications.html">Уведомления</a></li>
+    <li><a href="profile.html">Профиль</a></li>
+  </ul>
+</nav>
+
+    <main id="main-content" class="wf-main">
+      
+  <p class="wf-context"><a href="dashboard.html">Главная ЛК</a> → Обращения</p>
+  <h2>Обращения</h2>
+
+  <section class="wf-section">
+    <h3>Мои обращения</h3>
+    <p class="wf-muted">Здесь отображаются ваши запросы в службу поддержки, связанные с бронированиями, договорами, сессиями и оплатами.</p>
+
+    <div class="wf-actions">
+      <a href="#appeal-create-modal" class="wf-btn">Создать обращение</a>
+    </div>
+
+    <ul class="wf-list wf-list--compact">
+      <li>
+        <strong>#AP-001</strong> — Проблема с въездом на парковку —
+        Статус: <strong>Открыто</strong> —
+        Обновлено: 24.02.2026
+        <button type="button">Просмотреть</button>
+      </li>
+      <li>
+        <strong>#AP-002</strong> — Вопрос по автосписанию по договору —
+        Статус: <strong>В работе</strong> —
+        Обновлено: 23.02.2026
+        <button type="button">Просмотреть</button>
+      </li>
+      <li>
+        <strong>#AP-003</strong> — Уточнение по истории парковочной сессии —
+        Статус: <strong>Закрыто</strong> —
+        Обновлено: 20.02.2026
+        <button type="button">Просмотреть</button>
+      </li>
+    </ul>
+  </section>
+
+  <section id="appeal-create-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="appeal-create-title">
+    <div class="wf-modal__dialog wf-section">
+      <header class="wf-modal__header">
+        <h3 id="appeal-create-title">Создать обращение</h3>
+        <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+      </header>
+      <form class="wf-form">
+        <div class="wf-field">
+          <label for="appeal-subject">Тема обращения</label>
+          <input id="appeal-subject" type="text" required placeholder="Кратко опишите суть обращения">
+        </div>
+        <div class="wf-field">
+          <label for="appeal-category">Категория</label>
+          <select id="appeal-category" required>
+            <option value="">— выбрать —</option>
+            <option value="booking">Бронирование</option>
+            <option value="contract">Договор</option>
+            <option value="session">Парковочная сессия</option>
+            <option value="payment">Оплата</option>
+            <option value="access">Доступ / пропуск</option>
+            <option value="other">Другое</option>
+          </select>
+        </div>
+        <div class="wf-field">
+          <label for="appeal-related">Связанный объект (№ договора / ID сессии / № брони)</label>
+          <input id="appeal-related" type="text" placeholder="Например: Договор №123 / Сессия #456">
+        </div>
+        <div class="wf-field">
+          <label for="appeal-text">Описание</label>
+          <textarea id="appeal-text" rows="5" required placeholder="Подробно опишите проблему или вопрос, укажите необходимые детали (даты, номера ТС, парковочные места и т.п.)."></textarea>
+        </div>
+        <div class="wf-field">
+          <label for="appeal-attachment">Вложения (при необходимости)</label>
+          <input id="appeal-attachment" type="file" disabled>
+          <p class="wf-muted">В MVP можно описать ситуацию текстом; поле для файлов добавлено как заготовка.</p>
+        </div>
+        <p class="wf-muted">
+          Ответ будет направлен на контактные данные из раздела «Профиль». При необходимости оператор может связаться с вами по телефону.
+        </p>
+        <div class="wf-actions">
+          <button type="submit">Отправить обращение</button>
+          <a href="#main-content" class="wf-btn-link">Отмена</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+    </main>
+    <footer class="wf-footer">
+      <div class="wf-footer__service">
+        <a href="../site/index.html">На сайт парковки</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

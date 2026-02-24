@@ -1,0 +1,30 @@
+{% extends "layouts/lk.njk" %}
+
+{% block title %}Оплата бронирования — ЛК клиента{% endblock %}
+{% block header_subtitle %}Оплата бронирования{% endblock %}
+
+{% block content %}
+  <p class="wf-context"><a href="dashboard.html">Главная ЛК</a> → <a href="bookings.html">Бронирование</a> → Оплата</p>
+  <h2>Оплата бронирования</h2>
+  <p class="wf-error" role="alert" aria-live="polite" aria-hidden="true"></p>
+  <section class="wf-section">
+    <p class="wf-muted">[Данные брони: дата, время, ПМ, тариф.]</p>
+    <div class="wf-card">
+      <p><strong>Сумма к оплате:</strong> [сумма] ₽</p>
+    </div>
+    <form class="wf-form" action="dashboard.html" method="get">
+      <div class="wf-field">
+        <label for="pay-method">Способ оплаты</label>
+        <select id="pay-method">
+          <option value="">— выбрать —</option>
+          <option value="card">Банковская карта</option>
+          <option value="sbp">СБП</option>
+        </select>
+      </div>
+      <div class="wf-actions">
+        <button type="submit">Оплатить</button>
+        <a href="bookings.html" class="wf-btn">Вернуться к бронированию</a>
+      </div>
+    </form>
+  </section>
+{% endblock %}

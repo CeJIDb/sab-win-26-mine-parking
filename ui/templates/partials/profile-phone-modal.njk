@@ -1,0 +1,43 @@
+<section id="phone-change-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="phone-change-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="phone-change-title">Смена номера телефона</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <form class="wf-form">
+      <p class="wf-notice"><strong>Шаг 1.</strong> Подтвердите, что вы владеете текущим номером телефона.</p>
+      <div class="wf-field">
+        <label for="phone-current">Текущий номер телефона</label>
+        <input id="phone-current" type="tel" placeholder="+7 …">
+      </div>
+      <div class="wf-field">
+        <button type="button">Отправить код по SMS</button>
+      </div>
+      <div class="wf-field">
+        <label for="phone-current-code">Код из SMS</label>
+        <input id="phone-current-code" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="●●●●">
+      </div>
+      <div class="wf-actions">
+        <button type="submit">Подтвердить текущий номер</button>
+      </div>
+    </form>
+    <form class="wf-form">
+      <p class="wf-notice"><strong>Шаг 2.</strong> Укажите новый номер и подтвердите его.</p>
+      <div class="wf-field">
+        <label for="phone-new">Новый номер телефона</label>
+        <input id="phone-new" type="tel" placeholder="+7 …" disabled>
+      </div>
+      <div class="wf-field">
+        <button type="button" disabled>Отправить код по SMS</button>
+      </div>
+      <div class="wf-field">
+        <label for="phone-new-code">Код из SMS</label>
+        <input id="phone-new-code" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="●●●●" disabled>
+      </div>
+      <div class="wf-actions">
+        <button type="submit" disabled>Сохранить новый номер</button>
+      </div>
+    </form>
+  </div>
+</section>
+

@@ -1,0 +1,35 @@
+<section id="vehicle-add-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="vehicle-add-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="vehicle-add-title">Добавить ТС</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <form class="wf-form">
+      <div class="wf-field">
+        <label for="veh-grz">ГРЗ (государственный регистрационный знак)</label>
+        <input id="veh-grz" type="text" placeholder="А123БВ777" required>
+      </div>
+      <div class="wf-field">
+        <label for="veh-brand">Марка</label>
+        <input id="veh-brand" type="text" placeholder="Например: Toyota">
+      </div>
+      <div class="wf-field">
+        <label for="veh-model">Модель</label>
+        <input id="veh-model" type="text" placeholder="Например: Camry">
+      </div>
+      <div class="wf-field">
+        <label for="veh-type">Тип / категория ТС</label>
+        <select id="veh-type">
+          <option value="">— выбрать —</option>
+          <option value="car">Легковой</option>
+          <option value="moto">Мотоцикл</option>
+          <option value="other">Другое</option>
+        </select>
+      </div>
+      <div class="wf-actions">
+        <button type="submit">Добавить ТС</button>
+      </div>
+    </form>
+  </div>
+</section>
+

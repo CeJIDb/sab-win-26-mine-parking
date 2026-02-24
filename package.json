@@ -1,0 +1,27 @@
+{
+  "name": "sab-win'26",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:templates": "node ./scripts/build-templates.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CeJIDb/sab-win-26-mine-parking.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CeJIDb/sab-win-26-mine-parking/issues"
+  },
+  "homepage": "https://github.com/CeJIDb/sab-win-26-mine-parking#readme",
+  "devDependencies": {
+    "nunjucks": "^3.2.4"
+  }
+}

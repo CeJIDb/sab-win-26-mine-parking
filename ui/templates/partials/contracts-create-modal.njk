@@ -1,0 +1,102 @@
+<section id="contract-create-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="contract-create-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="contract-create-title">Создать договор</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <form class="wf-form">
+      <div class="wf-field wf-field--inline-control">
+        <label for="contract-date-from">Срок действия договора</label>
+        <div class="wf-inline">
+          <input id="contract-date-from" type="date" aria-label="Дата начала договора">
+          <span>–</span>
+          <input id="contract-date-to" type="date" aria-label="Дата окончания договора">
+        </div>
+      </div>
+      <div class="wf-field">
+        <label for="contract-tariff">Тариф по договору</label>
+        <select id="contract-tariff">
+          <option value="">— выбрать тариф —</option>
+          <option value="long-fl-standard">Долгосрочная парковка ФЛ — стандарт</option>
+          <option value="long-fl-discount">Долгосрочная парковка ФЛ — льготный</option>
+          <option value="monthly-fl">Помесячная парковка ФЛ</option>
+        </select>
+      </div>
+      <div class="wf-field">
+        <label for="contract-passport-series">Паспорт: серия и номер</label>
+        <input id="contract-passport-series" type="text" placeholder="0000 000000">
+      </div>
+      <div class="wf-field">
+        <label for="contract-passport-date">Паспорт: дата выдачи</label>
+        <input id="contract-passport-date" type="date">
+      </div>
+      <div class="wf-field">
+        <label for="contract-passport-issuer">Паспорт: кем выдан</label>
+        <input id="contract-passport-issuer" type="text" placeholder="ОВД …">
+      </div>
+      <div class="wf-field">
+        <label for="contract-parking">Парковка / зона</label>
+        <select id="contract-parking">
+          <option value="">— выбрать —</option>
+          <option value="long">Долгосрочная парковка ФЛ+ЮЛ</option>
+          <option value="ovz">Места для лиц с ОВЗ</option>
+        </select>
+      </div>
+      <div class="wf-field wf-field--inline-control">
+        <label>ТС (ГРЗ) по договору</label>
+        <div class="wf-inline">
+          <select id="contract-vehicle-picker">
+            <option value="">— выбрать ТС —</option>
+            <option value="A123BV777">А123БВ777 — Toyota Camry</option>
+            <option value="V456GD177">В456ГД177 — Honda Civic</option>
+            <option value="X999YY199">X999YY199 — Пример дополнительного ТС</option>
+          </select>
+          <button type="button" aria-label="Добавить ТС по договору">Добавить</button>
+        </div>
+        <ul class="wf-list wf-list--compact" id="contract-vehicle-list">
+          <li>А123БВ777 — Toyota Camry <button type="button" aria-label="Удалить ТС из договора">−</button></li>
+          <li>В456ГД177 — Honda Civic <button type="button" aria-label="Удалить ТС из договора">−</button></li>
+        </ul>
+      </div>
+      <div class="wf-field wf-field--inline-control">
+        <label>Парковочные места (ПМ)</label>
+        <div class="wf-inline">
+          <select id="contract-place-picker">
+            <option value="">— выбрать ПМ —</option>
+            <option value="A-101">ПМ 101 — сектор А</option>
+            <option value="A-102">ПМ 102 — сектор А</option>
+            <option value="B-201">ПМ 201 — сектор Б</option>
+          </select>
+          <button type="button" aria-label="Добавить ПМ по договору">Добавить</button>
+        </div>
+        <ul class="wf-list wf-list--compact" id="contract-place-list">
+          <li>ПМ 101 — сектор А <button type="button" aria-label="Удалить ПМ из договора">−</button></li>
+          <li>ПМ 102 — сектор А <button type="button" aria-label="Удалить ПМ из договора">−</button></li>
+        </ul>
+      </div>
+      <div class="wf-field">
+        <label for="contract-payment-method">Способ оплаты</label>
+        <select id="contract-payment-method">
+          <option value="">— выбрать —</option>
+          <option value="card">Банковская карта</option>
+          <option value="app">Мобильное приложение банка</option>
+          <option value="terminal">Терминал оплаты на парковке</option>
+        </select>
+      </div>
+      <div class="wf-field wf-field--checkbox">
+        <label for="contract-autopay">
+          <input id="contract-autopay" type="checkbox">
+          <span>Включить автосписание по договору (при наличии сохранённого способа оплаты)</span>
+        </label>
+      </div>
+      <div class="wf-field">
+        <label for="contract-amount">Сумма к оплате за первый период</label>
+        <input id="contract-amount" type="text" placeholder="[рассчитывается по тарифу]" readonly>
+      </div>
+      <div class="wf-actions">
+        <button type="submit">Сформировать договор по шаблону</button>
+      </div>
+    </form>
+  </div>
+</section>
+

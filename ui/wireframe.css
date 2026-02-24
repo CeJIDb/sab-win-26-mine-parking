@@ -134,6 +134,34 @@ form,
   background: #ccc;
 }
 
+.sessions-filters .filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.5rem 1rem;
+}
+.sessions-filters .wf-field {
+  margin-bottom: 0;
+}
+.sessions-filters .wf-field label {
+  margin-bottom: 0.15em;
+  font-size: 0.9em;
+}
+.sessions-filters input[type="date"],
+.sessions-filters select {
+  width: auto;
+  min-width: 9rem;
+  padding: 0.3em 0.4em;
+}
+.sessions-filters .filter-actions {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+.sessions-filters .filter-actions button {
+  padding: 0.35em 0.6em;
+}
+
 .wf-field label {
   display: block;
   margin-bottom: 0.25em;

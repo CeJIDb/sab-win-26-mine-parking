@@ -1,0 +1,33 @@
+{% extends "layouts/lk.njk" %}
+
+{% block title %}Управление бронированием — ЛК клиента{% endblock %}
+{% block header_subtitle %}Управление бронированием{% endblock %}
+
+{% block content %}
+  <p class="wf-context"><a href="dashboard.html">Главная ЛК</a> → Управление бронированием</p>
+  <h2>Управление бронированием</h2>
+  <p class="wf-error" role="alert" aria-live="polite" aria-hidden="true"></p>
+  <section class="wf-section">
+    <h3>Мои бронирования</h3>
+    <div class="wf-field">
+      <label for="search-booking">Поиск по дате или номеру брони</label>
+      <input id="search-booking" type="text" placeholder="Дата или номер брони">
+    </div>
+    <button type="button">Найти</button>
+    <p class="wf-muted">[Список: период, ПМ/сектор, тариф, статус, действия — изменить / отменить / продлить.]</p>
+    <ul class="wf-list">
+      <li>
+        Бронь #1 — [дата–время], сектор A, ПМ 12 — Подтверждена —
+        <a href="booking-payment.html" class="wf-btn">Оплатить</a>
+        <a href="#booking-edit-modal" class="wf-btn">Изменить</a>
+        <a href="#booking-cancel-modal" class="wf-btn">Отменить</a>
+      </li>
+    </ul>
+    <div class="wf-actions">
+      <a href="#booking-create-modal" class="wf-btn">Создать бронь</a>
+    </div>
+  </section>
+  {% include "partials/booking-create-modal.njk" %}
+  {% include "partials/booking-edit-modal.njk" %}
+  {% include "partials/booking-cancel-modal.njk" %}
+{% endblock %}
