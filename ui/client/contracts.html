@@ -3,49 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Договоры — Личный кабинет</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>Договоры — ЛК клиента</title>
+  <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-  <div class="page">
-    <header class="page-header" role="banner">
-      <h1>Личный кабинет</h1>
-      <nav aria-label="Навигация ЛК">
-        <ul class="nav-main">
-          <li><a href="index.html">Главная ЛК</a></li>
-          <li><a href="bookings.html">Бронирование</a></li>
-          <li><a href="contracts.html">Договоры</a></li>
-          <li><a href="sessions-history.html">История сессий</a></li>
-          <li><a href="vehicles.html">Мои ТС</a></li>
-          <li><a href="profile.html">Профиль</a></li>
-          <li><a href="../index.html">Сайт</a></li>
-          <li><a href="../login.html">Выйти</a></li>
-        </ul>
-      </nav>
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header" role="banner">
+      <h1>Личный кабинет клиента</h1>
+      <p class="wf-muted">Управление договорами</p>
     </header>
-
-    <main class="main-content" role="main">
+    <nav class="wf-nav" aria-label="Навигация ЛК клиента">
+      <ul>
+        <li><a href="dashboard.html">Главная</a></li>
+        <li><a href="bookings.html">Бронирование</a></li>
+        <li><a href="contracts.html">Договоры</a></li>
+        <li><a href="sessions-history.html">История сессий</a></li>
+        <li><a href="vehicles.html">Список ТС</a></li>
+        <li><a href="profile.html">Профиль</a></li>
+        <li><a href="../site/index.html">На сайт</a></li>
+        <li><a href="../site/login.html">Выход</a></li>
+      </ul>
+    </nav>
+    <main id="main-content" class="wf-main">
+      <p class="wf-context"><a href="dashboard.html">Главная ЛК</a> → Договоры</p>
       <h2>Управление договорами</h2>
-
-      <section class="card" aria-labelledby="contracts-list">
-        <h3 class="card-header" id="contracts-list">Мои договоры</h3>
-        <div class="card-body">
-          <p>Список договоров: активные, на согласовании, завершённые. Для каждого — срок, тариф, зона/места, статус оплаты. Действия: оформить новый договор, продлить, запросить расторжение, скачать документы.</p>
+      <section class="wf-section">
+        <div class="wf-field">
+          <label for="search-contract">Поиск по номеру договора</label>
+          <input id="search-contract" type="text" placeholder="Номер договора">
         </div>
+        <button type="button">Найти</button>
       </section>
-
-      <section class="card" aria-labelledby="contract-actions">
-        <h3 class="card-header" id="contract-actions">Действия по договору</h3>
-        <div class="card-body">
-          <p>Заполнение данных для договора, подписание, оплата. Уведомления о приближении срока оплаты и окончании действия. Связь с бронированием: долгосрочная бронь оформляется как договор.</p>
-          <p><a href="bookings.html" class="btn">Бронирование</a> <a href="index.html" class="btn">Главная ЛК</a></p>
-        </div>
+      <section class="wf-section">
+        <p>Договор — юридическое соглашение; долгосрочные бронирования (>24 ч) в рамках договора (Концептуальная модель).</p>
+        <p class="wf-muted">[Список договоров: номер, период, парковки/места, статус (активен / ожидает оплату / расторгнут), действия.]</p>
+        <ul class="wf-list">
+          <li>Договор №… — 01.01.2026–31.12.2026 — Активен — <a href="#" class="wf-btn">Подробнее</a></li>
+        </ul>
+        <p><button type="button">Запросить новый договор</button></p>
       </section>
     </main>
-
-    <footer class="page-footer" role="contentinfo">
-      <p><a href="index.html">Главная ЛК</a> | <a href="../index.html">Сайт</a></p>
-    </footer>
   </div>
 </body>
 </html>

@@ -3,43 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Управление договорами — Админ</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>Договоры — ЛК админа</title>
+  <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-  <div class="page">
-    <header class="page-header" role="banner">
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header" role="banner">
       <h1>Личный кабинет администратора</h1>
-      <nav aria-label="Навигация ЛК админа">
-        <ul class="nav-main">
-          <li><a href="index.html">Главная админа</a></li>
-          <li><a href="sectors.html">Секторы и места</a></li>
-          <li><a href="tariffs.html">Тарифы</a></li>
-          <li><a href="contracts.html">Договоры</a></li>
-          <li><a href="clients.html">Профили клиентов</a></li>
-          <li><a href="admins.html">Профили админов</a></li>
-          <li><a href="analytics.html">Аналитика</a></li>
-          <li><a href="../index.html">Сайт</a></li>
-          <li><a href="login.html">Выйти</a></li>
-        </ul>
-      </nav>
+      <p class="wf-muted">Управление договорами</p>
     </header>
-
-    <main class="main-content" role="main">
+    <nav class="wf-nav" aria-label="Навигация ЛК админа">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="sectors.html">Секторы и ПМ</a></li>
+        <li><a href="tariffs.html">Тарифы</a></li>
+        <li><a href="contracts.html">Договоры</a></li>
+        <li><a href="clients.html">Профили клиентов</a></li>
+        <li><a href="admins.html">Профили админов</a></li>
+        <li><a href="requests.html">Обращения</a></li>
+        <li><a href="analytics.html">Аналитика</a></li>
+        <li><a href="login.html">Выход</a></li>
+      </ul>
+    </nav>
+    <main id="main-content" class="wf-main">
+      <p class="wf-context"><a href="index.html">Главная админа</a> → Договоры</p>
       <h2>Управление договорами</h2>
-
-      <section class="card" aria-labelledby="contracts-admin">
-        <h3 class="card-header" id="contracts-admin">Договоры клиентов</h3>
-        <div class="card-body">
-          <p>Просмотр и управление договорами: согласование, подписание, продление, расторжение. Настройка шаблонов договоров и правил. Уведомления о просрочке оплат.</p>
-          <p><a href="index.html" class="btn">Главная админа</a> <a href="clients.html" class="btn">Профили клиентов</a></p>
+      <section class="wf-section">
+        <div class="wf-field">
+          <label for="search-contract-admin">Поиск по номеру договора или клиенту</label>
+          <input id="search-contract-admin" type="text" placeholder="Номер договора или клиент">
         </div>
+        <button type="button">Найти</button>
+      </section>
+      <section class="wf-section">
+        <p class="wf-muted">[Список договоров с фильтрами и действиями.]</p>
       </section>
     </main>
-
-    <footer class="page-footer" role="contentinfo">
-      <p><a href="index.html">Главная админа</a> | <a href="../index.html">Сайт</a></p>
-    </footer>
   </div>
 </body>
 </html>

@@ -3,66 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Парковка — главная</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Цифровая платформа парковки — Точка входа</title>
+  <link rel="stylesheet" href="wireframe.css">
 </head>
 <body>
-  <div class="page">
-    <header class="page-header" role="banner">
+  <!-- Точка входа: выбор продукта (Карта навигации). Распределение по продуктам: site = Business Site, client = Consumer App, admin = Admin Panel, guard = КПП -->
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header" role="banner">
       <h1>Цифровая платформа парковки</h1>
-      <nav aria-label="Основная навигация сайта">
-        <ul class="nav-main">
-          <li><a href="index.html">Главная</a></li>
-          <li><a href="contacts.html">Контакты</a></li>
-          <li><a href="tariffs.html">Тарифы и условия</a></li>
-          <li><a href="parking-map.html">Свободные места</a></li>
-          <li><a href="register.html">Регистрация</a></li>
-          <li><a href="login.html">Вход в ЛК</a></li>
-        </ul>
-      </nav>
+      <p class="wf-muted">Выберите раздел</p>
     </header>
-
-    <main class="main-content" role="main">
-      <h2>Парковка с онлайн-бронированием и управлением доступом</h2>
-
-      <section class="card" aria-labelledby="intro-heading">
-        <h3 class="card-header" id="intro-heading">О сервисе</h3>
-        <div class="card-body">
-          <p>Узнайте тарифы, проверьте наличие мест и зарегистрируйтесь для бронирования и оформления договоров.</p>
-        </div>
-      </section>
-
-      <section class="card">
-        <h3 class="card-header">Разделы сайта</h3>
-        <div class="card-body">
-          <ul class="quick-links">
-            <li>
-              <a href="contacts.html">Контакты</a>
-              <span class="desc">Адрес, телефон, режим работы</span>
-            </li>
-            <li>
-              <a href="tariffs.html">Тарифы и условия</a>
-              <span class="desc">Актуальные цены и правила</span>
-            </li>
-            <li>
-              <a href="parking-map.html">Свободные парковочные места</a>
-              <span class="desc">Карта по секторам</span>
-            </li>
-            <li>
-              <a href="register.html">Регистрация нового клиента</a>
-            </li>
-            <li>
-              <a href="login.html">Авторизация</a>
-              <span class="desc">Вход в личный кабинет (логин и пароль, SSO)</span>
-            </li>
-          </ul>
-        </div>
-      </section>
+    <main id="main-content" class="wf-main">
+      <h2>Точка входа</h2>
+      <ul class="wf-list">
+        <li><a href="site/index.html">Сайт-визитка (Business Site)</a> — контакты, тарифы, карта мест, регистрация, вход клиента</li>
+        <li><a href="site/login.html">Вход в личный кабинет клиента</a> (Consumer App)</li>
+        <li><a href="admin/login.html">Вход для администратора</a> (Admin Panel)</li>
+        <li><a href="guard/login.html">Вход охранника КПП</a> (рабочий интерфейс КПП)</li>
+      </ul>
     </main>
-
-    <footer class="page-footer" role="contentinfo">
-      <p><a href="contacts.html">Контакты</a> | <a href="login.html">Вход</a></p>
-    </footer>
   </div>
 </body>
 </html>

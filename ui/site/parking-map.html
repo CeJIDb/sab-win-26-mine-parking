@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Карта свободных мест — Цифровая платформа парковки</title>
+  <link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header" role="banner">
+      <h1>Цифровая платформа парковки</h1>
+      <p class="wf-muted">Сайт-визитка</p>
+    </header>
+    <nav class="wf-nav" aria-label="Основная навигация">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+        <li><a href="tariffs.html">Тарифы и условия</a></li>
+        <li><a href="parking-map.html">Свободные места</a></li>
+        <li><a href="rules.html">Правила парковки</a></li>
+        <li><a href="register.html">Регистрация</a></li>
+        <li><a href="login.html">Вход</a></li>
+      </ul>
+    </nav>
+    <main id="main-content" class="wf-main">
+      <p class="wf-context"><a href="index.html">Главная</a> → Карта свободных мест</p>
+      <h2>Количество свободных парковочных мест</h2>
+      <!-- По Схема парковки AS-IS.md: два КПП (север, юг), зоны с типами и вместимостью, всего 600 мест -->
+      <section class="wf-section">
+        <h3>Поиск / фильтр</h3>
+        <p class="wf-muted">Найти свободное место по типу зоны (AS-IS).</p>
+        <div class="wf-field">
+          <label for="map-type">Тип зоны</label>
+          <select id="map-type">
+            <option value="">— все зоны —</option>
+            <option value="ovz">Места для лиц с ОВЗ</option>
+            <option value="short">Краткосрочная парковка</option>
+            <option value="long">Долгосрочная парковка ФЛ+ЮЛ</option>
+            <option value="municipal">Муниципальная техника + мотоциклы + резерв</option>
+          </select>
+        </div>
+        <button type="button">Показать</button>
+      </section>
+      <section class="wf-section">
+        <h3>Схема парковки (AS-IS)</h3>
+        <p class="wf-muted">Расположение сверху вниз: КПП север → зоны (две колонки) → КПП юг. Условные обозначения: блоки КПП — въезд/выезд; жёлтые блоки — зоны с типом и количеством мест.</p>
+        <div class="wf-parking-map" role="img" aria-label="Схема парковки: КПП север и юг, зоны по типам и вместимости">
+          <div class="wf-parking-map__kpp">КПП север</div>
+          <div class="wf-parking-map__zones">
+            <div class="wf-parking-map__column">
+              <div class="wf-parking-map__zone" data-zone-type="ovz">
+                <p class="wf-parking-map__zone-title">Места для лиц с ОВЗ</p>
+                <p class="wf-parking-map__zone-meta">мест: 25 · свободно: [—]</p>
+              </div>
+              <div class="wf-parking-map__zone" data-zone-type="short">
+                <p class="wf-parking-map__zone-title">Краткосрочная парковка</p>
+                <p class="wf-parking-map__zone-meta">мест: 45 · свободно: [—]</p>
+              </div>
+              <div class="wf-parking-map__zone" data-zone-type="long">
+                <p class="wf-parking-map__zone-title">Долгосрочная парковка ФЛ+ЮЛ</p>
+                <p class="wf-parking-map__zone-meta">мест: 310 · свободно: [—]</p>
+              </div>
+              <div class="wf-parking-map__zone" data-zone-type="long">
+                <p class="wf-parking-map__zone-title">Долгосрочная парковка ФЛ+ЮЛ</p>
+                <p class="wf-parking-map__zone-meta">мест: 15 · свободно: [—]</p>
+              </div>
+              <div class="wf-parking-map__zone" data-zone-type="short">
+                <p class="wf-parking-map__zone-title">Краткосрочная парковка</p>
+                <p class="wf-parking-map__zone-meta">мест: 35 · свободно: [—]</p>
+              </div>
+            </div>
+            <div class="wf-parking-map__column">
+              <div class="wf-parking-map__zone" data-zone-type="short">
+                <p class="wf-parking-map__zone-title">Краткосрочная парковка</p>
+                <p class="wf-parking-map__zone-meta">мест: 35 · свободно: [—]</p>
+              </div>
+              <div class="wf-parking-map__zone" data-zone-type="long">
+                <p class="wf-parking-map__zone-title">Долгосрочная парковка ФЛ+ЮЛ</p>
+                <p class="wf-parking-map__zone-meta">мест: 15 · свободно: [—]</p>
+              </div>
+              <div class="wf-parking-map__zone" data-zone-type="municipal">
+                <p class="wf-parking-map__zone-title">Муниципальная техника + мотоциклы + резерв</p>
+                <p class="wf-parking-map__zone-meta">мест: 50 · свободно: [—]</p>
+              </div>
+              <div class="wf-parking-map__zone" data-zone-type="short">
+                <p class="wf-parking-map__zone-title">Краткосрочная парковка</p>
+                <p class="wf-parking-map__zone-meta">мест: 45 · свободно: [—]</p>
+              </div>
+              <div class="wf-parking-map__zone" data-zone-type="ovz">
+                <p class="wf-parking-map__zone-title">Места для лиц с ОВЗ</p>
+                <p class="wf-parking-map__zone-meta">мест: 25 · свободно: [—]</p>
+              </div>
+            </div>
+          </div>
+          <div class="wf-parking-map__kpp">КПП юг</div>
+          <div class="wf-parking-map__legend">
+            <span>КПП — въезд/выезд</span>
+            <span>Зона — тип и количество мест (свободно заполняется данными)</span>
+            <p class="wf-parking-map__total">Всего мест по зонам: 600 (по Схеме парковки AS-IS)</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

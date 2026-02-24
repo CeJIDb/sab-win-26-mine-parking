@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Регистрация — Цифровая платформа парковки</title>
+  <link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header" role="banner">
+      <h1>Цифровая платформа парковки</h1>
+      <p class="wf-muted">Сайт-визитка</p>
+    </header>
+    <nav class="wf-nav" aria-label="Основная навигация">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+        <li><a href="tariffs.html">Тарифы и условия</a></li>
+        <li><a href="parking-map.html">Свободные места</a></li>
+        <li><a href="rules.html">Правила парковки</a></li>
+        <li><a href="register.html">Регистрация</a></li>
+        <li><a href="login.html">Вход</a></li>
+      </ul>
+    </nav>
+    <main id="main-content" class="wf-main">
+      <p class="wf-context"><a href="index.html">Главная</a> → Регистрация</p>
+      <h2>Регистрация нового клиента</h2>
+      <!-- WF-07: Плейсхолдер сообщения об ошибке (П. 4 — обратная связь при ошибках) -->
+      <p class="wf-error" role="alert" aria-live="polite" aria-hidden="true"></p>
+      <form class="wf-form" action="../client/dashboard.html" method="get">
+        <div class="wf-field">
+          <label for="reg-phone">Телефон</label>
+          <input id="reg-phone" type="tel" placeholder="+7 …" required>
+        </div>
+        <div class="wf-field">
+          <label for="reg-name">ФИО</label>
+          <input id="reg-name" type="text" placeholder="Фамилия Имя Отчество">
+        </div>
+        <div class="wf-field">
+          <label for="reg-email">E-mail</label>
+          <input id="reg-email" type="email" placeholder="email@example.com">
+        </div>
+        <div class="wf-field">
+          <label for="reg-password">Пароль</label>
+          <input id="reg-password" type="password" placeholder="Задайте пароль">
+        </div>
+        <div class="wf-field">
+          <label><input type="checkbox" required> Ознакомлен с условиями сервиса и обработкой персональных данных</label>
+        </div>
+        <div class="wf-actions">
+          <button type="submit">Зарегистрироваться</button>
+          <a href="login.html" class="wf-btn">Уже есть аккаунт — войти</a>
+        </div>
+      </form>
+    </main>
+  </div>
+</body>
+</html>

@@ -3,53 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Интерфейс КПП — Парковка</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>Интерфейс КПП — Охранник</title>
+  <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-  <div class="page">
-    <header class="page-header" role="banner">
-      <h1>Рабочий интерфейс КПП</h1>
-      <nav aria-label="Навигация">
-        <ul class="nav-main">
-          <li><a href="index.html">Интерфейс КПП</a></li>
-          <li><a href="login.html">Выйти</a></li>
-          <li><a href="../index.html">Сайт парковки</a></li>
-        </ul>
-      </nav>
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header" role="banner">
+      <h1>Интерфейс КПП</h1>
+      <p class="wf-muted">Рабочий интерфейс охранника (проверка доступа, операции на КПП)</p>
     </header>
-
-    <main class="main-content" role="main">
-      <h2>Интерфейс КПП</h2>
-
-      <section class="card" aria-labelledby="access-check">
-        <h3 class="card-header" id="access-check">Проверка доступа</h3>
-        <div class="card-body">
-          <p>Ввод номера ТС для проверки допуска. Отображение статуса (разрешён/отказ) и причины отказа. Резервный способ идентификации при сбое автоматики.</p>
+    <nav class="wf-nav" aria-label="Навигация">
+      <ul>
+        <li><a href="index.html">КПП</a></li>
+        <li><a href="login.html">Выход</a></li>
+      </ul>
+    </nav>
+    <main id="main-content" class="wf-main">
+      <p class="wf-context">КПП</p>
+      <h2>Проверка доступа</h2>
+      <p class="wf-error" role="alert" aria-live="polite" aria-hidden="true"></p>
+      <section class="wf-section">
+        <h3>Поиск / ввод</h3>
+        <p class="wf-muted">WF-04: Поиск по ГРЗ, телефону или ID бронирования (П. 3 — быстрый поиск для КПП). Ручной ввод при сбое автоматики.</p>
+        <form class="wf-form">
+          <div class="wf-field">
+            <label for="kpp-search-type">Искать по</label>
+            <select id="kpp-search-type">
+              <option value="grz">ГРЗ (гос. номер)</option>
+              <option value="phone">Телефон</option>
+              <option value="id">ID бронирования</option>
+            </select>
+          </div>
+          <div class="wf-field">
+            <label for="kpp-grz">ГРЗ (государственный регистрационный знак)</label>
+            <input id="kpp-grz" type="text" placeholder="А123БВ777" required>
+          </div>
+          <div class="wf-field wf-muted">
+            <label for="kpp-phone-id">Телефон или ID бронирования</label>
+            <input id="kpp-phone-id" type="text" placeholder="Телефон или ID бронирования">
+          </div>
+          <p class="wf-muted">Поиск также по телефону или ID бронирования.</p>
+          <div class="wf-actions">
+            <button type="submit">Проверить доступ</button>
+          </div>
+        </form>
+      </section>
+      <section class="wf-section">
+        <h3>Результат проверки</h3>
+        <p class="wf-muted">[Статус допуска, причина отказа (при отказе), данные по ТС/договору/бронированию/сессии; инструкции для водителя.]</p>
+        <div class="wf-card">
+          <p>Право доступа: [да / нет]</p>
+          <p>Парковочная сессия: [активна / не найдена]</p>
+          <p>Действия: <button type="button">Открыть шлагбаум</button> <button type="button">Создать сессию вручную</button> <button type="button">Оплата через терминал</button></p>
         </div>
       </section>
-
-      <section class="card" aria-labelledby="exceptions">
-        <h3 class="card-header" id="exceptions">Исключения и офлайн-клиенты</h3>
-        <div class="card-body">
-          <p>Обработка нестандартных ситуаций: офлайн-клиент (оплата на выезде через терминал/QR), ручное открытие шлагбаума при поломке, фиксация отказа от оплаты, ручная фиксация выезда при сбое системы учёта.</p>
-        </div>
+      <section class="wf-section">
+        <h3>Текущие сессии / исключения</h3>
+        <p class="wf-muted">[Список активных сессий на парковке; обработка исключений, чёрный список, отказ от оплаты.]</p>
       </section>
-
-      <section class="card" aria-labelledby="current-sessions">
-        <h3 class="card-header" id="current-sessions">Текущие сессии</h3>
-        <div class="card-body">
-          <p>Просмотр текущих парковочных сессий, занятость по секторам. Категория ТС на мониторе при въезде. Проверка данных о ТС на конкретном месте.</p>
-        </div>
-      </section>
-
-      <p class="text-muted">Вход только через <a href="login.html">авторизацию рабочего интерфейса</a>. Учётные записи охранников создаются в разделе «Управление профилями админов».</p>
-      <p><a href="login.html" class="btn">Выйти</a></p>
     </main>
-
-    <footer class="page-footer" role="contentinfo">
-      <p><a href="login.html">Выйти</a> | <a href="../index.html">Сайт парковки</a></p>
-    </footer>
   </div>
 </body>
 </html>

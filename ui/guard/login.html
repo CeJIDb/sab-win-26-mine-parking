@@ -3,56 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Вход — Рабочий интерфейс КПП</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>Вход — Интерфейс охранника КПП</title>
+  <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-  <div class="page">
-    <header class="page-header" role="banner">
-      <h1>Рабочий интерфейс КПП</h1>
-      <nav aria-label="Навигация">
-        <ul class="nav-main">
-          <li><a href="login.html">Вход для охранника</a></li>
-          <li><a href="../index.html">Сайт парковки</a></li>
-          <li><a href="../admin/login.html">Вход для админа</a></li>
-        </ul>
-      </nav>
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header" role="banner">
+      <h1>Рабочий интерфейс охранника КПП</h1>
+      <p class="wf-muted">Отдельный вход от ЛК админа (п. 3.4)</p>
     </header>
-
-    <main class="main-content" role="main">
+    <nav class="wf-nav" aria-label="Навигация">
+      <ul>
+        <li><a href="../site/index.html">На сайт</a></li>
+        <li><a href="../admin/login.html">Вход в ЛК админа</a></li>
+      </ul>
+    </nav>
+    <main id="main-content" class="wf-main">
+      <p class="wf-context">Вход охранника КПП</p>
       <h2>Авторизация рабочего интерфейса</h2>
-
-      <form class="form-block" action="index.html" method="get" aria-labelledby="guard-login-heading">
-        <h3 id="guard-login-heading">Вход в интерфейс КПП</h3>
-        <div class="form-row">
+      <p class="wf-error" role="alert" aria-live="polite" aria-hidden="true"></p>
+      <p class="wf-muted">Поддержка офлайн-клиентов, проверка доступа, операции на КПП (Карта навигации).</p>
+      <form class="wf-form" action="index.html" method="get">
+        <div class="wf-field">
           <label for="guard-login">Логин</label>
-          <input id="guard-login" type="text" name="login" required>
+          <input id="guard-login" type="text" placeholder="Логин" required>
         </div>
-        <div class="form-row">
+        <div class="wf-field">
           <label for="guard-password">Пароль</label>
-          <input id="guard-password" type="password" name="password" required>
+          <input id="guard-password" type="password" placeholder="Пароль" required>
         </div>
-        <div class="form-row">
+        <div class="wf-field">
           <label for="guard-code">Код подтверждения</label>
-          <input id="guard-code" type="text" name="code" required>
+          <input id="guard-code" type="text" placeholder="Код" required>
         </div>
-        <div class="form-actions">
-          <button type="submit" class="btn">Войти</button>
+        <div class="wf-actions">
+          <button type="submit">Войти в интерфейс КПП</button>
         </div>
       </form>
-
-      <section class="card mt-1">
-        <h3 class="card-header">После входа</h3>
-        <div class="card-body">
-          <p>Отдельный поток входа (не из ЛК админа). После входа — <a href="index.html">интерфейс КПП</a>: проверка доступа, исключения, офлайн-клиенты, резервное открытие шлагбаума.</p>
-          <p><a href="../index.html" class="btn">На сайт парковки</a></p>
-        </div>
-      </section>
     </main>
-
-    <footer class="page-footer" role="contentinfo">
-      <p><a href="../index.html">Сайт парковки</a></p>
-    </footer>
   </div>
 </body>
 </html>

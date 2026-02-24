@@ -3,44 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Управление профилями админов — Админ</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>Профили админов — ЛК админа</title>
+  <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-  <div class="page">
-    <header class="page-header" role="banner">
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header" role="banner">
       <h1>Личный кабинет администратора</h1>
-      <nav aria-label="Навигация ЛК админа">
-        <ul class="nav-main">
-          <li><a href="index.html">Главная админа</a></li>
-          <li><a href="sectors.html">Секторы и места</a></li>
-          <li><a href="tariffs.html">Тарифы</a></li>
-          <li><a href="contracts.html">Договоры</a></li>
-          <li><a href="clients.html">Профили клиентов</a></li>
-          <li><a href="admins.html">Профили админов</a></li>
-          <li><a href="analytics.html">Аналитика</a></li>
-          <li><a href="../index.html">Сайт</a></li>
-          <li><a href="login.html">Выйти</a></li>
-        </ul>
-      </nav>
+      <p class="wf-muted">Профили админов</p>
     </header>
-
-    <main class="main-content" role="main">
+    <nav class="wf-nav" aria-label="Навигация ЛК админа">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="sectors.html">Секторы и ПМ</a></li>
+        <li><a href="tariffs.html">Тарифы</a></li>
+        <li><a href="contracts.html">Договоры</a></li>
+        <li><a href="clients.html">Профили клиентов</a></li>
+        <li><a href="admins.html">Профили админов</a></li>
+        <li><a href="requests.html">Обращения</a></li>
+        <li><a href="analytics.html">Аналитика</a></li>
+        <li><a href="login.html">Выход</a></li>
+      </ul>
+    </nav>
+    <main id="main-content" class="wf-main">
+      <p class="wf-context"><a href="index.html">Главная админа</a> → Профили админов</p>
       <h2>Управление профилями админов</h2>
-
-      <section class="card" aria-labelledby="admins-list">
-        <h3 class="card-header" id="admins-list">Администраторы и сотрудники</h3>
-        <div class="card-body">
-          <p>Список учётных записей с правами админа: управляющие, охранники. Создание учётной записи, назначение роли, изменение прав. Охранник входит в отдельный интерфейс КПП, но учётная запись создаётся здесь.</p>
-          <p><a href="../guard/login.html">Рабочий интерфейс КПП</a></p>
-          <p><a href="index.html" class="btn">Главная админа</a></p>
-        </div>
+      <section class="wf-section">
+        <p class="wf-muted">[Список администраторов; роли, права доступа.]</p>
       </section>
     </main>
-
-    <footer class="page-footer" role="contentinfo">
-      <p><a href="index.html">Главная админа</a> | <a href="../index.html">Сайт</a></p>
-    </footer>
   </div>
 </body>
 </html>

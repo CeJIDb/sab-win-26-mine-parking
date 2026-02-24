@@ -1,0 +1,309 @@
+/* Wireframe styles — цифровая платформа парковки. По Карте навигации и артефактам docs/artifacts/ */
+
+:root {
+  --wf-border: 1px solid #333;
+  --wf-bg: #f5f5f5;
+  --wf-block: #e0e0e0;
+  --wf-text: #1a1a1a;
+  --wf-muted: #666;
+  --wf-pad: 1rem;
+  --wf-gap: 0.75rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--wf-text);
+  background: var(--wf-bg);
+}
+
+/* Layout */
+.wf-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--wf-pad);
+}
+
+/* Header */
+header[role="banner"],
+.wf-header {
+  border: var(--wf-border);
+  background: var(--wf-block);
+  padding: var(--wf-pad);
+  margin-bottom: var(--wf-gap);
+}
+
+.wf-header h1 {
+  margin: 0 0 0.5em 0;
+  font-size: 1.25rem;
+}
+
+/* Nav */
+nav,
+.wf-nav {
+  border: var(--wf-border);
+  background: #fff;
+  padding: var(--wf-pad);
+  margin-bottom: var(--wf-gap);
+}
+
+.wf-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em 1em;
+}
+
+.wf-nav a {
+  color: var(--wf-text);
+  text-decoration: underline;
+}
+
+.wf-nav a:hover {
+  color: var(--wf-muted);
+}
+
+/* Main */
+main,
+.wf-main {
+  border: var(--wf-border);
+  background: #fff;
+  padding: var(--wf-pad);
+  margin-bottom: var(--wf-gap);
+}
+
+.wf-main h2 {
+  margin: 0 0 0.5em 0;
+  font-size: 1.1rem;
+}
+
+/* Sections */
+section,
+.wf-section {
+  border: var(--wf-border);
+  background: var(--wf-block);
+  padding: var(--wf-pad);
+  margin-bottom: var(--wf-gap);
+}
+
+.wf-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Forms */
+form,
+.wf-form {
+  max-width: 28rem;
+}
+
+.wf-field {
+  margin-bottom: var(--wf-gap);
+}
+
+.wf-field label {
+  display: block;
+  margin-bottom: 0.25em;
+  font-weight: 500;
+}
+
+.wf-field input,
+.wf-field select,
+.wf-field textarea {
+  width: 100%;
+  padding: 0.4em 0.5em;
+  border: var(--wf-border);
+  font-size: 1rem;
+}
+
+.wf-actions {
+  margin-top: 1rem;
+}
+
+button,
+.wf-btn,
+input[type="submit"] {
+  padding: 0.5em 1em;
+  border: var(--wf-border);
+  background: var(--wf-block);
+  font-size: 1rem;
+  cursor: pointer;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+button:hover,
+.wf-btn:hover {
+  background: #ccc;
+}
+
+/* Links as buttons */
+a.wf-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Lists */
+.wf-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: var(--wf-border);
+}
+
+.wf-list li {
+  padding: 0.5em var(--wf-pad);
+  border-bottom: var(--wf-border);
+  background: #fff;
+}
+
+.wf-list li:last-child {
+  border-bottom: none;
+}
+
+/* Dashboard blocks */
+.wf-grid {
+  display: grid;
+  gap: var(--wf-gap);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.wf-card {
+  border: var(--wf-border);
+  background: var(--wf-block);
+  padding: var(--wf-pad);
+}
+
+/* Table placeholder */
+.wf-table-wrap {
+  overflow-x: auto;
+  border: var(--wf-border);
+}
+
+.wf-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.wf-table th,
+.wf-table td {
+  padding: 0.4em 0.6em;
+  border: var(--wf-border);
+  text-align: left;
+}
+
+.wf-table th {
+  background: var(--wf-block);
+}
+
+/* Muted text */
+.wf-muted {
+  color: var(--wf-muted);
+  font-size: 0.9em;
+}
+
+/* Breadcrumb / context */
+.wf-context {
+  margin-bottom: var(--wf-gap);
+  font-size: 0.9em;
+  color: var(--wf-muted);
+}
+
+.wf-context a {
+  color: var(--wf-text);
+  text-decoration: underline;
+}
+
+/* WF-05: Skip link — скрыт по умолчанию, виден при фокусе */
+.wf-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 999;
+  padding: 0.5em 1em;
+  background: var(--wf-block);
+  border: var(--wf-border);
+  color: var(--wf-text);
+  text-decoration: underline;
+  font-size: 1rem;
+}
+.wf-skip-link:focus {
+  left: var(--wf-pad);
+  top: var(--wf-pad);
+}
+
+/* WF-06: Видимое состояние фокуса для доступности */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #333;
+  outline-offset: 2px;
+}
+
+/* WF-07: Блок сообщений об ошибках */
+.wf-error {
+  margin-bottom: var(--wf-gap);
+  padding: 0.5em;
+  border: 1px solid #a00;
+  background: #ffe0e0;
+  color: #800;
+  font-size: 0.95em;
+}
+.wf-error:empty,
+.wf-error[aria-hidden="true"] {
+  display: none;
+}
+
+/* Карта парковки по Схема парковки AS-IS.md */
+.wf-parking-map {
+  border: var(--wf-border);
+  background: #fff;
+  padding: var(--wf-pad);
+  font-size: 0.9rem;
+}
+.wf-parking-map__kpp {
+  background: var(--wf-block);
+  border: 2px solid #333;
+  padding: 0.5em 1em;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 16rem;
+}
+.wf-parking-map__zones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--wf-gap);
+  margin: var(--wf-gap) 0;
+}
+.wf-parking-map__column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wf-gap);
+}
+.wf-parking-map__zone {
+  border: var(--wf-border);
+  padding: 0.5em var(--wf-pad);
+  background: #fafafa;
+}
+.wf-parking-map__zone-title { font-weight: 600; margin: 0 0 0.25em 0; }
+.wf-parking-map__zone-meta { color: var(--wf-muted); font-size: 0.85em; margin: 0; }
+.wf-parking-map--compact .wf-parking-map__zone { padding: 0.35em 0.5em; font-size: 0.85rem; }
+.wf-parking-map__legend {
+  margin-top: var(--wf-gap);
+  padding-top: var(--wf-gap);
+  border-top: var(--wf-border);
+  font-size: 0.85em;
+  color: var(--wf-muted);
+}
+.wf-parking-map__legend span { margin-right: 1em; }
+.wf-parking-map__total { margin-top: 0.5em; font-weight: 600; }

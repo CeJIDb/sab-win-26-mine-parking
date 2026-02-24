@@ -3,56 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Личный кабинет администратора — Парковка</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>Главная админа — Цифровая платформа парковки</title>
+  <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-  <div class="page">
-    <header class="page-header" role="banner">
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header" role="banner">
       <h1>Личный кабинет администратора</h1>
-      <nav aria-label="Навигация ЛК админа">
-        <ul class="nav-main">
-          <li><a href="index.html">Главная админа</a></li>
-          <li><a href="sectors.html">Секторы и места</a></li>
-          <li><a href="tariffs.html">Тарифы</a></li>
-          <li><a href="contracts.html">Договоры</a></li>
-          <li><a href="clients.html">Профили клиентов</a></li>
-          <li><a href="admins.html">Профили админов</a></li>
-          <li><a href="analytics.html">Аналитика</a></li>
-          <li><a href="../index.html">Сайт парковки</a></li>
-          <li><a href="login.html">Выйти</a></li>
-        </ul>
-      </nav>
+      <p class="wf-muted">Admin Panel — главная (дашборд)</p>
     </header>
-
-    <main class="main-content" role="main">
-      <h2>Главная страница личного кабинета администратора</h2>
-
-      <section class="card" aria-labelledby="dashboard-heading">
-        <h3 class="card-header" id="dashboard-heading">Дашборд</h3>
-        <div class="card-body">
-          <p>Операционные данные и показатели: загрузка парковки, активные договоры/брони, просрочки оплат, последние события. Владелец и управляющий работают в одной админ-панели с разграничением прав.</p>
-        </div>
-      </section>
-
-      <section class="card">
-        <h3 class="card-header">Разделы ЛК админа</h3>
-        <div class="card-body">
-          <ul class="quick-links">
-            <li><a href="sectors.html">Управление секторами и парковочными местами</a></li>
-            <li><a href="tariffs.html">Управление тарифами</a></li>
-            <li><a href="contracts.html">Управление договорами</a></li>
-            <li><a href="clients.html">Управление профилями клиентов</a></li>
-            <li><a href="admins.html">Управление профилями админов</a></li>
-            <li><a href="analytics.html">Аналитика (внешняя система)</a></li>
-          </ul>
-        </div>
-      </section>
+    <nav class="wf-nav" aria-label="Навигация ЛК админа">
+      <ul>
+        <li><a href="index.html">Главная (дашборд)</a></li>
+        <li><a href="sectors.html">Секторы и ПМ</a></li>
+        <li><a href="tariffs.html">Тарифы</a></li>
+        <li><a href="contracts.html">Договоры</a></li>
+        <li><a href="clients.html">Профили клиентов</a></li>
+        <li><a href="admins.html">Профили админов</a></li>
+        <li><a href="requests.html">Обращения</a></li>
+        <li><a href="analytics.html">Аналитика</a></li>
+        <li><a href="login.html">Выход</a></li>
+      </ul>
+    </nav>
+    <main id="main-content" class="wf-main">
+      <p class="wf-context"><a href="index.html">Главная админа</a></p>
+      <h2>Дашборд</h2>
+      <p>Наиболее важные операционные данные и показатели (Карта навигации, п. 3.2).</p>
+      <div class="wf-grid">
+        <section class="wf-card">
+          <h3>Занятость / свободные ПМ</h3>
+          <p class="wf-muted">[Сводка по секторам.]</p>
+        </section>
+        <section class="wf-card">
+          <h3>Активные договоры</h3>
+          <p class="wf-muted">[Количество, статусы.]</p>
+        </section>
+        <section class="wf-card">
+          <h3>Бронирования</h3>
+          <p class="wf-muted">[На сегодня / в работе.]</p>
+        </section>
+        <section class="wf-card">
+          <h3>Платежи / просрочки</h3>
+          <p class="wf-muted">[Краткая сводка.]</p>
+        </section>
+      </div>
+      <p><a href="requests.html" class="wf-btn">Обращения и инциденты</a></p>
     </main>
-
-    <footer class="page-footer" role="contentinfo">
-      <p><a href="../index.html">Сайт парковки</a> | <a href="login.html">Выйти</a></p>
-    </footer>
   </div>
 </body>
 </html>

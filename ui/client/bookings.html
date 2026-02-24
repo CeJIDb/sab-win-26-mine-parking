@@ -3,50 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Бронирование — Личный кабинет</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>Управление бронированием — ЛК клиента</title>
+  <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-  <div class="page">
-    <header class="page-header" role="banner">
-      <h1>Личный кабинет</h1>
-      <nav aria-label="Навигация ЛК">
-        <ul class="nav-main">
-          <li><a href="index.html">Главная ЛК</a></li>
-          <li><a href="bookings.html">Бронирование</a></li>
-          <li><a href="contracts.html">Договоры</a></li>
-          <li><a href="sessions-history.html">История сессий</a></li>
-          <li><a href="vehicles.html">Мои ТС</a></li>
-          <li><a href="profile.html">Профиль</a></li>
-          <li><a href="../index.html">Сайт</a></li>
-          <li><a href="../login.html">Выйти</a></li>
-        </ul>
-      </nav>
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header" role="banner">
+      <h1>Личный кабинет клиента</h1>
+      <p class="wf-muted">Управление бронированием</p>
     </header>
-
-    <main class="main-content" role="main">
+    <nav class="wf-nav" aria-label="Навигация ЛК клиента">
+      <ul>
+        <li><a href="dashboard.html">Главная</a></li>
+        <li><a href="bookings.html">Бронирование</a></li>
+        <li><a href="contracts.html">Договоры</a></li>
+        <li><a href="sessions-history.html">История сессий</a></li>
+        <li><a href="vehicles.html">Список ТС</a></li>
+        <li><a href="profile.html">Профиль</a></li>
+        <li><a href="../site/index.html">На сайт</a></li>
+        <li><a href="../site/login.html">Выход</a></li>
+      </ul>
+    </nav>
+    <main id="main-content" class="wf-main">
+      <p class="wf-context"><a href="dashboard.html">Главная ЛК</a> → Управление бронированием</p>
       <h2>Управление бронированием</h2>
-
-      <section class="card" aria-labelledby="bookings-list">
-        <h3 class="card-header" id="bookings-list">Мои бронирования</h3>
-        <div class="card-body">
-          <p>Список бронирований (активные, ожидающие подтверждения, завершённые). Бронирование — резервация места по тарифу. Действия: создать новую бронь, изменить, отменить, продлить.</p>
-          <p><a href="vehicles.html" class="btn">Список ТС</a></p>
-        </div>
+      <p class="wf-error" role="alert" aria-live="polite" aria-hidden="true"></p>
+      <section class="wf-section">
+        <h3>Создать бронь</h3>
+        <form class="wf-form" action="booking-payment.html" method="get">
+          <div class="wf-field">
+            <label for="book-ts">ТС (ГРЗ)</label>
+            <input id="book-ts" type="text" placeholder="ГРЗ (гос. номер)">
+          </div>
+          <div class="wf-field">
+            <label for="book-date">Дата и время начала</label>
+            <input id="book-date" type="datetime-local" placeholder="Дата, время">
+          </div>
+          <div class="wf-field">
+            <label for="book-duration">Длительность</label>
+            <input id="book-duration" type="text" placeholder="Часы / сутки">
+          </div>
+          <div class="wf-field">
+            <label for="book-zone">Зона / сектор / номер ПМ</label>
+            <input id="book-zone" type="text" placeholder="Сектор, ПМ">
+          </div>
+          <!-- WF-02: Тариф и Итого к оплате (П. 4, 3 — точность) -->
+          <div class="wf-field">
+            <label for="book-tariff">Тариф</label>
+            <select id="book-tariff">
+              <option value="">— выбрать тариф —</option>
+              <option value="hourly">Почасовой (сектор A)</option>
+              <option value="daily">Посуточный (сектор B)</option>
+            </select>
+          </div>
+          <div class="wf-card">
+            <strong>Итого к оплате:</strong> <span class="wf-muted">[сумма по выбранному тарифу и длительности]</span>
+          </div>
+          <div class="wf-actions">
+            <button type="submit">Проверить доступность и перейти к оплате</button>
+          </div>
+        </form>
       </section>
-
-      <section class="card" aria-labelledby="new-booking">
-        <h3 class="card-header" id="new-booking">Новое бронирование</h3>
-        <div class="card-body">
-          <p>Выбор тарифа, периода, зоны/места, госномера ТС; проверка доступности и стоимости; подтверждение и оплата.</p>
-          <p><a href="index.html" class="btn">На главную ЛК</a></p>
+      <section class="wf-section">
+        <h3>Мои бронирования</h3>
+        <!-- WF-03: Поиск по дате или номеру брони -->
+        <div class="wf-field">
+          <label for="search-booking">Поиск по дате или номеру брони</label>
+          <input id="search-booking" type="text" placeholder="Дата или номер брони">
         </div>
+        <button type="button">Найти</button>
+        <p class="wf-muted">[Список: период, ПМ/сектор, тариф, статус, действия — изменить / отменить / продлить.]</p>
+        <ul class="wf-list">
+          <li>Бронь #1 — [дата–время], сектор A, ПМ 12 — Подтверждена — <a href="booking-payment.html" class="wf-btn">Оплатить</a> <button type="button">Изменить</button> <button type="button">Отменить</button></li>
+        </ul>
       </section>
     </main>
-
-    <footer class="page-footer" role="contentinfo">
-      <p><a href="index.html">Главная ЛК</a> | <a href="../index.html">Сайт</a></p>
-    </footer>
   </div>
 </body>
 </html>

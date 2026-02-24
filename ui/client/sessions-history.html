@@ -3,43 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>История парковочных сессий — Личный кабинет</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>История парковочных сессий — ЛК клиента</title>
+  <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-  <div class="page">
-    <header class="page-header" role="banner">
-      <h1>Личный кабинет</h1>
-      <nav aria-label="Навигация ЛК">
-        <ul class="nav-main">
-          <li><a href="index.html">Главная ЛК</a></li>
-          <li><a href="bookings.html">Бронирование</a></li>
-          <li><a href="contracts.html">Договоры</a></li>
-          <li><a href="sessions-history.html">История сессий</a></li>
-          <li><a href="vehicles.html">Мои ТС</a></li>
-          <li><a href="profile.html">Профиль</a></li>
-          <li><a href="../index.html">Сайт</a></li>
-          <li><a href="../login.html">Выйти</a></li>
-        </ul>
-      </nav>
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header" role="banner">
+      <h1>Личный кабинет клиента</h1>
+      <p class="wf-muted">История парковочных сессий</p>
     </header>
-
-    <main class="main-content" role="main">
+    <nav class="wf-nav" aria-label="Навигация ЛК клиента">
+      <ul>
+        <li><a href="dashboard.html">Главная</a></li>
+        <li><a href="bookings.html">Бронирование</a></li>
+        <li><a href="contracts.html">Договоры</a></li>
+        <li><a href="sessions-history.html">История сессий</a></li>
+        <li><a href="vehicles.html">Список ТС</a></li>
+        <li><a href="profile.html">Профиль</a></li>
+        <li><a href="../site/index.html">На сайт</a></li>
+        <li><a href="../site/login.html">Выход</a></li>
+      </ul>
+    </nav>
+    <main id="main-content" class="wf-main">
+      <p class="wf-context"><a href="dashboard.html">Главная ЛК</a> → История парковочных сессий</p>
       <h2>История парковочных сессий</h2>
-
-      <section class="card" aria-labelledby="sessions-list">
-        <h3 class="card-header" id="sessions-list">Сессии</h3>
-        <div class="card-body">
-          <p>Таблица или список сессий: дата и время въезда/выезда, место/сектор, ТС, длительность, сумма. Фильтр по периоду, по ТС.</p>
-          <p class="text-muted">Связано с <a href="vehicles.html">списком ТС</a> и <a href="contracts.html">договорами</a>.</p>
-          <p><a href="index.html" class="btn">Главная ЛК</a></p>
+      <!-- WF-03: Поиск по дате или ГРЗ -->
+      <section class="wf-section">
+        <div class="wf-field">
+          <label for="search-session">Поиск по дате или ГРЗ</label>
+          <input id="search-session" type="text" placeholder="Дата или ГРЗ">
         </div>
+        <button type="button">Найти</button>
+      </section>
+      <section class="wf-section">
+        <p>Парковочная сессия — период от въезда до выезда, по которому начисляется плата (Концептуальная модель).</p>
+        <div class="wf-table-wrap">
+          <table class="wf-table">
+            <thead>
+              <tr>
+                <th>Дата въезда</th>
+                <th>Дата выезда</th>
+                <th>ТС (ГРЗ)</th>
+                <th>ПМ / сектор</th>
+                <th>Сумма / платёж</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>[дата, время]</td>
+                <td>[дата, время]</td>
+                <td>[ГРЗ]</td>
+                <td>[ПМ, сектор]</td>
+                <td>[сумма]</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="wf-muted">[Фильтр по периоду, по ТС; пагинация.]</p>
       </section>
     </main>
-
-    <footer class="page-footer" role="contentinfo">
-      <p><a href="index.html">Главная ЛК</a> | <a href="../index.html">Сайт</a></p>
-    </footer>
   </div>
 </body>
 </html>

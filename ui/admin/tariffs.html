@@ -3,43 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Управление тарифами — Админ</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>Тарифы — ЛК админа</title>
+  <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-  <div class="page">
-    <header class="page-header" role="banner">
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header" role="banner">
       <h1>Личный кабинет администратора</h1>
-      <nav aria-label="Навигация ЛК админа">
-        <ul class="nav-main">
-          <li><a href="index.html">Главная админа</a></li>
-          <li><a href="sectors.html">Секторы и места</a></li>
-          <li><a href="tariffs.html">Тарифы</a></li>
-          <li><a href="contracts.html">Договоры</a></li>
-          <li><a href="clients.html">Профили клиентов</a></li>
-          <li><a href="admins.html">Профили админов</a></li>
-          <li><a href="analytics.html">Аналитика</a></li>
-          <li><a href="../index.html">Сайт</a></li>
-          <li><a href="login.html">Выйти</a></li>
-        </ul>
-      </nav>
+      <p class="wf-muted">Управление тарифами</p>
     </header>
-
-    <main class="main-content" role="main">
+    <nav class="wf-nav" aria-label="Навигация ЛК админа">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="sectors.html">Секторы и ПМ</a></li>
+        <li><a href="tariffs.html">Тарифы</a></li>
+        <li><a href="contracts.html">Договоры</a></li>
+        <li><a href="clients.html">Профили клиентов</a></li>
+        <li><a href="admins.html">Профили админов</a></li>
+        <li><a href="requests.html">Обращения</a></li>
+        <li><a href="analytics.html">Аналитика</a></li>
+        <li><a href="login.html">Выход</a></li>
+      </ul>
+    </nav>
+    <main id="main-content" class="wf-main">
+      <p class="wf-context"><a href="index.html">Главная админа</a> → Тарифы</p>
       <h2>Управление тарифами</h2>
-
-      <section class="card" aria-labelledby="tariffs-list">
-        <h3 class="card-header" id="tariffs-list">Тарифы</h3>
-        <div class="card-body">
-          <p>Список тарифов: название, условия, цена, привязка к зонам/типам мест, статус. Действия: добавить тариф, редактировать. Тарифы отображаются клиентам на странице «Тарифы и условия» и в ЛК при бронировании.</p>
-          <p><a href="index.html" class="btn">Главная админа</a> <a href="sectors.html" class="btn">Секторы</a></p>
+      <section class="wf-section">
+        <div class="wf-field">
+          <label for="search-tariff-admin">Поиск по названию тарифа</label>
+          <input id="search-tariff-admin" type="text" placeholder="Название тарифа">
         </div>
+        <button type="button">Найти</button>
+      </section>
+      <section class="wf-section">
+        <p>Тариф — набор правил расчёта стоимости (глоссарий). Добавление, редактирование параметров тарифов.</p>
+        <p class="wf-muted">[Список тарифов: название, тип (договор/почасово), условия, парковка/сектор, активен/архив.]</p>
+        <ul class="wf-list">
+          <li>Тариф «Почасовой А» — почасовой, сектор A — Активен — <button type="button">Редактировать</button></li>
+        </ul>
+        <p><button type="button">Добавить тариф</button></p>
       </section>
     </main>
-
-    <footer class="page-footer" role="contentinfo">
-      <p><a href="index.html">Главная админа</a> | <a href="../index.html">Сайт</a></p>
-    </footer>
   </div>
 </body>
 </html>

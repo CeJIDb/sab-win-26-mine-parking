@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Личный кабинет клиента — Цифровая платформа парковки</title>
+  <link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header" role="banner">
+      <h1>Личный кабинет клиента</h1>
+      <p class="wf-muted">Consumer App — вход после авторизации клиента</p>
+    </header>
+    <nav class="wf-nav" aria-label="Навигация ЛК клиента">
+      <ul>
+        <li><a href="dashboard.html">Главная</a></li>
+        <li><a href="bookings.html">Бронирование</a></li>
+        <li><a href="contracts.html">Договоры</a></li>
+        <li><a href="sessions-history.html">История сессий</a></li>
+        <li><a href="vehicles.html">Список ТС</a></li>
+        <li><a href="profile.html">Профиль</a></li>
+        <li><a href="../site/index.html">На сайт</a></li>
+        <li><a href="../site/login.html">Выход</a></li>
+      </ul>
+    </nav>
+    <main id="main-content" class="wf-main">
+      <p class="wf-context"><a href="dashboard.html">Главная ЛК</a></p>
+      <h2>Главная страница ЛК</h2>
+      <div class="wf-grid">
+        <section class="wf-card">
+          <h3>Статус парковки</h3>
+          <p class="wf-muted">[Текущий статус: на парковке / не на парковке; активная сессия.]</p>
+        </section>
+        <section class="wf-card">
+          <h3>Текущий договор / тариф / сессия</h3>
+          <p class="wf-muted">[Действующий договор или тариф; текущая парковочная сессия.]</p>
+        </section>
+        <section class="wf-card">
+          <h3>Статус оплаты / долг</h3>
+          <p class="wf-muted">[Оплачено / задолженность; сумма к оплате.]</p>
+        </section>
+      </div>
+      <section class="wf-section">
+        <h3>Количество свободных парковочных мест (карта по секторам)</h3>
+        <p class="wf-muted">Схема парковки AS-IS: КПП север/юг, зоны по типам. Всего 600 мест.</p>
+        <!-- Та же схема, что на сайте — по Схема парковки AS-IS.md -->
+        <div class="wf-parking-map wf-parking-map--compact" role="img" aria-label="Схема парковки (компактно)">
+          <div class="wf-parking-map__kpp">КПП север</div>
+          <div class="wf-parking-map__zones">
+            <div class="wf-parking-map__column">
+              <div class="wf-parking-map__zone"><p class="wf-parking-map__zone-title">ОВЗ — 25</p><p class="wf-parking-map__zone-meta">свободно: [—]</p></div>
+              <div class="wf-parking-map__zone"><p class="wf-parking-map__zone-title">Краткосрочная — 45</p><p class="wf-parking-map__zone-meta">свободно: [—]</p></div>
+              <div class="wf-parking-map__zone"><p class="wf-parking-map__zone-title">Долгосрочная ФЛ+ЮЛ — 310</p><p class="wf-parking-map__zone-meta">свободно: [—]</p></div>
+              <div class="wf-parking-map__zone"><p class="wf-parking-map__zone-title">Долгосрочная ФЛ+ЮЛ — 15</p><p class="wf-parking-map__zone-meta">свободно: [—]</p></div>
+              <div class="wf-parking-map__zone"><p class="wf-parking-map__zone-title">Краткосрочная — 35</p><p class="wf-parking-map__zone-meta">свободно: [—]</p></div>
+            </div>
+            <div class="wf-parking-map__column">
+              <div class="wf-parking-map__zone"><p class="wf-parking-map__zone-title">Краткосрочная — 35</p><p class="wf-parking-map__zone-meta">свободно: [—]</p></div>
+              <div class="wf-parking-map__zone"><p class="wf-parking-map__zone-title">Долгосрочная ФЛ+ЮЛ — 15</p><p class="wf-parking-map__zone-meta">свободно: [—]</p></div>
+              <div class="wf-parking-map__zone"><p class="wf-parking-map__zone-title">Мун. техника + мото + резерв — 50</p><p class="wf-parking-map__zone-meta">свободно: [—]</p></div>
+              <div class="wf-parking-map__zone"><p class="wf-parking-map__zone-title">Краткосрочная — 45</p><p class="wf-parking-map__zone-meta">свободно: [—]</p></div>
+              <div class="wf-parking-map__zone"><p class="wf-parking-map__zone-title">ОВЗ — 25</p><p class="wf-parking-map__zone-meta">свободно: [—]</p></div>
+            </div>
+          </div>
+          <div class="wf-parking-map__kpp">КПП юг</div>
+          <p class="wf-parking-map__total">Всего 600 мест · <a href="../site/parking-map.html">Открыть полную карту</a></p>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

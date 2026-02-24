@@ -1,0 +1,17 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.markdownlint": "explicit"
+  },
+  "[markdown]": {
+    "editor.formatOnSave": true
+  },
+  "cSpell.enabled": true,
+  "cSpell.language": "en,ru",
+  "cSpell.enableFiletypes": [
+    "markdown",
+    "plaintext",
+    "latex",
+    "html"
+  ],
+  "languageTool.language": "ru-RU"
+}

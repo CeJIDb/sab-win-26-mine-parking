@@ -3,43 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Настройки профиля — Личный кабинет</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>Настройки профиля — ЛК клиента</title>
+  <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
-  <div class="page">
-    <header class="page-header" role="banner">
-      <h1>Личный кабинет</h1>
-      <nav aria-label="Навигация ЛК">
-        <ul class="nav-main">
-          <li><a href="index.html">Главная ЛК</a></li>
-          <li><a href="bookings.html">Бронирование</a></li>
-          <li><a href="contracts.html">Договоры</a></li>
-          <li><a href="sessions-history.html">История сессий</a></li>
-          <li><a href="vehicles.html">Мои ТС</a></li>
-          <li><a href="profile.html">Профиль</a></li>
-          <li><a href="../index.html">Сайт</a></li>
-          <li><a href="../login.html">Выйти</a></li>
-        </ul>
-      </nav>
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header" role="banner">
+      <h1>Личный кабинет клиента</h1>
+      <p class="wf-muted">Настройки профиля</p>
     </header>
-
-    <main class="main-content" role="main">
+    <nav class="wf-nav" aria-label="Навигация ЛК клиента">
+      <ul>
+        <li><a href="dashboard.html">Главная</a></li>
+        <li><a href="bookings.html">Бронирование</a></li>
+        <li><a href="contracts.html">Договоры</a></li>
+        <li><a href="sessions-history.html">История сессий</a></li>
+        <li><a href="vehicles.html">Список ТС</a></li>
+        <li><a href="profile.html">Профиль</a></li>
+        <li><a href="../site/index.html">На сайт</a></li>
+        <li><a href="../site/login.html">Выход</a></li>
+      </ul>
+    </nav>
+    <main id="main-content" class="wf-main">
+      <p class="wf-context"><a href="dashboard.html">Главная ЛК</a> → Настройки профиля</p>
       <h2>Настройки профиля</h2>
-
-      <section class="card" aria-labelledby="profile-form">
-        <h3 class="card-header" id="profile-form">Данные профиля</h3>
-        <div class="card-body">
-          <p>ФИО, телефон, e-mail — для уведомлений по брони, оплате, договору. Изменение пароля. Контактные данные от всех клиентов обязательны.</p>
-          <p><a href="#" class="btn">Восстановить пароль</a></p>
-          <p><a href="index.html" class="btn">Главная ЛК</a></p>
+      <form class="wf-form">
+        <div class="wf-field">
+          <label for="prof-phone">Телефон (для уведомлений)</label>
+          <input id="prof-phone" type="tel" placeholder="+7 …">
         </div>
+        <div class="wf-field">
+          <label for="prof-email">E-mail (для уведомлений)</label>
+          <input id="prof-email" type="email" placeholder="email@example.com">
+        </div>
+        <div class="wf-field">
+          <label for="prof-name">ФИО</label>
+          <input id="prof-name" type="text" placeholder="Фамилия Имя Отчество">
+        </div>
+        <div class="wf-actions">
+          <button type="submit">Сохранить</button>
+        </div>
+      </form>
+      <section class="wf-section">
+        <h3>Смена пароля</h3>
+        <form class="wf-form">
+          <div class="wf-field">
+            <label for="prof-old-pwd">Текущий пароль</label>
+            <input id="prof-old-pwd" type="password" placeholder="Текущий пароль">
+          </div>
+          <div class="wf-field">
+            <label for="prof-new-pwd">Новый пароль</label>
+            <input id="prof-new-pwd" type="password" placeholder="Новый пароль">
+          </div>
+          <div class="wf-actions">
+            <button type="submit">Изменить пароль</button>
+          </div>
+        </form>
       </section>
     </main>
-
-    <footer class="page-footer" role="contentinfo">
-      <p><a href="index.html">Главная ЛК</a> | <a href="../index.html">Сайт</a></p>
-    </footer>
   </div>
 </body>
 </html>
