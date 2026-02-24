@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Регистрация — Парковка</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="page-header" role="banner">
+      <h1>Цифровая платформа парковки</h1>
+      <nav aria-label="Основная навигация">
+        <ul class="nav-main">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+          <li><a href="tariffs.html">Тарифы и условия</a></li>
+          <li><a href="parking-map.html">Свободные места</a></li>
+          <li><a href="register.html">Регистрация</a></li>
+          <li><a href="login.html">Вход в ЛК</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main-content" role="main">
+      <h2>Регистрация нового клиента</h2>
+
+      <form class="form-block" action="client/index.html" method="get" aria-labelledby="reg-form-heading">
+        <h3 id="reg-form-heading">Данные для регистрации</h3>
+        <div class="form-row">
+          <label for="reg-phone">Телефон</label>
+          <input id="reg-phone" type="tel" name="phone" required>
+        </div>
+        <div class="form-row">
+          <label for="reg-email">E-mail</label>
+          <input id="reg-email" type="email" name="email">
+        </div>
+        <div class="form-row">
+          <label for="reg-password">Пароль</label>
+          <input id="reg-password" type="password" name="password" required>
+        </div>
+        <div class="form-row">
+          <label>
+            <input type="checkbox" name="agree" required>
+            Ознакомлен(а) с условиями сервиса и согласен(а) на обработку персональных данных
+          </label>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn">Зарегистрироваться</button>
+        </div>
+        <div class="form-footer">
+          Уже есть аккаунт? <a href="login.html">Войти</a>
+        </div>
+      </form>
+    </main>
+
+    <footer class="page-footer" role="contentinfo">
+      <p><a href="index.html">На главную</a> | <a href="login.html">Вход в ЛК</a></p>
+    </footer>
+  </div>
+</body>
+</html>

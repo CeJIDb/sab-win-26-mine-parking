@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мои транспортные средства — Личный кабинет</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="page-header" role="banner">
+      <h1>Личный кабинет</h1>
+      <nav aria-label="Навигация ЛК">
+        <ul class="nav-main">
+          <li><a href="index.html">Главная ЛК</a></li>
+          <li><a href="bookings.html">Бронирование</a></li>
+          <li><a href="contracts.html">Договоры</a></li>
+          <li><a href="sessions-history.html">История сессий</a></li>
+          <li><a href="vehicles.html">Мои ТС</a></li>
+          <li><a href="profile.html">Профиль</a></li>
+          <li><a href="../index.html">Сайт</a></li>
+          <li><a href="../login.html">Выйти</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main-content" role="main">
+      <h2>Управление списком транспортных средств</h2>
+
+      <section class="card" aria-labelledby="vehicles-list">
+        <h3 class="card-header" id="vehicles-list">Мои ТС</h3>
+        <div class="card-body">
+          <p>Список ТС: госномер, марка/модель, привязка к договору/брони. Действия: добавить ТС, редактировать данные, удалить.</p>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="add-vehicle">
+        <h3 class="card-header" id="add-vehicle">Добавить ТС</h3>
+        <div class="card-body">
+          <p>Форма: госномер, при необходимости тип ТС. После добавления ТС можно указывать при бронировании и в договоре.</p>
+          <p><a href="bookings.html" class="btn">Бронирование</a> <a href="index.html" class="btn">Главная ЛК</a></p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer" role="contentinfo">
+      <p><a href="index.html">Главная ЛК</a> | <a href="../index.html">Сайт</a></p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Личный кабинет — Парковка</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="page-header" role="banner">
+      <h1>Личный кабинет</h1>
+      <nav aria-label="Навигация личного кабинета клиента">
+        <ul class="nav-main">
+          <li><a href="index.html">Главная ЛК</a></li>
+          <li><a href="bookings.html">Бронирование</a></li>
+          <li><a href="contracts.html">Договоры</a></li>
+          <li><a href="sessions-history.html">История сессий</a></li>
+          <li><a href="vehicles.html">Мои ТС</a></li>
+          <li><a href="profile.html">Профиль</a></li>
+          <li><a href="../index.html">Сайт парковки</a></li>
+          <li><a href="../login.html">Выйти</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main-content" role="main">
+      <h2>Главная страница личного кабинета</h2>
+
+      <div class="grid-2">
+        <section class="card" aria-labelledby="status-heading">
+          <h3 class="card-header" id="status-heading">Статус парковки</h3>
+          <div class="card-body">
+            <p>Текущий статус: на парковке / не на парковке; активная сессия (если есть).</p>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="payment-heading">
+          <h3 class="card-header" id="payment-heading">Статус оплаты / долг</h3>
+          <div class="card-body">
+            <p>Оплачено / ожидает оплаты / задолженность. Важно для сценария «не столкнуться с отказом на выезде».</p>
+          </div>
+        </section>
+      </div>
+
+      <section class="card" aria-labelledby="contract-heading">
+        <h3 class="card-header" id="contract-heading">Текущий договор / тариф / сессия</h3>
+        <div class="card-body">
+          <p>Активный договор или тариф, срок действия; текущая парковочная сессия (время въезда, место).</p>
+          <p><a href="contracts.html" class="btn">Управление договорами</a></p>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="map-heading">
+        <h3 class="card-header" id="map-heading">Свободные парковочные места (карта по секторам)</h3>
+        <div class="card-body">
+          <p>Занятость по секторам в контексте текущего договора/брони. Публичная карта: <a href="../parking-map.html">Свободные места</a>.</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3 class="card-header">Разделы ЛК</h3>
+        <div class="card-body">
+          <ul class="quick-links">
+            <li><a href="bookings.html">Управление бронированием</a></li>
+            <li><a href="contracts.html">Управление договорами</a></li>
+            <li><a href="sessions-history.html">История парковочных сессий</a></li>
+            <li><a href="vehicles.html">Управление списком транспортных средств</a></li>
+            <li><a href="profile.html">Настройки профиля</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer" role="contentinfo">
+      <p><a href="../index.html">Сайт парковки</a> | <a href="../login.html">Выйти</a></p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход в ЛК администратора — Парковка</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="page-header" role="banner">
+      <h1>Административный раздел</h1>
+      <nav aria-label="Навигация">
+        <ul class="nav-main">
+          <li><a href="login.html">Вход для админа</a></li>
+          <li><a href="../index.html">Сайт парковки</a></li>
+          <li><a href="../login.html">Вход для клиента</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main-content" role="main">
+      <h2>Авторизация личного кабинета администратора</h2>
+
+      <form class="form-block" action="index.html" method="get" aria-labelledby="admin-login-heading">
+        <h3 id="admin-login-heading">Вход в админ-раздел</h3>
+        <div class="form-row">
+          <label for="admin-login">Логин</label>
+          <input id="admin-login" type="text" name="login" required>
+        </div>
+        <div class="form-row">
+          <label for="admin-password">Пароль</label>
+          <input id="admin-password" type="password" name="password" required>
+        </div>
+        <div class="form-row">
+          <label for="admin-code">Код подтверждения</label>
+          <input id="admin-code" type="text" name="code" required>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn">Войти</button>
+        </div>
+      </form>
+
+      <section class="card mt-1">
+        <h3 class="card-header">После входа</h3>
+        <div class="card-body">
+          <p>Переход на <a href="index.html">Личный кабинет админа (главная)</a>. Отдельный поток от клиентской авторизации и интерфейса охранника.</p>
+          <p><a href="../index.html" class="btn">На сайт парковки</a></p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer" role="contentinfo">
+      <p><a href="../index.html">Сайт парковки</a></p>
+    </footer>
+  </div>
+</body>
+</html>

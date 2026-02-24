@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Интерфейс КПП — Парковка</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="page-header" role="banner">
+      <h1>Рабочий интерфейс КПП</h1>
+      <nav aria-label="Навигация">
+        <ul class="nav-main">
+          <li><a href="index.html">Интерфейс КПП</a></li>
+          <li><a href="login.html">Выйти</a></li>
+          <li><a href="../index.html">Сайт парковки</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main-content" role="main">
+      <h2>Интерфейс КПП</h2>
+
+      <section class="card" aria-labelledby="access-check">
+        <h3 class="card-header" id="access-check">Проверка доступа</h3>
+        <div class="card-body">
+          <p>Ввод номера ТС для проверки допуска. Отображение статуса (разрешён/отказ) и причины отказа. Резервный способ идентификации при сбое автоматики.</p>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="exceptions">
+        <h3 class="card-header" id="exceptions">Исключения и офлайн-клиенты</h3>
+        <div class="card-body">
+          <p>Обработка нестандартных ситуаций: офлайн-клиент (оплата на выезде через терминал/QR), ручное открытие шлагбаума при поломке, фиксация отказа от оплаты, ручная фиксация выезда при сбое системы учёта.</p>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="current-sessions">
+        <h3 class="card-header" id="current-sessions">Текущие сессии</h3>
+        <div class="card-body">
+          <p>Просмотр текущих парковочных сессий, занятость по секторам. Категория ТС на мониторе при въезде. Проверка данных о ТС на конкретном месте.</p>
+        </div>
+      </section>
+
+      <p class="text-muted">Вход только через <a href="login.html">авторизацию рабочего интерфейса</a>. Учётные записи охранников создаются в разделе «Управление профилями админов».</p>
+      <p><a href="login.html" class="btn">Выйти</a></p>
+    </main>
+
+    <footer class="page-footer" role="contentinfo">
+      <p><a href="login.html">Выйти</a> | <a href="../index.html">Сайт парковки</a></p>
+    </footer>
+  </div>
+</body>
+</html>
