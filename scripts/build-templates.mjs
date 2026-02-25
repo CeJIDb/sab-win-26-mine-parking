@@ -4,6 +4,7 @@ import nunjucks from 'nunjucks';
 
 const ROOT = process.cwd();
 const CLIENT_DIR = path.join(ROOT, 'ui', 'client');
+const GUARD_DIR = path.join(ROOT, 'ui', 'guard');
 const TEMPLATES_DIR = path.join(ROOT, 'ui', 'templates');
 
 // Настраиваем окружение nunjucks
@@ -17,6 +18,13 @@ async function buildClientPage(templateName, outName) {
   const outPath = path.join(CLIENT_DIR, outName);
   await fs.writeFile(outPath, html, 'utf8');
   console.log(`Built ${outName} from ${templateName}`);
+}
+
+async function buildGuardPage(templateName, outName) {
+  const html = env.render(templateName, {});
+  const outPath = path.join(GUARD_DIR, outName);
+  await fs.writeFile(outPath, html, 'utf8');
+  console.log(`Built guard/${outName} from ${templateName}`);
 }
 
 async function main() {
@@ -34,8 +42,18 @@ async function main() {
     { template: 'pages/profile.njk', out: 'profile.html' },
   ];
 
+  const guardPages = [
+    { template: 'pages/guard-dashboard.njk', out: 'index.html' },
+    { template: 'pages/guard-log.njk', out: 'log.html' },
+    { template: 'pages/guard-client-summary.njk', out: 'client-summary.html' },
+  ];
+
   for (const page of pages) {
     await buildClientPage(page.template, page.out);
+  }
+
+  for (const page of guardPages) {
+    await buildGuardPage(page.template, page.out);
   }
 }
 
