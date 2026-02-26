@@ -9,47 +9,124 @@
 <body>
   <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
   <div class="wf-page">
-    <header class="wf-header" role="banner">
-      <h1>Личный кабинет клиента</h1>
-      <p class="wf-muted">Управление бронированием</p>
+    <header class="wf-header wf-header--lk" role="banner">
+      <div class="wf-header__title">
+        <h1>Личный кабинет клиента</h1>
+        <p class="wf-muted">Управление бронированием</p>
+      </div>
+      <a href="notifications.html" class="wf-header__notifications" aria-label="Уведомления клиента">
+        <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
+        <span class="wf-header__notifications-text">Оплата сессии S‑1045 на 350 ₽ прошла успешно</span>
+      </a>
     </header>
-    <nav class="wf-nav" aria-label="Навигация ЛК клиента">
+    
+    
+<nav class="wf-nav" aria-label="Навигация ЛК клиента">
   <ul>
     <li><a href="dashboard.html">Главная</a></li>
-    <li><a href="bookings.html">Бронирование</a></li>
+    <li><a href="bookings.html" aria-current="page">Бронирование</a></li>
     <li><a href="contracts.html">Договоры</a></li>
     <li><a href="sessions-history.html">История сессий</a></li>
     <li><a href="vehicles.html">Список ТС</a></li>
     <li><a href="payment-settings.html">Оплаты</a></li>
     <li><a href="appeals.html">Обращения</a></li>
-    <li><a href="notifications.html">Уведомления</a></li>
     <li><a href="profile.html">Профиль</a></li>
   </ul>
 </nav>
 
     <main id="main-content" class="wf-main">
       
-  <p class="wf-context"><a href="dashboard.html">Главная ЛК</a> → Управление бронированием</p>
   <h2>Управление бронированием</h2>
   <p class="wf-error" role="alert" aria-live="polite" aria-hidden="true"></p>
   <section class="wf-section">
     <h3>Мои бронирования</h3>
-    <div class="wf-field">
-      <label for="search-booking">Поиск по дате или номеру брони</label>
-      <input id="search-booking" type="text" placeholder="Дата или номер брони">
-    </div>
-    <button type="button">Найти</button>
-    <p class="wf-muted">[Список: период, ПМ/сектор, тариф, статус, действия — изменить / отменить / продлить.]</p>
-    <ul class="wf-list">
-      <li>
-        Бронь #1 — [дата–время], сектор A, ПМ 12 — Подтверждена —
-        <a href="booking-payment.html" class="wf-btn">Оплатить</a>
-        <a href="#booking-edit-modal" class="wf-btn">Изменить</a>
-        <a href="#booking-cancel-modal" class="wf-btn">Отменить</a>
-      </li>
-    </ul>
     <div class="wf-actions">
       <a href="#booking-create-modal" class="wf-btn">Создать бронь</a>
+    </div>
+    <form class="wf-form sessions-filters" aria-label="Фильтры по бронированиям">
+      <div class="filters-row">
+        <div class="wf-field">
+          <label for="filter-booking-date-from">С</label>
+          <input id="filter-booking-date-from" type="date" aria-label="Дата начала периода бронирования">
+        </div>
+        <div class="wf-field">
+          <label for="filter-booking-date-to">По</label>
+          <input id="filter-booking-date-to" type="date" aria-label="Дата окончания периода бронирования">
+        </div>
+        <div class="wf-field">
+          <label for="filter-booking-search">Номер / дата брони</label>
+          <input id="filter-booking-search" type="text" placeholder="Например, #1 или 25.02.2026">
+        </div>
+        <div class="filter-actions">
+          <button type="button">Применить</button>
+          <button type="button">Сброс</button>
+        </div>
+      </div>
+    </form>
+    <div class="wf-table-wrap" role="region" aria-label="Список бронирований">
+      <table class="wf-table">
+        <thead>
+          <tr>
+            <th scope="col">Бронь</th>
+            <th scope="col">Период</th>
+            <th scope="col">Сектор / ПМ</th>
+            <th scope="col">Тариф</th>
+            <th scope="col">Статус</th>
+            <th scope="col">Оплата</th>
+            <th scope="col">Действия</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#1</td>
+            <td>Сегодня 19:00–22:00</td>
+            <td>Сектор A, ПМ 12</td>
+            <td>Почасовой A</td>
+            <td>Подтверждена</td>
+            <td><a href="payment-external.html" class="wf-btn">Оплатить</a></td>
+            <td>
+              <a href="#booking-edit-modal" class="wf-btn">Изменить</a>
+              <a href="#booking-cancel-modal" class="wf-btn">Отменить</a>
+            </td>
+          </tr>
+          <tr>
+            <td>#2</td>
+            <td>Завтра 08:00–10:00</td>
+            <td>Сектор B, ПМ 23</td>
+            <td>Почасовой B</td>
+            <td>Ожидает оплаты</td>
+            <td><a href="payment-external.html" class="wf-btn">Оплатить</a></td>
+            <td>
+              <a href="#booking-edit-modal" class="wf-btn">Изменить</a>
+              <a href="#booking-cancel-modal" class="wf-btn">Отменить</a>
+            </td>
+          </tr>
+          <tr>
+            <td>#3</td>
+            <td>Вчера 20:00–23:00</td>
+            <td>Сектор C, ПМ 45</td>
+            <td>Почасовой C</td>
+            <td>Завершена</td>
+            <td>Оплачено</td>
+            <td>
+              <a href="#booking-edit-modal" class="wf-btn">Изменить</a>
+              <a href="#booking-cancel-modal" class="wf-btn">Отменить</a>
+            </td>
+          </tr>
+          <tr>
+            <td>#4</td>
+            <td>15.02.2026 09:00–12:00</td>
+            <td>Сектор A, ПМ 10</td>
+            <td>Почасовой A</td>
+            <td>Отменена клиентом</td>
+            <td>—</td>
+            <td>
+              <a href="#booking-edit-modal" class="wf-btn">Изменить</a>
+              <a href="#booking-cancel-modal" class="wf-btn">Отменить</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
   <section id="booking-create-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="booking-create-title">
@@ -72,24 +149,20 @@
         <label for="book-tariff">Тариф</label>
         <select id="book-tariff">
           <option value="">— выбрать тариф —</option>
-          <option value="hourly">Почасовой (краткосрочная)</option>
-          <option value="daily">Посуточный (краткосрочная)</option>
+          <option value="hourly-a">Почасовой A (краткосрочная)</option>
+          <option value="hourly-b">Почасовой B (краткосрочная)</option>
+          <option value="hourly-c">Почасовой C (краткосрочная)</option>
           <option value="long">Долгосрочная (свыше 24 ч, требуется договор)</option>
         </select>
+        <p id="book-tariff-help" class="wf-muted">
+          Выберите тариф: Почасовой A/B/C для краткосрочной парковки или долгосрочный по договору.
+        </p>
       </div>
-      <div class="wf-field">
+      <div class="wf-field" id="book-date-wrap">
         <label for="book-date">Дата и время начала</label>
         <input id="book-date" type="datetime-local" placeholder="Дата, время">
       </div>
-      <div class="wf-field">
-        <label for="book-duration">Длительность</label>
-        <select id="book-duration">
-          <option value="">— выбрать —</option>
-          <option value="short">До 24 часов (краткосрочная)</option>
-          <option value="long">Свыше 24 часов (долгосрочная)</option>
-        </select>
-      </div>
-      <div class="wf-field wf-duration-dependent" id="book-short-wrap" hidden>
+      <div class="wf-field wf-tariff-dependent" id="book-short-wrap" hidden>
         <div class="wf-field">
           <label for="book-sector-short">Сектор (краткосрочная парковка)</label>
           <select id="book-sector-short">
@@ -103,53 +176,75 @@
           <input id="book-hours" type="number" min="1" max="24" step="1" placeholder="1–24" aria-label="Количество часов">
         </div>
       </div>
-      <div class="wf-field wf-duration-dependent" id="book-long-wrap" hidden>
-        <p class="wf-notice" role="status"><strong>Длительная парковка (свыше 24 часов)</strong> возможна только при заключённом договоре. Оформите <a href="contracts.html">договор</a>, если его ещё нет.</p>
-        <div class="wf-field">
-          <label for="book-period">Количество дней / месяцев</label>
-          <select id="book-period">
-            <option value="">— выбрать —</option>
-            <optgroup label="Дни">
-              <option value="2d">2 дня</option>
-              <option value="3d">3 дня</option>
-              <option value="7d">7 дней</option>
-              <option value="14d">14 дней</option>
-            </optgroup>
-            <optgroup label="Месяцы">
-              <option value="1m">1 месяц</option>
-              <option value="3m">3 месяца</option>
-              <option value="6m">6 месяцев</option>
-              <option value="12m">12 месяцев</option>
-            </optgroup>
-          </select>
-        </div>
-        <div class="wf-field">
-          <label for="book-sector-long">Сектор (долгосрочная парковка)</label>
-          <select id="book-sector-long">
-            <option value="">— выбрать сектор —</option>
-            <option value="long">Долгосрочная парковка ФЛ+ЮЛ</option>
-            <option value="ovz">Места для лиц с ОВЗ</option>
-          </select>
-        </div>
-        <div class="wf-field">
-          <label for="book-pm">Парковочное место (ПМ)</label>
-          <select id="book-pm">
-            <option value="">— выбрать ПМ —</option>
-            <option value="1">ПМ 1</option>
-            <option value="2">ПМ 2</option>
-            <option value="3">ПМ 3</option>
-          </select>
+      <div class="wf-field wf-tariff-dependent" id="book-long-wrap" hidden>
+        <p class="wf-notice" role="status">
+          <strong>Долгосрочная парковка (свыше 24 часов)</strong> оформляется на основании договора обслуживания.
+          После заключения договора система автоматически сформирует бронирование на весь срок его действия
+          и закрепит за ним ваши парковочные места и транспортные средства.
+        </p>
+        <div class="wf-actions">
+          <a href="contracts-create.html" class="wf-btn">Оформить договор</a>
         </div>
       </div>
-      <div class="wf-card">
-        <strong>Итого к оплате:</strong> <span class="wf-muted">[сумма по выбранному тарифу и длительности]</span>
-      </div>
-      <div class="wf-actions">
-        <button type="submit">Проверить доступность и перейти к оплате</button>
+      <div id="book-payment-wrap">
+        <div class="wf-card">
+          <strong>Итого к оплате:</strong> <span class="wf-muted">[сумма по выбранному тарифу и длительности]</span>
+        </div>
+        <div class="wf-actions">
+          <button type="submit">Проверить доступность и перейти к оплате</button>
+        </div>
       </div>
     </form>
   </div>
 </section>
+
+<script>
+(function() {
+  var tariff = document.getElementById('book-tariff');
+  var shortWrap = document.getElementById('book-short-wrap');
+  var longWrap = document.getElementById('book-long-wrap');
+  var dateWrap = document.getElementById('book-date-wrap');
+  var paymentWrap = document.getElementById('book-payment-wrap');
+  var tariffHelp = document.getElementById('book-tariff-help');
+  if (!tariff || !shortWrap || !longWrap) return;
+
+  function updateByTariff() {
+    var value = tariff.value;
+    var isHourly = (value === 'hourly-a' || value === 'hourly-b' || value === 'hourly-c');
+    if (tariffHelp) {
+      if (value === 'hourly-a') {
+        tariffHelp.textContent = 'Почасовой A — дневной 08:00–20:00, от 30 минут, 150 ₽/ч.';
+      } else if (value === 'hourly-b') {
+        tariffHelp.textContent = 'Почасовой B — ночной 20:00–08:00, от 1 часа, 200 ₽/ч.';
+      } else if (value === 'hourly-c') {
+        tariffHelp.textContent = 'Почасовой C — круглосуточно, от 15 минут, 250 ₽/ч.';
+      } else if (value === 'long') {
+        tariffHelp.textContent = 'Долгосрочная парковка — срок от 2 дней, оформляется только по договору обслуживания.';
+      } else {
+        tariffHelp.textContent = 'Выберите тариф: Почасовой A/B/C для краткосрочной парковки или долгосрочный по договору.';
+      }
+    }
+    if (isHourly) {
+      shortWrap.hidden = false;
+      longWrap.hidden = true;
+      if (dateWrap) dateWrap.hidden = false;
+      if (paymentWrap) paymentWrap.hidden = false;
+    } else if (value === 'long') {
+      shortWrap.hidden = true;
+      longWrap.hidden = false;
+      if (dateWrap) dateWrap.hidden = true;
+      if (paymentWrap) paymentWrap.hidden = true;
+    } else {
+      shortWrap.hidden = true;
+      longWrap.hidden = true;
+      if (dateWrap) dateWrap.hidden = false;
+      if (paymentWrap) paymentWrap.hidden = false;
+    }
+  }
+
+  tariff.addEventListener('change', updateByTariff);
+})();
+</script>
 
 
   <section id="booking-edit-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="booking-edit-title">
@@ -166,80 +261,29 @@
       <div class="wf-field">
         <label for="book-edit-ts">ТС (ГРЗ)</label>
         <input id="book-edit-ts" type="text" value="А123БВ777 — Toyota Camry" readonly>
-        <p class="wf-muted">Изменить ТС можно через раздел «Список ТС» и повторное создание брони.</p>
+        <p class="wf-muted">Изменение ТС для действующей брони недоступно. При необходимости отмените её и создайте новую с другим ТС.</p>
       </div>
       <div class="wf-field">
         <label for="book-edit-tariff">Тариф</label>
-        <select id="book-edit-tariff">
-          <option value="">— выбрать тариф —</option>
-          <option value="hourly">Почасовой (краткосрочная)</option>
-          <option value="daily">Посуточный (краткосрочная)</option>
-          <option value="long">Долгосрочная (свыше 24 ч, требуется договор)</option>
-        </select>
+        <input id="book-edit-tariff" type="text" value="Почасовой A — дневной 08:00–20:00, от 30 минут, 150 ₽/ч" readonly>
+        <p class="wf-muted">Изменение тарифа для действующей брони недоступно. При необходимости отмените её и создайте новую с другим тарифом.</p>
       </div>
       <div class="wf-field">
         <label for="book-edit-date">Дата и время начала</label>
         <input id="book-edit-date" type="datetime-local" placeholder="Дата, время">
+        <p class="wf-muted">Вы можете скорректировать время начала, пока до старта осталось достаточно времени по правилам тарифа.</p>
       </div>
       <div class="wf-field">
-        <label for="book-edit-duration">Длительность</label>
-        <select id="book-edit-duration">
-          <option value="">— выбрать —</option>
-          <option value="short">До 24 часов (краткосрочная)</option>
-          <option value="long">Свыше 24 часов (долгосрочная)</option>
+        <label for="book-edit-sector-short">Сектор</label>
+        <select id="book-edit-sector-short">
+          <option value="">— выбрать сектор —</option>
+          <option value="short">Краткосрочная парковка</option>
+          <option value="ovz">Места для лиц с ОВЗ</option>
         </select>
       </div>
-      <div class="wf-field wf-duration-dependent" id="book-edit-short-wrap" hidden>
-        <div class="wf-field">
-          <label for="book-edit-sector-short">Сектор (краткосрочная парковка)</label>
-          <select id="book-edit-sector-short">
-            <option value="">— выбрать сектор —</option>
-            <option value="short">Краткосрочная парковка</option>
-            <option value="ovz">Места для лиц с ОВЗ</option>
-          </select>
-        </div>
-        <div class="wf-field">
-          <label for="book-edit-hours">Время парковки, часы (до 24)</label>
-          <input id="book-edit-hours" type="number" min="1" max="24" step="1" placeholder="1–24" aria-label="Количество часов">
-        </div>
-      </div>
-      <div class="wf-field wf-duration-dependent" id="book-edit-long-wrap" hidden>
-        <p class="wf-notice" role="status"><strong>Длительная парковка (свыше 24 часов)</strong> возможна только при заключённом договоре. Оформите <a href="contracts.html">договор</a>, если его ещё нет.</p>
-        <div class="wf-field">
-          <label for="book-edit-period">Количество дней / месяцев</label>
-          <select id="book-edit-period">
-            <option value="">— выбрать —</option>
-            <optgroup label="Дни">
-              <option value="2d">2 дня</option>
-              <option value="3d">3 дня</option>
-              <option value="7d">7 дней</option>
-              <option value="14d">14 дней</option>
-            </optgroup>
-            <optgroup label="Месяцы">
-              <option value="1m">1 месяц</option>
-              <option value="3m">3 месяца</option>
-              <option value="6m">6 месяцев</option>
-              <option value="12m">12 месяцев</option>
-            </optgroup>
-          </select>
-        </div>
-        <div class="wf-field">
-          <label for="book-edit-sector-long">Сектор (долгосрочная парковка)</label>
-          <select id="book-edit-sector-long">
-            <option value="">— выбрать сектор —</option>
-            <option value="long">Долгосрочная парковка ФЛ+ЮЛ</option>
-            <option value="ovz">Места для лиц с ОВЗ</option>
-          </select>
-        </div>
-        <div class="wf-field">
-          <label for="book-edit-pm">Парковочное место (ПМ)</label>
-          <select id="book-edit-pm">
-            <option value="">— выбрать ПМ —</option>
-            <option value="1">ПМ 1</option>
-            <option value="2">ПМ 2</option>
-            <option value="3">ПМ 3</option>
-          </select>
-        </div>
+      <div class="wf-field">
+        <label for="book-edit-hours">Время парковки, часы (до 24)</label>
+        <input id="book-edit-hours" type="number" min="1" max="24" step="1" placeholder="1–24" aria-label="Количество часов">
       </div>
       <div class="wf-card">
         <strong>Новая стоимость бронирования:</strong>
@@ -250,7 +294,6 @@
       </p>
       <div class="wf-actions">
         <button type="submit">Сохранить изменения</button>
-        <a href="#main-content" class="wf-btn-link">Отмена</a>
       </div>
     </form>
   </div>

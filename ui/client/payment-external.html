@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Оплата бронирования — ЛК клиента</title>
+  <title>Оплата через платёжный сервис — ЛК клиента</title>
   <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
     <header class="wf-header wf-header--lk" role="banner">
       <div class="wf-header__title">
         <h1>Личный кабинет клиента</h1>
-        <p class="wf-muted">Оплата бронирования</p>
+        <p class="wf-muted">Оплата счёта во внешнем платёжном сервисе</p>
       </div>
       <a href="notifications.html" class="wf-header__notifications" aria-label="Уведомления клиента">
         <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
@@ -36,17 +36,25 @@
 
     <main id="main-content" class="wf-main">
       
-  <h2>Оплата бронирования</h2>
-  <p class="wf-error" role="alert" aria-live="polite" aria-hidden="true"></p>
+  <h2>Оплата счёта</h2>
+  <p class="wf-muted">
+    Для оплаты мы перенаправим вас во внешний платёжный сервис партнёра.
+    После успешной оплаты статус счёта и история платежей обновятся в личном кабинете автоматически.
+  </p>
   <section class="wf-section">
-    <p class="wf-muted">[Данные брони: дата, время, ПМ, тариф.]</p>
+    <h3>Пример информации о счёте</h3>
     <div class="wf-card">
-      <p><strong>Сумма к оплате:</strong> [сумма] ₽</p>
+      <p><strong>Номер счёта:</strong> INV‑2026‑0001</p>
+      <p><strong>Описание:</strong> Оплата по договору №1001 за март 2026</p>
+      <p><strong>Сумма к оплате:</strong> 4 500 ₽</p>
     </div>
-    <p class="wf-muted">Оплата бронирования выполняется через внешний платёжный сервис.</p>
+    <p class="wf-muted">
+      На реальной интеграции здесь будет логотип и описание платёжного сервиса (например, «Оплата
+      через платёжный шлюз банка/агрегатора»), а также юридически значимая информация о приёме платежей.
+    </p>
     <div class="wf-actions">
-      <a href="payment-external.html" class="wf-btn">Перейти к оплате</a>
-      <a href="bookings.html" class="wf-btn">Вернуться к бронированию</a>
+      <button type="button">Перейти к оплате во внешнем сервисе</button>
+      <a href="payment-settings.html" class="wf-btn">Вернуться к списку счетов</a>
     </div>
   </section>
 

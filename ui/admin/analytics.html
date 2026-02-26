@@ -13,7 +13,13 @@
       <h1>Личный кабинет администратора</h1>
       <p class="wf-muted">Аналитика (внешняя система)</p>
     </header>
-    <nav class="wf-nav" aria-label="Навигация ЛК админа">
+    
+    
+    
+
+
+
+<nav class="wf-nav" aria-label="Навигация ЛК администратора">
   <ul>
     <li><a href="index.html">Главная</a></li>
     <li><a href="sectors.html">Секторы и ПМ</a></li>
@@ -22,17 +28,135 @@
     <li><a href="clients.html">Профили клиентов</a></li>
     <li><a href="admins.html">Профили админов</a></li>
     <li><a href="requests.html">Обращения</a></li>
-    <li><a href="analytics.html">Аналитика</a></li>
-    <li><a href="login.html">Выход</a></li>
+    <li><a href="analytics.html" aria-current="page">Аналитика</a></li>
   </ul>
 </nav>
 
+<nav class="wf-nav" aria-label="Интерфейс КПП (для администратора)">
+  <ul>
+    <li><a href="../guard/index.html">КПП — панель</a></li>
+    <li><a href="../guard/plate-check.html">КПП — проверка номера</a></li>
+    <li><a href="../guard/plate-history.html">КПП — история по номеру</a></li>
+    <li><a href="../guard/log.html">КПП — журнал событий</a></li>
+    <li><a href="../site/staff-login.html">Выход</a></li>
+  </ul>
+</nav>
+
+
+
     <main id="main-content" class="wf-main">
       
-  <p class="wf-context"><a href="index.html">Главная админа</a> → Аналитика</p>
   <h2>Аналитика</h2>
+
   <section class="wf-section">
-    <p class="wf-muted">[Интеграция с внешней системой аналитики — розовый узел по Карте навигации. Отчёты, дашборды.]</p>
+    <h3>Загрузка парковки по секторам</h3>
+    <p class="wf-muted">Сводка по среднему заполнению за выбранный период (пример для прототипа).</p>
+    <div class="wf-table-wrap">
+      <table class="wf-table">
+        <thead>
+          <tr>
+            <th>Сектор</th>
+            <th>Средняя загрузка</th>
+            <th>Пиковая загрузка</th>
+            <th>Свободные окна</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Сектор А</td>
+            <td>78%</td>
+            <td>95% (вечер будней)</td>
+            <td>Низкая загрузка 06:00–09:00</td>
+          </tr>
+          <tr>
+            <td>Сектор Б</td>
+            <td>85%</td>
+            <td>98% (рабочие дни)</td>
+            <td>Свободные места в выходные</td>
+          </tr>
+          <tr>
+            <td>Сектор В</td>
+            <td>62%</td>
+            <td>80%</td>
+            <td>Резерв под новые договоры</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="wf-section">
+    <h3>Выручка и оплаты</h3>
+    <p class="wf-muted">Пример агрегированной выручки и задолженности по периодам.</p>
+    <div class="wf-table-wrap">
+      <table class="wf-table">
+        <thead>
+          <tr>
+            <th>Период</th>
+            <th>Выручка по договорам</th>
+            <th>Выручка по почасовой оплате</th>
+            <th>Просроченная задолженность</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Текущий день</td>
+            <td>120 000 ₽</td>
+            <td>32 300 ₽</td>
+            <td>0 ₽</td>
+          </tr>
+          <tr>
+            <td>Последние 7 дней</td>
+            <td>780 000 ₽</td>
+            <td>210 500 ₽</td>
+            <td>45 000 ₽</td>
+          </tr>
+          <tr>
+            <td>Последние 30 дней</td>
+            <td>3 200 000 ₽</td>
+            <td>940 000 ₽</td>
+            <td>120 000 ₽</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="wf-section">
+    <h3>Инциденты и отказы во въезде</h3>
+    <p class="wf-muted">Сводка по ключевым типам инцидентов, которые администратор отслеживает по обращениям и журналу КПП.</p>
+    <div class="wf-table-wrap">
+      <table class="wf-table">
+        <thead>
+          <tr>
+            <th>Тип инцидента</th>
+            <th>За сегодня</th>
+            <th>За 7 дней</th>
+            <th>Комментарий</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Отказ во въезде при активном договоре</td>
+            <td>2</td>
+            <td>9</td>
+            <td>Требует проверки настроек тарифов и КПП.</td>
+          </tr>
+          <tr>
+            <td>Отказ из‑за задолженности</td>
+            <td>1</td>
+            <td>12</td>
+            <td>Нужно сверить напоминания и уведомления клиентам.</td>
+          </tr>
+          <tr>
+            <td>Ошибочное распознавание номера</td>
+            <td>0</td>
+            <td>5</td>
+            <td>Связано с погодными условиями и качеством камер.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
     </main>

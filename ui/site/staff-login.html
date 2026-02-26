@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход для сотрудников — Цифровая платформа парковки</title>
+  <link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header" role="banner">
+      <h1>Цифровая платформа парковки</h1>
+      <p class="wf-muted">Вход для сотрудников (администратор и охранник)</p>
+    </header>
+    <nav class="wf-nav" aria-label="Основная навигация">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+        <li><a href="tariffs.html">Тарифы и условия</a></li>
+        <li><a href="parking-map.html">Свободные места</a></li>
+        <li><a href="rules.html">Правила парковки</a></li>
+        <li><a href="register.html">Регистрация</a></li>
+        <li><a href="login.html">Вход клиента</a></li>
+      </ul>
+    </nav>
+    <main id="main-content" class="wf-main">
+      <h2>Вход для администратора и охранника</h2>
+      <p class="wf-muted">В демо-версии доступны два логина: <code>admin</code> (администратор, полный доступ) и <code>operator</code> (охранник КПП, только интерфейс КПП).</p>
+
+      <section class="wf-section">
+        <form id="staff-login-form" class="wf-form">
+          <p id="staff-login-error" class="wf-error" role="alert" aria-live="polite" aria-hidden="true"></p>
+          <div class="wf-field">
+            <label for="staff-login-login">Логин</label>
+            <input id="staff-login-login" type="text" placeholder="admin или operator" required>
+          </div>
+          <div class="wf-field">
+            <label for="staff-login-password">Пароль</label>
+            <input id="staff-login-password" type="password" placeholder="Пароль" required>
+          </div>
+          <div class="wf-field">
+            <label for="staff-login-code">Код подтверждения</label>
+            <input id="staff-login-code" type="text" placeholder="Код" required>
+          </div>
+          <div class="wf-actions">
+            <button type="submit">Войти</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script>
+  (function() {
+    var form = document.getElementById('staff-login-form');
+    if (!form) return;
+    var loginInput = document.getElementById('staff-login-login');
+    var errorEl = document.getElementById('staff-login-error');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var login = (loginInput.value || '').trim().toLowerCase();
+
+      if (login === 'admin') {
+        window.location.href = '../admin/index.html';
+      } else if (login === 'operator') {
+        window.location.href = '../guard/index.html';
+      } else {
+        if (errorEl) {
+          errorEl.textContent = 'Для прототипа доступны только логины "admin" и "operator".';
+          errorEl.setAttribute('aria-hidden', 'false');
+        }
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

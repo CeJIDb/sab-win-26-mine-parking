@@ -9,52 +9,59 @@
 <body>
   <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
   <div class="wf-page">
-    <header class="wf-header" role="banner">
-      <h1>Личный кабинет клиента</h1>
-      <p class="wf-muted">Consumer App — вход после авторизации клиента</p>
+    <header class="wf-header wf-header--lk" role="banner">
+      <div class="wf-header__title">
+        <h1>Личный кабинет клиента</h1>
+        <p class="wf-muted">Consumer App — вход после авторизации клиента</p>
+      </div>
+      <a href="notifications.html" class="wf-header__notifications" aria-label="Уведомления клиента">
+        <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
+        <span class="wf-header__notifications-text">Оплата сессии S‑1045 на 350 ₽ прошла успешно</span>
+      </a>
     </header>
-    <nav class="wf-nav" aria-label="Навигация ЛК клиента">
+    
+    
+<nav class="wf-nav" aria-label="Навигация ЛК клиента">
   <ul>
-    <li><a href="dashboard.html">Главная</a></li>
+    <li><a href="dashboard.html" aria-current="page">Главная</a></li>
     <li><a href="bookings.html">Бронирование</a></li>
     <li><a href="contracts.html">Договоры</a></li>
     <li><a href="sessions-history.html">История сессий</a></li>
     <li><a href="vehicles.html">Список ТС</a></li>
     <li><a href="payment-settings.html">Оплаты</a></li>
     <li><a href="appeals.html">Обращения</a></li>
-    <li><a href="notifications.html">Уведомления</a></li>
     <li><a href="profile.html">Профиль</a></li>
   </ul>
 </nav>
 
     <main id="main-content" class="wf-main">
       
-  <p class="wf-context"><a href="dashboard.html">Главная ЛК</a></p>
   <h2>Главная страница ЛК</h2>
-  <div class="wf-grid">
-    <section class="wf-card">
-      <h3>Статус парковки</h3>
-      <p class="wf-muted">[Текущий статус: на парковке / не на парковке; активная сессия.]</p>
-    </section>
-    <section class="wf-card">
-      <h3>Текущий договор / тариф / сессия</h3>
-      <p class="wf-muted">[Действующий договор или тариф; текущая парковочная сессия.]</p>
-    </section>
-    <section class="wf-card">
-      <h3>Статус оплаты / долг</h3>
-      <p class="wf-muted">[Оплачено / задолженность; сумма к оплате.]</p>
-    </section>
-    <section class="wf-card">
-      <h3>Уведомления</h3>
-      <p class="wf-muted">
-        1 новое уведомление об оплате, 1 напоминание по договору, 1 новое сообщение по обращению.
-      </p>
-      <p class="wf-muted">
-        Пример: «Оплата сессии S-1001 на 350 ₽ прошла успешно», «Договор №1001 истекает через 5 дней».
-      </p>
-      <a href="notifications.html" class="wf-btn">Все уведомления</a>
-    </section>
-  </div>
+  <section class="wf-section">
+    <h3>Быстрые действия</h3>
+    <div class="wf-grid wf-grid--three">
+      <section class="wf-card">
+        <h4>Парковочная сессия</h4>
+        <p><strong>Активная сессия:</strong> S‑1045, КПП‑1, с 24.02.2026 10:05.</p>
+        <p class="wf-muted">Ориентировочная сумма к оплате: 350 ₽ по тарифу «Почасовой А».</p>
+        <p><a href="payment-external.html" class="wf-btn">Оплатить</a></p>
+      </section>
+      <section class="wf-card">
+        <h4>Бронирование</h4>
+        <p><strong>Планируемое бронирование:</strong> сегодня 19:00–22:00, сектор Б, место 203.</p>
+        <p class="wf-muted">Рекомендуем создать или скорректировать бронирование заранее.</p>
+        <p>
+          <a href="bookings.html#booking-create-modal" class="wf-btn">Создать</a>
+        </p>
+      </section>
+      <section class="wf-card">
+        <h4>Договор</h4>
+        <p><strong>Договор Д‑045:</strong> долг 1 200 ₽, срок оплаты до 01.03.2026.</p>
+        <p class="wf-muted">Оплатите договор, чтобы избежать ограничений доступа на парковку.</p>
+        <p><a href="payment-external.html" class="wf-btn">Оплатить</a></p>
+      </section>
+    </div>
+  </section>
   <section class="wf-section">
     <h3>Количество свободных парковочных мест (карта по секторам)</h3>
     <p class="wf-muted">Схема парковки AS-IS: КПП север/юг, зоны по типам. Всего 600 мест.</p>

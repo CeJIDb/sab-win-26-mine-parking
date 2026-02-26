@@ -9,28 +9,41 @@
 <body>
   <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
   <div class="wf-page">
-    <header class="wf-header" role="banner">
-      <h1>Личный кабинет клиента</h1>
-      <p class="wf-muted">История оплат и настройки автосписания</p>
+    <header class="wf-header wf-header--lk" role="banner">
+      <div class="wf-header__title">
+        <h1>Личный кабинет клиента</h1>
+        <p class="wf-muted">История оплат и настройки автосписания</p>
+      </div>
+      <a href="notifications.html" class="wf-header__notifications" aria-label="Уведомления клиента">
+        <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
+        <span class="wf-header__notifications-text">Оплата сессии S‑1045 на 350 ₽ прошла успешно</span>
+      </a>
     </header>
-    <nav class="wf-nav" aria-label="Навигация ЛК клиента">
+    
+    
+<nav class="wf-nav" aria-label="Навигация ЛК клиента">
   <ul>
     <li><a href="dashboard.html">Главная</a></li>
     <li><a href="bookings.html">Бронирование</a></li>
     <li><a href="contracts.html">Договоры</a></li>
     <li><a href="sessions-history.html">История сессий</a></li>
     <li><a href="vehicles.html">Список ТС</a></li>
-    <li><a href="payment-settings.html">Оплаты</a></li>
+    <li><a href="payment-settings.html" aria-current="page">Оплаты</a></li>
     <li><a href="appeals.html">Обращения</a></li>
-    <li><a href="notifications.html">Уведомления</a></li>
     <li><a href="profile.html">Профиль</a></li>
   </ul>
 </nav>
 
     <main id="main-content" class="wf-main">
       
-  <p class="wf-context"><a href="dashboard.html">Главная ЛК</a> → Оплаты</p>
   <h2>Оплаты</h2>
+
+  <section class="wf-section">
+    <h3>Сводка по оплатам</h3>
+    <p class="wf-muted">
+      На текущий момент: <strong>нет просроченных счетов</strong>, <strong>2 счёта к оплате</strong>, автосписание по договорам включено.
+    </p>
+  </section>
 
   <section class="wf-section">
     <h3>Счета к оплате</h3>
@@ -53,7 +66,7 @@
             <td>4 500 ₽</td>
             <td>К оплате</td>
             <td>
-              <button type="button">Оплатить</button>
+              <a href="payment-external.html" class="wf-btn">Оплатить</a>
               <button type="button">Подробнее</button>
             </td>
           </tr>
@@ -63,12 +76,44 @@
             <td>350 ₽</td>
             <td>Ожидает оплаты</td>
             <td>
-              <button type="button">Оплатить</button>
+              <a href="payment-external.html" class="wf-btn">Оплатить</a>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+  </section>
+
+  <section class="wf-section">
+    <h3>Настройки автосписания</h3>
+    <form class="wf-form">
+      <div class="wf-field wf-field--checkbox">
+        <label for="pay-autopay-enabled">
+          <input id="pay-autopay-enabled" type="checkbox" checked>
+          <span>Разрешить автосписание по активным договорам</span>
+        </label>
+      </div>
+      <div class="wf-field wf-field--checkbox">
+        <label for="pay-autospay-sessions">
+          <input id="pay-autospay-sessions" type="checkbox">
+          <span>Разрешить автосписание по парковочным сессиям</span>
+        </label>
+      </div>
+      <div class="wf-field">
+        <label for="pay-autopay-limit">Лимит автосписания в месяц</label>
+        <input id="pay-autopay-limit" type="text" placeholder="[сумма, ₽]">
+        <p class="wf-notice">При достижении лимита новые списания требуют явного подтверждения.</p>
+      </div>
+      <div class="wf-field wf-field--checkbox">
+        <label for="pay-autopay-notify">
+          <input id="pay-autopay-notify" type="checkbox" checked>
+          <span>Отправлять уведомления об автосписаниях и ошибках списания</span>
+        </label>
+      </div>
+      <div class="wf-actions">
+        <button type="submit">Сохранить настройки</button>
+      </div>
+    </form>
   </section>
 
   <section class="wf-section">
@@ -125,78 +170,16 @@
   </section>
 
   <section class="wf-section">
-    <h3>Сохранённые способы оплаты</h3>
-    <form class="wf-form">
-      <p class="wf-notice">Здесь настраиваются способы оплаты, которые будут использоваться для бронирований и договоров.</p>
-      <div class="wf-field wf-field--inline-control">
-        <label for="pay-add-method">Добавить способ оплаты</label>
-        <div class="wf-inline">
-          <select id="pay-add-method">
-            <option value="">— выбрать тип —</option>
-            <option value="card">Банковская карта</option>
-            <option value="sbp">СБП / мобильное приложение банка</option>
-            <option value="wallet">Платёжный кошелёк</option>
-          </select>
-          <button type="button">Добавить способ</button>
-        </div>
-      </div>
-      <div class="wf-field">
-        <label for="pay-primary">Основной способ оплаты</label>
-        <select id="pay-primary">
-          <option value="">— выбрать основной —</option>
-          <option value="card-1234">Карта •••• 1234 (Visa)</option>
-          <option value="card-5678">Карта •••• 5678 (Mir)</option>
-        </select>
-      </div>
-      <ul class="wf-list wf-list--compact">
-        <li>
-          Карта •••• 1234 (Visa, истекает 12/28)
-          <span>
-            <button type="button">Сделать основным</button>
-            <button type="button">Удалить</button>
-          </span>
-        </li>
-        <li>
-          Карта •••• 5678 (Mir, истекает 07/27)
-          <span>
-            <button type="button">Сделать основным</button>
-            <button type="button">Удалить</button>
-          </span>
-        </li>
-      </ul>
-    </form>
-  </section>
-
-  <section class="wf-section">
-    <h3>Настройки автосписания</h3>
-    <form class="wf-form">
-      <div class="wf-field wf-field--checkbox">
-        <label for="pay-autopay-enabled">
-          <input id="pay-autopay-enabled" type="checkbox" checked>
-          <span>Разрешить автосписание по активным договорам</span>
-        </label>
-      </div>
-      <div class="wf-field wf-field--checkbox">
-        <label for="pay-autospay-sessions">
-          <input id="pay-autospay-sessions" type="checkbox">
-          <span>Разрешить автосписание по парковочным сессиям</span>
-        </label>
-      </div>
-      <div class="wf-field">
-        <label for="pay-autopay-limit">Лимит автосписания в месяц</label>
-        <input id="pay-autopay-limit" type="text" placeholder="[сумма, ₽]">
-        <p class="wf-notice">При достижении лимита новые списания требуют явного подтверждения.</p>
-      </div>
-      <div class="wf-field wf-field--checkbox">
-        <label for="pay-autopay-notify">
-          <input id="pay-autopay-notify" type="checkbox" checked>
-          <span>Отправлять уведомления об автосписаниях и ошибках списания</span>
-        </label>
-      </div>
-      <div class="wf-actions">
-        <button type="submit">Сохранить настройки</button>
-      </div>
-    </form>
+    <h3>Информация об оплате через внешний сервис</h3>
+    <p class="wf-muted">
+      Оплата всех счетов выполняется через защищённый платёжный сервис партнёра. Сохранённые карты и другие
+      платёжные данные хранятся только на стороне платёжного сервиса и недоступны в личном кабинете парковки.
+    </p>
+    <p class="wf-muted">
+      Продолжая оплату, вы переходите на страницу платёжного сервиса и соглашаетесь с его условиями
+      обработки платежей. После завершения операции результат оплаты и чек будут отображены в разделе
+      «Оплаты» вашего личного кабинета.
+    </p>
   </section>
 
     </main>
