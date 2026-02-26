@@ -14,31 +14,217 @@
       <p class="wf-muted">Управление договорами</p>
     </header>
     <nav class="wf-nav" aria-label="Навигация ЛК админа">
-      <ul>
-        <li><a href="index.html">Главная</a></li>
-        <li><a href="sectors.html">Секторы и ПМ</a></li>
-        <li><a href="tariffs.html">Тарифы</a></li>
-        <li><a href="contracts.html">Договоры</a></li>
-        <li><a href="clients.html">Профили клиентов</a></li>
-        <li><a href="admins.html">Профили админов</a></li>
-        <li><a href="requests.html">Обращения</a></li>
-        <li><a href="analytics.html">Аналитика</a></li>
-        <li><a href="login.html">Выход</a></li>
-      </ul>
-    </nav>
+  <ul>
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="sectors.html">Секторы и ПМ</a></li>
+    <li><a href="tariffs.html">Тарифы</a></li>
+    <li><a href="contracts.html">Договоры</a></li>
+    <li><a href="clients.html">Профили клиентов</a></li>
+    <li><a href="admins.html">Профили админов</a></li>
+    <li><a href="requests.html">Обращения</a></li>
+    <li><a href="analytics.html">Аналитика</a></li>
+    <li><a href="login.html">Выход</a></li>
+  </ul>
+</nav>
+
     <main id="main-content" class="wf-main">
-      <p class="wf-context"><a href="index.html">Главная админа</a> → Договоры</p>
-      <h2>Управление договорами</h2>
+      
+<p class="wf-context"><a href="index.html">Главная админа</a> → Договоры</p>
+<h2>Управление договорами</h2>
+
+<section class="wf-section">
+  <h3>Фильтры по договорам</h3>
+  <form class="wf-form sessions-filters">
+    <div class="filters-row">
+      <div class="wf-field">
+        <label for="search-contract-admin-number">№ договора</label>
+        <input id="search-contract-admin-number" type="text" placeholder="Например, Д‑045">
+      </div>
+      <div class="wf-field">
+        <label for="search-contract-admin-client">Клиент</label>
+        <input id="search-contract-admin-client" type="text" placeholder="ФИО или название организации">
+      </div>
+      <div class="wf-field">
+        <label for="search-contract-admin-status">Статус договора</label>
+        <select id="search-contract-admin-status">
+          <option value="">Любой</option>
+          <option value="active">Активен</option>
+          <option value="ending-soon">Скоро истекает</option>
+          <option value="finished">Завершён</option>
+          <option value="overdue">Просрочка</option>
+        </select>
+      </div>
+      <div class="filter-actions">
+        <button type="submit">Показать</button>
+      </div>
+    </div>
+  </form>
+</section>
+
+<section class="wf-section">
+  <h3>Реестр договоров</h3>
+  <div class="wf-table-wrap">
+    <table class="wf-table">
+      <thead>
+        <tr>
+          <th>№ договора</th>
+          <th>Клиент</th>
+          <th>Период</th>
+          <th>Статус договора</th>
+          <th>Задолженность</th>
+          <th>ТС / ПМ</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Д‑045</td>
+          <td>Иванов Иван Иванович</td>
+          <td>01.01.2026–31.12.2026</td>
+          <td><span class="wf-badge">Активен</span></td>
+          <td>Нет</td>
+          <td>2 ТС, 2 ПМ</td>
+          <td>
+            <a href="#admin-contract-modal" class="wf-btn">Просмотр</a>
+          </td>
+        </tr>
+        <tr>
+          <td>Д‑052</td>
+          <td>ООО «Ромашка»</td>
+          <td>15.02.2026–14.05.2026</td>
+          <td><span class="wf-badge">Скоро истекает</span></td>
+          <td>Просрочка 2 дня</td>
+          <td>5 ТС, 4 ПМ</td>
+          <td>
+            <a href="#admin-contract-modal" class="wf-btn">Просмотр</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="admin-contract-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-contract-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="admin-contract-title" class="wf-modal__title">Детали договора Д‑045</h2>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
       <section class="wf-section">
-        <div class="wf-field">
-          <label for="search-contract-admin">Поиск по номеру договора или клиенту</label>
-          <input id="search-contract-admin" type="text" placeholder="Номер договора или клиент">
+        <h3>Основная информация</h3>
+        <div class="wf-grid wf-grid--two">
+          <div class="wf-card">
+            <p><strong>Клиент:</strong> Иванов Иван Иванович</p>
+            <p><strong>Период:</strong> 01.01.2026–31.12.2026</p>
+            <p><strong>Тариф:</strong> Долгосрочная парковка, сектор Б</p>
+          </div>
+          <div class="wf-card">
+            <p><strong>Статус договора:</strong> <span class="wf-badge">Активен</span></p>
+            <p><strong>Задолженность:</strong> Нет</p>
+            <p><strong>Комментарий:</strong> Договор продлён до конца года.</p>
+          </div>
         </div>
-        <button type="button">Найти</button>
       </section>
+
       <section class="wf-section">
-        <p class="wf-muted">[Список договоров с фильтрами и действиями.]</p>
+        <h3>ТС по договору</h3>
+        <div class="wf-table-wrap">
+          <table class="wf-table">
+            <thead>
+              <tr>
+                <th>ГРЗ</th>
+                <th>Марка / модель</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="client-sessions.html?plate=A123BV777">А123БВ777</a></td>
+                <td>Toyota Camry</td>
+              </tr>
+              <tr>
+                <td><a href="client-sessions.html?plate=B456GD199">В456ГД199</a></td>
+                <td>Volkswagen Polo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
+
+      <section class="wf-section">
+        <h3>Парковочные места</h3>
+        <div class="wf-table-wrap">
+          <table class="wf-table">
+            <thead>
+              <tr>
+                <th>ПМ</th>
+                <th>Сектор</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ПМ 101</td>
+                <td>Сектор А</td>
+              </tr>
+              <tr>
+                <td>ПМ 201</td>
+                <td>Сектор Б</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="wf-section">
+        <h3>Расторжение договора</h3>
+        <form class="wf-form">
+          <div class="wf-field">
+            <label for="admin-contract-terminate-reason">Причина расторжения договора</label>
+            <textarea id="admin-contract-terminate-reason" rows="3" placeholder="Кратко опишите причину расторжения (например: окончание аренды, длительная задолженность, решение клиента)."></textarea>
+          </div>
+          <div class="wf-actions">
+            <button type="button">Расторгнуть договор</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+
+</section>
+
+
+<section class="wf-section">
+  <h3>Шаблоны договоров</h3>
+  <p class="wf-muted">Типовые шаблоны договоров, которые используются при оформлении для разных типов клиентов.</p>
+  <div class="wf-table-wrap">
+    <table class="wf-table">
+      <thead>
+        <tr>
+          <th>Тип клиента</th>
+          <th>Название шаблона</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Физическое лицо</td>
+          <td>Долгосрочная парковка (ФЛ)</td>
+          <td>
+            <button type="button">Изменить шаблон для ФЛ</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Юридическое лицо</td>
+          <td>Долгосрочная парковка (ЮЛ)</td>
+          <td>
+            <button type="button">Изменить шаблон для ЮЛ</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
     </main>
   </div>
 </body>

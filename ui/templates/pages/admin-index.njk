@@ -1,0 +1,29 @@
+{% extends "layouts/admin.njk" %}
+
+{% block title %}Главная админа — Цифровая платформа парковки{% endblock %}
+{% block header_subtitle %}Admin Panel — главная (дашборд){% endblock %}
+
+{% block content %}
+  <p class="wf-context"><a href="index.html">Главная админа</a></p>
+  <h2>Дашборд</h2>
+  <p>Наиболее важные операционные данные и показатели (Карта навигации, п. 3.2).</p>
+  <div class="wf-grid">
+    <section class="wf-card">
+      <h3>Занятость / свободные ПМ</h3>
+      <p class="wf-muted">[Сводка по секторам.]</p>
+    </section>
+    <section class="wf-card">
+      <h3>Активные договоры</h3>
+      <p class="wf-muted">[Количество, статусы.]</p>
+    </section>
+    <section class="wf-card">
+      <h3>Бронирования</h3>
+      <p class="wf-muted">[На сегодня / в работе.]</p>
+    </section>
+    <section class="wf-card">
+      <h3>Платежи / просрочки</h3>
+      <p class="wf-muted">[Краткая сводка.]</p>
+    </section>
+  </div>
+  <p><a href="requests.html" class="wf-btn">Обращения и инциденты</a></p>
+{% endblock %}

@@ -14,31 +14,191 @@
       <p class="wf-muted">Профили клиентов</p>
     </header>
     <nav class="wf-nav" aria-label="Навигация ЛК админа">
-      <ul>
-        <li><a href="index.html">Главная</a></li>
-        <li><a href="sectors.html">Секторы и ПМ</a></li>
-        <li><a href="tariffs.html">Тарифы</a></li>
-        <li><a href="contracts.html">Договоры</a></li>
-        <li><a href="clients.html">Профили клиентов</a></li>
-        <li><a href="admins.html">Профили админов</a></li>
-        <li><a href="requests.html">Обращения</a></li>
-        <li><a href="analytics.html">Аналитика</a></li>
-        <li><a href="login.html">Выход</a></li>
-      </ul>
-    </nav>
+  <ul>
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="sectors.html">Секторы и ПМ</a></li>
+    <li><a href="tariffs.html">Тарифы</a></li>
+    <li><a href="contracts.html">Договоры</a></li>
+    <li><a href="clients.html">Профили клиентов</a></li>
+    <li><a href="admins.html">Профили админов</a></li>
+    <li><a href="requests.html">Обращения</a></li>
+    <li><a href="analytics.html">Аналитика</a></li>
+    <li><a href="login.html">Выход</a></li>
+  </ul>
+</nav>
+
     <main id="main-content" class="wf-main">
-      <p class="wf-context"><a href="index.html">Главная админа</a> → Профили клиентов</p>
-      <h2>Управление профилями клиентов</h2>
+      
+<p class="wf-context"><a href="index.html">Главная админа</a> → Профили клиентов</p>
+<h2>Управление профилями клиентов</h2>
+
+<section class="wf-section">
+  <h3>Фильтры по клиентам</h3>
+  <form class="wf-form sessions-filters">
+    <div class="filters-row">
+      <div class="wf-field">
+        <label for="search-client-text">ФИО / телефон / e-mail</label>
+        <input id="search-client-text" type="text" placeholder="Например, Иванов или +7…">
+      </div>
+      <div class="wf-field">
+        <label for="search-client-access">Статус доступа</label>
+        <select id="search-client-access">
+          <option value="">Любой</option>
+          <option value="allowed">Разрешён</option>
+          <option value="limited">Ограничен</option>
+          <option value="blocked">Заблокирован</option>
+        </select>
+      </div>
+      <div class="wf-field">
+        <label for="search-client-debt">Задолженность</label>
+        <select id="search-client-debt">
+          <option value="">Любая</option>
+          <option value="no-debt">Нет задолженности</option>
+          <option value="has-debt">Есть задолженность</option>
+        </select>
+      </div>
+      <div class="filter-actions">
+        <button type="submit">Показать</button>
+      </div>
+    </div>
+  </form>
+</section>
+
+<section class="wf-section">
+  <h3>Реестр клиентов</h3>
+  <div class="wf-table-wrap">
+    <table class="wf-table">
+      <thead>
+        <tr>
+          <th>Клиент</th>
+          <th>Контакты</th>
+          <th>Статус доступа</th>
+          <th>Задолженность</th>
+          <th>ТС</th>
+          <th>Активные договоры</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Иванов Иван Иванович</td>
+          <td>+7 (900) 123‑45‑67<br>ivanov@example.com</td>
+          <td><span class="wf-badge">Разрешён</span></td>
+          <td>Нет</td>
+          <td>2 ТС</td>
+          <td>1 активный</td>
+          <td><a href="#admin-client-modal" class="wf-btn">Карточка клиента</a></td>
+        </tr>
+        <tr>
+          <td>ООО «Ромашка»</td>
+          <td>+7 (812) 555‑55‑55<br>office@romashka.ru</td>
+          <td><span class="wf-badge">Ограничен</span></td>
+          <td>Просрочка 3 дня</td>
+          <td>5 ТС</td>
+          <td>2 активных</td>
+          <td><a href="#admin-client-modal" class="wf-btn">Карточка клиента</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="admin-client-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="admin-client-title" class="wf-modal__title">Карточка клиента (админ)</h2>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
       <section class="wf-section">
-        <div class="wf-field">
-          <label for="search-client">Поиск по ФИО, телефону, e-mail</label>
-          <input id="search-client" type="text" placeholder="ФИО, телефон или e-mail">
+        <h3>Основная информация</h3>
+        <div class="wf-grid wf-grid--two">
+          <div class="wf-card">
+            <p><strong>Тип клиента:</strong> Физическое лицо</p>
+            <p><strong>ФИО:</strong> Иванов Иван Иванович</p>
+            <p><strong>Телефон:</strong> +7 (900) 123‑45‑67</p>
+            <p><strong>E‑mail:</strong> ivanov@example.com</p>
+          </div>
+          <div class="wf-card">
+            <p><strong>Статус доступа:</strong> <span class="wf-badge">Разрешён</span></p>
+            <p><strong>Задолженность:</strong> Нет</p>
+            <p><strong>Примечания:</strong> Надёжный клиент, без просрочек.</p>
+          </div>
         </div>
-        <button type="button">Найти</button>
       </section>
+
       <section class="wf-section">
-        <p class="wf-muted">[Список клиентов; действия.]</p>
+        <h3>Договоры и оплаты</h3>
+        <div class="wf-table-wrap">
+          <table class="wf-table">
+            <thead>
+              <tr>
+                <th>Договор</th>
+                <th>Тип</th>
+                <th>Период</th>
+                <th>Состояние</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="contracts.html">Д‑045</a></td>
+                <td>Долгосрочная парковка, сектор Б</td>
+                <td>01.01.2026–31.12.2026</td>
+                <td>Активен, оплат нет просрочек</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="wf-actions">
+          <a href="contracts.html" class="wf-btn">Открыть все договоры клиента</a>
+        </div>
       </section>
+
+      <section class="wf-section">
+        <h3>Транспортные средства</h3>
+        <div class="wf-table-wrap">
+          <table class="wf-table">
+            <thead>
+              <tr>
+                <th>ГРЗ</th>
+                <th>Марка / модель</th>
+                <th>Статус</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="client-sessions.html?plate=A123BV777">А123БВ777</a></td>
+                <td>Toyota Camry</td>
+                <td>Разрешён, по активному договору</td>
+              </tr>
+              <tr>
+                <td><a href="client-sessions.html?plate=B456GD199">В456ГД199</a></td>
+                <td>Volkswagen Polo</td>
+                <td>Разрешён, оплаченные сессии</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="wf-section">
+        <h3>Служебные действия администратора</h3>
+        <form class="wf-form">
+          <div class="wf-field">
+            <label for="admin-access-reason">Причина ограничения доступа</label>
+            <textarea id="admin-access-reason" rows="3" placeholder="Например: просрочка оплаты более 7 дней, сомнительные операции, решение управляющего."></textarea>
+          </div>
+          <div class="wf-actions">
+            <button type="button">Ограничить доступ</button>
+            <button type="button">Снять ограничение</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</section>
+
+
     </main>
   </div>
 </body>

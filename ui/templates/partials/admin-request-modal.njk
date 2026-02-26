@@ -1,0 +1,78 @@
+<section id="admin-request-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-request-title">
+  <div class="wf-modal__dialog wf-modal__dialog--wide">
+    <header class="wf-modal__header">
+      <h2 id="admin-request-title" class="wf-modal__title">Карточка обращения / инцидента</h2>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <section class="wf-section">
+        <h3>Краткое резюме</h3>
+        <dl class="wf-summary">
+          <dt>ID обращения</dt>
+          <dd>#I‑034</dd>
+          <dt>Клиент</dt>
+          <dd>ООО «Ромашка»</dd>
+          <dt>Тип</dt>
+          <dd>Инцидент (отказ во въезде)</dd>
+          <dt>Статус</dt>
+          <dd><span class="wf-badge wf-badge--in-progress">В работе</span></dd>
+          <dt>Источник</dt>
+          <dd>КПП / журнал событий</dd>
+        </dl>
+      </section>
+
+      <section class="wf-section wf-appeal-original">
+        <h3 class="wf-appeal-original__title">Исходное обращение</h3>
+        <p class="wf-appeal-original__text">
+Клиент сообщает, что при активном договоре Д‑052 система на КПП выдала отказ во въезде.
+Просит разобраться в причине и подтвердить возможность использования договора.
+        </p>
+      </section>
+
+      <section class="wf-section">
+        <h3>Хронология работы по обращению</h3>
+        <ul class="wf-appeal-timeline">
+          <li class="wf-timeline-item wf-timeline-item--client">
+            <div class="wf-timeline-item__meta">
+              <span class="wf-timeline-item__author">Клиент</span>
+              <span class="wf-timeline-item__time">24.02.2026 09:35</span>
+            </div>
+            <div class="wf-timeline-item__body">
+              Сообщение из ЛК клиента о невозможности въезда.
+            </div>
+          </li>
+          <li class="wf-timeline-item wf-timeline-item--support">
+            <div class="wf-timeline-item__meta">
+              <span class="wf-timeline-item__author">Администратор</span>
+              <span class="wf-timeline-item__time">24.02.2026 09:50</span>
+            </div>
+            <div class="wf-timeline-item__body">
+              Проверка журнала КПП, договора и статуса оплаты. Запрос дополнительной информации у охранника.
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="wf-section wf-appeal-reply">
+        <h3 class="wf-appeal-reply__title">Решение администратора</h3>
+        <form class="wf-form wf-appeal-reply-form">
+          <div class="wf-field">
+            <label for="admin-request-status">Обновить статус обращения</label>
+            <select id="admin-request-status">
+              <option value="in-progress">В работе</option>
+              <option value="resolved">Решено, доступ восстановлен</option>
+              <option value="rejected">Закрыто без изменений</option>
+            </select>
+          </div>
+          <div class="wf-field">
+            <label for="admin-request-comment">Комментарий администратора</label>
+            <textarea id="admin-request-comment" rows="4" placeholder="Кратко зафиксируйте принятое решение и дальнейшие действия."></textarea>
+          </div>
+          <div class="wf-actions">
+            <button type="submit">Сохранить решение</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</section>

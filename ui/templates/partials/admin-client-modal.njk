@@ -1,0 +1,94 @@
+<section id="admin-client-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="admin-client-title" class="wf-modal__title">Карточка клиента (админ)</h2>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <section class="wf-section">
+        <h3>Основная информация</h3>
+        <div class="wf-grid wf-grid--two">
+          <div class="wf-card">
+            <p><strong>Тип клиента:</strong> Физическое лицо</p>
+            <p><strong>ФИО:</strong> Иванов Иван Иванович</p>
+            <p><strong>Телефон:</strong> +7 (900) 123‑45‑67</p>
+            <p><strong>E‑mail:</strong> ivanov@example.com</p>
+          </div>
+          <div class="wf-card">
+            <p><strong>Статус доступа:</strong> <span class="wf-badge">Разрешён</span></p>
+            <p><strong>Задолженность:</strong> Нет</p>
+            <p><strong>Примечания:</strong> Надёжный клиент, без просрочек.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="wf-section">
+        <h3>Договоры и оплаты</h3>
+        <div class="wf-table-wrap">
+          <table class="wf-table">
+            <thead>
+              <tr>
+                <th>Договор</th>
+                <th>Тип</th>
+                <th>Период</th>
+                <th>Состояние</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="contracts.html">Д‑045</a></td>
+                <td>Долгосрочная парковка, сектор Б</td>
+                <td>01.01.2026–31.12.2026</td>
+                <td>Активен, оплат нет просрочек</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="wf-actions">
+          <a href="contracts.html" class="wf-btn">Открыть все договоры клиента</a>
+        </div>
+      </section>
+
+      <section class="wf-section">
+        <h3>Транспортные средства</h3>
+        <div class="wf-table-wrap">
+          <table class="wf-table">
+            <thead>
+              <tr>
+                <th>ГРЗ</th>
+                <th>Марка / модель</th>
+                <th>Статус</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="client-sessions.html?plate=A123BV777">А123БВ777</a></td>
+                <td>Toyota Camry</td>
+                <td>Разрешён, по активному договору</td>
+              </tr>
+              <tr>
+                <td><a href="client-sessions.html?plate=B456GD199">В456ГД199</a></td>
+                <td>Volkswagen Polo</td>
+                <td>Разрешён, оплаченные сессии</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="wf-section">
+        <h3>Служебные действия администратора</h3>
+        <form class="wf-form">
+          <div class="wf-field">
+            <label for="admin-access-reason">Причина ограничения доступа</label>
+            <textarea id="admin-access-reason" rows="3" placeholder="Например: просрочка оплаты более 7 дней, сомнительные операции, решение управляющего."></textarea>
+          </div>
+          <div class="wf-actions">
+            <button type="button">Ограничить доступ</button>
+            <button type="button">Снять ограничение</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</section>

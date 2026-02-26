@@ -1,0 +1,84 @@
+{% extends "layouts/admin.njk" %}
+{% block title %}Обращения — ЛК админа{% endblock %}
+{% block header_subtitle %}Обращения и инциденты{% endblock %}
+{% block content %}
+<p class="wf-context"><a href="index.html">Главная админа</a> → Обращения</p>
+<h2>Обращения и инциденты</h2>
+<!-- WF-11: Обращения управляющего (П. 3 — работа с обращениями, поиск по обращениям и инцидентам) -->
+
+<section class="wf-section">
+  <h3>Фильтры по обращениям и инцидентам</h3>
+  <form class="wf-form sessions-filters">
+    <div class="filters-row">
+      <div class="wf-field">
+        <label for="search-requests-text">Номер, клиент или тема</label>
+        <input id="search-requests-text" type="text" placeholder="№ обращения, ФИО, тема">
+      </div>
+      <div class="wf-field">
+        <label for="search-requests-type">Тип</label>
+        <select id="search-requests-type">
+          <option value="">Все</option>
+          <option value="appeal">Обращение</option>
+          <option value="incident">Инцидент</option>
+        </select>
+      </div>
+      <div class="wf-field">
+        <label for="search-requests-status">Статус</label>
+        <select id="search-requests-status">
+          <option value="">Любой</option>
+          <option value="new">Новый</option>
+          <option value="in-progress">В работе</option>
+          <option value="closed">Закрыто</option>
+        </select>
+      </div>
+      <div class="filter-actions">
+        <button type="submit">Показать</button>
+      </div>
+    </div>
+  </form>
+</section>
+
+<section class="wf-section">
+  <h3>Реестр обращений и инцидентов</h3>
+  <div class="wf-table-wrap">
+    <table class="wf-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Клиент</th>
+          <th>Тип</th>
+          <th>Тема</th>
+          <th>Дата и время</th>
+          <th>Статус</th>
+          <th>Источник</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>#A‑1025</td>
+          <td>Иванов Иван Иванович</td>
+          <td>Обращение</td>
+          <td>Вопрос по начислению оплаты</td>
+          <td>24.02.2026 10:30</td>
+          <td><span class="wf-badge wf-badge--new">Новый</span></td>
+          <td>Клиент (ЛК)</td>
+          <td><a href="#admin-request-modal" class="wf-btn">Открыть</a></td>
+        </tr>
+        <tr>
+          <td>#I‑034</td>
+          <td>ООО «Ромашка»</td>
+          <td>Инцидент</td>
+          <td>Отказ во въезде при активном договоре</td>
+          <td>24.02.2026 09:30</td>
+          <td><span class="wf-badge wf-badge--in-progress">В работе</span></td>
+          <td>КПП / журнал событий</td>
+          <td><a href="#admin-request-modal" class="wf-btn">Открыть</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{% include "partials/admin-request-modal.njk" %}
+{% endblock %}

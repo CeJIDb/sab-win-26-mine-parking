@@ -1,0 +1,87 @@
+<section id="admin-contract-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-contract-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="admin-contract-title" class="wf-modal__title">Детали договора Д‑045</h2>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <section class="wf-section">
+        <h3>Основная информация</h3>
+        <div class="wf-grid wf-grid--two">
+          <div class="wf-card">
+            <p><strong>Клиент:</strong> Иванов Иван Иванович</p>
+            <p><strong>Период:</strong> 01.01.2026–31.12.2026</p>
+            <p><strong>Тариф:</strong> Долгосрочная парковка, сектор Б</p>
+          </div>
+          <div class="wf-card">
+            <p><strong>Статус договора:</strong> <span class="wf-badge">Активен</span></p>
+            <p><strong>Задолженность:</strong> Нет</p>
+            <p><strong>Комментарий:</strong> Договор продлён до конца года.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="wf-section">
+        <h3>ТС по договору</h3>
+        <div class="wf-table-wrap">
+          <table class="wf-table">
+            <thead>
+              <tr>
+                <th>ГРЗ</th>
+                <th>Марка / модель</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="client-sessions.html?plate=A123BV777">А123БВ777</a></td>
+                <td>Toyota Camry</td>
+              </tr>
+              <tr>
+                <td><a href="client-sessions.html?plate=B456GD199">В456ГД199</a></td>
+                <td>Volkswagen Polo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="wf-section">
+        <h3>Парковочные места</h3>
+        <div class="wf-table-wrap">
+          <table class="wf-table">
+            <thead>
+              <tr>
+                <th>ПМ</th>
+                <th>Сектор</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ПМ 101</td>
+                <td>Сектор А</td>
+              </tr>
+              <tr>
+                <td>ПМ 201</td>
+                <td>Сектор Б</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="wf-section">
+        <h3>Расторжение договора</h3>
+        <form class="wf-form">
+          <div class="wf-field">
+            <label for="admin-contract-terminate-reason">Причина расторжения договора</label>
+            <textarea id="admin-contract-terminate-reason" rows="3" placeholder="Кратко опишите причину расторжения (например: окончание аренды, длительная задолженность, решение клиента)."></textarea>
+          </div>
+          <div class="wf-actions">
+            <button type="button">Расторгнуть договор</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+
+</section>
