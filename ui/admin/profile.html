@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Профиль управляющего — ЛК администратора</title>
+  <link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header wf-header--lk" role="banner">
+  <div class="wf-header__title">
+    <h1>Личный кабинет администратора</h1>
+    <p class="wf-muted">Управляющий, <a href="profile.html">Сергеев Сергей Николаевич</a></p>
+  </div>
+  <a href="notifications.html" class="wf-header__notifications" aria-label="Системные уведомления администратора">
+    <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
+    <span class="wf-header__notifications-text">Сегодня: плановые работы СКУД с 02:00 до 04:00</span>
+  </a>
+</header>
+
+    
+    
+    
+
+
+
+<nav class="wf-nav" aria-label="Навигация ЛК администратора">
+  <ul>
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="sectors.html">Секторы и ПМ</a></li>
+    <li><a href="tariffs.html">Тарифы</a></li>
+    <li><a href="contracts.html">Договоры</a></li>
+    <li><a href="clients.html">Профили клиентов</a></li>
+    <li><a href="admins.html">Профили админов</a></li>
+    <li><a href="notifications.html">Уведомления</a></li>
+    <li><a href="requests.html">Обращения</a></li>
+    <li><a href="analytics.html">Аналитика</a></li>
+  </ul>
+</nav>
+
+<nav class="wf-nav" aria-label="Интерфейс КПП (для администратора)">
+  <ul>
+    <li><a href="kpp-panel.html">КПП — панель</a></li>
+    <li><a href="kpp-log.html">КПП — журнал въезда‑выезда</a></li>
+  </ul>
+</nav>
+
+
+
+    <main id="main-content" class="wf-main">
+      
+  <h2>Профиль управляющего парковкой</h2>
+
+  <section class="wf-section">
+    <h3>Основные данные</h3>
+    <div class="wf-grid wf-grid--two">
+      <div class="wf-card">
+        <p><strong>ФИО:</strong> Сергеев Сергей Николаевич</p>
+        <p><strong>Должность:</strong> Управляющий парковочным комплексом</p>
+        <p><strong>Табельный номер:</strong> 001-ADM-2026</p>
+        <p><strong>Зона ответственности:</strong> Вся парковка и связанные сервисы</p>
+      </div>
+      <div class="wf-card">
+        <p><strong>Статус:</strong> Активен</p>
+        <p><strong>Уровень доступа:</strong> Полный административный доступ</p>
+        <p><strong>Рабочий график:</strong> Пятидневка, 09:00–18:00</p>
+        <p><strong>Ответственное лицо:</strong> Директор по эксплуатации</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wf-section">
+    <h3>Контактные данные</h3>
+    <div class="wf-grid wf-grid--two">
+      <div class="wf-card">
+        <p><strong>Служебный телефон:</strong> +7 (900) 555‑10‑10</p>
+        <p><strong>Внутренний добавочный:</strong> 101</p>
+        <p><strong>E‑mail:</strong> sergeev.admin@example.com</p>
+      </div>
+      <div class="wf-card">
+        <p class="wf-muted">
+          Контакты используются для согласования изменений в тарифах и договорах,
+          эскалации инцидентов, взаимодействия с подрядчиками и службой безопасности.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wf-section">
+    <h3>Права доступа управляющего</h3>
+    <div class="wf-table-wrap">
+      <table class="wf-table">
+        <thead>
+          <tr>
+            <th>Область</th>
+            <th>Описание прав</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Тарифы и секторы</td>
+            <td>Создание и изменение тарифов, настройка зонирования парковки, временное закрытие секторов на обслуживание.</td>
+          </tr>
+          <tr>
+            <td>Договоры и клиенты</td>
+            <td>Просмотр и управление договорами, согласование специальных условий, блокировка/разблокировка клиентов при нарушениях.</td>
+          </tr>
+          <tr>
+            <td>Интерфейс КПП</td>
+            <td>Просмотр панелей КПП и журналов, настройка регламентов для операторов, утверждение правил работы с чёрным списком.</td>
+          </tr>
+          <tr>
+            <td>Обращения и инциденты</td>
+            <td>Просмотр и эскалация обращений, закрытие инцидентов, контроль сроков реакции службы поддержки и охраны.</td>
+          </tr>
+          <tr>
+            <td>Аналитика</td>
+            <td>Доступ к ключевым отчётам по загрузке, выручке, задолженности и SLA, выгрузка данных для внешних систем.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="wf-actions">
+    <a href="../site/staff-login.html" class="wf-btn">Выход</a>
+  </div>
+
+    </main>
+  </div>
+</body>
+</html>

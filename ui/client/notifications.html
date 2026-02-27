@@ -10,15 +10,16 @@
   <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
   <div class="wf-page">
     <header class="wf-header wf-header--lk" role="banner">
-      <div class="wf-header__title">
-        <h1>Личный кабинет клиента</h1>
-        <p class="wf-muted">События по сессиям, бронированиям, договорам и оплатам</p>
-      </div>
-      <a href="notifications.html" class="wf-header__notifications" aria-label="Уведомления клиента">
-        <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
-        <span class="wf-header__notifications-text">Оплата сессии S‑1045 на 350 ₽ прошла успешно</span>
-      </a>
-    </header>
+  <div class="wf-header__title">
+    <h1>Личный кабинет клиента</h1>
+    <p class="wf-muted">Профиль клиента: <a href="profile.html">Иванов Иван Иванович</a></p>
+  </div>
+  <a href="notifications.html" class="wf-header__notifications" aria-label="Уведомления клиента">
+    <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
+    <span class="wf-header__notifications-text">Оплата сессии S‑1045 на 350 ₽ прошла успешно</span>
+  </a>
+</header>
+
     
     
 <nav class="wf-nav" aria-label="Навигация ЛК клиента">
@@ -36,14 +37,20 @@
 
     <main id="main-content" class="wf-main">
       
-  <h2>Уведомления</h2>
-
   <section class="wf-section">
-    <h3>Фильтр уведомлений</h3>
-    <form class="wf-form">
-      <div class="wf-field wf-field--inline-control">
-        <label for="notif-type">Тип уведомлений</label>
-        <div class="wf-inline">
+    <h3>Последние уведомления</h3>
+    <form class="wf-form sessions-filters">
+      <div class="filters-row">
+        <div class="wf-field">
+          <label for="notif-date-from">С</label>
+          <input id="notif-date-from" type="date">
+        </div>
+        <div class="wf-field">
+          <label for="notif-date-to">По</label>
+          <input id="notif-date-to" type="date">
+        </div>
+        <div class="wf-field">
+          <label for="notif-type">Тип уведомлений</label>
           <select id="notif-type">
             <option value="">Все типы</option>
             <option value="sessions">Парковочные сессии</option>
@@ -53,42 +60,128 @@
             <option value="appeals">Обращения</option>
             <option value="system">Системные</option>
           </select>
+        </div>
+        <div class="wf-field">
+          <label for="notif-status">Статус</label>
+          <select id="notif-status">
+            <option value="">Все</option>
+            <option value="unread">Непрочитанные</option>
+          </select>
+        </div>
+        <div class="filter-actions">
           <button type="button">Применить</button>
+          <button type="button" class="wf-btn-secondary">Сбросить</button>
         </div>
       </div>
     </form>
-  </section>
-
-  <section class="wf-section">
-    <h3>Последние уведомления</h3>
     <ul class="wf-list">
-      <li>
-        <strong>24.02.2026 10:20</strong> — Оплата
-        <br>Оплата парковочной сессии <a href="sessions-history.html">S-1001</a> на сумму 350 ₽ прошла успешно.
-        <br><span class="wf-muted">Подробности в разделе «Оплаты».</span>
+      <li class="wf-notification wf-notification--unread">
+        <a href="#client-notif-1-modal" class="wf-notification__link">
+          <strong>24.02.2026 10:20</strong> — Оплата
+          <br>Оплата парковочной сессии <a href="sessions-history.html">S-1001</a> на сумму 350 ₽ прошла успешно.
+        </a>
       </li>
-      <li>
-        <strong>24.02.2026 09:00</strong> — Договор
-        <br>Срок действия договора №1001 истекает через <strong>5 дней</strong>.
-        <br><span class="wf-muted">Продлите договор в разделе «Договоры», чтобы сохранить доступ к ПМ.</span>
+      <li class="wf-notification wf-notification--unread">
+        <a href="#client-notif-2-modal" class="wf-notification__link">
+          <strong>24.02.2026 09:00</strong> — Договор
+          <br>Срок действия договора №1001 истекает через <strong>5 дней</strong>.
+        </a>
       </li>
-      <li>
-        <strong>23.02.2026 18:45</strong> — Бронирование
-        <br>Создано бронирование <a href="bookings.html">B-204</a> на ПМ 12, сектор A на сегодня в 19:00.
-        <br><span class="wf-muted">Не забудьте вовремя заехать на парковку.</span>
+      <li class="wf-notification wf-notification--read">
+        <a href="#client-notif-3-modal" class="wf-notification__link">
+          <strong>23.02.2026 18:45</strong> — Бронирование
+          <br>Создано бронирование <a href="bookings.html">B-204</a> на ПМ 12, сектор A на сегодня в 19:00.
+        </a>
       </li>
-      <li>
-        <strong>23.02.2026 12:10</strong> — Обращения
-        <br>Получен ответ по обращению <a href="appeals.html">#AP-002</a>: «Вопрос по автосписанию по договору».
-        <br><span class="wf-muted">Ознакомьтесь с ответом в разделе «Обращения».</span>
+      <li class="wf-notification wf-notification--read">
+        <a href="#client-notif-4-modal" class="wf-notification__link">
+          <strong>23.02.2026 12:10</strong> — Обращения
+          <br>Получен ответ по обращению <a href="appeals.html">#AP-002</a>: «Вопрос по автосписанию по договору».
+        </a>
       </li>
-      <li>
-        <strong>22.02.2026 21:30</strong> — Ошибка оплаты
-        <br>Не удалось списать оплату за парковочную сессию <a href="sessions-history.html">S-0998</a>.
-        <br><span class="wf-muted">Проверьте способ оплаты в разделе «Оплаты» и повторите платеж.</span>
+      <li class="wf-notification wf-notification--read">
+        <a href="#client-notif-5-modal" class="wf-notification__link">
+          <strong>22.02.2026 21:30</strong> — Ошибка оплаты
+          <br>Не удалось списать оплату за парковочную сессию <a href="sessions-history.html">S-0998</a>.
+        </a>
       </li>
     </ul>
     <p class="wf-muted">[Пагинация, если уведомлений много.]</p>
+  </section>
+
+  <section id="client-notif-1-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="client-notif-1-title">
+    <div class="wf-modal__dialog wf-section">
+      <header class="wf-modal__header">
+        <h3 id="client-notif-1-title">Уведомление об успешной оплате парковочной сессии</h3>
+        <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+      </header>
+      <div class="wf-modal__body">
+        <p><strong>Дата и время:</strong> 24.02.2026 10:20</p>
+        <p><strong>Тип:</strong> Оплата</p>
+        <p><strong>Описание:</strong> Оплата парковочной сессии S‑1001 на сумму 350 ₽ прошла успешно.</p>
+        <p class="wf-muted">Подробную информацию о платеже вы можете посмотреть в разделе «Оплаты» или в истории сессий.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="client-notif-2-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="client-notif-2-title">
+    <div class="wf-modal__dialog wf-section">
+      <header class="wf-modal__header">
+        <h3 id="client-notif-2-title">Напоминание о продлении договора</h3>
+        <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+      </header>
+      <div class="wf-modal__body">
+        <p><strong>Дата и время:</strong> 24.02.2026 09:00</p>
+        <p><strong>Тип:</strong> Договор</p>
+        <p><strong>Описание:</strong> Срок действия договора №1001 истекает через 5 дней. Для сохранения доступа к парковочным местам необходимо продлить договор.</p>
+        <p class="wf-muted">Перейдите в раздел «Договоры», чтобы продлить договор или ознакомиться с его условиями.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="client-notif-3-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="client-notif-3-title">
+    <div class="wf-modal__dialog wf-section">
+      <header class="wf-modal__header">
+        <h3 id="client-notif-3-title">Уведомление о создании бронирования</h3>
+        <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+      </header>
+      <div class="wf-modal__body">
+        <p><strong>Дата и время:</strong> 23.02.2026 18:45</p>
+        <p><strong>Тип:</strong> Бронирование</p>
+        <p><strong>Описание:</strong> Создано бронирование B‑204 на ПМ 12, сектор A на сегодня в 19:00.</p>
+        <p class="wf-muted">Отследить или изменить бронирование можно в разделе «Бронирование».</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="client-notif-4-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="client-notif-4-title">
+    <div class="wf-modal__dialog wf-section">
+      <header class="wf-modal__header">
+        <h3 id="client-notif-4-title">Ответ по обращению</h3>
+        <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+      </header>
+      <div class="wf-modal__body">
+        <p><strong>Дата и время:</strong> 23.02.2026 12:10</p>
+        <p><strong>Тип:</strong> Обращение</p>
+        <p><strong>Описание:</strong> Получен ответ по обращению #AP‑002 «Вопрос по автосписанию по договору».</p>
+        <p class="wf-muted">Полный текст обращения и ответа доступен в разделе «Обращения».</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="client-notif-5-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="client-notif-5-title">
+    <div class="wf-modal__dialog wf-section">
+      <header class="wf-modal__header">
+        <h3 id="client-notif-5-title">Ошибка оплаты парковочной сессии</h3>
+        <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+      </header>
+      <div class="wf-modal__body">
+        <p><strong>Дата и время:</strong> 22.02.2026 21:30</p>
+        <p><strong>Тип:</strong> Ошибка оплаты</p>
+        <p><strong>Описание:</strong> Не удалось списать оплату за парковочную сессию S‑0998.</p>
+        <p class="wf-muted">Проверьте способ оплаты в разделе «Оплаты» и повторите платёж. В случае повторной ошибки обратитесь в службу поддержки.</p>
+      </div>
+    </div>
   </section>
 
     </main>

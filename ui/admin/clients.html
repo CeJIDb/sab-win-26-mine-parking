@@ -9,10 +9,17 @@
 <body>
   <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
   <div class="wf-page">
-    <header class="wf-header" role="banner">
-      <h1>Личный кабинет администратора</h1>
-      <p class="wf-muted">Профили клиентов</p>
-    </header>
+    <header class="wf-header wf-header--lk" role="banner">
+  <div class="wf-header__title">
+    <h1>Личный кабинет администратора</h1>
+    <p class="wf-muted">Управляющий, <a href="profile.html">Сергеев Сергей Николаевич</a></p>
+  </div>
+  <a href="notifications.html" class="wf-header__notifications" aria-label="Системные уведомления администратора">
+    <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
+    <span class="wf-header__notifications-text">Сегодня: плановые работы СКУД с 02:00 до 04:00</span>
+  </a>
+</header>
+
     
     
     
@@ -27,6 +34,7 @@
     <li><a href="contracts.html">Договоры</a></li>
     <li><a href="clients.html" aria-current="page">Профили клиентов</a></li>
     <li><a href="admins.html">Профили админов</a></li>
+    <li><a href="notifications.html">Уведомления</a></li>
     <li><a href="requests.html">Обращения</a></li>
     <li><a href="analytics.html">Аналитика</a></li>
   </ul>
@@ -34,11 +42,8 @@
 
 <nav class="wf-nav" aria-label="Интерфейс КПП (для администратора)">
   <ul>
-    <li><a href="../guard/index.html">КПП — панель</a></li>
-    <li><a href="../guard/plate-check.html">КПП — проверка номера</a></li>
-    <li><a href="../guard/plate-history.html">КПП — история по номеру</a></li>
-    <li><a href="../guard/log.html">КПП — журнал событий</a></li>
-    <li><a href="../site/staff-login.html">Выход</a></li>
+    <li><a href="kpp-panel.html">КПП — панель</a></li>
+    <li><a href="kpp-log.html">КПП — журнал въезда‑выезда</a></li>
   </ul>
 </nav>
 

@@ -9,66 +9,81 @@
 <body>
   <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
   <div class="wf-page">
-    <header class="wf-header" role="banner">
-      <h1>Интерфейс КПП</h1>
-      <p class="wf-muted">История по номеру</p>
-    </header>
-    <nav class="wf-nav" aria-label="Навигация КПП">
-      <ul>
-        <li><a href="index.html">Панель КПП</a></li>
-        <li><a href="log.html">Журнал въезда‑выезда</a></li>
-        <li><a href="../site/staff-login.html">Выход</a></li>
-      </ul>
-    </nav>
-    <main id="main-content" class="wf-main">
-      <h2>История по номеру А123БВ777</h2>
-      <p class="wf-muted">Клиент: Иванов Иван Иванович (ФЛ)</p>
+    <header class="wf-header wf-header--lk" role="banner">
+  <div class="wf-header__title">
+    <h1>Интерфейс КПП</h1>
+    <p class="wf-muted">Профиль сотрудника: <a href="profile.html">Оператор КПП, Иванов Иван Петрович</a></p>
+  </div>
+  <a href="notifications.html" class="wf-header__notifications" aria-label="Системные уведомления оператора">
+    <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
+    <span class="wf-header__notifications-text">Сегодня: плановые работы СКУД с 02:00 до 04:00</span>
+  </a>
+</header>
 
-      <section class="wf-section">
-        <h3>История событий по номеру</h3>
-        <div class="wf-table-wrap">
-          <table class="wf-table">
-            <thead>
-              <tr>
-                <th>Дата и время</th>
-                <th>КПП</th>
-                <th>Направление</th>
-                <th>Статус</th>
-                <th>Источник решения</th>
-                <th>Комментарий</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>24.02.2026 10:15</td>
-                <td>КПП‑1</td>
-                <td>Въезд</td>
-                <td>Разрешено</td>
-                <td>Автоматически (по договору)</td>
-                <td>Активный договор №Д‑045, нет задолженности.</td>
-              </tr>
-              <tr>
-                <td>23.02.2026 18:40</td>
-                <td>КПП‑1</td>
-                <td>Выезд</td>
-                <td>Разрешено</td>
-                <td>Автоматически (по сессии)</td>
-                <td>Оплата сессии успешна.</td>
-              </tr>
-              <tr>
-                <td>22.02.2026 09:05</td>
-                <td>КПП‑2</td>
-                <td>Въезд</td>
-                <td>Отказ</td>
-                <td>Охранник</td>
-                <td>Несовпадение номера с бронированием, водитель направлен на стоянку ожидания.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="wf-muted">Для анализа всех событий по парковке используйте полный журнал въезда‑выезда.</p>
-        <p><a href="log.html">Перейти к полному журналу въезда‑выезда</a></p>
-      </section>
+    
+    
+    
+
+
+
+<nav class="wf-nav" aria-label="Навигация КПП">
+  <ul>
+    <li><a href="index.html">КПП — панель</a></li>
+    <li><a href="log.html" aria-current="page">Журнал въезда‑выезда</a></li>
+  </ul>
+</nav>
+
+
+
+    <main id="main-content" class="wf-main">
+      
+  <h2>История по номеру А123БВ777</h2>
+  <p class="wf-muted">Клиент: Иванов Иван Иванович (ФЛ)</p>
+
+  <section class="wf-section">
+    <h3>История событий по номеру</h3>
+    <div class="wf-table-wrap">
+      <table class="wf-table">
+        <thead>
+          <tr>
+            <th>Дата и время</th>
+            <th>КПП</th>
+            <th>Направление</th>
+            <th>Статус</th>
+            <th>Источник решения</th>
+            <th>Комментарий</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>24.02.2026 10:15</td>
+            <td>КПП‑1</td>
+            <td>Въезд</td>
+            <td>Разрешено</td>
+            <td>Автоматически (по договору)</td>
+            <td>Активный договор №Д‑045, нет задолженности.</td>
+          </tr>
+          <tr>
+            <td>23.02.2026 18:40</td>
+            <td>КПП‑1</td>
+            <td>Выезд</td>
+            <td>Разрешено</td>
+            <td>Автоматически (по сессии)</td>
+            <td>Оплата сессии успешна.</td>
+          </tr>
+          <tr>
+            <td>22.02.2026 09:05</td>
+            <td>КПП‑2</td>
+            <td>Въезд</td>
+            <td>Отказ</td>
+            <td>Охранник</td>
+            <td>Несовпадение номера с бронированием, водитель направлен на стоянку ожидания.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
     </main>
   </div>
 </body>

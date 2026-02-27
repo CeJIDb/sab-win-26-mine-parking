@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Панель КПП — Интерфейс КПП</title>
+  <title>КПП — панель (ЛК администратора)</title>
   <link rel="stylesheet" href="../wireframe.css">
 </head>
 <body>
@@ -11,10 +11,10 @@
   <div class="wf-page">
     <header class="wf-header wf-header--lk" role="banner">
   <div class="wf-header__title">
-    <h1>Интерфейс КПП</h1>
-    <p class="wf-muted">Профиль сотрудника: <a href="profile.html">Оператор КПП, Иванов Иван Петрович</a></p>
+    <h1>Личный кабинет администратора</h1>
+    <p class="wf-muted">Управляющий, <a href="profile.html">Сергеев Сергей Николаевич</a></p>
   </div>
-  <a href="notifications.html" class="wf-header__notifications" aria-label="Системные уведомления оператора">
+  <a href="notifications.html" class="wf-header__notifications" aria-label="Системные уведомления администратора">
     <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
     <span class="wf-header__notifications-text">Сегодня: плановые работы СКУД с 02:00 до 04:00</span>
   </a>
@@ -26,10 +26,24 @@
 
 
 
-<nav class="wf-nav" aria-label="Навигация КПП">
+<nav class="wf-nav" aria-label="Навигация ЛК администратора">
   <ul>
-    <li><a href="index.html" aria-current="page">КПП — панель</a></li>
-    <li><a href="log.html">Журнал въезда‑выезда</a></li>
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="sectors.html">Секторы и ПМ</a></li>
+    <li><a href="tariffs.html">Тарифы</a></li>
+    <li><a href="contracts.html">Договоры</a></li>
+    <li><a href="clients.html">Профили клиентов</a></li>
+    <li><a href="admins.html">Профили админов</a></li>
+    <li><a href="notifications.html">Уведомления</a></li>
+    <li><a href="requests.html">Обращения</a></li>
+    <li><a href="analytics.html">Аналитика</a></li>
+  </ul>
+</nav>
+
+<nav class="wf-nav" aria-label="Интерфейс КПП (для администратора)">
+  <ul>
+    <li><a href="kpp-panel.html">КПП — панель</a></li>
+    <li><a href="kpp-log.html">КПП — журнал въезда‑выезда</a></li>
   </ul>
 </nav>
 
@@ -231,4 +245,3 @@
   </div>
 </body>
 </html>
-

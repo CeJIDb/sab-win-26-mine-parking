@@ -29,27 +29,61 @@
       <h2>Добро пожаловать</h2>
       <p>Публичный портал. Отсюда доступны: контакты, тарифы и условия, карта свободных мест по секторам, правила парковки, регистрация и авторизация клиента (логин+пароль, SSO).</p>
       <section class="wf-section">
-        <h3>Свободные места</h3>
-        <p class="wf-muted">По типам зон (схема AS-IS). Данные обновляются.</p>
-        <div class="wf-table-wrap">
-          <table class="wf-table">
-            <thead>
-              <tr>
-                <th>Тип зоны</th>
-                <th>Свободно</th>
-                <th>Всего мест</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Места для лиц с ОВЗ</td><td>[—]</td><td>50</td></tr>
-              <tr><td>Краткосрочная парковка</td><td>[—]</td><td>160</td></tr>
-              <tr><td>Долгосрочная парковка ФЛ+ЮЛ</td><td>[—]</td><td>340</td></tr>
-              <tr><td>Муниципальная техника + мотоциклы + резерв</td><td>[—]</td><td>50</td></tr>
-              <tr><td><strong>Итого</strong></td><td><strong>[—]</strong></td><td><strong>600</strong></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p><a href="parking-map.html" class="wf-btn">Карта свободных мест по секторам</a></p>
+        <h3>Карта парковки</h3>
+        <p class="wf-muted">Схема парковки AS-IS: КПП север/юг, зоны по типам. Та же карта, что в ЛК, для демонстрации.</p>
+        <div class="wf-parking-map wf-parking-map--compact" role="img" aria-label="Схема парковки (компактно)">
+  <div class="wf-parking-map__kpp">КПП север</div>
+  <div class="wf-parking-map__zones">
+    <div class="wf-parking-map__column">
+      <div class="wf-parking-map__zone">
+        <p class="wf-parking-map__zone-title">ОВЗ — 25</p>
+        <p class="wf-parking-map__zone-meta">свободно: 8 · занято: 17</p>
+      </div>
+      <div class="wf-parking-map__zone">
+        <p class="wf-parking-map__zone-title">Краткосрочная — 45</p>
+        <p class="wf-parking-map__zone-meta">свободно: 18 · занято: 27</p>
+      </div>
+      <div class="wf-parking-map__zone">
+        <p class="wf-parking-map__zone-title">Долгосрочная ФЛ+ЮЛ — 310</p>
+        <p class="wf-parking-map__zone-meta">свободно: 120 · занято: 190</p>
+      </div>
+      <div class="wf-parking-map__zone">
+        <p class="wf-parking-map__zone-title">Долгосрочная ФЛ+ЮЛ — 15</p>
+        <p class="wf-parking-map__zone-meta">свободно: 4 · занято: 11</p>
+      </div>
+      <div class="wf-parking-map__zone">
+        <p class="wf-parking-map__zone-title">Краткосрочная — 35</p>
+        <p class="wf-parking-map__zone-meta">свободно: 10 · занято: 25</p>
+      </div>
+    </div>
+    <div class="wf-parking-map__column">
+      <div class="wf-parking-map__zone">
+        <p class="wf-parking-map__zone-title">Краткосрочная — 35</p>
+        <p class="wf-parking-map__zone-meta">свободно: 14 · занято: 21</p>
+      </div>
+      <div class="wf-parking-map__zone">
+        <p class="wf-parking-map__zone-title">Долгосрочная ФЛ+ЮЛ — 15</p>
+        <p class="wf-parking-map__zone-meta">свободно: 5 · занято: 10</p>
+      </div>
+      <div class="wf-parking-map__zone">
+        <p class="wf-parking-map__zone-title">Мун. техника + мото + резерв — 50</p>
+        <p class="wf-parking-map__zone-meta">свободно: 20 · занято: 30</p>
+      </div>
+      <div class="wf-parking-map__zone">
+        <p class="wf-parking-map__zone-title">Краткосрочная — 45</p>
+        <p class="wf-parking-map__zone-meta">свободно: 16 · занято: 29</p>
+      </div>
+      <div class="wf-parking-map__zone">
+        <p class="wf-parking-map__zone-title">ОВЗ — 25</p>
+        <p class="wf-parking-map__zone-meta">свободно: 7 · занято: 18</p>
+      </div>
+    </div>
+  </div>
+  <div class="wf-parking-map__kpp">КПП юг</div>
+  <p class="wf-parking-map__total">Всего 600 мест · свободно: 222 · занято: 378 (загрузка ~63%).</p>
+</div>
+
+
       </section>
     </main>
     <footer class="wf-footer">
@@ -58,3 +92,4 @@
   </div>
 </body>
 </html>
+

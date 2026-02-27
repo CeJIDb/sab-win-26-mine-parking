@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Системные уведомления — ЛК администратора</title>
+  <link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header wf-header--lk" role="banner">
+  <div class="wf-header__title">
+    <h1>Личный кабинет администратора</h1>
+    <p class="wf-muted">Управляющий, <a href="profile.html">Сергеев Сергей Николаевич</a></p>
+  </div>
+  <a href="notifications.html" class="wf-header__notifications" aria-label="Системные уведомления администратора">
+    <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
+    <span class="wf-header__notifications-text">Сегодня: плановые работы СКУД с 02:00 до 04:00</span>
+  </a>
+</header>
+
+    
+    
+    
+
+
+
+<nav class="wf-nav" aria-label="Навигация ЛК администратора">
+  <ul>
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="sectors.html">Секторы и ПМ</a></li>
+    <li><a href="tariffs.html">Тарифы</a></li>
+    <li><a href="contracts.html">Договоры</a></li>
+    <li><a href="clients.html">Профили клиентов</a></li>
+    <li><a href="admins.html">Профили админов</a></li>
+    <li><a href="notifications.html" aria-current="page">Уведомления</a></li>
+    <li><a href="requests.html">Обращения</a></li>
+    <li><a href="analytics.html">Аналитика</a></li>
+  </ul>
+</nav>
+
+<nav class="wf-nav" aria-label="Интерфейс КПП (для администратора)">
+  <ul>
+    <li><a href="kpp-panel.html">КПП — панель</a></li>
+    <li><a href="kpp-log.html">КПП — журнал въезда‑выезда</a></li>
+  </ul>
+</nav>
+
+
+
+    <main id="main-content" class="wf-main">
+      
+  <section class="wf-section">
+  <h3>Последние уведомления</h3>
+  <form class="wf-form sessions-filters">
+    <div class="filters-row">
+      <div class="wf-field">
+        <label for="guard-notif-date-from">С</label>
+        <input id="guard-notif-date-from" type="date">
+      </div>
+      <div class="wf-field">
+        <label for="guard-notif-date-to">По</label>
+        <input id="guard-notif-date-to" type="date">
+      </div>
+      <div class="wf-field">
+        <label for="guard-notif-type">Тип уведомлений</label>
+        <select id="guard-notif-type">
+          <option value="">Все типы</option>
+          <option value="system">Общие системные сообщения</option>
+          <option value="scud">СКУД и камеры</option>
+          <option value="maintenance">Технические работы</option>
+          <option value="incidents">Инциденты и расследования</option>
+          <option value="admin">Сообщения администратора</option>
+        </select>
+      </div>
+      <div class="wf-field">
+        <label for="guard-notif-status">Статус</label>
+        <select id="guard-notif-status">
+          <option value="">Все</option>
+          <option value="unread">Непрочитанные</option>
+        </select>
+      </div>
+      <div class="filter-actions">
+        <button type="button">Применить</button>
+        <button type="button" class="wf-btn-secondary">Сбросить</button>
+      </div>
+    </div>
+  </form>
+  <ul class="wf-list">
+    <li class="wf-notification wf-notification--unread">
+      <a href="#guard-notif-1-modal" class="wf-notification__link">
+        <strong>24.02.2026 06:30</strong> — Технические работы (СКУД)
+        <br>Плановые работы системы контроля доступа завершены. Все КПП работают в штатном режиме.
+      </a>
+    </li>
+    <li class="wf-notification wf-notification--unread">
+      <a href="#guard-notif-2-modal" class="wf-notification__link">
+        <strong>24.02.2026 05:45</strong> — Сообщение администратора
+        <br>Обновлён регламент действий при нераспознанных номерах ТС. Ознакомьтесь с инструкцией в печатном виде на посту.
+      </a>
+    </li>
+    <li class="wf-notification wf-notification--read">
+      <a href="#guard-notif-3-modal" class="wf-notification__link">
+        <strong>23.02.2026 22:10</strong> — Инцидент
+        <br>Зарегистрирован инцидент: неоднократные попытки въезда ТС из чёрного списка (С789ЕЕ750) через КПП‑2.
+      </a>
+    </li>
+    <li class="wf-notification wf-notification--read">
+      <a href="#guard-notif-4-modal" class="wf-notification__link">
+        <strong>23.02.2026 18:00</strong> — Технические работы
+        <br>В период с 23:00 до 01:00 возможны кратковременные перерывы в работе системы видеонаблюдения.
+      </a>
+    </li>
+    <li class="wf-notification wf-notification--read">
+      <a href="#guard-notif-5-modal" class="wf-notification__link">
+        <strong>22.02.2026 09:15</strong> — Общее системное сообщение
+        <br>В интерфейсе КПП добавлена возможность ручного принятия решения по въезду при нераспознанном номере.
+      </a>
+    </li>
+  </ul>
+  <p class="wf-muted">[Пагинация, если уведомлений много.]</p>
+</section>
+
+<!-- Модальные окна уведомлений (общие для оператора и администратора). -->
+
+<section id="guard-notif-1-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="guard-notif-1-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="guard-notif-1-title">Завершение плановых работ СКУД</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <p><strong>Дата и время:</strong> 24.02.2026 06:30</p>
+      <p><strong>Тип:</strong> Технические работы (СКУД)</p>
+      <p><strong>Описание:</strong> Плановые работы системы контроля доступа завершены. Все КПП работают в штатном режиме.</p>
+      <p class="wf-muted">При обнаружении нестандартного поведения (задержки открытия шлагбаума, ошибки распознавания и т.п.) сообщите администратору смены.</p>
+    </div>
+  </div>
+</section>
+
+<section id="guard-notif-2-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="guard-notif-2-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="guard-notif-2-title">Обновление регламента по нераспознанным номерам</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <p><strong>Дата и время:</strong> 24.02.2026 05:45</p>
+      <p><strong>Тип:</strong> Сообщение администратора</p>
+      <p><strong>Описание:</strong> Обновлён регламент действий при нераспознанных номерах ТС. Ознакомьтесь с обновлённой инструкцией на посту.</p>
+      <p class="wf-muted">Кратко: фиксируйте событие в журнале и используйте окно «Принять решение по въезду» на панели КПП.</p>
+    </div>
+  </div>
+</section>
+
+<section id="guard-notif-3-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="guard-notif-3-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="guard-notif-3-title">Инцидент с ТС из чёрного списка</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <p><strong>Дата и время:</strong> 23.02.2026 22:10</p>
+      <p><strong>Тип:</strong> Инцидент</p>
+      <p><strong>Описание:</strong> Зафиксированы повторные попытки въезда ТС из чёрного списка (С789ЕЕ750) через КПП‑2.</p>
+      <p class="wf-muted">При повторном появлении ТС действуйте строго по регламенту и незамедлительно сообщите администратору смены.</p>
+    </div>
+  </div>
+</section>
+
+<section id="guard-notif-4-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="guard-notif-4-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="guard-notif-4-title">Плановые работы видеонаблюдения</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <p><strong>Дата и время:</strong> 23.02.2026 18:00</p>
+      <p><strong>Тип:</strong> Технические работы</p>
+      <p><strong>Описание:</strong> В период с 23:00 до 01:00 возможны кратковременные перерывы в работе системы видеонаблюдения.</p>
+      <p class="wf-muted">СКУД продолжит работать в штатном режиме, однако просмотр архива камер может быть временно ограничен.</p>
+    </div>
+  </div>
+</section>
+
+<section id="guard-notif-5-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="guard-notif-5-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="guard-notif-5-title">Новая функция в интерфейсе КПП</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <p><strong>Дата и время:</strong> 22.02.2026 09:15</p>
+      <p><strong>Тип:</strong> Общее системное сообщение</p>
+      <p><strong>Описание:</strong> В интерфейсе КПП добавлена возможность ручного принятия решения по въезду при нераспознанном номере.</p>
+      <p class="wf-muted">Функция доступна в блоке «Последние события КПП» на панели. Используйте её согласно обновлённому регламенту.</p>
+    </div>
+  </div>
+</section>
+
+
+
+    </main>
+  </div>
+</body>
+</html>
