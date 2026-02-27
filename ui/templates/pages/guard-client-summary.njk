@@ -45,6 +45,16 @@
         </tbody>
       </table>
     </div>
+    <div class="wf-card">
+      <p><strong>Текущая парковочная сессия:</strong> S-1001 · КПП‑1 · ТС А123БВ777</p>
+      <p><strong>Сумма к оплате:</strong> 350 ₽</p>
+      <p class="wf-muted">
+        При оплате наличными или через банковский терминал охранник фиксирует факт оплаты в системе вручную.
+      </p>
+      <div class="wf-actions">
+        <a href="#guard-payment-manual-modal" class="wf-btn">Рассчитать и принять оплату</a>
+      </div>
+    </div>
   </section>
 
   <section class="wf-section">
@@ -89,5 +99,6 @@
       <button type="button" class="wf-btn-secondary">Удалить из чёрного списка</button>
     </div>
   </section>
+  {% include "partials/guard-payment-manual-modal.njk" %}
 {% endblock %}
 

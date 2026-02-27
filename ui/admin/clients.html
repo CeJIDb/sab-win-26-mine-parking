@@ -12,7 +12,7 @@
     <header class="wf-header wf-header--lk" role="banner">
   <div class="wf-header__title">
     <h1>Личный кабинет администратора</h1>
-    <p class="wf-muted">Управляющий, <a href="profile.html">Сергеев Сергей Николаевич</a></p>
+    <p class="wf-muted"><a href="profile.html">Управляющий, Сергеев Сергей Николаевич</a></p>
   </div>
   <a href="notifications.html" class="wf-header__notifications" aria-label="Системные уведомления администратора">
     <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
@@ -34,7 +34,7 @@
     <li><a href="contracts.html">Договоры</a></li>
     <li><a href="clients.html" aria-current="page">Профили клиентов</a></li>
     <li><a href="admins.html">Профили админов</a></li>
-    <li><a href="notifications.html">Уведомления</a></li>
+    <li><a href="notifications-manage.html">Управление уведомлениями</a></li>
     <li><a href="requests.html">Обращения</a></li>
     <li><a href="analytics.html">Аналитика</a></li>
   </ul>
@@ -54,8 +54,11 @@
   <h2>Управление профилями клиентов</h2>
 
 <section class="wf-section">
-  <h3>Фильтры по клиентам</h3>
-  <form class="wf-form sessions-filters">
+  <h3>Реестр клиентов</h3>
+  <div class="wf-actions">
+    <a href="../site/register.html" class="wf-btn">Создать профиль</a>
+  </div>
+  <form class="wf-form sessions-filters" aria-label="Фильтр по клиентам">
     <div class="filters-row">
       <div class="wf-field">
         <label for="search-client-text">ФИО / телефон / e-mail</label>
@@ -79,14 +82,11 @@
         </select>
       </div>
       <div class="filter-actions">
-        <button type="submit">Показать</button>
+        <button type="submit">Применить</button>
+        <button type="button">Сброс</button>
       </div>
     </div>
   </form>
-</section>
-
-<section class="wf-section">
-  <h3>Реестр клиентов</h3>
   <div class="wf-table-wrap">
     <table class="wf-table">
       <thead>
@@ -108,7 +108,7 @@
           <td>Нет</td>
           <td>2 ТС</td>
           <td>1 активный</td>
-          <td><a href="#admin-client-modal" class="wf-btn">Карточка клиента</a></td>
+          <td><a href="#admin-client-fl-modal" class="wf-btn">Карточка клиента</a></td>
         </tr>
         <tr>
           <td>ООО «Ромашка»</td>
@@ -117,34 +117,35 @@
           <td>Просрочка 3 дня</td>
           <td>5 ТС</td>
           <td>2 активных</td>
-          <td><a href="#admin-client-modal" class="wf-btn">Карточка клиента</a></td>
+          <td><a href="#admin-client-yl-modal" class="wf-btn">Карточка клиента</a></td>
         </tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<section id="admin-client-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-title">
+<section id="admin-client-fl-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-fl-title">
   <div class="wf-modal__dialog wf-modal__dialog--form">
     <header class="wf-modal__header">
-      <h2 id="admin-client-title" class="wf-modal__title">Карточка клиента (админ)</h2>
+      <h2 id="admin-client-fl-title" class="wf-modal__title">Карточка клиента (ФЛ)</h2>
       <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
     </header>
     <div class="wf-modal__body">
       <section class="wf-section">
         <h3>Основная информация</h3>
-        <div class="wf-grid wf-grid--two">
-          <div class="wf-card">
-            <p><strong>Тип клиента:</strong> Физическое лицо</p>
-            <p><strong>ФИО:</strong> Иванов Иван Иванович</p>
-            <p><strong>Телефон:</strong> +7 (900) 123‑45‑67</p>
-            <p><strong>E‑mail:</strong> ivanov@example.com</p>
-          </div>
-          <div class="wf-card">
-            <p><strong>Статус доступа:</strong> <span class="wf-badge">Разрешён</span></p>
-            <p><strong>Задолженность:</strong> Нет</p>
-            <p><strong>Примечания:</strong> Надёжный клиент, без просрочек.</p>
-          </div>
+        <div class="wf-card">
+          <p><strong>Тип клиента:</strong> Физическое лицо</p>
+          <p><strong>ФИО:</strong> Иванов Иван Иванович</p>
+          <p><strong>Дата рождения:</strong> 01.02.1985</p>
+          <p><strong>Документ, удостоверяющий личность:</strong> Паспорт РФ 0000 000000, выдан 01.03.2015, ОВД «Примерный»</p>
+          <p><strong>Адрес регистрации:</strong> 190000, г. Санкт‑Петербург, ул. Примерная, д. 1, кв. 1</p>
+          <p><strong>Телефон:</strong> +7 (900) 123‑45‑67</p>
+          <p><strong>E‑mail:</strong> ivanov@example.com</p>
+        </div>
+        <div class="wf-card">
+          <p><strong>Статус доступа:</strong> <span class="wf-badge">Разрешён</span></p>
+          <p><strong>Задолженность:</strong> Нет</p>
+          <p><strong>Примечания:</strong> Надёжный клиент, без просрочек.</p>
         </div>
       </section>
 
@@ -206,14 +207,179 @@
         <h3>Служебные действия администратора</h3>
         <form class="wf-form">
           <div class="wf-field">
-            <label for="admin-access-reason">Причина ограничения доступа</label>
-            <textarea id="admin-access-reason" rows="3" placeholder="Например: просрочка оплаты более 7 дней, сомнительные операции, решение управляющего."></textarea>
+            <label for="admin-access-reason-fl">Причина ограничения доступа</label>
+            <textarea id="admin-access-reason-fl" rows="3" placeholder="Например: просрочка оплаты более 7 дней, сомнительные операции, решение управляющего."></textarea>
           </div>
           <div class="wf-actions">
             <button type="button">Ограничить доступ</button>
             <button type="button">Снять ограничение</button>
           </div>
         </form>
+      </section>
+
+      <section class="wf-section">
+        <h3>Персональные данные (ФЗ‑152)</h3>
+        <p class="wf-muted">
+          Отражаются ключевые категории персональных данных, обрабатываемых оператором в рамках договора парковки.
+          Данные приведены в демонстрационных целях и показывают, какую информацию видит администратор.
+        </p>
+        <div class="wf-card">
+          <p><strong>Категории ПД:</strong></p>
+          <ul>
+            <li>идентификационные данные (ФИО, дата рождения, паспортные данные);</li>
+            <li>контактные данные (телефон, e‑mail, адрес регистрации);</li>
+            <li>данные о ТС (ГРЗ, марка/модель);</li>
+            <li>данные о договорах и платежах.</li>
+          </ul>
+          <p><strong>Правовое основание обработки:</strong></p>
+          <ul>
+            <li>исполнение договора парковки с субъектом ПД;</li>
+            <li>согласие субъекта ПД на обработку и получение уведомлений;</li>
+            <li>исполнение требований законодательства РФ (налоговый учёт, отчётность и т.п.).</li>
+          </ul>
+          <p><strong>Статус согласий:</strong></p>
+          <ul>
+            <li>Согласие на обработку ПД: получено (дата: 24.02.2026);</li>
+            <li>Согласие на получение уведомлений: активно.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<section id="admin-client-yl-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-yl-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="admin-client-yl-title" class="wf-modal__title">Карточка клиента (ЮЛ)</h2>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <section class="wf-section">
+        <h3>Основная информация об организации</h3>
+        <div class="wf-card">
+          <p><strong>Тип клиента:</strong> Юридическое лицо</p>
+          <p><strong>Полное наименование:</strong> Общество с ограниченной ответственностью «Ромашка»</p>
+          <p><strong>Сокращённое наименование:</strong> ООО «Ромашка»</p>
+          <p><strong>ИНН / КПП:</strong> 7700000000 / 770001001</p>
+          <p><strong>ОГРН:</strong> 1027700000000</p>
+          <p><strong>Юридический адрес:</strong> 190000, г. Санкт‑Петербург, ул. Примерная, д. 10, оф. 5</p>
+        </div>
+        <div class="wf-card">
+          <p><strong>Статус доступа:</strong> <span class="wf-badge">Ограничен</span></p>
+          <p><strong>Задолженность:</strong> Просрочка 3 дня</p>
+          <p><strong>Фактический адрес:</strong> 190000, г. Санкт‑Петербург, пр. Образцовый, д. 20</p>
+        </div>
+      </section>
+
+      <section class="wf-section">
+        <h3>Банковские реквизиты</h3>
+        <div class="wf-card">
+          <p><strong>Банк:</strong> АО «Банк пример»</p>
+          <p><strong>БИК:</strong> 044525000</p>
+          <p><strong>Расчётный счёт:</strong> 40702810900000000001</p>
+          <p><strong>Корреспондентский счёт:</strong> 30101810400000000225</p>
+        </div>
+      </section>
+
+      <section class="wf-section">
+        <h3>Договоры и оплаты</h3>
+        <div class="wf-table-wrap">
+          <table class="wf-table">
+            <thead>
+              <tr>
+                <th>Договор</th>
+                <th>Тип</th>
+                <th>Период</th>
+                <th>Состояние</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="contracts.html">Д‑052</a></td>
+                <td>Долгосрочная парковка для ЮЛ</td>
+                <td>15.02.2026–14.05.2026</td>
+                <td>Активен, есть просроченные платежи</td>
+              </tr>
+              <tr>
+                <td><a href="contracts.html">Д‑060</a></td>
+                <td>Корпоративный тариф ЮЛ — премиум</td>
+                <td>01.03.2026–01.03.2027</td>
+                <td>В силе, оплат нет просрочек</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="wf-section">
+        <h3>Транспортные средства</h3>
+        <div class="wf-table-wrap">
+          <table class="wf-table">
+            <thead>
+              <tr>
+                <th>ГРЗ</th>
+                <th>Марка / модель</th>
+                <th>Статус</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="client-sessions.html?plate=A555AA750">А555АА750</a></td>
+                <td>Ford Transit</td>
+                <td>Разрешён, по корпоративному договору</td>
+              </tr>
+              <tr>
+                <td><a href="client-sessions.html?plate=B777BB750">В777ВВ750</a></td>
+                <td>Mercedes Sprinter</td>
+                <td>Временно ограничен (задолженность)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="wf-section">
+        <h3>Служебные действия администратора</h3>
+        <form class="wf-form">
+          <div class="wf-field">
+            <label for="admin-access-reason-yl">Причина ограничения доступа</label>
+            <textarea id="admin-access-reason-yl" rows="3" placeholder="Например: длительная просрочка оплаты, нарушение условий договора, решение управляющей компании."></textarea>
+          </div>
+          <div class="wf-actions">
+            <button type="button">Ограничить доступ</button>
+            <button type="button">Снять ограничение</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="wf-section">
+        <h3>Контактное лицо и персональные данные (ФЗ‑152)</h3>
+        <div class="wf-card">
+          <p><strong>Контактное лицо:</strong> Петров Пётр Петрович</p>
+          <p><strong>Должность:</strong> Директор</p>
+          <p><strong>Телефон:</strong> +7 (812) 555‑55‑55</p>
+          <p><strong>E‑mail:</strong> director@romashka.ru</p>
+          <p><strong>Основание полномочий:</strong> действует на основании устава</p>
+
+          <p><strong>Категории ПД контактного лица:</strong></p>
+          <ul>
+            <li>идентификационные данные (ФИО, должность);</li>
+            <li>контактные данные (служебный телефон, e‑mail);</li>
+          </ul>
+
+          <p><strong>Правовое основание обработки:</strong></p>
+          <ul>
+            <li>исполнение договора с юридическим лицом;</li>
+            <li>согласие контактного лица на обработку его ПД (служебные контакты);</li>
+          </ul>
+
+          <p><strong>Статус согласий:</strong></p>
+          <ul>
+            <li>Согласие на обработку ПД контактного лица: получено;</li>
+            <li>Согласие на получение уведомлений: активно.</li>
+          </ul>
+        </div>
       </section>
     </div>
   </div>

@@ -9,8 +9,11 @@
   <h2>Управление профилями админов</h2>
 
   <section class="wf-section">
-    <h3>Фильтры по администраторам</h3>
-    <form class="wf-form sessions-filters">
+    <h3>Реестр администраторов</h3>
+    <div class="wf-actions">
+      <a href="#admin-admin-create-modal" class="wf-btn">Создать профиль</a>
+    </div>
+    <form class="wf-form sessions-filters" aria-label="Фильтры по администраторам">
       <div class="filters-row">
         <div class="wf-field">
           <label for="search-admin-text">ФИО / e-mail</label>
@@ -23,7 +26,6 @@
             <option value="superadmin">Суперадмин</option>
             <option value="guard">Охранник</option>
             <option value="manager">Управляющий</option>
-            <option value="support">Поддержка</option>
           </select>
         </div>
         <div class="wf-field">
@@ -35,15 +37,11 @@
           </select>
         </div>
         <div class="filter-actions">
-          <button type="submit">Показать</button>
+          <button type="submit">Применить</button>
+          <button type="button">Сброс</button>
         </div>
       </div>
     </form>
-  </section>
-
-  <section class="wf-section">
-    <h3>Реестр администраторов</h3>
-    <p class="wf-muted">Список админов с их ролями, статусом и последним входом.</p>
     <div class="wf-table-wrap">
       <table class="wf-table">
         <thead>
@@ -89,40 +87,46 @@
   <section id="admin-admin-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-admin-title">
     <div class="wf-modal__dialog wf-modal__dialog--form">
       <header class="wf-modal__header">
-        <h2 id="admin-admin-title" class="wf-modal__title">Профиль администратора</h2>
+        <h2 id="admin-admin-title" class="wf-modal__title">Профиль сотрудника</h2>
         <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
       </header>
       <div class="wf-modal__body">
         <form class="wf-form">
           <section class="wf-section">
             <h3>Основная информация</h3>
-            <div class="wf-grid wf-grid--two">
-              <div class="wf-field">
-                <label for="admin-admin-name">ФИО</label>
-                <input id="admin-admin-name" type="text" value="Иванов Пётр Сергеевич">
-              </div>
-              <div class="wf-field">
-                <label for="admin-admin-email">E‑mail</label>
-                <input id="admin-admin-email" type="email" value="ivanov.admin@example.com">
-              </div>
+            <div class="wf-field">
+              <label for="admin-admin-name">ФИО</label>
+              <input id="admin-admin-name" type="text" value="Иванов Пётр Сергеевич">
             </div>
-            <div class="wf-grid wf-grid--two">
-              <div class="wf-field">
-                <label for="admin-admin-role-edit">Роль</label>
-                <select id="admin-admin-role-edit">
+            <div class="wf-field">
+              <label for="admin-admin-email">E‑mail</label>
+              <input id="admin-admin-email" type="email" value="ivanov.admin@example.com">
+            </div>
+            <div class="wf-field">
+              <label for="admin-admin-phone">Рабочий телефон</label>
+              <input id="admin-admin-phone" type="tel" value="+7 (900) 000‑00‑01">
+            </div>
+            <div class="wf-field">
+              <label for="admin-admin-position">Должность</label>
+              <input id="admin-admin-position" type="text" value="Суперадмин / руководитель смены">
+            </div>
+            <div class="wf-field wf-field--inline-control">
+              <label for="admin-admin-role-edit">Роль и статус</label>
+              <div class="wf-inline">
+                <select id="admin-admin-role-edit" aria-label="Роль сотрудника">
                   <option value="superadmin" selected>Суперадмин</option>
                   <option value="guard">Охранник</option>
                   <option value="manager">Управляющий</option>
-                  <option value="support">Поддержка</option>
                 </select>
-              </div>
-              <div class="wf-field">
-                <label for="admin-admin-status-edit">Статус</label>
-                <select id="admin-admin-status-edit">
+                <select id="admin-admin-status-edit" aria-label="Статус сотрудника">
                   <option value="active" selected>Активен</option>
                   <option value="blocked">Заблокирован</option>
                 </select>
               </div>
+            </div>
+            <div class="wf-field">
+              <label for="admin-admin-last-login">Последний вход</label>
+              <input id="admin-admin-last-login" type="text" value="24.02.2026 09:10" readonly>
             </div>
           </section>
 
@@ -132,11 +136,133 @@
               <label for="admin-admin-comment">Комментарий по изменениям</label>
               <textarea id="admin-admin-comment" rows="3" placeholder="Например: выдан доступ суперадмина, ограничен доступ по решению руководства."></textarea>
             </div>
+            <div class="wf-field">
+              <label for="admin-admin-new-password">Новый пароль</label>
+              <input id="admin-admin-new-password" type="password" placeholder="Задайте новый пароль для сотрудника">
+            </div>
+            <div class="wf-field">
+              <label for="admin-admin-new-password-confirm">Подтверждение нового пароля</label>
+              <input id="admin-admin-new-password-confirm" type="password" placeholder="Повторите новый пароль">
+            </div>
             <div class="wf-actions">
-              <button type="button">Сбросить пароль</button>
+              <button type="submit">Изменить пароль</button>
               <button type="submit">Сохранить изменения</button>
             </div>
           </section>
+
+          <section class="wf-section">
+            <h3>Персональные данные сотрудника (ФЗ‑152)</h3>
+            <p class="wf-muted">
+              Отражаются основные категории персональных данных сотрудника, обрабатываемых оператором в рамках
+              трудовых отношений и администрирования системы.
+            </p>
+            <div class="wf-card">
+              <p><strong>Категории ПД:</strong></p>
+              <ul>
+                <li>идентификационные данные (ФИО, должность);</li>
+                <li>контактные данные (служебный телефон, служебный e‑mail);</li>
+                <li>данные об учётной записи (логин, роли, история входов);</li>
+              </ul>
+              <p><strong>Правовое основание обработки:</strong></p>
+              <ul>
+                <li>исполнение трудового договора / договора ГПХ с сотрудником;</li>
+                <li>локальные нормативные акты оператора (положение о защите ПД, регламент доступа);</li>
+              </ul>
+              <p><strong>Статус согласий:</strong></p>
+              <ul>
+                <li>Согласие на обработку ПД сотрудника: получено при приёме на работу;</li>
+                <li>Согласие на получение служебных уведомлений: активно.</li>
+              </ul>
+            </div>
+          </section>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="admin-admin-create-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-admin-create-title">
+    <div class="wf-modal__dialog wf-modal__dialog--form">
+      <header class="wf-modal__header">
+        <h2 id="admin-admin-create-title" class="wf-modal__title">Создание профиля сотрудника</h2>
+        <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+      </header>
+      <div class="wf-modal__body">
+        <form class="wf-form">
+          <section class="wf-section">
+            <h3>Основные данные сотрудника</h3>
+            <div class="wf-field">
+              <label for="admin-admin-create-name">ФИО</label>
+              <input id="admin-admin-create-name" type="text" placeholder="Фамилия Имя Отчество">
+            </div>
+            <div class="wf-field">
+              <label for="admin-admin-create-email">Служебный e‑mail</label>
+              <input id="admin-admin-create-email" type="email" placeholder="user@company.ru">
+            </div>
+            <div class="wf-field">
+              <label for="admin-admin-create-phone">Рабочий телефон</label>
+              <input id="admin-admin-create-phone" type="tel" placeholder="+7 (900) 000‑00‑00">
+            </div>
+            <div class="wf-field">
+              <label for="admin-admin-create-position">Должность</label>
+              <input id="admin-admin-create-position" type="text" placeholder="Например: охранник КПП, управляющий смены">
+            </div>
+            <div class="wf-field wf-field--inline-control">
+              <label for="admin-admin-create-role">Роль и статус</label>
+              <div class="wf-inline">
+                <select id="admin-admin-create-role" aria-label="Роль сотрудника">
+                  <option value="guard">Охранник</option>
+                  <option value="manager">Управляющий</option>
+                  <option value="superadmin">Суперадмин</option>
+                </select>
+                <select id="admin-admin-create-status" aria-label="Статус сотрудника">
+                  <option value="active" selected>Активен</option>
+                  <option value="blocked">Заблокирован</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <section class="wf-section">
+            <h3>Доступ и безопасность</h3>
+            <div class="wf-field">
+              <label for="admin-admin-create-login">Логин</label>
+              <input id="admin-admin-create-login" type="text" placeholder="Например: ivanov.p">
+            </div>
+            <div class="wf-field">
+              <label for="admin-admin-create-password">Пароль</label>
+              <input id="admin-admin-create-password" type="password" placeholder="Задайте стартовый пароль">
+            </div>
+            <div class="wf-field">
+              <label for="admin-admin-create-password-confirm">Подтверждение пароля</label>
+              <input id="admin-admin-create-password-confirm" type="password" placeholder="Повторите пароль">
+              <p class="wf-notice">Убедитесь, что пароль и подтверждение совпадают перед созданием профиля.</p>
+            </div>
+          </section>
+
+          <section class="wf-section">
+            <h3>Персональные данные (ФЗ‑152)</h3>
+            <p class="wf-muted">
+              Укажите, что сотрудник ознакомлен с локальными актами по защите ПД и дал согласие на обработку своих
+              персональных данных в целях выполнения трудовых обязанностей.
+            </p>
+            <div class="wf-field wf-field--checkbox">
+              <label for="admin-admin-create-pd-consent">
+                <input id="admin-admin-create-pd-consent" type="checkbox">
+                <span>Сотрудник дал согласие на обработку его персональных данных (служебные контакты, данные учётной записи)</span>
+              </label>
+            </div>
+            <div class="wf-field wf-field--checkbox">
+              <label for="admin-admin-create-policies">
+                <input id="admin-admin-create-policies" type="checkbox">
+                <span>Сотрудник ознакомлен с положением о защите ПД и регламентом доступа к системе</span>
+              </label>
+            </div>
+          </section>
+
+          <div class="wf-actions">
+            <button type="submit">Создать профиль</button>
+            <a href="#main-content" class="wf-btn-link">Отмена</a>
+          </div>
         </form>
       </div>
     </div>

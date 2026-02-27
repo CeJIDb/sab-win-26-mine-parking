@@ -6,8 +6,11 @@
   <h2>Управление профилями клиентов</h2>
 
 <section class="wf-section">
-  <h3>Фильтры по клиентам</h3>
-  <form class="wf-form sessions-filters">
+  <h3>Реестр клиентов</h3>
+  <div class="wf-actions">
+    <a href="../site/register.html" class="wf-btn">Создать профиль</a>
+  </div>
+  <form class="wf-form sessions-filters" aria-label="Фильтр по клиентам">
     <div class="filters-row">
       <div class="wf-field">
         <label for="search-client-text">ФИО / телефон / e-mail</label>
@@ -31,14 +34,11 @@
         </select>
       </div>
       <div class="filter-actions">
-        <button type="submit">Показать</button>
+        <button type="submit">Применить</button>
+        <button type="button">Сброс</button>
       </div>
     </div>
   </form>
-</section>
-
-<section class="wf-section">
-  <h3>Реестр клиентов</h3>
   <div class="wf-table-wrap">
     <table class="wf-table">
       <thead>
@@ -60,7 +60,7 @@
           <td>Нет</td>
           <td>2 ТС</td>
           <td>1 активный</td>
-          <td><a href="#admin-client-modal" class="wf-btn">Карточка клиента</a></td>
+          <td><a href="#admin-client-fl-modal" class="wf-btn">Карточка клиента</a></td>
         </tr>
         <tr>
           <td>ООО «Ромашка»</td>
@@ -69,7 +69,7 @@
           <td>Просрочка 3 дня</td>
           <td>5 ТС</td>
           <td>2 активных</td>
-          <td><a href="#admin-client-modal" class="wf-btn">Карточка клиента</a></td>
+          <td><a href="#admin-client-yl-modal" class="wf-btn">Карточка клиента</a></td>
         </tr>
       </tbody>
     </table>

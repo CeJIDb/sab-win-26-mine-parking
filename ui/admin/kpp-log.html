@@ -12,7 +12,7 @@
     <header class="wf-header wf-header--lk" role="banner">
   <div class="wf-header__title">
     <h1>Личный кабинет администратора</h1>
-    <p class="wf-muted">Управляющий, <a href="profile.html">Сергеев Сергей Николаевич</a></p>
+    <p class="wf-muted"><a href="profile.html">Управляющий, Сергеев Сергей Николаевич</a></p>
   </div>
   <a href="notifications.html" class="wf-header__notifications" aria-label="Системные уведомления администратора">
     <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
@@ -34,7 +34,7 @@
     <li><a href="contracts.html">Договоры</a></li>
     <li><a href="clients.html">Профили клиентов</a></li>
     <li><a href="admins.html">Профили админов</a></li>
-    <li><a href="notifications.html">Уведомления</a></li>
+    <li><a href="notifications-manage.html">Управление уведомлениями</a></li>
     <li><a href="requests.html">Обращения</a></li>
     <li><a href="analytics.html">Аналитика</a></li>
   </ul>
@@ -55,6 +55,9 @@
 
 <section class="wf-section">
   <h3>События журнала</h3>
+  <div class="wf-actions">
+    <a href="#log-manual-modal" class="wf-btn">Добавить</a>
+  </div>
   <form class="wf-form sessions-filters">
     <div class="filters-row">
       <div class="wf-field">
@@ -78,13 +81,11 @@
         </select>
       </div>
       <div class="filter-actions">
-        <button type="submit">Показать</button>
+        <button type="submit">Применить</button>
+        <button type="button">Сброс</button>
       </div>
     </div>
   </form>
-  <div class="wf-actions">
-    <a href="#log-manual-modal" class="wf-btn">Добавить событие вручную</a>
-  </div>
   <div class="wf-table-wrap">
     <table class="wf-table">
       <thead>
@@ -139,10 +140,10 @@
           <td>24.02.2026 09:30</td>
           <td>КПП‑1</td>
           <td><a href="../guard/client-summary.html">Е222ББ750</a></td>
-          <td>Въезд</td>
-          <td>Ошибка распознавания</td>
-          <td>Система распознавания</td>
-          <td>Номер распознан неуверенно, требуется проверка и решение охранника.</td>
+          <td>Выезд</td>
+          <td>Ожидает оплаты</td>
+          <td>Охранник</td>
+          <td>Сессия закрыта, требуется ручной расчёт (наличные или терминал).</td>
         </tr>
       </tbody>
     </table>
@@ -208,6 +209,62 @@
     </div>
   </div>
 </section>
+
+<section id="guard-payment-manual-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="guard-payment-manual-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="guard-payment-manual-title">Ручной расчёт / оплата</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <form class="wf-form">
+      <p class="wf-notice">
+        Используется, когда оплата производится <strong>наличными</strong> или через <strong>банковский терминал</strong>.
+        Система показывает сумму к оплате, охранник фиксирует факт оплаты.
+      </p>
+      <div class="wf-field">
+        <label for="guard-pay-client">Клиент</label>
+        <input id="guard-pay-client" type="text" value="Иванов Иван Иванович" readonly>
+      </div>
+      <div class="wf-field">
+        <label for="guard-pay-session">Сессия / договор</label>
+        <input id="guard-pay-session" type="text" value="Сессия S-1001 · КПП‑1 · ТС А123БВ777" readonly>
+      </div>
+      <div class="wf-field">
+        <label for="guard-pay-amount">Сумма к оплате</label>
+        <input id="guard-pay-amount" type="text" value="350 ₽" readonly>
+      </div>
+      <div class="wf-field">
+        <label for="guard-pay-method">Способ оплаты</label>
+        <select id="guard-pay-method">
+          <option value="">— выбрать способ —</option>
+          <option value="cash">Наличные</option>
+          <option value="terminal">Банковский терминал</option>
+        </select>
+      </div>
+      <div class="wf-field">
+        <label for="guard-pay-reference">Реквизиты платежа (для терминала)</label>
+        <input id="guard-pay-reference" type="text" placeholder="Например: последние 4 цифры карты или номер чека">
+        <p class="wf-notice">Поле заполняется при оплате через терминал, чтобы можно было сопоставить платёж с чеком.</p>
+      </div>
+      <div class="wf-field wf-field--checkbox">
+        <label for="guard-pay-confirmed">
+          <input id="guard-pay-confirmed" type="checkbox">
+          <span>Оплата получена, водитель проинформирован</span>
+        </label>
+      </div>
+      <div class="wf-field">
+        <label for="guard-pay-comment">Комментарий (необязательно)</label>
+        <textarea id="guard-pay-comment" rows="3" placeholder="Например: оплата наличными без сдачи, оплата по корпоративной карте и т.п."></textarea>
+      </div>
+      <div class="wf-actions">
+        <button type="submit">Зафиксировать оплату</button>
+        <a href="#main-content" class="wf-btn-link">Отмена</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+
 
 
 

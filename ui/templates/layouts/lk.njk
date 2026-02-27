@@ -19,7 +19,104 @@
       <div class="wf-footer__service">
         <a href="../site/index.html">На сайт парковки</a>
       </div>
+      <div class="wf-footer__version-toggle" aria-label="Переключение версии интерфейса">
+        <span class="wf-footer__version-label">Версия интерфейса:</span>
+        <button type="button" class="wf-link-button" data-view-target="desktop" aria-pressed="true">
+          для компьютера
+        </button>
+        <button type="button" class="wf-link-button" data-view-target="mobile" aria-pressed="false">
+          для телефона
+        </button>
+      </div>
     </footer>
   </div>
+  <script>
+    (function () {
+      var body = document.body;
+      if (!body) return;
+
+      // Переключение версии интерфейса (десктоп / мобильная)
+      var buttons = document.querySelectorAll('.wf-footer__version-toggle [data-view-target]');
+
+      function applyView(view) {
+        body.dataset.view = view;
+        try {
+          if (window.localStorage) {
+            window.localStorage.setItem('lkView', view);
+          }
+        } catch (e) {}
+
+        buttons.forEach(function (btn) {
+          var active = btn.getAttribute('data-view-target') === view;
+          btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+      }
+
+      if (buttons.length) {
+        var stored = null;
+        try {
+          stored = window.localStorage && window.localStorage.getItem('lkView');
+        } catch (e) {}
+        if (stored === 'mobile' || stored === 'desktop') {
+          applyView(stored);
+        }
+
+        buttons.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var view = btn.getAttribute('data-view-target') || 'desktop';
+            applyView(view);
+          });
+        });
+      }
+
+      // Бургер-меню для навигации ЛК клиента
+      var burger = document.querySelector('.wf-burger');
+      var lkNav = document.getElementById('lk-nav');
+      var navCurrent = lkNav && lkNav.querySelector('.wf-nav-current');
+
+      function setNavOpen(isOpen) {
+        if (!lkNav || !burger) return;
+        body.dataset.nav = isOpen ? 'open' : 'closed';
+        burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+
+      function toggleNav() {
+        var isOpen = body.dataset.nav === 'open';
+        setNavOpen(!isOpen);
+      }
+
+      if (burger && lkNav) {
+        burger.addEventListener('click', function () {
+          toggleNav();
+        });
+
+        // При загрузке по умолчанию навигация закрыта в мобильном режиме
+        if (!body.dataset.nav) {
+          setNavOpen(false);
+        }
+
+        // Закрывать меню при клике по любому пункту навигации (на мобильных удобно)
+        lkNav.addEventListener('click', function (event) {
+          if (event.target.tagName === 'A') {
+            setNavOpen(false);
+          }
+        });
+
+        // Открывать/закрывать меню по клику на название текущей страницы
+        if (navCurrent) {
+          navCurrent.addEventListener('click', function () {
+            toggleNav();
+          });
+
+          navCurrent.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              toggleNav();
+            }
+          });
+        }
+      }
+    })();
+  </script>
 </body>
 </html>

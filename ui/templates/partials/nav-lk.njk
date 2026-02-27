@@ -1,5 +1,26 @@
 {% set current = nav_current | default('') %}
-<nav class="wf-nav" aria-label="Навигация ЛК клиента">
+<nav class="wf-nav wf-nav--lk" aria-label="Навигация ЛК клиента" id="lk-nav">
+  <p class="wf-nav-current" tabindex="0" role="button">
+    {% if current == 'dashboard' %}
+      Главная
+    {% elif current == 'bookings' %}
+      Бронирование
+    {% elif current == 'contracts' %}
+      Договоры
+    {% elif current == 'sessions-history' %}
+      История сессий
+    {% elif current == 'vehicles' %}
+      Список ТС
+    {% elif current == 'payment-settings' %}
+      Оплаты
+    {% elif current == 'appeals' %}
+      Обращения
+    {% elif current == 'profile' %}
+      Профиль
+    {% else %}
+      Навигация
+    {% endif %}
+  </p>
   <ul>
     <li><a href="dashboard.html"{% if current == 'dashboard' %} aria-current="page"{% endif %}>Главная</a></li>
     <li><a href="bookings.html"{% if current == 'bookings' %} aria-current="page"{% endif %}>Бронирование</a></li>

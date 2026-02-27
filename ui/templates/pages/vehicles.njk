@@ -8,13 +8,13 @@
   <h2>Управление списком транспортных средств</h2>
   <section class="wf-section">
     <h3>Мои ТС</h3>
+    <div class="wf-actions">
+      <a href="#vehicle-add-modal" class="wf-btn">Добавить ТС</a>
+    </div>
     <ul class="wf-list">
       <li>А123БВ777 — Toyota Camry — Легковой — <a href="#vehicle-edit-modal" class="wf-btn">Редактировать</a> <a href="#vehicle-delete-modal" class="wf-btn">Удалить</a></li>
       <li>В456ГД177 — Honda Civic — Легковой — <a href="#vehicle-edit-modal" class="wf-btn">Редактировать</a> <a href="#vehicle-delete-modal" class="wf-btn">Удалить</a></li>
     </ul>
-    <div class="wf-actions">
-      <a href="#vehicle-add-modal" class="wf-btn">Добавить ТС</a>
-    </div>
   </section>
   {% include "partials/vehicles-add-modal.njk" %}
   {% include "partials/vehicles-edit-modal.njk" %}

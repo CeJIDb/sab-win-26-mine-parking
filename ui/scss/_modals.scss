@@ -95,6 +95,19 @@
   font-size: 0.9em;
 }
 
+/* Мобильная адаптация модальных окон */
+@media (max-width: 640px) {
+  .wf-modal__dialog {
+    max-width: 26rem;
+    width: 100%;
+  }
+}
+
+body[data-view='mobile'] .wf-modal__dialog {
+  max-width: 26rem;
+  width: 100%;
+}
+
 /* Primary button (wireframe: выделение только контрастом) */
 .wf-btn--primary {
   background: var(--wf-block);

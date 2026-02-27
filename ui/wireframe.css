@@ -146,6 +146,34 @@ section,
   color: var(--wf-text);
 }
 
+.wf-footer__version-toggle {
+  margin-top: 0.35rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  align-items: center;
+}
+
+.wf-footer__version-label {
+  opacity: 0.9;
+}
+
+.wf-link-button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.wf-link-button[aria-pressed=true] {
+  font-weight: 600;
+  text-decoration: none;
+}
+
 /* WF-05: Skip link — скрыт по умолчанию, виден при фокусе */
 .wf-skip-link {
   position: absolute;
@@ -257,6 +285,39 @@ form,
   display: flex;
   align-items: flex-end;
   gap: 0.5rem;
+}
+
+/* Мобильная адаптация фильтров (страницы ЛК клиента) */
+@media (max-width: 640px) {
+  .sessions-filters .filters-row {
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+  .sessions-filters .wf-field,
+  .sessions-filters .filter-actions {
+    flex: 1 1 100%;
+  }
+  .sessions-filters input[type=date],
+  .sessions-filters select,
+  .sessions-filters input[type=text] {
+    width: 100%;
+    min-width: 0;
+  }
+}
+/* Принудительный мобильный режим по переключателю ЛК */
+body[data-view=mobile] .sessions-filters .filters-row {
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+body[data-view=mobile] .sessions-filters .wf-field,
+body[data-view=mobile] .sessions-filters .filter-actions {
+  flex: 1 1 100%;
+}
+body[data-view=mobile] .sessions-filters input[type=date],
+body[data-view=mobile] .sessions-filters select,
+body[data-view=mobile] .sessions-filters input[type=text] {
+  width: 100%;
+  min-width: 0;
 }
 
 .sessions-filters .filter-actions button {
@@ -460,6 +521,18 @@ a.wf-btn {
 .wf-modal__notice {
   margin-top: 0.5rem;
   font-size: 0.9em;
+}
+
+/* Мобильная адаптация модальных окон */
+@media (max-width: 640px) {
+  .wf-modal__dialog {
+    max-width: 26rem;
+    width: 100%;
+  }
+}
+body[data-view=mobile] .wf-modal__dialog {
+  max-width: 26rem;
+  width: 100%;
 }
 
 /* Primary button (wireframe: выделение только контрастом) */
@@ -886,6 +959,43 @@ a.wf-btn {
   font-size: 1.1rem;
 }
 
+/* Бургер-меню для ЛК клиента (мобильная навигация) */
+.wf-burger {
+  display: none;
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 0.25rem 0.4rem;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: flex-start;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-width: 32px;
+  min-height: 32px;
+}
+
+.wf-burger__line {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #333;
+  border-radius: 1px;
+}
+
+.wf-burger__line + .wf-burger__line {
+  margin-top: 3px;
+}
+
+.wf-nav-current {
+  display: none;
+  margin: 0 0 0.25rem 0;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 /* Секторы на карте (админка): кликабельные блоки */
 .wf-parking-map__sector {
   display: block;
@@ -928,4 +1038,129 @@ a.wf-btn {
   .wf-parking-map__sector {
     margin-bottom: 0;
   }
+}
+/* -----------------------------------------
+ * Мобильная версия ЛК клиента
+ * (ориентир: смартфоны ~390×844)
+ * --------------------------------------- */
+@media (max-width: 640px) {
+  body,
+  body[data-view=mobile] {
+    font-size: 15px;
+  }
+  .wf-page {
+    padding: 0.75rem;
+  }
+  .wf-header--lk {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .wf-burger {
+    display: inline-flex;
+  }
+  .wf-nav--lk ul {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .wf-nav--lk li {
+    width: 100%;
+  }
+  .wf-nav--lk a {
+    display: block;
+    padding: 0.45rem 0.25rem;
+  }
+  .wf-main,
+  .wf-section {
+    padding: 0.75rem;
+  }
+  .wf-grid,
+  .wf-grid.wf-grid--two,
+  .wf-grid.wf-grid--three {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .wf-table th,
+  .wf-table td {
+    padding: 0.3em 0.4em;
+  }
+  .wf-modal__dialog {
+    max-width: 26rem;
+    width: 100%;
+  }
+  .wf-footer__version-toggle {
+    justify-content: flex-start;
+  }
+  body:not([data-nav=open]) .wf-nav--lk .wf-nav-current {
+    display: block;
+  }
+}
+/* Принудительный мобильный режим даже на широких экранах */
+body[data-view=mobile] .wf-page {
+  max-width: 480px;
+  padding: 0.75rem;
+}
+
+body[data-view=mobile] .wf-header--lk {
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+body[data-view=mobile] .wf-burger {
+  display: inline-flex;
+}
+
+body[data-view=mobile] .wf-nav--lk ul {
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+body[data-view=mobile] .wf-nav--lk li {
+  width: 100%;
+}
+
+body[data-view=mobile] .wf-nav--lk a {
+  display: block;
+  padding: 0.45rem 0.25rem;
+}
+
+body[data-view=mobile] .wf-main,
+body[data-view=mobile] .wf-section {
+  padding: 0.75rem;
+}
+
+body[data-view=mobile] .wf-grid,
+body[data-view=mobile] .wf-grid.wf-grid--two,
+body[data-view=mobile] .wf-grid.wf-grid--three {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+body[data-view=mobile] .wf-table th,
+body[data-view=mobile] .wf-table td {
+  padding: 0.3em 0.4em;
+}
+
+body[data-view=mobile] .wf-modal__dialog {
+  max-width: 26rem;
+  width: 100%;
+}
+
+body[data-view=mobile] .wf-footer__version-toggle {
+  justify-content: flex-start;
+}
+
+body[data-view=mobile]:not([data-nav=open]) .wf-nav--lk .wf-nav-current {
+  display: block;
+}
+
+/* Состояние бургера: открытое/закрытое меню ЛК */
+@media (max-width: 640px) {
+  body:not([data-nav=open]) .wf-nav--lk ul {
+    display: none;
+  }
+}
+body[data-view=mobile]:not([data-nav=open]) .wf-nav--lk ul {
+  display: none;
+}
+
+body[data-nav=open] .wf-nav--lk ul {
+  display: flex;
 }

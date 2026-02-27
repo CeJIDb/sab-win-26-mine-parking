@@ -7,8 +7,8 @@
 <!-- WF-11: Обращения управляющего (П. 3 — работа с обращениями, поиск по обращениям и инцидентам) -->
 
 <section class="wf-section">
-  <h3>Фильтры по обращениям и инцидентам</h3>
-  <form class="wf-form sessions-filters">
+  <h3>Реестр обращений и инцидентов</h3>
+  <form class="wf-form sessions-filters" aria-label="Фильтры по обращениям и инцидентам">
     <div class="filters-row">
       <div class="wf-field">
         <label for="search-requests-text">Номер, клиент или тема</label>
@@ -32,14 +32,11 @@
         </select>
       </div>
       <div class="filter-actions">
-        <button type="submit">Показать</button>
+        <button type="submit">Применить</button>
+        <button type="button">Сброс</button>
       </div>
     </div>
   </form>
-</section>
-
-<section class="wf-section">
-  <h3>Реестр обращений и инцидентов</h3>
   <div class="wf-table-wrap">
     <table class="wf-table">
       <thead>

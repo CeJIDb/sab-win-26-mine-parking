@@ -1,0 +1,241 @@
+{% extends "layouts/admin.njk" %}
+
+{% set current_nav = 'admin-contracts' %}
+
+{% block title %}Создать договор — ЛК админа{% endblock %}
+{% block header_subtitle %}Оформление договора для клиента{% endblock %}
+
+{% block content %}
+  <h2>Создать договор для клиента</h2>
+  <p class="wf-muted">
+    Администратор заполняет данные договора и формирует документ для подписания. Часть параметров может быть
+    предзаполнена по профилю клиента и выбранным тарифам.
+  </p>
+
+  <form class="wf-form">
+    <div class="wf-field wf-field--inline-control">
+      <label for="admin-contract-client">Клиент</label>
+      <div class="wf-inline">
+        <input id="admin-contract-client" type="text" placeholder="ФИО или название организации">
+        <button type="button">Найти клиента</button>
+      </div>
+      <p class="wf-notice">После выбора клиента можно подтянуть его паспортные и контактные данные из профиля.</p>
+    </div>
+
+    <div class="wf-field">
+      <label for="admin-contract-client-type">Тип клиента</label>
+      <select id="admin-contract-client-type">
+        <option value="fl" selected>Физическое лицо (ФЛ)</option>
+        <option value="yl">Юридическое лицо (ЮЛ)</option>
+      </select>
+      <p class="wf-notice">
+        В зависимости от типа клиента требуется разный набор реквизитов: для ФЛ — паспортные данные, для ЮЛ —
+        реквизиты организации по законодательству РФ.
+      </p>
+    </div>
+
+    <div class="wf-field wf-field--inline-control">
+      <label for="admin-contract-date-from">Срок действия договора</label>
+      <div class="wf-inline">
+        <input id="admin-contract-date-from" type="date" aria-label="Дата начала договора">
+        <span>–</span>
+        <input id="admin-contract-date-to" type="date" aria-label="Дата окончания договора">
+      </div>
+    </div>
+
+    <div class="wf-field">
+      <label for="admin-contract-tariff">Тариф по договору</label>
+      <select id="admin-contract-tariff">
+        <option value="">— выбрать тариф —</option>
+        <option value="long-fl-standard" data-client-type="fl">Долгосрочная парковка ФЛ — стандарт</option>
+        <option value="long-fl-discount" data-client-type="fl">Долгосрочная парковка ФЛ — льготный</option>
+        <option value="monthly-fl" data-client-type="fl">Помесячная парковка ФЛ</option>
+        <option value="corp-yl-base" data-client-type="yl">Корпоративный тариф ЮЛ — базовый</option>
+        <option value="corp-yl-premium" data-client-type="yl">Корпоративный тариф ЮЛ — премиум</option>
+      </select>
+      <div class="wf-actions" style="margin-top: 0.5rem;">
+        <button type="button">Заполнить данные из профиля</button>
+      </div>
+    </div>
+
+    <div id="admin-contract-fl-block">
+      <div class="wf-field">
+        <label for="admin-contract-passport-series">Паспорт: серия и номер (ФЛ)</label>
+        <input id="admin-contract-passport-series" type="text" placeholder="0000 000000">
+      </div>
+
+      <div class="wf-field">
+        <label for="admin-contract-passport-date">Паспорт: дата выдачи</label>
+        <input id="admin-contract-passport-date" type="date">
+      </div>
+
+      <div class="wf-field">
+        <label for="admin-contract-passport-issuer">Паспорт: кем выдан</label>
+        <input id="admin-contract-passport-issuer" type="text" placeholder="ОВД …">
+      </div>
+    </div>
+
+    <div id="admin-contract-yl-block" hidden>
+      <div class="wf-field">
+        <label for="admin-contract-org-full">Полное наименование организации</label>
+        <input id="admin-contract-org-full" type="text" placeholder="Например: Общество с ограниченной ответственностью «Ромашка»">
+      </div>
+      <div class="wf-field">
+        <label for="admin-contract-org-short">Сокращённое наименование</label>
+        <input id="admin-contract-org-short" type="text" placeholder="Например: ООО «Ромашка»">
+      </div>
+      <div class="wf-field">
+        <label for="admin-contract-org-inn">ИНН</label>
+        <input id="admin-contract-org-inn" type="text" placeholder="10 или 12 цифр">
+      </div>
+      <div class="wf-field">
+        <label for="admin-contract-org-kpp">КПП</label>
+        <input id="admin-contract-org-kpp" type="text" placeholder="9 цифр">
+      </div>
+      <div class="wf-field">
+        <label for="admin-contract-org-ogrn">ОГРН / ОГРНИП</label>
+        <input id="admin-contract-org-ogrn" type="text" placeholder="13 или 15 цифр">
+      </div>
+      <div class="wf-field">
+        <label for="admin-contract-org-legal-address">Юридический адрес</label>
+        <input id="admin-contract-org-legal-address" type="text" placeholder="Индекс, город, улица, дом, офис">
+      </div>
+      <div class="wf-field">
+        <label for="admin-contract-org-actual-address">Фактический адрес (если отличается)</label>
+        <input id="admin-contract-org-actual-address" type="text" placeholder="Если совпадает с юридическим, можно продублировать">
+      </div>
+      <div class="wf-field">
+        <label for="admin-contract-org-contact-person">Контактное лицо</label>
+        <input id="admin-contract-org-contact-person" type="text" placeholder="ФИО контактного лица">
+      </div>
+      <div class="wf-field">
+        <label for="admin-contract-org-contact-position">Должность контактного лица</label>
+        <input id="admin-contract-org-contact-position" type="text" placeholder="Например: директор, менеджер по работе с клиентами">
+      </div>
+      <div class="wf-field">
+        <label for="admin-contract-org-authority">Основание полномочий</label>
+        <input id="admin-contract-org-authority" type="text" placeholder="Например: действует на основании устава / доверенности №…, от …">
+      </div>
+      <div class="wf-field">
+        <label for="admin-contract-org-bank-name">Банк</label>
+        <input id="admin-contract-org-bank-name" type="text" placeholder="Наименование банка">
+      </div>
+      <div class="wf-field">
+        <label for="admin-contract-org-bank-bik">БИК банка</label>
+        <input id="admin-contract-org-bank-bik" type="text" placeholder="9 цифр">
+      </div>
+      <div class="wf-field">
+        <label for="admin-contract-org-account">Расчётный счёт</label>
+        <input id="admin-contract-org-account" type="text" placeholder="20 цифр">
+      </div>
+      <div class="wf-field">
+        <label for="admin-contract-org-correspondent">Корреспондентский счёт</label>
+        <input id="admin-contract-org-correspondent" type="text" placeholder="20 цифр">
+      </div>
+    </div>
+
+    <div class="wf-field wf-field--inline-control">
+      <label>ТС по договору</label>
+      <div class="wf-inline">
+        <select id="admin-contract-vehicle-picker">
+          <option value="">— выбрать ТС —</option>
+          <option value="A123BV777">А123БВ777 — Toyota Camry</option>
+          <option value="V456GD177">В456ГД177 — Honda Civic</option>
+          <option value="X999YY199">X999YY199 — Пример дополнительного ТС</option>
+        </select>
+        <button type="button" aria-label="Добавить ТС по договору">Добавить</button>
+      </div>
+      <ul class="wf-list wf-list--compact" id="admin-contract-vehicle-list">
+        <li>А123БВ777 — Toyota Camry <button type="button" aria-label="Удалить ТС из договора">−</button></li>
+        <li>В456ГД177 — Honda Civic <button type="button" aria-label="Удалить ТС из договора">−</button></li>
+      </ul>
+    </div>
+
+    <div class="wf-field wf-field--inline-control">
+      <label for="admin-contract-parking">Сектор и парковочные места (ПМ)</label>
+      <div class="wf-inline">
+        <select id="admin-contract-parking">
+          <option value="">— выбрать сектор —</option>
+          <option value="long">Долгосрочная парковка ФЛ+ЮЛ</option>
+          <option value="ovz">Места для лиц с ОВЗ</option>
+        </select>
+        <select id="admin-contract-place-picker">
+          <option value="">— выбрать ПМ —</option>
+          <option value="A-101">ПМ 101 — сектор А</option>
+          <option value="A-102">ПМ 102 — сектор А</option>
+          <option value="B-201">ПМ 201 — сектор Б</option>
+        </select>
+        <button type="button" aria-label="Добавить ПМ по договору">Добавить</button>
+      </div>
+      <ul class="wf-list wf-list--compact" id="admin-contract-place-list">
+        <li>ПМ 101 — сектор А <button type="button" aria-label="Удалить ПМ из договора">−</button></li>
+        <li>ПМ 102 — сектор А <button type="button" aria-label="Удалить ПМ из договора">−</button></li>
+      </ul>
+    </div>
+
+    <div class="wf-field">
+      <label for="admin-contract-payment-method">Способ оплаты</label>
+      <select id="admin-contract-payment-method">
+        <option value="">— выбрать —</option>
+        <option value="card">Банковская карта</option>
+        <option value="app">Мобильное приложение банка</option>
+        <option value="terminal">Терминал оплаты на парковке</option>
+        <option value="invoice">Безналичный расчёт (счёт ЮЛ)</option>
+      </select>
+    </div>
+
+    <div class="wf-field wf-field--checkbox">
+      <label for="admin-contract-autopay">
+        <input id="admin-contract-autopay" type="checkbox">
+        <span>Включить автосписание по договору (при наличии сохранённого способа оплаты)</span>
+      </label>
+    </div>
+
+    <div class="wf-card">
+      <strong>Сумма к оплате за первый период:</strong>
+      <span class="wf-muted">[рассчитывается по выбранному тарифу и сроку действия договора]</span>
+    </div>
+
+    <div class="wf-actions">
+      <button type="submit">Сформировать договор по шаблону</button>
+      <a href="contracts.html" class="wf-btn">Отмена</a>
+    </div>
+  </form>
+
+  <script>
+  (function() {
+    var typeSelect = document.getElementById('admin-contract-client-type');
+    var flBlock = document.getElementById('admin-contract-fl-block');
+    var ylBlock = document.getElementById('admin-contract-yl-block');
+    var tariffSelect = document.getElementById('admin-contract-tariff');
+    var tariffOptions = tariffSelect ? Array.prototype.slice.call(tariffSelect.options) : [];
+
+    if (!typeSelect || !flBlock || !ylBlock || !tariffSelect) return;
+
+    function updateClientType() {
+      var value = typeSelect.value || 'fl';
+      var isFl = value === 'fl';
+      flBlock.hidden = !isFl;
+      ylBlock.hidden = isFl;
+
+      // Обновляем список тарифов в зависимости от типа клиента
+      tariffSelect.value = '';
+      tariffOptions.forEach(function(option) {
+        var type = option.getAttribute('data-client-type');
+        if (!type) {
+          option.hidden = false;
+          option.disabled = false;
+          return;
+        }
+        var allowed = type === value;
+        option.hidden = !allowed;
+        option.disabled = !allowed;
+      });
+    }
+
+    typeSelect.addEventListener('change', updateClientType);
+    updateClientType();
+  })();
+  </script>
+{% endblock %}
+

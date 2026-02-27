@@ -2,6 +2,9 @@
 
 <section class="wf-section">
   <h3>События журнала</h3>
+  <div class="wf-actions">
+    <a href="#log-manual-modal" class="wf-btn">Добавить</a>
+  </div>
   <form class="wf-form sessions-filters">
     <div class="filters-row">
       <div class="wf-field">
@@ -25,13 +28,11 @@
         </select>
       </div>
       <div class="filter-actions">
-        <button type="submit">Показать</button>
+        <button type="submit">Применить</button>
+        <button type="button">Сброс</button>
       </div>
     </div>
   </form>
-  <div class="wf-actions">
-    <a href="#log-manual-modal" class="wf-btn">Добавить событие вручную</a>
-  </div>
   <div class="wf-table-wrap">
     <table class="wf-table">
       <thead>
@@ -86,10 +87,10 @@
           <td>24.02.2026 09:30</td>
           <td>КПП‑1</td>
           <td><a href="../guard/client-summary.html">Е222ББ750</a></td>
-          <td>Въезд</td>
-          <td>Ошибка распознавания</td>
-          <td>Система распознавания</td>
-          <td>Номер распознан неуверенно, требуется проверка и решение охранника.</td>
+          <td>Выезд</td>
+          <td>Ожидает оплаты</td>
+          <td>Охранник</td>
+          <td>Сессия закрыта, требуется ручной расчёт (наличные или терминал).</td>
         </tr>
       </tbody>
     </table>
@@ -155,4 +156,6 @@
     </div>
   </div>
 </section>
+
+{% include "partials/guard-payment-manual-modal.njk" %}
 

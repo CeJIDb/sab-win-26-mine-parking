@@ -12,17 +12,31 @@
     <header class="wf-header wf-header--lk" role="banner">
   <div class="wf-header__title">
     <h1>Личный кабинет клиента</h1>
-    <p class="wf-muted">Профиль клиента: <a href="profile.html">Иванов Иван Иванович</a></p>
+    <p class="wf-muted"><a href="profile.html">Иванов Иван Иванович</a></p>
   </div>
   <a href="notifications.html" class="wf-header__notifications" aria-label="Уведомления клиента">
     <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
     <span class="wf-header__notifications-text">Оплата сессии S‑1045 на 350 ₽ прошла успешно</span>
   </a>
+  <button type="button"
+          class="wf-burger"
+          aria-label="Открыть навигацию"
+          aria-controls="lk-nav"
+          aria-expanded="false">
+    <span class="wf-burger__line" aria-hidden="true"></span>
+    <span class="wf-burger__line" aria-hidden="true"></span>
+    <span class="wf-burger__line" aria-hidden="true"></span>
+  </button>
 </header>
 
     
     
-<nav class="wf-nav" aria-label="Навигация ЛК клиента">
+<nav class="wf-nav wf-nav--lk" aria-label="Навигация ЛК клиента" id="lk-nav">
+  <p class="wf-nav-current" tabindex="0" role="button">
+    
+      Бронирование
+    
+  </p>
   <ul>
     <li><a href="dashboard.html">Главная</a></li>
     <li><a href="bookings.html" aria-current="page">Бронирование</a></li>
@@ -42,7 +56,7 @@
   <section class="wf-section">
     <h3>Мои бронирования</h3>
     <div class="wf-actions">
-      <a href="#booking-create-modal" class="wf-btn">Создать бронь</a>
+      <a href="#booking-create-modal" class="wf-btn">Создать бронирование</a>
     </div>
     <form class="wf-form sessions-filters wf-filters" aria-label="Фильтры по бронированиям">
       <div class="filters-row">
@@ -68,7 +82,7 @@
       <table class="wf-table">
         <thead>
           <tr>
-            <th scope="col">Бронь</th>
+            <th scope="col">Бронирование</th>
             <th scope="col">Период</th>
             <th scope="col">Сектор / ПМ</th>
             <th scope="col">Тариф</th>
@@ -128,7 +142,7 @@
   <section id="booking-create-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="booking-create-title">
   <div class="wf-modal__dialog wf-section">
     <header class="wf-modal__header">
-      <h3 id="booking-create-title">Создать бронь</h3>
+      <h3 id="booking-create-title">Создать бронирование</h3>
       <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
     </header>
     <form class="wf-form" action="booking-payment.html" method="get">
@@ -252,7 +266,7 @@
     <form class="wf-form">
       <p class="wf-notice">
         <strong>Активное бронирование.</strong>
-        Текущее состояние: Бронь #1 — [дата–время], сектор A, ПМ 12, статус «Подтверждена».
+        Текущее состояние: Бронирование #1 — [дата–время], сектор A, ПМ 12, статус «Подтверждена».
       </p>
       <div class="wf-field">
         <label for="book-edit-ts">ТС (ГРЗ)</label>
@@ -305,7 +319,7 @@
     <div class="wf-body">
       <p>
         Вы уверены, что хотите отменить
-        <strong>бронь #1 — [дата–время], сектор A, ПМ 12</strong>?
+        <strong>бронирование #1 — [дата–время], сектор A, ПМ 12</strong>?
       </p>
       <p class="wf-muted">
         После подтверждения бронирование будет отменено. Уведомление об отмене будет отправлено на контакты из раздела «Профиль».
@@ -324,7 +338,104 @@
       <div class="wf-footer__service">
         <a href="../site/index.html">На сайт парковки</a>
       </div>
+      <div class="wf-footer__version-toggle" aria-label="Переключение версии интерфейса">
+        <span class="wf-footer__version-label">Версия интерфейса:</span>
+        <button type="button" class="wf-link-button" data-view-target="desktop" aria-pressed="true">
+          для компьютера
+        </button>
+        <button type="button" class="wf-link-button" data-view-target="mobile" aria-pressed="false">
+          для телефона
+        </button>
+      </div>
     </footer>
   </div>
+  <script>
+    (function () {
+      var body = document.body;
+      if (!body) return;
+
+      // Переключение версии интерфейса (десктоп / мобильная)
+      var buttons = document.querySelectorAll('.wf-footer__version-toggle [data-view-target]');
+
+      function applyView(view) {
+        body.dataset.view = view;
+        try {
+          if (window.localStorage) {
+            window.localStorage.setItem('lkView', view);
+          }
+        } catch (e) {}
+
+        buttons.forEach(function (btn) {
+          var active = btn.getAttribute('data-view-target') === view;
+          btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+      }
+
+      if (buttons.length) {
+        var stored = null;
+        try {
+          stored = window.localStorage && window.localStorage.getItem('lkView');
+        } catch (e) {}
+        if (stored === 'mobile' || stored === 'desktop') {
+          applyView(stored);
+        }
+
+        buttons.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var view = btn.getAttribute('data-view-target') || 'desktop';
+            applyView(view);
+          });
+        });
+      }
+
+      // Бургер-меню для навигации ЛК клиента
+      var burger = document.querySelector('.wf-burger');
+      var lkNav = document.getElementById('lk-nav');
+      var navCurrent = lkNav && lkNav.querySelector('.wf-nav-current');
+
+      function setNavOpen(isOpen) {
+        if (!lkNav || !burger) return;
+        body.dataset.nav = isOpen ? 'open' : 'closed';
+        burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+
+      function toggleNav() {
+        var isOpen = body.dataset.nav === 'open';
+        setNavOpen(!isOpen);
+      }
+
+      if (burger && lkNav) {
+        burger.addEventListener('click', function () {
+          toggleNav();
+        });
+
+        // При загрузке по умолчанию навигация закрыта в мобильном режиме
+        if (!body.dataset.nav) {
+          setNavOpen(false);
+        }
+
+        // Закрывать меню при клике по любому пункту навигации (на мобильных удобно)
+        lkNav.addEventListener('click', function (event) {
+          if (event.target.tagName === 'A') {
+            setNavOpen(false);
+          }
+        });
+
+        // Открывать/закрывать меню по клику на название текущей страницы
+        if (navCurrent) {
+          navCurrent.addEventListener('click', function () {
+            toggleNav();
+          });
+
+          navCurrent.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              toggleNav();
+            }
+          });
+        }
+      }
+    })();
+  </script>
 </body>
 </html>

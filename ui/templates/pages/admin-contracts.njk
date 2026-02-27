@@ -8,8 +8,11 @@
 <h2>Управление договорами</h2>
 
 <section class="wf-section">
-  <h3>Фильтры по договорам</h3>
-  <form class="wf-form sessions-filters">
+  <h3>Реестр договоров</h3>
+  <div class="wf-actions">
+    <a href="contracts-create.html" class="wf-btn">Создать договор</a>
+  </div>
+  <form class="wf-form sessions-filters" aria-label="Фильтр реестра договоров">
     <div class="filters-row">
       <div class="wf-field">
         <label for="search-contract-admin-number">№ договора</label>
@@ -30,14 +33,11 @@
         </select>
       </div>
       <div class="filter-actions">
-        <button type="submit">Показать</button>
+        <button type="submit">Применить</button>
+        <button type="button">Сброс</button>
       </div>
     </div>
   </form>
-</section>
-
-<section class="wf-section">
-  <h3>Реестр договоров</h3>
   <div class="wf-table-wrap">
     <table class="wf-table">
       <thead>

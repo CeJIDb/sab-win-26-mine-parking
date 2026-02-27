@@ -1,0 +1,210 @@
+{% extends "layouts/admin.njk" %}
+
+{% set current_nav = 'admin-notifications-manage' %}
+
+{% block title %}Управление уведомлениями — ЛК администратора{% endblock %}
+
+{% block content %}
+  <h2>Управление уведомлениями</h2>
+
+  <section class="wf-section">
+    <h3>Формирование и отправка уведомления</h3>
+    <form class="wf-form">
+      <div class="wf-field">
+        <label for="notify-type">Тип уведомления</label>
+        <select id="notify-type">
+          <option value="info">Информационное сообщение</option>
+          <option value="maintenance">Плановые/аварийные работы</option>
+          <option value="incident">Инцидент и безопасность</option>
+          <option value="billing">Платежи и задолженности</option>
+        </select>
+      </div>
+
+      <div class="wf-field">
+        <label for="notify-audience">Получатели</label>
+        <select id="notify-audience">
+          <option value="all-clients">Все клиенты</option>
+          <option value="sector-clients">Клиенты по выбранным секторам / договорам</option>
+          <option value="guards">Все сотрудники КПП</option>
+          <option value="admins">Все администраторы</option>
+          <option value="single-person">Конкретный клиент или сотрудник</option>
+        </select>
+      </div>
+
+      <div class="wf-field wf-field--inline-control">
+        <label for="notify-recipient-search">Поиск конкретного получателя</label>
+        <div class="wf-inline">
+          <input id="notify-recipient-search" type="text" placeholder="ФИО, e‑mail, телефон или номер договора">
+          <button type="button" aria-label="Добавить получателя">+</button>
+        </div>
+      </div>
+      <div class="wf-field wf-field--inline-control">
+        <label>Выбранные получатели</label>
+        <ul class="wf-list wf-list--compact" id="notify-recipient-list">
+          <li>Иванов Иван Иванович — ivanov@example.com <button type="button" aria-label="Удалить получателя из списка">−</button></li>
+          <li>ООО «Ромашка» — office@romashka.ru <button type="button" aria-label="Удалить получателя из списка">−</button></li>
+        </ul>
+      </div>
+
+      <div class="wf-field">
+        <label>Каналы уведомления</label>
+      </div>
+      <div class="wf-field wf-field--checkbox">
+        <label for="notify-channel-lk">
+          <input id="notify-channel-lk" type="checkbox" checked>
+          <span>Сообщение в личном кабинете</span>
+        </label>
+      </div>
+      <div class="wf-field wf-field--checkbox">
+        <label for="notify-channel-email">
+          <input id="notify-channel-email" type="checkbox">
+          <span>E‑mail</span>
+        </label>
+      </div>
+      <div class="wf-field wf-field--checkbox">
+        <label for="notify-channel-sms">
+          <input id="notify-channel-sms" type="checkbox">
+          <span>SMS / мессенджер</span>
+        </label>
+      </div>
+
+      <div class="wf-field">
+        <label for="notify-template">Шаблон уведомления</label>
+        <select id="notify-template">
+          <option value="">— без шаблона —</option>
+          <option value="maintenance">Плановые работы парковки</option>
+          <option value="incident">Инцидент на КПП</option>
+          <option value="tariff-change">Изменение тарифов</option>
+        </select>
+      </div>
+
+      <div class="wf-field">
+        <label for="notify-subject">Заголовок уведомления</label>
+        <input id="notify-subject" type="text" placeholder="Например: Плановые работы парковки 24.02.2026">
+      </div>
+
+      <div class="wf-field">
+        <label for="notify-body">Текст уведомления</label>
+        <textarea id="notify-body" rows="5" placeholder="Опишите, что произойдёт, в какие сроки и кого это затронет."></textarea>
+      </div>
+
+      <div class="wf-field wf-field--inline-control">
+        <label for="notify-schedule">Время отправки</label>
+        <div class="wf-inline">
+          <select id="notify-schedule">
+            <option value="now">Отправить сразу</option>
+            <option value="schedule">Запланировать на дату и время</option>
+          </select>
+          <input type="datetime-local" aria-label="Дата и время отправки (для запланированных уведомлений)">
+        </div>
+      </div>
+
+      <div class="wf-actions">
+        <button type="submit">Отправить уведомление</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="wf-section">
+    <h3>История отправленных уведомлений</h3>
+    <p class="wf-muted">
+      Данные ниже имитируют ответ внешнего сервиса уведомлений: статусы доставки, каналы и получатели.
+    </p>
+    <div class="wf-table-wrap">
+      <table class="wf-table">
+        <thead>
+          <tr>
+            <th>Дата и время</th>
+            <th>Заголовок</th>
+            <th>Целевая аудитория</th>
+            <th>Каналы</th>
+            <th>Статус отправки</th>
+            <th>Статистика</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>24.02.2026 06:00</td>
+            <td>Плановые работы СКУД</td>
+            <td>Все клиенты и сотрудники КПП</td>
+            <td>ЛК, E‑mail</td>
+            <td><span class="wf-badge">Успешно</span></td>
+            <td>Отправлено: 1 250 · Ошибок: 5</td>
+          </tr>
+          <tr>
+            <td>23.02.2026 20:15</td>
+            <td>Инцидент: ТС из чёрного списка</td>
+            <td>Сотрудники КПП</td>
+            <td>ЛК, SMS</td>
+            <td><span class="wf-badge wf-badge--warning">Частично</span></td>
+            <td>Отправлено: 18 · Ошибок: 2 (ответ сервиса: «лимит SMS»)</td>
+          </tr>
+          <tr>
+            <td>22.02.2026 09:00</td>
+            <td>Обновление тарифов парковки</td>
+            <td>Клиенты с активными договорами</td>
+            <td>ЛК, E‑mail</td>
+            <td><span class="wf-badge wf-badge--error">Ошибка</span></td>
+            <td>Сервис уведомлений недоступен (HTTP 503). Повтор отправки запланирован внешней системой.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="wf-muted">
+      В реальной интеграции статусы и статистика берутся из API сервиса уведомлений (например, по идентификатору рассылки).
+    </p>
+  </section>
+
+  <section class="wf-section">
+    <h3>Детали отправленного уведомления</h3>
+    <p class="wf-muted">
+      Ниже пример того, как может выглядеть карточка рассылки с техническими данными, полученными из внешнего сервиса.
+    </p>
+    <div class="wf-card">
+      <p><strong>ID рассылки во внешнем сервисе:</strong> notif-2026-02-24-0001</p>
+      <p><strong>Каналы:</strong> ЛК, E‑mail</p>
+      <p><strong>Ограничения:</strong> Лимит 10 000 сообщений в сутки, троттлинг 50 сообщений/сек.</p>
+      <p><strong>Последнее обновление статуса:</strong> 24.02.2026 06:05</p>
+      <p class="wf-muted">
+        В боевой системе сюда можно добавить ссылку на лог сервиса уведомлений или детальную разбивку по ошибкам доставки.
+      </p>
+    </div>
+  </section>
+
+  <section class="wf-section" id="notify-templates-section">
+    <h3>Шаблоны уведомлений</h3>
+    <div class="wf-field wf-field--inline-control">
+      <label for="notify-template-manage">Существующие шаблоны</label>
+      <div class="wf-inline">
+        <select id="notify-template-manage">
+          <option value="maintenance" selected>Плановые работы парковки</option>
+          <option value="incident">Инцидент на КПП</option>
+          <option value="tariff-change">Изменение тарифов</option>
+        </select>
+        <button type="button">Применить к форме выше</button>
+      </div>
+    </div>
+
+    <div class="wf-field">
+      <label for="notify-template-new-name">Создать новый шаблон</label>
+      <input id="notify-template-new-name" type="text" placeholder="Например: Ночное обслуживание парковки">
+    </div>
+    <div class="wf-field">
+      <label for="notify-template-new-body">Текст нового шаблона</label>
+      <textarea id="notify-template-new-body" rows="4" placeholder="Текст уведомления, который будет подставляться по умолчанию при выборе шаблона."></textarea>
+    </div>
+    <div class="wf-actions">
+      <button type="button">Сохранить как новый шаблон</button>
+    </div>
+
+    <div class="wf-field">
+      <label for="notify-template-edit-body">Редактирование выбранного шаблона</label>
+      <textarea id="notify-template-edit-body" rows="4">Уважаемые клиенты! В период с 02:00 до 04:00 будут проводиться плановые работы парковочного комплекса…</textarea>
+    </div>
+    <div class="wf-actions">
+      <button type="button">Сохранить изменения шаблона</button>
+      <button type="button" class="wf-btn-secondary">Удалить выбранный шаблон</button>
+    </div>
+  </section>
+{% endblock %}
+

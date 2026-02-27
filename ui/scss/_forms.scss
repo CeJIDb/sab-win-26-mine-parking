@@ -81,6 +81,46 @@ form,
   gap: 0.5rem;
 }
 
+/* Мобильная адаптация фильтров (страницы ЛК клиента) */
+@media (max-width: 640px) {
+  .sessions-filters .filters-row {
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  .sessions-filters .wf-field,
+  .sessions-filters .filter-actions {
+    flex: 1 1 100%;
+  }
+
+  .sessions-filters input[type='date'],
+  .sessions-filters select,
+  .sessions-filters input[type='text'] {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Принудительный мобильный режим по переключателю ЛК */
+body[data-view='mobile'] {
+  .sessions-filters .filters-row {
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  .sessions-filters .wf-field,
+  .sessions-filters .filter-actions {
+    flex: 1 1 100%;
+  }
+
+  .sessions-filters input[type='date'],
+  .sessions-filters select,
+  .sessions-filters input[type='text'] {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
 .sessions-filters .filter-actions button {
   padding: 0.35em 0.6em;
 }

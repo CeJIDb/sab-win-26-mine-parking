@@ -12,7 +12,7 @@
     <header class="wf-header wf-header--lk" role="banner">
   <div class="wf-header__title">
     <h1>Интерфейс КПП</h1>
-    <p class="wf-muted">Профиль сотрудника: <a href="profile.html">Оператор КПП, Иванов Иван Петрович</a></p>
+    <p class="wf-muted"><a href="profile.html">Охранник, Иванов Иван Петрович</a></p>
   </div>
   <a href="notifications.html" class="wf-header__notifications" aria-label="Системные уведомления оператора">
     <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
@@ -78,6 +78,16 @@
         </tbody>
       </table>
     </div>
+    <div class="wf-card">
+      <p><strong>Текущая парковочная сессия:</strong> S-1001 · КПП‑1 · ТС А123БВ777</p>
+      <p><strong>Сумма к оплате:</strong> 350 ₽</p>
+      <p class="wf-muted">
+        При оплате наличными или через банковский терминал охранник фиксирует факт оплаты в системе вручную.
+      </p>
+      <div class="wf-actions">
+        <a href="#guard-payment-manual-modal" class="wf-btn">Рассчитать и принять оплату</a>
+      </div>
+    </div>
   </section>
 
   <section class="wf-section">
@@ -122,6 +132,61 @@
       <button type="button" class="wf-btn-secondary">Удалить из чёрного списка</button>
     </div>
   </section>
+  <section id="guard-payment-manual-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="guard-payment-manual-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="guard-payment-manual-title">Ручной расчёт / оплата</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <form class="wf-form">
+      <p class="wf-notice">
+        Используется, когда оплата производится <strong>наличными</strong> или через <strong>банковский терминал</strong>.
+        Система показывает сумму к оплате, охранник фиксирует факт оплаты.
+      </p>
+      <div class="wf-field">
+        <label for="guard-pay-client">Клиент</label>
+        <input id="guard-pay-client" type="text" value="Иванов Иван Иванович" readonly>
+      </div>
+      <div class="wf-field">
+        <label for="guard-pay-session">Сессия / договор</label>
+        <input id="guard-pay-session" type="text" value="Сессия S-1001 · КПП‑1 · ТС А123БВ777" readonly>
+      </div>
+      <div class="wf-field">
+        <label for="guard-pay-amount">Сумма к оплате</label>
+        <input id="guard-pay-amount" type="text" value="350 ₽" readonly>
+      </div>
+      <div class="wf-field">
+        <label for="guard-pay-method">Способ оплаты</label>
+        <select id="guard-pay-method">
+          <option value="">— выбрать способ —</option>
+          <option value="cash">Наличные</option>
+          <option value="terminal">Банковский терминал</option>
+        </select>
+      </div>
+      <div class="wf-field">
+        <label for="guard-pay-reference">Реквизиты платежа (для терминала)</label>
+        <input id="guard-pay-reference" type="text" placeholder="Например: последние 4 цифры карты или номер чека">
+        <p class="wf-notice">Поле заполняется при оплате через терминал, чтобы можно было сопоставить платёж с чеком.</p>
+      </div>
+      <div class="wf-field wf-field--checkbox">
+        <label for="guard-pay-confirmed">
+          <input id="guard-pay-confirmed" type="checkbox">
+          <span>Оплата получена, водитель проинформирован</span>
+        </label>
+      </div>
+      <div class="wf-field">
+        <label for="guard-pay-comment">Комментарий (необязательно)</label>
+        <textarea id="guard-pay-comment" rows="3" placeholder="Например: оплата наличными без сдачи, оплата по корпоративной карте и т.п."></textarea>
+      </div>
+      <div class="wf-actions">
+        <button type="submit">Зафиксировать оплату</button>
+        <a href="#main-content" class="wf-btn-link">Отмена</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+
 
     </main>
   </div>

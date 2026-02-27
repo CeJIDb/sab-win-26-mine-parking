@@ -123,6 +123,34 @@ section,
   color: var(--wf-text);
 }
 
+.wf-footer__version-toggle {
+  margin-top: 0.35rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  align-items: center;
+}
+
+.wf-footer__version-label {
+  opacity: 0.9;
+}
+
+.wf-link-button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.wf-link-button[aria-pressed='true'] {
+  font-weight: 600;
+  text-decoration: none;
+}
+
 /* WF-05: Skip link — скрыт по умолчанию, виден при фокусе */
 .wf-skip-link {
   position: absolute;
