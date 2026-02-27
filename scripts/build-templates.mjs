@@ -7,6 +7,7 @@ const CLIENT_DIR = path.join(ROOT, 'ui', 'client');
 const GUARD_DIR = path.join(ROOT, 'ui', 'guard');
 const ADMIN_DIR = path.join(ROOT, 'ui', 'admin');
 const SITE_DIR = path.join(ROOT, 'ui', 'site');
+const ROOT_UI_DIR = path.join(ROOT, 'ui');
 const TEMPLATES_DIR = path.join(ROOT, 'ui', 'templates');
 
 // Настраиваем окружение nunjucks
@@ -43,6 +44,13 @@ async function buildSitePage(templateName, outName) {
   console.log(`Built site/${outName} from ${templateName}`);
 }
 
+async function buildRootPage(templateName, outName) {
+  const html = env.render(templateName, {});
+  const outPath = path.join(ROOT_UI_DIR, outName);
+  await fs.writeFile(outPath, html, 'utf8');
+  console.log(`Built ui/${outName} from ${templateName}`);
+}
+
 async function main() {
   const pages = [
     { template: 'pages/dashboard.njk', out: 'dashboard.html' },
@@ -74,10 +82,12 @@ async function main() {
     { template: 'pages/admin-sectors.njk', out: 'sectors.html' },
     { template: 'pages/admin-tariffs.njk', out: 'tariffs.html' },
     { template: 'pages/admin-contracts.njk', out: 'contracts.html' },
+    { template: 'pages/admin-contracts-create.njk', out: 'contracts-create.html' },
     { template: 'pages/admin-clients.njk', out: 'clients.html' },
     { template: 'pages/admin-admins.njk', out: 'admins.html' },
     { template: 'pages/admin-debts.njk', out: 'debts.html' },
     { template: 'pages/admin-notifications.njk', out: 'notifications.html' },
+    { template: 'pages/admin-notifications-manage.njk', out: 'notifications-manage.html' },
     { template: 'pages/admin-requests.njk', out: 'requests.html' },
     { template: 'pages/admin-analytics.njk', out: 'analytics.html' },
     { template: 'pages/admin-client-sessions.njk', out: 'client-sessions.html' },
@@ -87,6 +97,16 @@ async function main() {
 
   const sitePages = [
     { template: 'pages/site-index.njk', out: 'index.html' },
+    { template: 'pages/site-tariffs.njk', out: 'tariffs.html' },
+    { template: 'pages/site-rules.njk', out: 'rules.html' },
+    { template: 'pages/site-contacts.njk', out: 'contacts.html' },
+    { template: 'pages/site-register.njk', out: 'register.html' },
+    { template: 'pages/site-login.njk', out: 'login.html' },
+    { template: 'pages/site-parking-map.njk', out: 'parking-map.html' },
+  ];
+
+  const rootPages = [
+    { template: 'pages/root-index.njk', out: 'index.html' },
   ];
 
   for (const page of pages) {
@@ -103,6 +123,10 @@ async function main() {
 
   for (const page of sitePages) {
     await buildSitePage(page.template, page.out);
+  }
+
+  for (const page of rootPages) {
+    await buildRootPage(page.template, page.out);
   }
 }
 
