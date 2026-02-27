@@ -6,15 +6,14 @@
 {% block header_subtitle %}Admin Panel — главная (дашборд){% endblock %}
 
 {% block content %}
-  <h2>Дашборд</h2>
-  <p>Наиболее важные операционные данные и показатели (Карта навигации, п. 3.2).</p>
+  <h2>Главная</h2>
 
   <section class="wf-section">
     <h3>Ключевые показатели</h3>
     <div class="wf-grid">
       <section class="wf-card">
         <h3>Загрузка парковки</h3>
-        <p><strong>Свободно:</strong> 32 из 72 ПМ</p>
+        <p><strong>Свободно:</strong> 32 из 600 ПМ</p>
         <p class="wf-muted">Сектор А — 75% занятости, сектор Б — 85%.</p>
         <p><a href="sectors.html" class="wf-btn">Перейти к секторам</a></p>
       </section>
@@ -28,7 +27,7 @@
         <h3>Финансы</h3>
         <p><strong>Поступления за сегодня:</strong> 152 300 ₽</p>
         <p class="wf-muted">Просроченная задолженность: 12 договоров.</p>
-        <p><a href="contracts.html" class="wf-btn">Проверить задолженности</a></p>
+        <p><a href="debts.html" class="wf-btn">Проверить задолженности</a></p>
       </section>
       <section class="wf-card">
         <h3>Обращения и инциденты</h3>
@@ -40,48 +39,8 @@
   </section>
 
   <section class="wf-section">
-    <h3>Последние события КПП</h3>
-    <p class="wf-muted">Фрагмент журнала событий по последним операциям въезда/выезда.</p>
-    <div class="wf-table-wrap">
-      <table class="wf-table">
-        <thead>
-          <tr>
-            <th>Дата и время</th>
-            <th>КПП</th>
-            <th>ГРЗ</th>
-            <th>Направление</th>
-            <th>Статус</th>
-            <th>Основание</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>24.02.2026 10:15</td>
-            <td>КПП‑1</td>
-            <td>А123БВ777</td>
-            <td>Въезд</td>
-            <td>Разрешено</td>
-            <td>Активный договор Д‑045</td>
-          </tr>
-          <tr>
-            <td>24.02.2026 09:30</td>
-            <td>КПП‑2</td>
-            <td>В456ГД199</td>
-            <td>Въезд</td>
-            <td>Отказ</td>
-            <td>Просрочена оплата, отправлен к управляющему</td>
-          </tr>
-          <tr>
-            <td>24.02.2026 09:05</td>
-            <td>КПП‑1</td>
-            <td>А123БВ777</td>
-            <td>Выезд</td>
-            <td>Разрешено</td>
-            <td>Оплаченная сессия</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="wf-muted">Полный журнал доступен в интерфейсе КПП.</p>
+    <h3>Карта загрузки парковки</h3>
+    <p class="wf-muted">Сводная карта текущей занятости по секторам и типам мест.</p>
+    {% include "partials/parking-map-compact.njk" %}
   </section>
 {% endblock %}

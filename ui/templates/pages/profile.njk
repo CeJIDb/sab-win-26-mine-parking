@@ -3,7 +3,6 @@
 {% set current_nav = 'profile' %}
 
 {% block title %}Настройки профиля — ЛК клиента{% endblock %}
-{% block header_subtitle %}Настройки профиля{% endblock %}
 
 {% block content %}
   <h2>Настройки профиля</h2>
@@ -26,19 +25,49 @@
       <a href="#password-change-modal" class="wf-btn">Изменить пароль</a>
     </div>
     <div class="wf-field">
-      <label for="prof-name">ФИО</label>
-      <input id="prof-name" type="text" placeholder="Фамилия Имя Отчество">
+      <label for="prof-last-name">Фамилия</label>
+      <input id="prof-last-name" type="text" placeholder="Иванов">
     </div>
+    <div class="wf-field">
+      <label for="prof-first-name">Имя</label>
+      <input id="prof-first-name" type="text" placeholder="Иван">
+    </div>
+    <div class="wf-field">
+      <label for="prof-middle-name">Отчество (необязательно)</label>
+      <input id="prof-middle-name" type="text" placeholder="Иванович">
+    </div>
+    <div class="wf-field">
+      <a href="#passport-modal" class="wf-btn">Паспортные данные</a>
+    </div>
+    <h3>Настройки уведомлений</h3>
     <div class="wf-field wf-field--checkbox">
-      <label for="prof-marketing">
-        <input id="prof-marketing" type="checkbox">
-        <span>Согласен на получение маркетинговых рассылок (акции, новости парковки)</span>
+      <label for="notify-sessions">
+        <input id="notify-sessions" type="checkbox" checked>
+        <span>О парковочных сессиях: въезд/выезд, превышение времени, блокировки доступа</span>
       </label>
     </div>
     <div class="wf-field wf-field--checkbox">
-      <label for="prof-events">
-        <input id="prof-events" type="checkbox" checked>
-        <span>Получать уведомления о статусах сессий, бронирований, договоров и других операций</span>
+      <label for="notify-bookings">
+        <input id="notify-bookings" type="checkbox" checked>
+        <span>О бронированиях: создание, изменение, отмена, напоминания перед началом</span>
+      </label>
+    </div>
+    <div class="wf-field wf-field--checkbox">
+      <label for="notify-contracts">
+        <input id="notify-contracts" type="checkbox" checked>
+        <span>О договорах: активация, продление, истечение срока, наличие задолженности</span>
+      </label>
+    </div>
+    <div class="wf-field wf-field--checkbox">
+      <label for="notify-payments">
+        <input id="notify-payments" type="checkbox" checked>
+        <span>Об оплатах и счетах: новые счета к оплате, успешные и отклонённые платежи</span>
+      </label>
+    </div>
+    <div class="wf-field wf-field--checkbox">
+      <label for="notify-marketing">
+        <input id="notify-marketing" type="checkbox">
+        <span>Маркетинговые рассылки: акции, новости парковки и партнёров</span>
       </label>
     </div>
     <div class="wf-actions">
@@ -50,4 +79,5 @@
   {% include "partials/profile-phone-modal.njk" %}
   {% include "partials/profile-email-modal.njk" %}
   {% include "partials/profile-password-modal.njk" %}
+  {% include "partials/profile-passport-modal.njk" %}
 {% endblock %}

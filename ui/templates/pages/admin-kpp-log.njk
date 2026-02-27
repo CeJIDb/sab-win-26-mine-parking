@@ -1,0 +1,11 @@
+{% extends "layouts/admin.njk" %}
+
+{% set current_nav = 'admin-kpp-log' %}
+
+{% block title %}КПП — журнал въезда‑выезда (ЛК администратора){% endblock %}
+{% block header_subtitle %}Интерфейс КПП — журнал событий, просмотр администратора{% endblock %}
+
+{% block content %}
+  {% include "partials/guard-log-content.njk" %}
+{% endblock %}
+

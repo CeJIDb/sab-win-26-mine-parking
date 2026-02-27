@@ -1,12 +1,10 @@
 {% extends "layouts/guard.njk" %}
 
 {% block title %}Карточка клиента — Интерфейс КПП{% endblock %}
-{% block header_subtitle %}Краткая информация по клиенту для охранника{% endblock %}
+{% block header_subtitle %}Профиль сотрудника: <a href="profile.html">Оператор КПП, Иванов Иван Петрович</a>{% endblock %}
 
 {% block content %}
   <h2>Карточка клиента</h2>
-  <p class="wf-muted">Результат поиска по ФИО или телефону. Данные примерные, для wireframe.</p>
-
   <section class="wf-section">
     <h3>Основная информация</h3>
     <div class="wf-grid wf-grid--two">
@@ -19,6 +17,7 @@
       <div class="wf-card">
         <p><strong>Статус доступа:</strong> Разрешён (нет блокировок)</p>
         <p><strong>Задолженность:</strong> Нет</p>
+        <p><strong>Чёрный список:</strong> Не числится</p>
         <p><strong>Замечания:</strong> Нет проблем, клиент в зелёной зоне.</p>
       </div>
     </div>
@@ -41,7 +40,7 @@
             <td>№Д‑045</td>
             <td>Долгосрочная парковка, сектор Б</td>
             <td>01.01.2026–31.03.2026</td>
-            <td>Активен, оплат нет просрочек</td>
+            <td>Активен</td>
           </tr>
         </tbody>
       </table>
@@ -62,13 +61,13 @@
         </thead>
         <tbody>
           <tr>
-            <td><a href="../guard/plate-check.html?plate=A123BV777">А123БВ777</a></td>
+            <td><a href="../guard/plate-history.html?plate=A123BV777">А123БВ777</a></td>
             <td>Toyota Camry</td>
             <td>Легковой</td>
             <td>Разрешён, по активному договору</td>
           </tr>
           <tr>
-            <td><a href="../guard/plate-check.html?plate=B456GD199">В456ГД199</a></td>
+            <td><a href="../guard/plate-history.html?plate=B456GD199">В456ГД199</a></td>
             <td>Volkswagen Polo</td>
             <td>Легковой</td>
             <td>Разрешён, оплаченные сессии</td>
@@ -80,17 +79,15 @@
 
   <section class="wf-section">
     <h3>Служебные действия</h3>
-    <p class="wf-muted">При необходимости охранник может передать запрос администратору.</p>
-    <ul class="wf-list wf-list--compact">
-      <li>
-        Запросить блокировку доступа клиента
-        <button type="button">Отправить запрос администратору</button>
-      </li>
-      <li>
-        Открыть полный профиль клиента в админке
-        <a href="../admin/clients.html" class="wf-btn">Открыть в ЛК администратора</a>
-      </li>
-    </ul>
+    <p class="wf-muted">При необходимости охранник может зафиксировать решения по доступу клиента.</p>
+    <div class="wf-field">
+      <label for="blacklist-reason">Причина добавления или удаления из чёрного списка</label>
+      <textarea id="blacklist-reason" rows="3" placeholder="Кратко опишите причину (например, нарушение правил, неверные данные и т.п.)."></textarea>
+    </div>
+    <div class="wf-actions">
+      <button type="button">Добавить в чёрный список</button>
+      <button type="button" class="wf-btn-secondary">Удалить из чёрного списка</button>
+    </div>
   </section>
 {% endblock %}
 

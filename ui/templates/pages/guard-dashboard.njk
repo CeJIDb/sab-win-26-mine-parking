@@ -3,91 +3,9 @@
 {% set current_nav = 'guard-index' %}
 
 {% block title %}Панель КПП — Интерфейс КПП{% endblock %}
-{% block header_subtitle %}Рабочий интерфейс охранника (панель КПП){% endblock %}
+{% block header_subtitle %}Профиль сотрудника: <a href="profile.html">Оператор КПП, Иванов Иван Петрович</a>{% endblock %}
 
 {% block content %}
-  <h2>Панель КПП</h2>
-
-  <section class="wf-section">
-    <h3>Последние события КПП</h3>
-    <p class="wf-muted">Список последних въездов/выездов и решений по доступу. Строки кликабельны и ведут к проверке номера или профиля клиента.</p>
-    <div class="wf-table-wrap">
-      <table class="wf-table">
-        <thead>
-          <tr>
-            <th>Время</th>
-            <th>ГРЗ</th>
-            <th>Направление</th>
-            <th>Статус</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><a href="../guard/plate-check.html?plate=A123BV777">24.02.2026 10:15</a></td>
-            <td><a href="../guard/plate-check.html?plate=A123BV777">А123БВ777</a></td>
-            <td>Въезд</td>
-            <td>Разрешено (автоматически по договору)</td>
-          </tr>
-          <tr>
-            <td><a href="../guard/plate-check.html?plate=B456GD199">24.02.2026 10:02</a></td>
-            <td><a href="../guard/plate-check.html?plate=B456GD199">В456ГД199</a></td>
-            <td>Выезд</td>
-            <td>Разрешено (по сессии)</td>
-          </tr>
-          <tr>
-            <td><a href="../guard/plate-check.html?plate=C789EE750">24.02.2026 09:50</a></td>
-            <td><a href="../guard/plate-check.html?plate=C789EE750">С789ЕЕ750</a></td>
-            <td>Въезд</td>
-            <td>Отказ (чёрный список)</td>
-          </tr>
-          <tr>
-            <td><a href="../guard/plate-check.html?plate=D111AA750">24.02.2026 09:42</a></td>
-            <td><a href="../guard/plate-check.html?plate=D111AA750">Д111АА750</a></td>
-            <td>Въезд</td>
-            <td>Отказ (решение охранника)</td>
-          </tr>
-          <tr>
-            <td><a href="../guard/plate-check.html?plate=E222BB750">24.02.2026 09:30</a></td>
-            <td><a href="../guard/plate-check.html?plate=E222BB750">Е222ББ750</a></td>
-            <td>Въезд</td>
-            <td>Ошибка распознавания — <a href="../guard/plate-check.html?plate=E222BB750">проверить и решить вручную</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="wf-section">
-    <h3>Поиск по номеру и клиенту</h3>
-    <div class="wf-grid wf-grid--two">
-      <div class="wf-card">
-        <h4>Поиск по номеру ТС</h4>
-        <p class="wf-muted">Быстрая проверка права въезда по государственному номеру ТС.</p>
-        <form class="wf-form" action="../guard/plate-check.html" method="get">
-          <div class="wf-field">
-            <label for="guard-plate-search">ГРЗ (государственный регистрационный знак)</label>
-            <input id="guard-plate-search" name="plate" type="text" placeholder="А123БВ777" required>
-          </div>
-          <div class="wf-actions">
-            <button type="submit">Проверить</button>
-          </div>
-        </form>
-      </div>
-      <div class="wf-card">
-        <h4>Поиск клиента по ФИО</h4>
-        <p class="wf-muted">Найти клиента по ФИО или телефону и открыть его карточку с краткой сводкой.</p>
-        <form class="wf-form" action="../guard/client-summary.html" method="get">
-          <div class="wf-field">
-            <label for="guard-client-search">ФИО или телефон</label>
-            <input id="guard-client-search" name="q" type="text" placeholder="Иванов Иван Иванович / +7…" required>
-          </div>
-          <div class="wf-actions">
-            <button type="submit">Найти клиента</button>
-          </div>
-        </form>
-        <p class="wf-muted">Карточка клиента для охранника показывает статус доступа, активные договоры и задолженности, список ТС и краткие комментарии.</p>
-      </div>
-    </div>
-  </section>
+  {% include "partials/guard-dashboard-content.njk" %}
 {% endblock %}
 

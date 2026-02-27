@@ -3,7 +3,6 @@
 {% set current_nav = 'payment-settings' %}
 
 {% block title %}Оплаты — ЛК клиента{% endblock %}
-{% block header_subtitle %}История оплат и настройки автосписания{% endblock %}
 
 {% block content %}
   <h2>Оплаты</h2>
@@ -32,12 +31,11 @@
         <tbody>
           <tr>
             <td>25.02.2026</td>
-            <td>Счёт по договору №1001 за март 2026</td>
+            <td>Счёт по договору <a href="contracts.html">№1001</a> за март 2026</td>
             <td>4 500 ₽</td>
             <td>К оплате</td>
             <td>
               <a href="payment-external.html" class="wf-btn">Оплатить</a>
-              <button type="button">Подробнее</button>
             </td>
           </tr>
           <tr>

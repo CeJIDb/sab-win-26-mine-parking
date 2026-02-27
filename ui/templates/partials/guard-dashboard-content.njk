@@ -1,0 +1,136 @@
+<h2>Панель КПП</h2>
+
+<section class="wf-section">
+  <h3>Последние события КПП</h3>
+  <div class="wf-table-wrap">
+    <table class="wf-table">
+      <thead>
+        <tr>
+          <th>Время</th>
+          <th>ГРЗ</th>
+          <th>Направление</th>
+          <th>Статус</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="../guard/client-summary.html">24.02.2026 10:20</a></td>
+          <td style="background:#ffe0e0;"><strong>—</strong></td>
+          <td>Въезд</td>
+          <td>
+            Номер не распознан
+            <div class="wf-actions">
+              <a href="#kpp-manual-decision-modal" class="wf-btn">Принять решение</a>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><a href="../guard/client-summary.html">24.02.2026 10:15</a></td>
+          <td><a href="../guard/client-summary.html">А123БВ777</a></td>
+          <td>Въезд</td>
+          <td>Разрешено (автоматически по договору)</td>
+        </tr>
+        <tr>
+          <td><a href="../guard/client-summary.html">24.02.2026 10:02</a></td>
+          <td><a href="../guard/client-summary.html">В456ГД199</a></td>
+          <td>Выезд</td>
+          <td>Разрешено (по сессии)</td>
+        </tr>
+        <tr>
+          <td><a href="../guard/client-summary.html">24.02.2026 09:50</a></td>
+          <td><a href="../guard/client-summary.html">С789ЕЕ750</a></td>
+          <td>Въезд</td>
+          <td>Отказ (чёрный список)</td>
+        </tr>
+        <tr>
+          <td><a href="../guard/client-summary.html">24.02.2026 09:42</a></td>
+          <td><a href="../guard/client-summary.html">Д111АА750</a></td>
+          <td>Въезд</td>
+          <td>Отказ (решение охранника)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="wf-section">
+  <h3>Поиск по номеру и клиенту</h3>
+  <div class="wf-grid wf-grid--two">
+    <div class="wf-card">
+      <h4>Поиск по номеру ТС</h4>
+      <p class="wf-muted">Быстрая проверка права въезда по государственному номеру ТС.</p>
+      <form class="wf-form" action="../guard/client-summary.html" method="get">
+        <div class="wf-field">
+          <label for="guard-plate-search">ГРЗ (государственный регистрационный знак)</label>
+          <input id="guard-plate-search" name="plate" type="text" placeholder="А123БВ777" required>
+        </div>
+        <div class="wf-actions">
+          <button type="submit">Проверить</button>
+        </div>
+      </form>
+    </div>
+    <div class="wf-card">
+      <h4>Поиск клиента по ФИО</h4>
+      <p class="wf-muted">Найти клиента по ФИО, телефону или ГРЗ и открыть его карточку с краткой сводкой.</p>
+      <form class="wf-form" action="../guard/client-summary.html" method="get">
+        <div class="wf-field">
+          <label for="guard-client-search">ФИО или телефон</label>
+          <input id="guard-client-search" name="q" type="text" placeholder="Иванов Иван Иванович / +7…" required>
+        </div>
+        <div class="wf-actions">
+          <button type="submit">Найти клиента</button>
+        </div>
+      </form>
+      <p class="wf-muted">Карточка клиента для охранника показывает статус доступа, активные договоры и задолженности, список ТС и краткие комментарии.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wf-section">
+  <h3>Карта парковки и количество мест</h3>
+  <p class="wf-muted">Сводная схема парковки: зоны по типам, количество мест и текущая загрузка.</p>
+  {% include "partials/parking-map-compact.njk" %}
+</section>
+
+<section id="kpp-manual-decision-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="kpp-manual-decision-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="kpp-manual-decision-title" class="wf-modal__title">Принять решение по въезду</h2>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <p class="wf-muted">Используйте это окно, если номер не распознан или данные по ТС отсутствуют.</p>
+      <form class="wf-form">
+        <div class="wf-field">
+          <label for="kpp-manual-plate">ГРЗ</label>
+          <div class="wf-inline">
+            <input id="kpp-manual-plate" type="text" placeholder="А123БВ777">
+            <button type="button" class="wf-btn">Проверить доступ</button>
+          </div>
+        </div>
+        <div class="wf-field">
+          <label for="kpp-manual-check-result">Результат проверки</label>
+          <div id="kpp-manual-check-result" class="wf-card" aria-live="polite">
+            <p><strong>Разрешён</strong></p>
+            <p class="wf-muted">Возможный альтернативный результат: <strong>Запрещён</strong> (например, ТС в чёрном списке или нет активного договора).</p>
+          </div>
+        </div>
+        <div class="wf-field">
+          <label for="kpp-manual-decision">Решение</label>
+          <select id="kpp-manual-decision">
+            <option value="allowed">Разрешить въезд/выезд</option>
+            <option value="denied">Отказать во въезде/выезде</option>
+          </select>
+        </div>
+        <div class="wf-field">
+          <label for="kpp-manual-comment">Комментарий</label>
+          <textarea id="kpp-manual-comment" rows="3" placeholder="Кратко опишите причину решения или дополнительные детали."></textarea>
+        </div>
+        <div class="wf-actions">
+          <button type="submit">Сохранить решение и добавить в журнал</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+

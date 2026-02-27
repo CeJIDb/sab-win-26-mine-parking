@@ -1,0 +1,49 @@
+<section id="passport-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="passport-modal-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="passport-modal-title">Паспортные данные</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <form class="wf-form">
+      <p class="wf-notice">
+        Эти данные используются для оформления договоров и долгосрочных бронирований. На прототипе информация не передаётся третьим лицам.
+      </p>
+      <div class="wf-field">
+        <label for="passport-last-name">Фамилия</label>
+        <input id="passport-last-name" type="text" placeholder="Иванов">
+      </div>
+      <div class="wf-field">
+        <label for="passport-first-name">Имя</label>
+        <input id="passport-first-name" type="text" placeholder="Иван">
+      </div>
+      <div class="wf-field">
+        <label for="passport-middle-name">Отчество (если есть)</label>
+        <input id="passport-middle-name" type="text" placeholder="Иванович">
+      </div>
+      <div class="wf-field wf-field--inline-control">
+        <label for="passport-series">Серия и номер паспорта</label>
+        <div class="wf-inline">
+          <input id="passport-series" type="text" placeholder="Серия">
+          <input id="passport-number" type="text" placeholder="Номер">
+        </div>
+      </div>
+      <div class="wf-field">
+        <label for="passport-issued-by">Кем выдан</label>
+        <input id="passport-issued-by" type="text" placeholder="Название органа, код подразделения">
+      </div>
+      <div class="wf-field">
+        <label for="passport-issue-date">Дата выдачи</label>
+        <input id="passport-issue-date" type="date">
+      </div>
+      <div class="wf-field">
+        <label for="passport-address">Адрес регистрации</label>
+        <textarea id="passport-address" rows="3" placeholder="Адрес регистрации по паспорту"></textarea>
+      </div>
+      <div class="wf-actions">
+        <button type="submit">Сохранить</button>
+        <button type="button" class="wf-btn-secondary">Удалить</button>
+      </div>
+    </form>
+  </div>
+</section>
+

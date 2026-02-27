@@ -9,10 +9,7 @@
 <body>
   <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
   <div class="wf-page">
-    <header class="wf-header" role="banner">
-      <h1>Личный кабинет администратора</h1>
-      <p class="wf-muted">{% block header_subtitle %}{% endblock %}</p>
-    </header>
+    {% include "partials/admin-header.njk" %}
     {% set role = "admin" %}
     {% set nav_current = current_nav|default('') %}
     {% include "partials/nav-role.njk" %}

@@ -1,0 +1,158 @@
+<h2>Журнал въезда‑выезда</h2>
+
+<section class="wf-section">
+  <h3>События журнала</h3>
+  <form class="wf-form sessions-filters">
+    <div class="filters-row">
+      <div class="wf-field">
+        <label for="log-date-from">С</label>
+        <input id="log-date-from" type="date">
+      </div>
+      <div class="wf-field">
+        <label for="log-date-to">По</label>
+        <input id="log-date-to" type="date">
+      </div>
+      <div class="wf-field">
+        <label for="log-plate">ГРЗ</label>
+        <input id="log-plate" type="text" placeholder="А123БВ777">
+      </div>
+      <div class="wf-field">
+        <label for="log-kpp">КПП</label>
+        <select id="log-kpp">
+          <option value="">Любой</option>
+          <option value="kpp1">КПП‑1</option>
+          <option value="kpp2">КПП‑2</option>
+        </select>
+      </div>
+      <div class="filter-actions">
+        <button type="submit">Показать</button>
+      </div>
+    </div>
+  </form>
+  <div class="wf-actions">
+    <a href="#log-manual-modal" class="wf-btn">Добавить событие вручную</a>
+  </div>
+  <div class="wf-table-wrap">
+    <table class="wf-table">
+      <thead>
+        <tr>
+          <th>Дата и время</th>
+          <th>КПП</th>
+          <th>ГРЗ</th>
+          <th>Направление</th>
+          <th>Статус</th>
+          <th>Источник решения</th>
+          <th>Комментарий</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>24.02.2026 10:15</td>
+          <td>КПП‑1</td>
+          <td><a href="../guard/client-summary.html">А123БВ777</a></td>
+          <td>Въезд</td>
+          <td>Разрешено</td>
+          <td>Автоматически (по договору)</td>
+          <td>Активный договор №Д‑045, нет задолженности.</td>
+        </tr>
+        <tr>
+          <td>24.02.2026 10:02</td>
+          <td>КПП‑1</td>
+          <td><a href="../guard/client-summary.html">В456ГД199</a></td>
+          <td>Выезд</td>
+          <td>Разрешено</td>
+          <td>Автоматически (по сессии)</td>
+          <td>Оплата сессии успешна.</td>
+        </tr>
+        <tr>
+          <td>24.02.2026 09:50</td>
+          <td>КПП‑2</td>
+          <td><a href="../guard/client-summary.html">С789ЕЕ750</a></td>
+          <td>Въезд</td>
+          <td>Отказ</td>
+          <td>Чёрный список</td>
+          <td>ТС в чёрном списке, пропуск запрещён.</td>
+        </tr>
+        <tr>
+          <td>24.02.2026 09:42</td>
+          <td>КПП‑1</td>
+          <td><a href="../guard/client-summary.html">Д111АА750</a></td>
+          <td>Въезд</td>
+          <td>Отказ</td>
+          <td>Охранник</td>
+          <td>Несовпадение номера с бронированием, водитель направлен на стоянку ожидания.</td>
+        </tr>
+        <tr>
+          <td>24.02.2026 09:30</td>
+          <td>КПП‑1</td>
+          <td><a href="../guard/client-summary.html">Е222ББ750</a></td>
+          <td>Въезд</td>
+          <td>Ошибка распознавания</td>
+          <td>Система распознавания</td>
+          <td>Номер распознан неуверенно, требуется проверка и решение охранника.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="log-manual-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="log-manual-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="log-manual-title" class="wf-modal__title">Ручной ввод события</h2>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <p class="wf-muted">Используется, если система распознавания или интеграция с парковкой временно недоступны. Охранник фиксирует событие вручную.</p>
+      <form class="wf-form">
+        <div class="wf-field">
+          <label for="manual-datetime">Дата и время</label>
+          <input id="manual-datetime" type="datetime-local">
+        </div>
+        <div class="wf-field">
+          <label for="manual-kpp">КПП</label>
+          <select id="manual-kpp">
+            <option value="">Выберите КПП</option>
+            <option value="kpp1">КПП‑1</option>
+            <option value="kpp2">КПП‑2</option>
+          </select>
+        </div>
+        <div class="wf-field">
+          <label for="manual-plate">ГРЗ</label>
+          <input id="manual-plate" type="text" placeholder="А123БВ777">
+        </div>
+        <div class="wf-field">
+          <label for="manual-direction">Направление</label>
+          <select id="manual-direction">
+            <option value="in">Въезд</option>
+            <option value="out">Выезд</option>
+          </select>
+        </div>
+        <div class="wf-field">
+          <label for="manual-status">Статус</label>
+          <select id="manual-status">
+            <option value="allowed">Разрешено (ручной пропуск)</option>
+            <option value="denied">Отказано</option>
+            <option value="pending">Нужна проверка</option>
+          </select>
+        </div>
+        <div class="wf-field">
+          <label for="manual-source">Источник решения</label>
+          <select id="manual-source">
+            <option value="guard">Охранник вручную</option>
+            <option value="admin">Решение администратора</option>
+            <option value="other">Другое</option>
+          </select>
+        </div>
+        <div class="wf-field">
+          <label for="manual-comment">Комментарий</label>
+          <textarea id="manual-comment" rows="3" placeholder="Кратко опишите причину решения или сбоя системы."></textarea>
+        </div>
+        <div class="wf-actions">
+          <button type="submit">Сохранить в журнал</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+

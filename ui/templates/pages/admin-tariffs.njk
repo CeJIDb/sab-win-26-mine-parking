@@ -9,8 +9,11 @@
   <h2>Управление тарифами</h2>
 
   <section class="wf-section">
-    <h3>Фильтры по тарифам</h3>
-    <form class="wf-form sessions-filters">
+    <h3>Реестр тарифов</h3>
+    <div class="wf-actions" style="margin-bottom: 1rem;">
+      <a href="#admin-tariff-create-modal" class="wf-btn">Создать тариф</a>
+    </div>
+    <form class="wf-form sessions-filters" aria-label="Фильтры по тарифам">
       <div class="filters-row">
         <div class="wf-field">
           <label for="search-tariff-name">Название тарифа</label>
@@ -33,19 +36,11 @@
           </select>
         </div>
         <div class="filter-actions">
-          <button type="submit">Показать</button>
+          <button type="submit">Применить</button>
+          <button type="button" class="wf-btn-secondary">Сбросить</button>
         </div>
       </div>
     </form>
-  </section>
-
-  <div class="wf-actions" style="margin-bottom: 1rem;">
-    <a href="#admin-tariff-create-modal" class="wf-btn">Создать тариф</a>
-  </div>
-
-  <section class="wf-section">
-    <h3>Реестр тарифов</h3>
-    <p class="wf-muted">Тариф — набор правил расчёта стоимости. Ниже — примеры тарифов для прототипа.</p>
     <div class="wf-table-wrap">
       <table class="wf-table">
         <thead>
@@ -111,14 +106,26 @@
                 </select>
               </div>
             </div>
-            <div class="wf-field">
-              <label for="admin-tariff-sector">Сектор</label>
-              <select id="admin-tariff-sector">
-                <option value="A" selected>Сектор А</option>
-                <option value="B">Сектор Б</option>
-                <option value="C">Сектор В</option>
-                <option value="all">Все секторы</option>
-              </select>
+            <div class="wf-grid wf-grid--two">
+              <div class="wf-field">
+                <label for="admin-tariff-sector">Сектор</label>
+                <select id="admin-tariff-sector">
+                  <option value="A" selected>Сектор А</option>
+                  <option value="B">Сектор Б</option>
+                  <option value="C">Сектор В</option>
+                  <option value="all">Все секторы</option>
+                </select>
+              </div>
+              <div class="wf-field">
+                <label for="admin-tariff-vehicle-type">Тип ТС</label>
+                <select id="admin-tariff-vehicle-type">
+                  <option value="any" selected>Любой</option>
+                  <option value="light">Легковой</option>
+                  <option value="cargo">Грузовой</option>
+                  <option value="special">Спецтехника</option>
+                  <option value="moto">Мото</option>
+                </select>
+              </div>
             </div>
             <div class="wf-grid wf-grid--two">
               <div class="wf-field">
@@ -211,14 +218,26 @@
                 </select>
               </div>
             </div>
-            <div class="wf-field">
-              <label for="admin-tariff-create-sector">Сектор</label>
-              <select id="admin-tariff-create-sector">
-                <option value="A">Сектор А</option>
-                <option value="B">Сектор Б</option>
-                <option value="C">Сектор В</option>
-                <option value="all">Все секторы</option>
-              </select>
+            <div class="wf-grid wf-grid--two">
+              <div class="wf-field">
+                <label for="admin-tariff-create-sector">Сектор</label>
+                <select id="admin-tariff-create-sector">
+                  <option value="A">Сектор А</option>
+                  <option value="B">Сектор Б</option>
+                  <option value="C">Сектор В</option>
+                  <option value="all">Все секторы</option>
+                </select>
+              </div>
+              <div class="wf-field">
+                <label for="admin-tariff-create-vehicle-type">Тип ТС</label>
+                <select id="admin-tariff-create-vehicle-type">
+                  <option value="any" selected>Любой</option>
+                  <option value="light">Легковой</option>
+                  <option value="cargo">Грузовой</option>
+                  <option value="special">Спецтехника</option>
+                  <option value="moto">Мото</option>
+                </select>
+              </div>
             </div>
             <div class="wf-grid wf-grid--two">
               <div class="wf-field">

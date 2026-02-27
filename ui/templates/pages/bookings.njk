@@ -3,7 +3,6 @@
 {% set current_nav = 'bookings' %}
 
 {% block title %}Управление бронированием — ЛК клиента{% endblock %}
-{% block header_subtitle %}Управление бронированием{% endblock %}
 
 {% block content %}
   <h2>Управление бронированием</h2>
@@ -13,7 +12,7 @@
     <div class="wf-actions">
       <a href="#booking-create-modal" class="wf-btn">Создать бронь</a>
     </div>
-    <form class="wf-form sessions-filters" aria-label="Фильтры по бронированиям">
+    <form class="wf-form sessions-filters wf-filters" aria-label="Фильтры по бронированиям">
       <div class="filters-row">
         <div class="wf-field">
           <label for="filter-booking-date-from">С</label>
@@ -42,7 +41,6 @@
             <th scope="col">Сектор / ПМ</th>
             <th scope="col">Тариф</th>
             <th scope="col">Статус</th>
-            <th scope="col">Оплата</th>
             <th scope="col">Действия</th>
           </tr>
         </thead>
@@ -53,7 +51,6 @@
             <td>Сектор A, ПМ 12</td>
             <td>Почасовой A</td>
             <td>Подтверждена</td>
-            <td><a href="payment-external.html" class="wf-btn">Оплатить</a></td>
             <td>
               <a href="#booking-edit-modal" class="wf-btn">Изменить</a>
               <a href="#booking-cancel-modal" class="wf-btn">Отменить</a>
@@ -64,8 +61,7 @@
             <td>Завтра 08:00–10:00</td>
             <td>Сектор B, ПМ 23</td>
             <td>Почасовой B</td>
-            <td>Ожидает оплаты</td>
-            <td><a href="payment-external.html" class="wf-btn">Оплатить</a></td>
+            <td>Ожидает оплаты — <a href="payment-external.html">Оплатить</a></td>
             <td>
               <a href="#booking-edit-modal" class="wf-btn">Изменить</a>
               <a href="#booking-cancel-modal" class="wf-btn">Отменить</a>
@@ -76,8 +72,7 @@
             <td>Вчера 20:00–23:00</td>
             <td>Сектор C, ПМ 45</td>
             <td>Почасовой C</td>
-            <td>Завершена</td>
-            <td>Оплачено</td>
+            <td>Завершена, оплачено</td>
             <td>
               <a href="#booking-edit-modal" class="wf-btn">Изменить</a>
               <a href="#booking-cancel-modal" class="wf-btn">Отменить</a>
@@ -89,7 +84,6 @@
             <td>Сектор A, ПМ 10</td>
             <td>Почасовой A</td>
             <td>Отменена клиентом</td>
-            <td>—</td>
             <td>
               <a href="#booking-edit-modal" class="wf-btn">Изменить</a>
               <a href="#booking-cancel-modal" class="wf-btn">Отменить</a>

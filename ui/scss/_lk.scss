@@ -30,6 +30,31 @@
   margin: 0;
 }
 
+.wf-notification {
+  border-left: 4px solid transparent;
+}
+
+.wf-notification--unread {
+  border-left-color: #e0a800;
+  background: #fff9d9;
+  font-weight: 600;
+}
+
+.wf-notification--read {
+  border-left-color: #ccc;
+  background: #ffffff;
+}
+
+.wf-notification__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.wf-notification__link:hover {
+  text-decoration: underline;
+}
+
 /* Dashboard blocks */
 .wf-grid {
   display: grid;
@@ -55,6 +80,17 @@
 .wf-table-wrap {
   overflow-x: auto;
   border: var(--wf-border);
+}
+
+.wf-filters {
+  margin-bottom: var(--wf-gap);
+}
+
+.contracts-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
 }
 
 .wf-table {

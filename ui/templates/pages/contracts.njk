@@ -3,7 +3,6 @@
 {% set current_nav = 'contracts' %}
 
 {% block title %}Договоры — ЛК клиента{% endblock %}
-{% block header_subtitle %}Управление договорами{% endblock %}
 
 {% block content %}
   <h2>Управление договорами</h2>
@@ -13,7 +12,7 @@
     <div class="wf-actions">
       <a href="contracts-create.html" class="wf-btn">Создать договор</a>
     </div>
-    <form class="wf-form sessions-filters" aria-label="Фильтры по договорам">
+    <form class="wf-form sessions-filters wf-filters" aria-label="Фильтры по договорам">
       <div class="filters-row">
         <div class="wf-field">
           <label for="filter-contract-number">Номер договора</label>
@@ -51,7 +50,6 @@
             <th scope="col">Статус</th>
             <th scope="col">ТС / ПМ</th>
             <th scope="col">Задолженность</th>
-            <th scope="col">Документ</th>
             <th scope="col">Действия</th>
           </tr>
         </thead>
@@ -62,8 +60,8 @@
             <td>Активен</td>
             <td>2 ТС, 2 ПМ</td>
             <td>Нет</td>
-            <td><a href="#" class="wf-btn">Скачать</a></td>
-            <td>
+            <td class="contracts-actions">
+              <a href="#" class="wf-btn">Скачать</a>
               <a href="#contract-edit-modal" class="wf-btn">Изменить</a>
               <a href="#contract-terminate-modal" class="wf-btn wf-btn-secondary">Расторгнуть</a>
             </td>
@@ -73,9 +71,9 @@
             <td>15.02.2026–14.05.2026</td>
             <td>Активен</td>
             <td>1 ТС, 1 ПМ</td>
-            <td>Есть 1 просроченный платёж</td>
-            <td><a href="#" class="wf-btn">Скачать</a></td>
-            <td>
+            <td>Есть 1 просроченный платёж — <a href="payment-external.html">Оплатить</a></td>
+            <td class="contracts-actions">
+              <a href="#" class="wf-btn">Скачать</a>
               <a href="#contract-edit-modal" class="wf-btn">Изменить</a>
               <a href="#contract-terminate-modal" class="wf-btn wf-btn-secondary">Расторгнуть</a>
             </td>

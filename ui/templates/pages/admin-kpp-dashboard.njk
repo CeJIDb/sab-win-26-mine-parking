@@ -1,0 +1,11 @@
+{% extends "layouts/admin.njk" %}
+
+{% set current_nav = 'admin-kpp-dashboard' %}
+
+{% block title %}КПП — панель (ЛК администратора){% endblock %}
+{% block header_subtitle %}Интерфейс КПП — панель, просмотр администратора{% endblock %}
+
+{% block content %}
+  {% include "partials/guard-dashboard-content.njk" %}
+{% endblock %}
+

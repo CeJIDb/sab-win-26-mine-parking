@@ -10,58 +10,41 @@
 
   <section class="wf-section">
     <h3>Карта парковки по секторам</h3>
-    <p class="wf-muted">Нажмите на сектор, чтобы настроить количество мест и параметры. Свободные места можно распределять из пула.</p>
+    <p class="wf-muted">Нажмите на сектор на карте, чтобы открыть его настройки и распределить места.</p>
     <div class="wf-parking-map" role="img" aria-label="Схема парковки по секторам">
-      <a href="#admin-sector-settings-modal" class="wf-parking-map__sector wf-parking-map__sector--A" id="sector-block-A">
-        <span class="wf-parking-map__sector-name">Сектор А</span>
-        <span class="wf-parking-map__sector-stats">24 места · 18 занято</span>
-      </a>
-      <a href="#admin-sector-settings-modal" class="wf-parking-map__sector wf-parking-map__sector--B" id="sector-block-B">
-        <span class="wf-parking-map__sector-name">Сектор Б</span>
-        <span class="wf-parking-map__sector-stats">32 места · 28 занято</span>
-      </a>
-      <a href="#admin-sector-settings-modal" class="wf-parking-map__sector wf-parking-map__sector--C" id="sector-block-C">
-        <span class="wf-parking-map__sector-name">Сектор В</span>
-        <span class="wf-parking-map__sector-stats">16 мест · 12 занято</span>
-      </a>
+      <div class="wf-parking-map__zones">
+        <div class="wf-parking-map__column">
+          <a href="#admin-sector-settings-modal" class="wf-parking-map__zone" id="sector-block-A">
+            <p class="wf-parking-map__zone-title">Сектор А — 200 мест</p>
+            <p class="wf-parking-map__zone-meta">забронировано: 140 (ФЛ/ЮЛ) · заблокировано: 10</p>
+          </a>
+          <a href="#admin-sector-settings-modal" class="wf-parking-map__zone" id="sector-block-B">
+            <p class="wf-parking-map__zone-title">Сектор Б — 220 мест</p>
+            <p class="wf-parking-map__zone-meta">забронировано: 160 (ФЛ/ЮЛ) · заблокировано: 20</p>
+          </a>
+        </div>
+        <div class="wf-parking-map__column">
+          <a href="#admin-sector-settings-modal" class="wf-parking-map__zone" id="sector-block-C">
+            <p class="wf-parking-map__zone-title">Сектор В — 180 мест</p>
+            <p class="wf-parking-map__zone-meta">забронировано: 110 (ФЛ/ЮЛ) · заблокировано: 15</p>
+          </a>
+          <a href="#admin-sector-settings-modal" class="wf-parking-map__zone" id="sector-block-D">
+            <p class="wf-parking-map__zone-title">Резерв / служебные — 0 мест</p>
+            <p class="wf-parking-map__zone-meta">используются под технику и обслуживание</p>
+          </a>
+        </div>
+      </div>
+      <p class="wf-parking-map__total">Всего 600 мест · забронировано: 410 · нераспределено: 150 · заблокировано: 40.</p>
     </div>
     <div class="wf-actions" style="margin-top: 1rem;">
       <a href="#admin-sector-add-modal" class="wf-btn">Добавить сектор</a>
-      <button type="button" class="wf-btn">Удалить сектор</button>
     </div>
   </section>
 
   <section class="wf-section">
-    <h3>Пул свободных мест</h3>
-    <p class="wf-muted">Места без привязки к сектору. Распределите их по секторам или создайте новый сектор.</p>
-    <div class="wf-card" style="max-width: 28rem;">
-      <p><strong>Свободных мест в пуле:</strong> 12</p>
-      <form class="wf-form" style="margin-top: 0.75rem;">
-        <div class="wf-grid wf-grid--two">
-          <div class="wf-field">
-            <label for="pool-to-sector">Распределить в сектор</label>
-            <select id="pool-to-sector">
-              <option value="">Выберите сектор</option>
-              <option value="A">Сектор А</option>
-              <option value="B">Сектор Б</option>
-              <option value="C">Сектор В</option>
-            </select>
-          </div>
-          <div class="wf-field">
-            <label for="pool-count">Количество мест</label>
-            <input id="pool-count" type="number" min="1" value="1">
-          </div>
-        </div>
-        <div class="wf-actions">
-          <button type="submit">Распределить из пула</button>
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <section class="wf-section">
-    <h3>Фильтры по секторам и ПМ</h3>
-    <form class="wf-form sessions-filters">
+    <h3>Реестр секторов и парковочных мест</h3>
+    <p class="wf-muted">Отображаются только закреплённые за ФЛ и ЮЛ парковочные места.</p>
+    <form class="wf-form sessions-filters" aria-label="Фильтры по закреплённым ПМ">
       <div class="filters-row">
         <div class="wf-field">
           <label for="search-sector-name">Сектор</label>
@@ -73,19 +56,18 @@
           </select>
         </div>
         <div class="wf-field">
-          <label for="search-spot-type">Тип места</label>
-          <select id="search-spot-type">
-            <option value="">Любой</option>
-            <option value="long">Долгосрочное</option>
-            <option value="guest">Гостевое</option>
+          <label for="search-client-type">Тип клиента</label>
+          <select id="search-client-type">
+            <option value="">Все</option>
+            <option value="fl">ФЛ</option>
+            <option value="ul">ЮЛ</option>
           </select>
         </div>
         <div class="wf-field">
           <label for="search-spot-status">Статус места</label>
           <select id="search-spot-status">
             <option value="">Любой</option>
-            <option value="free">Свободно</option>
-            <option value="occupied">Занято</option>
+            <option value="active">Активно</option>
             <option value="blocked">Заблокировано</option>
           </select>
         </div>
@@ -94,20 +76,15 @@
         </div>
       </div>
     </form>
-  </section>
-
-  <section class="wf-section">
-    <h3>Реестр секторов и парковочных мест</h3>
-    <p class="wf-muted">Прототип реестра ПМ: по каждому месту видно сектор, статус занятости и привязку к договору.</p>
     <div class="wf-table-wrap">
       <table class="wf-table">
         <thead>
           <tr>
             <th>Сектор</th>
             <th>Парковочное место</th>
-            <th>Тип</th>
-            <th>Статус</th>
-            <th>Привязан к договору</th>
+            <th>Тип клиента</th>
+            <th>Статус договора</th>
+            <th>Договор / клиент</th>
             <th>Действия</th>
           </tr>
         </thead>
@@ -115,25 +92,25 @@
           <tr>
             <td>Сектор А</td>
             <td>ПМ 101</td>
-            <td>Долгосрочное</td>
-            <td><span class="wf-badge">Занято</span></td>
+            <td>ФЛ</td>
+            <td><span class="wf-badge">Активен</span></td>
             <td>Д‑045, Иванов И.И.</td>
             <td><a href="#admin-sector-modal" class="wf-btn">Настроить</a></td>
           </tr>
           <tr>
             <td>Сектор А</td>
-            <td>ПМ 102</td>
-            <td>Гостевое</td>
-            <td><span class="wf-badge">Свободно</span></td>
-            <td>—</td>
+            <td>ПМ 103</td>
+            <td>ЮЛ</td>
+            <td><span class="wf-badge">Активен</span></td>
+            <td>Д‑078, ООО «СтройИнвест»</td>
             <td><a href="#admin-sector-modal" class="wf-btn">Настроить</a></td>
           </tr>
           <tr>
             <td>Сектор Б</td>
             <td>ПМ 201</td>
-            <td>Долгосрочное</td>
+            <td>ФЛ</td>
             <td><span class="wf-badge">Заблокировано</span></td>
-            <td>Резерв под ремонт</td>
+            <td>Д‑102, Петров П.П. (задолженность)</td>
             <td><a href="#admin-sector-modal" class="wf-btn">Настроить</a></td>
           </tr>
         </tbody>
@@ -157,19 +134,23 @@
             </div>
             <div class="wf-field">
               <label for="admin-sector-total">Всего мест в секторе</label>
-              <input id="admin-sector-total" type="number" min="0" value="24">
+              <input id="admin-sector-total" type="number" min="0" value="200">
             </div>
             <div class="wf-field">
-              <label for="admin-sector-long">Из них долгосрочных (по договору)</label>
-              <input id="admin-sector-long" type="number" min="0" value="18">
+              <label for="admin-sector-long">Мест, закреплённых по договорам ФЛ/ЮЛ</label>
+              <input id="admin-sector-long" type="number" min="0" value="140">
             </div>
             <div class="wf-field">
-              <label for="admin-sector-guest">Гостевых (почасовых)</label>
-              <input id="admin-sector-guest" type="number" min="0" value="6">
+              <label for="admin-sector-blocked">Заблокированных мест</label>
+              <input id="admin-sector-blocked" type="number" min="0" value="10">
             </div>
+            <p class="wf-muted">
+              Нераспределённые места рассчитываются как
+              <strong>Всего − закреплённые − заблокированные</strong> и отображаются на карте и в отчётах.
+            </p>
             <div class="wf-field">
-              <label for="admin-sector-comment">Комментарий</label>
-              <input id="admin-sector-comment" type="text" placeholder="Например: уровень 1, въезд с северной стороны">
+              <label for="admin-sector-comment">Комментарий к сектору</label>
+              <input id="admin-sector-comment" type="text" placeholder="Например: уровень 1, близко к КПП‑1, преимущественно ЮЛ">
             </div>
           </section>
           <div class="wf-actions">
@@ -194,10 +175,22 @@
             <input id="admin-sector-new-name" type="text" placeholder="Например, Сектор Г">
           </div>
           <div class="wf-field">
-            <label for="admin-sector-new-count">Количество мест (взять из пула)</label>
-            <input id="admin-sector-new-count" type="number" min="1" value="1">
+            <label for="admin-sector-new-count">Всего мест в секторе</label>
+            <input id="admin-sector-new-count" type="number" min="1" value="50">
           </div>
-          <p class="wf-muted">Места будут созданы в пуле и перенесены в новый сектор. При необходимости сначала распределите места из пула.</p>
+          <div class="wf-grid wf-grid--two">
+            <div class="wf-field">
+              <label for="admin-sector-new-long">Планируется закрепить по договорам</label>
+              <input id="admin-sector-new-long" type="number" min="0" value="40">
+            </div>
+            <div class="wf-field">
+              <label for="admin-sector-new-blocked">Зарезервировать/заблокировать</label>
+              <input id="admin-sector-new-blocked" type="number" min="0" value="5">
+            </div>
+          </div>
+          <p class="wf-muted">
+            Нераспределённые места будут доступны для дальнейшего планирования и могут быть распределены между ФЛ и ЮЛ позже.
+          </p>
           <div class="wf-actions">
             <button type="submit">Создать сектор</button>
           </div>

@@ -6,6 +6,7 @@ const ROOT = process.cwd();
 const CLIENT_DIR = path.join(ROOT, 'ui', 'client');
 const GUARD_DIR = path.join(ROOT, 'ui', 'guard');
 const ADMIN_DIR = path.join(ROOT, 'ui', 'admin');
+const SITE_DIR = path.join(ROOT, 'ui', 'site');
 const TEMPLATES_DIR = path.join(ROOT, 'ui', 'templates');
 
 // Настраиваем окружение nunjucks
@@ -35,6 +36,13 @@ async function buildAdminPage(templateName, outName) {
   console.log(`Built admin/${outName} from ${templateName}`);
 }
 
+async function buildSitePage(templateName, outName) {
+  const html = env.render(templateName, {});
+  const outPath = path.join(SITE_DIR, outName);
+  await fs.writeFile(outPath, html, 'utf8');
+  console.log(`Built site/${outName} from ${templateName}`);
+}
+
 async function main() {
   const pages = [
     { template: 'pages/dashboard.njk', out: 'dashboard.html' },
@@ -55,18 +63,30 @@ async function main() {
     { template: 'pages/guard-dashboard.njk', out: 'index.html' },
     { template: 'pages/guard-log.njk', out: 'log.html' },
     { template: 'pages/guard-client-summary.njk', out: 'client-summary.html' },
+    { template: 'pages/guard-profile.njk', out: 'profile.html' },
+    { template: 'pages/guard-plate-history.njk', out: 'plate-history.html' },
+    { template: 'pages/guard-notifications.njk', out: 'notifications.html' },
   ];
 
   const adminPages = [
     { template: 'pages/admin-index.njk', out: 'index.html' },
+    { template: 'pages/admin-profile.njk', out: 'profile.html' },
     { template: 'pages/admin-sectors.njk', out: 'sectors.html' },
     { template: 'pages/admin-tariffs.njk', out: 'tariffs.html' },
     { template: 'pages/admin-contracts.njk', out: 'contracts.html' },
     { template: 'pages/admin-clients.njk', out: 'clients.html' },
     { template: 'pages/admin-admins.njk', out: 'admins.html' },
+    { template: 'pages/admin-debts.njk', out: 'debts.html' },
+    { template: 'pages/admin-notifications.njk', out: 'notifications.html' },
     { template: 'pages/admin-requests.njk', out: 'requests.html' },
     { template: 'pages/admin-analytics.njk', out: 'analytics.html' },
     { template: 'pages/admin-client-sessions.njk', out: 'client-sessions.html' },
+    { template: 'pages/admin-kpp-dashboard.njk', out: 'kpp-panel.html' },
+    { template: 'pages/admin-kpp-log.njk', out: 'kpp-log.html' },
+  ];
+
+  const sitePages = [
+    { template: 'pages/site-index.njk', out: 'index.html' },
   ];
 
   for (const page of pages) {
@@ -79,6 +99,10 @@ async function main() {
 
   for (const page of adminPages) {
     await buildAdminPage(page.template, page.out);
+  }
+
+  for (const page of sitePages) {
+    await buildSitePage(page.template, page.out);
   }
 }
 

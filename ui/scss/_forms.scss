@@ -40,6 +40,10 @@ form,
   background: #ccc;
 }
 
+.sessions-filters {
+  margin-bottom: var(--wf-gap);
+}
+
 .sessions-filters .filters-row {
   display: flex;
   flex-wrap: nowrap;
