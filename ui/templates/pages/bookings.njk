@@ -12,7 +12,7 @@
     <div class="wf-actions">
       <a href="#booking-create-modal" class="wf-btn">Создать бронирование</a>
     </div>
-    <form class="wf-form sessions-filters wf-filters" aria-label="Фильтры по бронированиям">
+    <form class="wf-form sessions-filters bookings-filters wf-filters" aria-label="Фильтры по бронированиям">
       <div class="filters-row">
         <div class="wf-field">
           <label for="filter-booking-date-from">С</label>
@@ -25,6 +25,16 @@
         <div class="wf-field">
           <label for="filter-booking-search">Номер / дата брони</label>
           <input id="filter-booking-search" type="text" placeholder="Например, #1 или 25.02.2026">
+        </div>
+        <div class="wf-field">
+          <label for="filter-booking-status">Статус</label>
+          <select id="filter-booking-status" aria-label="Статус бронирования">
+            <option value="">Любой</option>
+            <option value="confirmed">Подтверждена</option>
+            <option value="pending">Ожидает оплаты</option>
+            <option value="completed">Завершена</option>
+            <option value="cancelled">Отменена</option>
+          </select>
         </div>
         <div class="filter-actions">
           <button type="button">Применить</button>
@@ -47,10 +57,10 @@
         <tbody>
           <tr>
             <td>#1</td>
-            <td>Сегодня 19:00–22:00</td>
-            <td>Сектор A, ПМ 12</td>
+            <td>27.02.2026 19:00–22:00</td>
+            <td>Сектор A</td>
             <td>Почасовой A</td>
-            <td>Подтверждена</td>
+            <td><span class="wf-badge">Подтверждена</span></td>
             <td>
               <a href="#booking-edit-modal" class="wf-btn">Изменить</a>
               <a href="#booking-cancel-modal" class="wf-btn">Отменить</a>
@@ -58,10 +68,10 @@
           </tr>
           <tr>
             <td>#2</td>
-            <td>Завтра 08:00–10:00</td>
-            <td>Сектор B, ПМ 23</td>
+            <td>28.02.2026 08:00–10:00</td>
+            <td>Сектор B</td>
             <td>Почасовой B</td>
-            <td>Ожидает оплаты — <a href="payment-external.html">Оплатить</a></td>
+            <td><span class="wf-badge">Ожидает оплаты</span> — <a href="payment-external.html">Оплатить</a></td>
             <td>
               <a href="#booking-edit-modal" class="wf-btn">Изменить</a>
               <a href="#booking-cancel-modal" class="wf-btn">Отменить</a>
@@ -69,24 +79,30 @@
           </tr>
           <tr>
             <td>#3</td>
-            <td>Вчера 20:00–23:00</td>
-            <td>Сектор C, ПМ 45</td>
+            <td>26.02.2026 20:00–23:00</td>
+            <td>Сектор C</td>
             <td>Почасовой C</td>
-            <td>Завершена, оплачено</td>
-            <td>
-              <a href="#booking-edit-modal" class="wf-btn">Изменить</a>
-              <a href="#booking-cancel-modal" class="wf-btn">Отменить</a>
-            </td>
+            <td><span class="wf-badge">Завершена</span></td>
+            <td>—</td>
           </tr>
           <tr>
             <td>#4</td>
+            <td>01.02.2026–28.02.2026 (договор)</td>
+            <td>Сектор Б, ПМ 201</td>
+            <td>Долгосрочная (договор Д‑045)</td>
+            <td><span class="wf-badge">Подтверждена</span></td>
+            <td>
+              <a href="#contract-edit-modal" class="wf-btn">Изменить</a>
+            </td>
+          </tr>
+          <tr>
+            <td>#5</td>
             <td>15.02.2026 09:00–12:00</td>
-            <td>Сектор A, ПМ 10</td>
+            <td>Сектор A</td>
             <td>Почасовой A</td>
-            <td>Отменена клиентом</td>
+            <td><span class="wf-badge">Отменена</span></td>
             <td>
               <a href="#booking-edit-modal" class="wf-btn">Изменить</a>
-              <a href="#booking-cancel-modal" class="wf-btn">Отменить</a>
             </td>
           </tr>
         </tbody>
@@ -96,4 +112,5 @@
   {% include "partials/booking-create-modal.njk" %}
   {% include "partials/booking-edit-modal.njk" %}
   {% include "partials/booking-cancel-modal.njk" %}
+  {% include "partials/contract-edit-modal.njk" %}
 {% endblock %}
