@@ -68,20 +68,9 @@
           </table>
         </div>
       </section>
-
-      <section class="wf-section">
-        <h3>Расторжение договора</h3>
-        <form class="wf-form">
-          <div class="wf-field">
-            <label for="admin-contract-terminate-reason">Причина расторжения договора</label>
-            <textarea id="admin-contract-terminate-reason" rows="3" placeholder="Кратко опишите причину расторжения (например: окончание аренды, длительная задолженность, решение клиента)."></textarea>
-          </div>
-          <div class="wf-actions">
-            <button type="button">Расторгнуть договор</button>
-          </div>
-        </form>
-      </section>
     </div>
   </div>
-
 </section>
+
+{% include "partials/admin-contract-edit-modal.njk" %}
+{% include "partials/admin-contract-terminate-modal.njk" %}

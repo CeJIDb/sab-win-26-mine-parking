@@ -248,23 +248,120 @@
           </table>
         </div>
       </section>
+    </div>
+  </div>
+</section>
 
+<section id="admin-contract-edit-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-contract-edit-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="admin-contract-edit-title" class="wf-modal__title">Изменить договор Д‑045</h2>
+      <a href="#admin-contract-modal" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
       <section class="wf-section">
-        <h3>Расторжение договора</h3>
+        <h3>Параметры договора</h3>
         <form class="wf-form">
-          <div class="wf-field">
-            <label for="admin-contract-terminate-reason">Причина расторжения договора</label>
-            <textarea id="admin-contract-terminate-reason" rows="3" placeholder="Кратко опишите причину расторжения (например: окончание аренды, длительная задолженность, решение клиента)."></textarea>
+          <div class="wf-grid wf-grid--two">
+            <div class="wf-field">
+              <label for="admin-contract-edit-period-from">Период с</label>
+              <input id="admin-contract-edit-period-from" type="date" value="2026-01-01">
+            </div>
+            <div class="wf-field">
+              <label for="admin-contract-edit-period-to">по</label>
+              <input id="admin-contract-edit-period-to" type="date" value="2026-12-31">
+            </div>
           </div>
-          <div class="wf-actions">
-            <button type="button">Расторгнуть договор</button>
+          <div class="wf-field">
+            <label for="admin-contract-edit-tariff">Тариф</label>
+            <select id="admin-contract-edit-tariff">
+              <option value="long-b">Долгосрочная парковка, сектор Б</option>
+              <option value="long-a">Долгосрочная парковка, сектор А</option>
+              <option value="corp">Корпоративный тариф ЮЛ — премиум</option>
+            </select>
+          </div>
+          <div class="wf-field">
+            <label for="admin-contract-edit-status">Статус договора</label>
+            <select id="admin-contract-edit-status">
+              <option value="active" selected>Активен</option>
+              <option value="suspended">Приостановлен</option>
+              <option value="terminated">Расторгнут</option>
+            </select>
+          </div>
+          <div class="wf-field">
+            <label for="admin-contract-edit-comment">Комментарий</label>
+            <textarea id="admin-contract-edit-comment" rows="2" placeholder="Заметки управляющего">Договор продлён до конца года.</textarea>
           </div>
         </form>
       </section>
+
+      <section class="wf-section">
+        <h3>ТС (ГРЗ) по договору</h3>
+        <div class="wf-field wf-field--inline-control">
+          <label for="admin-contract-edit-vehicle-picker">Добавить ТС</label>
+          <div class="wf-inline">
+            <select id="admin-contract-edit-vehicle-picker">
+              <option value="">— выбрать ТС —</option>
+              <option value="A123BV777">А123БВ777 — Toyota Camry</option>
+              <option value="B456GD199">В456ГД199 — Volkswagen Polo</option>
+              <option value="X999YY199">X999YY199 — Пример дополнительного ТС</option>
+            </select>
+            <button type="button" aria-label="Добавить ТС по договору">Добавить</button>
+          </div>
+          <ul class="wf-list wf-list--compact" id="admin-contract-edit-vehicle-list">
+            <li>А123БВ777 — Toyota Camry <button type="button" class="wf-btn" aria-label="Удалить ТС из договора">−</button></li>
+            <li>В456ГД199 — Volkswagen Polo <button type="button" class="wf-btn" aria-label="Удалить ТС из договора">−</button></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="wf-section">
+        <h3>Парковочные места (ПМ)</h3>
+        <div class="wf-field wf-field--inline-control">
+          <label for="admin-contract-edit-place-picker">Добавить ПМ</label>
+          <div class="wf-inline">
+            <select id="admin-contract-edit-place-picker">
+              <option value="">— выбрать ПМ —</option>
+              <option value="A-101">ПМ 101 — сектор А</option>
+              <option value="A-102">ПМ 102 — сектор А</option>
+              <option value="B-201">ПМ 201 — сектор Б</option>
+            </select>
+            <button type="button" aria-label="Добавить ПМ по договору">Добавить</button>
+          </div>
+          <ul class="wf-list wf-list--compact" id="admin-contract-edit-place-list">
+            <li>ПМ 101 — сектор А <button type="button" class="wf-btn" aria-label="Удалить ПМ из договора">−</button></li>
+            <li>ПМ 201 — сектор Б <button type="button" class="wf-btn" aria-label="Удалить ПМ из договора">−</button></li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="wf-actions">
+        <button type="button" class="wf-btn">Сохранить изменения</button>
+      </div>
     </div>
   </div>
-
 </section>
+
+<section id="admin-contract-terminate-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-contract-terminate-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="admin-contract-terminate-title" class="wf-modal__title">Расторгнуть договор</h2>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <form class="wf-form">
+        <div class="wf-field">
+          <label for="admin-contract-terminate-reason">Причина расторжения договора</label>
+          <textarea id="admin-contract-terminate-reason" rows="3" placeholder="Кратко опишите причину расторжения (например: окончание аренды, длительная задолженность, решение клиента)."></textarea>
+        </div>
+        <div class="wf-actions">
+          <button type="button">Расторгнуть договор</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
 
   <section id="admin-client-fl-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-fl-title">
   <div class="wf-modal__dialog wf-modal__dialog--form">
@@ -327,6 +424,7 @@
                 <th>ГРЗ</th>
                 <th>Марка / модель</th>
                 <th>Статус</th>
+                <th>Действия</th>
               </tr>
             </thead>
             <tbody>
@@ -334,14 +432,25 @@
                 <td><a href="client-sessions.html?plate=A123BV777">А123БВ777</a></td>
                 <td>Toyota Camry</td>
                 <td>Разрешён, по активному договору</td>
+                <td>
+                  <a href="#admin-client-vehicle-edit-modal" class="wf-btn">Изменить</a>
+                  <a href="#admin-client-vehicle-delete-modal" class="wf-btn">Удалить</a>
+                </td>
               </tr>
               <tr>
                 <td><a href="client-sessions.html?plate=B456GD199">В456ГД199</a></td>
                 <td>Volkswagen Polo</td>
                 <td>Разрешён, оплаченные сессии</td>
+                <td>
+                  <a href="#admin-client-vehicle-edit-modal" class="wf-btn">Изменить</a>
+                  <a href="#admin-client-vehicle-delete-modal" class="wf-btn">Удалить</a>
+                </td>
               </tr>
             </tbody>
           </table>
+        </div>
+        <div class="wf-actions">
+          <a href="#admin-client-vehicle-add-modal" class="wf-btn">Добавить ТС</a>
         </div>
       </section>
 
@@ -526,6 +635,99 @@
     </div>
   </div>
 </section>
+
+
+<section id="admin-client-vehicle-add-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-vehicle-add-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="admin-client-vehicle-add-title" class="wf-modal__title">Добавить ТС</h2>
+      <a href="#admin-client-fl-modal" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <form class="wf-form">
+        <div class="wf-field">
+          <label for="admin-veh-add-grz">ГРЗ (государственный регистрационный знак)</label>
+          <input id="admin-veh-add-grz" type="text" placeholder="А123БВ777" required>
+        </div>
+        <div class="wf-field">
+          <label for="admin-veh-add-brand">Марка</label>
+          <input id="admin-veh-add-brand" type="text" placeholder="Например: Toyota">
+        </div>
+        <div class="wf-field">
+          <label for="admin-veh-add-model">Модель</label>
+          <input id="admin-veh-add-model" type="text" placeholder="Например: Camry">
+        </div>
+        <div class="wf-field">
+          <label for="admin-veh-add-type">Тип / категория ТС</label>
+          <select id="admin-veh-add-type">
+            <option value="">— выбрать —</option>
+            <option value="car">Легковой</option>
+            <option value="moto">Мотоцикл</option>
+            <option value="other">Другое</option>
+          </select>
+        </div>
+        <div class="wf-actions">
+          <button type="submit">Добавить ТС</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="admin-client-vehicle-edit-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-vehicle-edit-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="admin-client-vehicle-edit-title" class="wf-modal__title">Редактировать ТС</h2>
+      <a href="#admin-client-fl-modal" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <form class="wf-form">
+        <div class="wf-field">
+          <label for="admin-veh-edit-grz">ГРЗ</label>
+          <input id="admin-veh-edit-grz" type="text" value="А123БВ777" readonly>
+          <p class="wf-muted">Для смены номера добавьте новое ТС и удалите текущее.</p>
+        </div>
+        <div class="wf-field">
+          <label for="admin-veh-edit-brand">Марка</label>
+          <input id="admin-veh-edit-brand" type="text" value="Toyota">
+        </div>
+        <div class="wf-field">
+          <label for="admin-veh-edit-model">Модель</label>
+          <input id="admin-veh-edit-model" type="text" value="Camry">
+        </div>
+        <div class="wf-field">
+          <label for="admin-veh-edit-type">Тип / категория ТС</label>
+          <select id="admin-veh-edit-type">
+            <option value="car" selected>Легковой</option>
+            <option value="moto">Мотоцикл</option>
+            <option value="other">Другое</option>
+          </select>
+        </div>
+        <div class="wf-actions">
+          <button type="submit">Сохранить изменения</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="admin-client-vehicle-delete-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-vehicle-delete-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="admin-client-vehicle-delete-title" class="wf-modal__title">Удаление ТС</h2>
+      <a href="#admin-client-fl-modal" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <p>Вы уверены, что хотите удалить <strong>ТС А123БВ777 — Toyota Camry</strong> из списка клиента?</p>
+      <p class="wf-muted">При привязке к договору или бронированию может потребоваться согласование.</p>
+      <div class="wf-actions">
+        <button type="button">Подтвердить удаление</button>
+        <a href="#admin-client-fl-modal" class="wf-btn">Отмена</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
     </main>

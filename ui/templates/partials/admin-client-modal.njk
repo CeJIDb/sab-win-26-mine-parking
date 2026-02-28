@@ -59,6 +59,7 @@
                 <th>ГРЗ</th>
                 <th>Марка / модель</th>
                 <th>Статус</th>
+                <th>Действия</th>
               </tr>
             </thead>
             <tbody>
@@ -66,14 +67,25 @@
                 <td><a href="client-sessions.html?plate=A123BV777">А123БВ777</a></td>
                 <td>Toyota Camry</td>
                 <td>Разрешён, по активному договору</td>
+                <td>
+                  <a href="#admin-client-vehicle-edit-modal" class="wf-btn">Изменить</a>
+                  <a href="#admin-client-vehicle-delete-modal" class="wf-btn">Удалить</a>
+                </td>
               </tr>
               <tr>
                 <td><a href="client-sessions.html?plate=B456GD199">В456ГД199</a></td>
                 <td>Volkswagen Polo</td>
                 <td>Разрешён, оплаченные сессии</td>
+                <td>
+                  <a href="#admin-client-vehicle-edit-modal" class="wf-btn">Изменить</a>
+                  <a href="#admin-client-vehicle-delete-modal" class="wf-btn">Удалить</a>
+                </td>
               </tr>
             </tbody>
           </table>
+        </div>
+        <div class="wf-actions">
+          <a href="#admin-client-vehicle-add-modal" class="wf-btn">Добавить ТС</a>
         </div>
       </section>
 
@@ -258,3 +270,5 @@
     </div>
   </div>
 </section>
+
+{% include "partials/admin-client-vehicle-modals.njk" %}

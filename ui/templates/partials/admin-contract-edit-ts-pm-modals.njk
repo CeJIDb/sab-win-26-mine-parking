@@ -1,0 +1,80 @@
+{# Модальные окна добавления ТС и ПМ к договору — шаблон как у admin-contract-edit-modal #}
+<section id="admin-contract-add-vehicle-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-contract-add-vehicle-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="admin-contract-add-vehicle-title" class="wf-modal__title">Добавить ТС к договору</h2>
+      <a href="#admin-contract-edit-modal" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <section class="wf-section">
+        <h3>Транспортное средство</h3>
+        <form class="wf-form">
+          <div class="wf-field">
+            <label for="admin-contract-veh-grz">ГРЗ (государственный регистрационный знак)</label>
+            <input id="admin-contract-veh-grz" type="text" placeholder="А123БВ777" required>
+          </div>
+          <div class="wf-field">
+            <label for="admin-contract-veh-brand">Марка</label>
+            <input id="admin-contract-veh-brand" type="text" placeholder="Например: Toyota">
+          </div>
+          <div class="wf-field">
+            <label for="admin-contract-veh-model">Модель</label>
+            <input id="admin-contract-veh-model" type="text" placeholder="Например: Camry">
+          </div>
+          <div class="wf-field">
+            <label for="admin-contract-veh-type">Тип / категория ТС</label>
+            <select id="admin-contract-veh-type">
+              <option value="">— выбрать —</option>
+              <option value="car">Легковой</option>
+              <option value="moto">Мотоцикл</option>
+              <option value="other">Другое</option>
+            </select>
+          </div>
+          <div class="wf-actions">
+            <button type="submit">Добавить ТС</button>
+            <a href="#admin-contract-edit-modal" class="wf-btn">Отмена</a>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</section>
+
+<section id="admin-contract-add-pm-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-contract-add-pm-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="admin-contract-add-pm-title" class="wf-modal__title">Добавить ПМ к договору</h2>
+      <a href="#admin-contract-edit-modal" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <section class="wf-section">
+        <h3>Парковочное место</h3>
+        <form class="wf-form">
+          <div class="wf-field">
+            <label for="admin-contract-pm-id">Парковочное место (ПМ)</label>
+            <select id="admin-contract-pm-id">
+              <option value="">— выбрать ПМ —</option>
+              <option value="pm-101">ПМ 101</option>
+              <option value="pm-102">ПМ 102</option>
+              <option value="pm-201">ПМ 201</option>
+              <option value="pm-202">ПМ 202</option>
+            </select>
+          </div>
+          <div class="wf-field">
+            <label for="admin-contract-pm-sector">Сектор</label>
+            <select id="admin-contract-pm-sector">
+              <option value="">— выбрать сектор —</option>
+              <option value="a">Сектор А</option>
+              <option value="b" selected>Сектор Б</option>
+              <option value="c">Сектор В</option>
+            </select>
+          </div>
+          <div class="wf-actions">
+            <button type="submit">Добавить ПМ</button>
+            <a href="#admin-contract-edit-modal" class="wf-btn">Отмена</a>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</section>

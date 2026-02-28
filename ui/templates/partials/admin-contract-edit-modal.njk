@@ -1,0 +1,89 @@
+<section id="admin-contract-edit-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-contract-edit-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="admin-contract-edit-title" class="wf-modal__title">Изменить договор Д‑045</h2>
+      <a href="#admin-contract-modal" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <section class="wf-section">
+        <h3>Параметры договора</h3>
+        <form class="wf-form">
+          <div class="wf-grid wf-grid--two">
+            <div class="wf-field">
+              <label for="admin-contract-edit-period-from">Период с</label>
+              <input id="admin-contract-edit-period-from" type="date" value="2026-01-01">
+            </div>
+            <div class="wf-field">
+              <label for="admin-contract-edit-period-to">по</label>
+              <input id="admin-contract-edit-period-to" type="date" value="2026-12-31">
+            </div>
+          </div>
+          <div class="wf-field">
+            <label for="admin-contract-edit-tariff">Тариф</label>
+            <select id="admin-contract-edit-tariff">
+              <option value="long-b">Долгосрочная парковка, сектор Б</option>
+              <option value="long-a">Долгосрочная парковка, сектор А</option>
+              <option value="corp">Корпоративный тариф ЮЛ — премиум</option>
+            </select>
+          </div>
+          <div class="wf-field">
+            <label for="admin-contract-edit-status">Статус договора</label>
+            <select id="admin-contract-edit-status">
+              <option value="active" selected>Активен</option>
+              <option value="suspended">Приостановлен</option>
+              <option value="terminated">Расторгнут</option>
+            </select>
+          </div>
+          <div class="wf-field">
+            <label for="admin-contract-edit-comment">Комментарий</label>
+            <textarea id="admin-contract-edit-comment" rows="2" placeholder="Заметки управляющего">Договор продлён до конца года.</textarea>
+          </div>
+        </form>
+      </section>
+
+      <section class="wf-section">
+        <h3>ТС (ГРЗ) по договору</h3>
+        <div class="wf-field wf-field--inline-control">
+          <label for="admin-contract-edit-vehicle-picker">Добавить ТС</label>
+          <div class="wf-inline">
+            <select id="admin-contract-edit-vehicle-picker">
+              <option value="">— выбрать ТС —</option>
+              <option value="A123BV777">А123БВ777 — Toyota Camry</option>
+              <option value="B456GD199">В456ГД199 — Volkswagen Polo</option>
+              <option value="X999YY199">X999YY199 — Пример дополнительного ТС</option>
+            </select>
+            <button type="button" aria-label="Добавить ТС по договору">Добавить</button>
+          </div>
+          <ul class="wf-list wf-list--compact" id="admin-contract-edit-vehicle-list">
+            <li>А123БВ777 — Toyota Camry <button type="button" class="wf-btn" aria-label="Удалить ТС из договора">−</button></li>
+            <li>В456ГД199 — Volkswagen Polo <button type="button" class="wf-btn" aria-label="Удалить ТС из договора">−</button></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="wf-section">
+        <h3>Парковочные места (ПМ)</h3>
+        <div class="wf-field wf-field--inline-control">
+          <label for="admin-contract-edit-place-picker">Добавить ПМ</label>
+          <div class="wf-inline">
+            <select id="admin-contract-edit-place-picker">
+              <option value="">— выбрать ПМ —</option>
+              <option value="A-101">ПМ 101 — сектор А</option>
+              <option value="A-102">ПМ 102 — сектор А</option>
+              <option value="B-201">ПМ 201 — сектор Б</option>
+            </select>
+            <button type="button" aria-label="Добавить ПМ по договору">Добавить</button>
+          </div>
+          <ul class="wf-list wf-list--compact" id="admin-contract-edit-place-list">
+            <li>ПМ 101 — сектор А <button type="button" class="wf-btn" aria-label="Удалить ПМ из договора">−</button></li>
+            <li>ПМ 201 — сектор Б <button type="button" class="wf-btn" aria-label="Удалить ПМ из договора">−</button></li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="wf-actions">
+        <button type="button" class="wf-btn">Сохранить изменения</button>
+      </div>
+    </div>
+  </div>
+</section>

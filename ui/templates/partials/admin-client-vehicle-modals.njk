@@ -1,0 +1,91 @@
+{# Модальные окна для добавления, редактирования и удаления ТС в карточке клиента (админка) #}
+<section id="admin-client-vehicle-add-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-vehicle-add-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="admin-client-vehicle-add-title" class="wf-modal__title">Добавить ТС</h2>
+      <a href="#admin-client-fl-modal" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <form class="wf-form">
+        <div class="wf-field">
+          <label for="admin-veh-add-grz">ГРЗ (государственный регистрационный знак)</label>
+          <input id="admin-veh-add-grz" type="text" placeholder="А123БВ777" required>
+        </div>
+        <div class="wf-field">
+          <label for="admin-veh-add-brand">Марка</label>
+          <input id="admin-veh-add-brand" type="text" placeholder="Например: Toyota">
+        </div>
+        <div class="wf-field">
+          <label for="admin-veh-add-model">Модель</label>
+          <input id="admin-veh-add-model" type="text" placeholder="Например: Camry">
+        </div>
+        <div class="wf-field">
+          <label for="admin-veh-add-type">Тип / категория ТС</label>
+          <select id="admin-veh-add-type">
+            <option value="">— выбрать —</option>
+            <option value="car">Легковой</option>
+            <option value="moto">Мотоцикл</option>
+            <option value="other">Другое</option>
+          </select>
+        </div>
+        <div class="wf-actions">
+          <button type="submit">Добавить ТС</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="admin-client-vehicle-edit-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-vehicle-edit-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="admin-client-vehicle-edit-title" class="wf-modal__title">Редактировать ТС</h2>
+      <a href="#admin-client-fl-modal" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <form class="wf-form">
+        <div class="wf-field">
+          <label for="admin-veh-edit-grz">ГРЗ</label>
+          <input id="admin-veh-edit-grz" type="text" value="А123БВ777" readonly>
+          <p class="wf-muted">Для смены номера добавьте новое ТС и удалите текущее.</p>
+        </div>
+        <div class="wf-field">
+          <label for="admin-veh-edit-brand">Марка</label>
+          <input id="admin-veh-edit-brand" type="text" value="Toyota">
+        </div>
+        <div class="wf-field">
+          <label for="admin-veh-edit-model">Модель</label>
+          <input id="admin-veh-edit-model" type="text" value="Camry">
+        </div>
+        <div class="wf-field">
+          <label for="admin-veh-edit-type">Тип / категория ТС</label>
+          <select id="admin-veh-edit-type">
+            <option value="car" selected>Легковой</option>
+            <option value="moto">Мотоцикл</option>
+            <option value="other">Другое</option>
+          </select>
+        </div>
+        <div class="wf-actions">
+          <button type="submit">Сохранить изменения</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="admin-client-vehicle-delete-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-vehicle-delete-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="admin-client-vehicle-delete-title" class="wf-modal__title">Удаление ТС</h2>
+      <a href="#admin-client-fl-modal" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <p>Вы уверены, что хотите удалить <strong>ТС А123БВ777 — Toyota Camry</strong> из списка клиента?</p>
+      <p class="wf-muted">При привязке к договору или бронированию может потребоваться согласование.</p>
+      <div class="wf-actions">
+        <button type="button">Подтвердить удаление</button>
+        <a href="#admin-client-fl-modal" class="wf-btn">Отмена</a>
+      </div>
+    </div>
+  </div>
+</section>
