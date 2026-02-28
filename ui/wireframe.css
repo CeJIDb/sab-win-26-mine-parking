@@ -324,6 +324,76 @@ body[data-view=mobile] .sessions-filters input[type=text] {
   padding: 0.35em 0.6em;
 }
 
+/* Фильтры реестра задолженностей — поля в одну строку,
+ * кнопки «Применить / Сбросить» — на отдельной строке под ними. */
+.debts-filters .filters-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  gap: 0.5rem 0.75rem;
+  min-width: 0;
+}
+
+/* Базовая ширина полей в реестре задолженностей */
+.debts-filters .wf-field {
+  flex: 1 1 0;
+  min-width: 6rem;
+  max-width: 10rem;
+}
+
+/* Поле «Клиент / договор» (ФИО) — заметно шире остальных */
+.debts-filters .filters-row > .wf-field:first-child {
+  flex: 2.4 1 0;
+  min-width: 14rem;
+  max-width: 24rem;
+}
+
+.debts-filters .wf-field input[type=text],
+.debts-filters .wf-field input[type=number],
+.debts-filters .wf-field select {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Блок «Сумма, ₽ (от/до)» — расширенный */
+.debts-filters .wf-field--inline-control {
+  flex: 2 1 0;
+  min-width: 14rem;
+  max-width: 24rem;
+}
+
+.debts-filters .wf-field--inline-control .wf-inline {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.debts-filters .wf-field--inline-control .wf-inline input {
+  flex: 1 1 6rem;
+  min-width: 0;
+}
+
+.debts-filters .filter-actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+  width: 100%;
+}
+
+/* На узких экранах — перенос в несколько строк */
+@media (max-width: 900px) {
+  .debts-filters .filters-row {
+    flex-wrap: wrap;
+  }
+  .debts-filters .wf-field {
+    flex: 1 1 10rem;
+    max-width: none;
+  }
+  .debts-filters .filter-actions {
+    flex: 1 1 100%;
+  }
+}
 .wf-field label {
   display: block;
   margin-bottom: 0.25em;

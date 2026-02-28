@@ -8,16 +8,34 @@
   <h2>Управление задолженностями</h2>
 
   <section class="wf-section">
-    <h3>Фильтры по задолженностям</h3>
-    <form class="wf-form sessions-filters" aria-label="Фильтры по задолженностям">
+    <h3>Сводка по задолженностям</h3>
+    <div class="wf-grid wf-grid--three">
+      <section class="wf-card">
+        <h4>Просроченные оплаты</h4>
+        <p><strong>12 оплат</strong></p>
+        <p class="wf-muted">Требуют действий управляющего или службы взыскания.</p>
+        <p><a href="#debts-register" class="wf-btn">Показать</a></p>
+      </section>
+      <section class="wf-card">
+        <h4>Общая сумма долга</h4>
+        <p><strong>435 000 ₽</strong></p>
+        <p class="wf-muted">Сумма по всем активным просрочкам.</p>
+      </section>
+      <section class="wf-card">
+        <h4>Риск блокировки доступа</h4>
+        <p><strong>5 клиентов</strong></p>
+        <p class="wf-muted">При отсутствии оплаты в течение 3 дней потребуется ограничение въезда.</p>
+      </section>
+    </div>
+  </section>
+
+  <section class="wf-section" id="debts-register">
+    <h3>Реестр задолженностей</h3>
+    <form class="wf-form sessions-filters debts-filters" aria-label="Фильтры по задолженностям">
       <div class="filters-row">
         <div class="wf-field">
-          <label for="debt-date-from">Период с</label>
-          <input id="debt-date-from" type="date">
-        </div>
-        <div class="wf-field">
-          <label for="debt-date-to">по</label>
-          <input id="debt-date-to" type="date">
+          <label for="debt-search">Клиент / договор</label>
+          <input id="debt-search" type="text" placeholder="ФИО, организация или № договора">
         </div>
         <div class="wf-field">
           <label for="debt-client-type">Тип клиента</label>
@@ -33,42 +51,32 @@
             <option value="">Все</option>
             <option value="overdue">Просроченные</option>
             <option value="warning">Предупреждение</option>
+            <option value="escalation">Эскалация</option>
           </select>
         </div>
         <div class="wf-field">
-          <label for="debt-min-amount">Сумма от, ₽</label>
-          <input id="debt-min-amount" type="number" min="0" step="1000" placeholder="1000">
+          <label for="debt-late">Просрочка, дни</label>
+          <select id="debt-late">
+            <option value="">Любая</option>
+            <option value="0-3">до 3</option>
+            <option value="4-7">4–7</option>
+            <option value="8-30">8–30</option>
+            <option value="31+">более 30</option>
+          </select>
         </div>
-        <div class="filter-actions">
-          <button type="submit">Показать</button>
+        <div class="wf-field wf-field--inline-control">
+          <label for="debt-amount-from">Сумма, ₽</label>
+          <div class="wf-inline">
+            <input id="debt-amount-from" type="number" min="0" step="1000" placeholder="от">
+            <input id="debt-amount-to" type="number" min="0" step="1000" placeholder="до">
+          </div>
         </div>
       </div>
+      <div class="filter-actions">
+        <button type="submit">Применить</button>
+        <button type="button">Сбросить</button>
+      </div>
     </form>
-  </section>
-
-  <section class="wf-section">
-    <h3>Сводка по задолженностям</h3>
-    <div class="wf-grid wf-grid--three">
-      <section class="wf-card">
-        <h4>Просроченные договоры</h4>
-        <p><strong>12 договоров</strong></p>
-        <p class="wf-muted">Требуют действий управляющего или службы взыскания.</p>
-      </section>
-      <section class="wf-card">
-        <h4>Общая сумма долга</h4>
-        <p><strong>435 000 ₽</strong></p>
-        <p class="wf-muted">Сумма по всем активным просрочкам.</p>
-      </section>
-      <section class="wf-card">
-        <h4>Риск блокировки доступа</h4>
-        <p><strong>5 клиентов</strong></p>
-        <p class="wf-muted">При отсутствии оплаты в течение 3 дней потребуется ограничение въезда.</p>
-      </section>
-    </div>
-  </section>
-
-  <section class="wf-section">
-    <h3>Реестр задолженностей</h3>
     <div class="wf-table-wrap">
       <table class="wf-table">
         <thead>
@@ -91,8 +99,8 @@
             <td>8</td>
             <td><span class="wf-badge">Просрочено</span></td>
             <td>
-              <a href="contracts.html" class="wf-btn">Открыть договор</a>
-              <a href="clients.html" class="wf-btn">Профиль клиента</a>
+              <a href="#admin-contract-modal" class="wf-btn">Договор</a>
+              <a href="#admin-client-fl-modal" class="wf-btn">Карточка клиента</a>
             </td>
           </tr>
           <tr>
@@ -103,8 +111,8 @@
             <td>15</td>
             <td><span class="wf-badge">Эскалация</span></td>
             <td>
-              <a href="contracts.html" class="wf-btn">Открыть договор</a>
-              <a href="clients.html" class="wf-btn">Профиль клиента</a>
+              <a href="#admin-contract-modal" class="wf-btn">Договор</a>
+              <a href="#admin-client-yl-modal" class="wf-btn">Карточка клиента</a>
             </td>
           </tr>
           <tr>
@@ -115,13 +123,15 @@
             <td>3</td>
             <td><span class="wf-badge">Предупреждение</span></td>
             <td>
-              <a href="contracts.html" class="wf-btn">Открыть договор</a>
-              <a href="clients.html" class="wf-btn">Профиль клиента</a>
+              <a href="#admin-contract-modal" class="wf-btn">Договор</a>
+              <a href="#admin-client-fl-modal" class="wf-btn">Карточка клиента</a>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
   </section>
+  {% include "partials/admin-contract-modal.njk" %}
+  {% include "partials/admin-client-modal.njk" %}
 {% endblock %}
 
