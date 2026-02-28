@@ -130,61 +130,62 @@
   </section>
 
   <section id="contract-edit-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="contract-edit-title">
-    <div class="wf-modal__dialog wf-section">
-      <header class="wf-modal__header">
-        <h3 id="contract-edit-title">Изменение договора №1001</h3>
-        <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
-      </header>
-      <form class="wf-form">
-        <p class="wf-notice"><strong>Продление договора.</strong> Текущая дата окончания: 31.12.2026.</p>
-        <div class="wf-field wf-field--inline-control">
-          <label for="contract-extend-to">Новая дата окончания</label>
-          <div class="wf-inline">
-            <input id="contract-extend-to" type="date" aria-label="Новая дата окончания договора">
-          </div>
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="contract-edit-title">Изменение договора №1001</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <form class="wf-form">
+      <p class="wf-notice"><strong>Продление договора.</strong> Текущая дата окончания: 31.12.2026.</p>
+      <div class="wf-field wf-field--inline-control">
+        <label for="contract-extend-to">Новая дата окончания</label>
+        <div class="wf-inline">
+          <input id="contract-extend-to" type="date" aria-label="Новая дата окончания договора">
         </div>
-        <div class="wf-field wf-field--inline-control">
-          <label>ТС (ГРЗ) по договору</label>
-          <div class="wf-inline">
-            <select id="contract-edit-vehicle-picker">
-              <option value="">— выбрать ТС —</option>
-              <option value="A123BV777">А123БВ777 — Toyota Camry</option>
-              <option value="V456GD177">В456ГД177 — Honda Civic</option>
-              <option value="X999YY199">X999YY199 — Пример дополнительного ТС</option>
-            </select>
-            <button type="button" aria-label="Добавить ТС по договору">Добавить</button>
-          </div>
-          <ul class="wf-list wf-list--compact" id="contract-edit-vehicle-list">
-            <li>А123БВ777 — Toyota Camry <button type="button" aria-label="Удалить ТС из договора">−</button></li>
-            <li>В456ГД177 — Honda Civic <button type="button" aria-label="Удалить ТС из договора">−</button></li>
-          </ul>
+      </div>
+      <div class="wf-field wf-field--inline-control">
+        <label>ТС (ГРЗ) по договору</label>
+        <div class="wf-inline">
+          <select id="contract-edit-vehicle-picker">
+            <option value="">— выбрать ТС —</option>
+            <option value="A123BV777">А123БВ777 — Toyota Camry</option>
+            <option value="V456GD177">В456ГД177 — Honda Civic</option>
+            <option value="X999YY199">X999YY199 — Пример дополнительного ТС</option>
+          </select>
+          <button type="button" aria-label="Добавить ТС по договору">Добавить</button>
         </div>
-        <div class="wf-field wf-field--inline-control">
-          <label>Парковочные места (ПМ)</label>
-          <div class="wf-inline">
-            <select id="contract-edit-place-picker">
-              <option value="">— выбрать ПМ —</option>
-              <option value="A-101">ПМ 101 — сектор А</option>
-              <option value="A-102">ПМ 102 — сектор А</option>
-              <option value="B-201">ПМ 201 — сектор Б</option>
-            </select>
-            <button type="button" aria-label="Добавить ПМ по договору">Добавить</button>
-          </div>
-          <ul class="wf-list wf-list--compact" id="contract-edit-place-list">
-            <li>ПМ 101 — сектор А <button type="button" aria-label="Удалить ПМ из договора">−</button></li>
-            <li>ПМ 102 — сектор А <button type="button" aria-label="Удалить ПМ из договора">−</button></li>
-          </ul>
+        <ul class="wf-list wf-list--compact" id="contract-edit-vehicle-list">
+          <li>А123БВ777 — Toyota Camry <button type="button" aria-label="Удалить ТС из договора">−</button></li>
+          <li>В456ГД177 — Honda Civic <button type="button" aria-label="Удалить ТС из договора">−</button></li>
+        </ul>
+      </div>
+      <div class="wf-field wf-field--inline-control">
+        <label>Парковочные места (ПМ)</label>
+        <div class="wf-inline">
+          <select id="contract-edit-place-picker">
+            <option value="">— выбрать ПМ —</option>
+            <option value="A-101">ПМ 101 — сектор А</option>
+            <option value="A-102">ПМ 102 — сектор А</option>
+            <option value="B-201">ПМ 201 — сектор Б</option>
+          </select>
+          <button type="button" aria-label="Добавить ПМ по договору">Добавить</button>
         </div>
-        <div class="wf-card">
-          <p><strong>Перерасчёт стоимости договора</strong></p>
-          <p class="wf-muted">Итоговая стоимость и возможная доплата/возврат будут пересчитаны автоматически с учётом нового срока действия, состава ТС и парковочных мест. Здесь в дальнейшем будет выводиться сумма к оплате.</p>
-        </div>
-        <div class="wf-actions">
-          <button type="submit">Сохранить изменения</button>
-        </div>
-      </form>
-    </div>
-  </section>
+        <ul class="wf-list wf-list--compact" id="contract-edit-place-list">
+          <li>ПМ 101 — сектор А <button type="button" aria-label="Удалить ПМ из договора">−</button></li>
+          <li>ПМ 102 — сектор А <button type="button" aria-label="Удалить ПМ из договора">−</button></li>
+        </ul>
+      </div>
+      <div class="wf-card">
+        <p><strong>Перерасчёт стоимости договора</strong></p>
+        <p class="wf-muted">Итоговая стоимость и возможная доплата/возврат будут пересчитаны автоматически с учётом нового срока действия, состава ТС и парковочных мест. Здесь в дальнейшем будет выводиться сумма к оплате.</p>
+      </div>
+      <div class="wf-actions">
+        <button type="submit">Сохранить изменения</button>
+      </div>
+    </form>
+  </div>
+</section>
+
   <section id="contract-terminate-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="contract-terminate-title">
     <div class="wf-modal__dialog wf-section">
       <header class="wf-modal__header">
