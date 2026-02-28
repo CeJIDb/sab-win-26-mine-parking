@@ -55,7 +55,6 @@ async function main() {
   const pages = [
     { template: 'pages/dashboard.njk', out: 'dashboard.html' },
     { template: 'pages/bookings.njk', out: 'bookings.html' },
-    { template: 'pages/booking-payment.njk', out: 'booking-payment.html' },
     { template: 'pages/sessions-history.njk', out: 'sessions-history.html' },
     { template: 'pages/contracts.njk', out: 'contracts.html' },
     { template: 'pages/contracts-create.njk', out: 'contracts-create.html' },
