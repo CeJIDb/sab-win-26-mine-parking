@@ -1,6 +1,11 @@
 {% extends "layouts/admin.njk" %}
 {% set current_nav = 'admin-clients' %}
 {% block title %}Профили клиентов — ЛК админа{% endblock %}
+{% block header_breadcrumbs %}<a href="debts.html">Клиенты</a><span class="wf-breadcrumbs__sep">/</span><span class="wf-breadcrumbs__current">Профили</span>{% endblock %}
+{% block auxiliary_nav %}
+  {% set nav_current = current_nav %}
+  {% include "partials/nav-clients.njk" %}
+{% endblock %}
 {% block content %}
   <div class="wf-page-head">
     <button type="button" class="wf-back">Назад</button>
@@ -15,8 +20,16 @@
   <form class="wf-form sessions-filters" aria-label="Фильтр по клиентам">
     <div class="filters-row">
       <div class="wf-field">
-        <label for="search-client-text">ФИО / телефон / e-mail</label>
+        <label for="search-client-text">ФИО / организация / контакт</label>
         <input id="search-client-text" type="text" placeholder="Например, Иванов или +7…">
+      </div>
+      <div class="wf-field">
+        <label for="search-client-type">Тип клиента</label>
+        <select id="search-client-type">
+          <option value="">Любой</option>
+          <option value="fl">ФЛ</option>
+          <option value="yl">ЮЛ</option>
+        </select>
       </div>
       <div class="wf-field">
         <label for="search-client-access">Статус доступа</label>
@@ -45,33 +58,33 @@
     <table class="wf-table">
       <thead>
         <tr>
+          <th scope="col">Тип клиента</th>
           <th scope="col">Клиент</th>
           <th scope="col">Контакты</th>
           <th scope="col">Статус доступа</th>
           <th scope="col">Задолженность</th>
           <th scope="col">ТС</th>
           <th scope="col">Активные договоры</th>
-          <th scope="col">Действия</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Иванов Иван Иванович</td>
+          <td>ФЛ</td>
+          <td><a href="#admin-modal-client-fl">Иванов Иван Иванович</a></td>
           <td>+7 (900) 123‑45‑67<br>ivanov@example.com</td>
           <td><span class="wf-badge">Разрешён</span></td>
           <td>Нет</td>
           <td>2 ТС</td>
           <td>1 активный</td>
-          <td><a href="#admin-client-fl-modal" class="wf-btn">Карточка клиента</a></td>
         </tr>
         <tr>
-          <td>ООО «Ромашка»</td>
+          <td>ЮЛ</td>
+          <td><a href="#admin-modal-client-yl">ООО «Ромашка»</a></td>
           <td>+7 (812) 555‑55‑55<br>office@romashka.ru</td>
           <td><span class="wf-badge">Ограничен</span></td>
           <td>Просрочка 3 дня</td>
           <td>5 ТС</td>
           <td>2 активных</td>
-          <td><a href="#admin-client-yl-modal" class="wf-btn">Карточка клиента</a></td>
         </tr>
       </tbody>
     </table>

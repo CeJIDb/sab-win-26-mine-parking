@@ -1,6 +1,7 @@
 {% extends "layouts/admin.njk" %}
 {% set current_nav = 'admin-requests' %}
 {% block title %}Обращения — ЛК админа{% endblock %}
+{% block header_breadcrumbs %}<span class="wf-breadcrumbs__current">Обращения</span>{% endblock %}
 {% block content %}
   <div class="wf-page-head">
     <button type="button" class="wf-back">Назад</button>
@@ -13,11 +14,19 @@
   <form class="wf-form sessions-filters" aria-label="Фильтры по обращениям и инцидентам">
     <div class="filters-row">
       <div class="wf-field">
-        <label for="search-requests-text">Номер, клиент или тема</label>
+        <label for="search-requests-text">Номер / клиент / тема</label>
         <input id="search-requests-text" type="text" placeholder="№ обращения, ФИО, тема">
       </div>
       <div class="wf-field">
-        <label for="search-requests-type">Тип</label>
+        <label for="search-requests-client-type">Тип клиента</label>
+        <select id="search-requests-client-type">
+          <option value="">Любой</option>
+          <option value="fl">ФЛ</option>
+          <option value="yl">ЮЛ</option>
+        </select>
+      </div>
+      <div class="wf-field">
+        <label for="search-requests-type">Тип обращения</label>
         <select id="search-requests-type">
           <option value="">Все</option>
           <option value="appeal">Обращение</option>
@@ -44,35 +53,35 @@
       <thead>
         <tr>
           <th scope="col">ID</th>
+          <th scope="col">Тип клиента</th>
           <th scope="col">Клиент</th>
-          <th scope="col">Тип</th>
+          <th scope="col">Тип обращения</th>
           <th scope="col">Тема</th>
           <th scope="col">Дата и время</th>
           <th scope="col">Статус</th>
           <th scope="col">Источник</th>
-          <th scope="col">Действия</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>#A‑1025</td>
-          <td>Иванов Иван Иванович</td>
+          <td><a href="#admin-modal-request-view">#A‑1025</a></td>
+          <td>ФЛ</td>
+          <td><a href="#admin-modal-client-fl">Иванов Иван Иванович</a></td>
           <td>Обращение</td>
           <td>Вопрос по начислению оплаты</td>
           <td>24.02.2026 10:30</td>
           <td><span class="wf-badge wf-badge--new">Новый</span></td>
           <td>Клиент (ЛК)</td>
-          <td><a href="#admin-request-modal" class="wf-btn">Открыть</a></td>
         </tr>
         <tr>
-          <td>#I‑034</td>
-          <td>ООО «Ромашка»</td>
+          <td><a href="#admin-modal-request-view">#I‑034</a></td>
+          <td>ЮЛ</td>
+          <td><a href="#admin-modal-client-yl">ООО «Ромашка»</a></td>
           <td>Инцидент</td>
           <td>Отказ во въезде при активном договоре</td>
           <td>24.02.2026 09:30</td>
           <td><span class="wf-badge wf-badge--in-progress">В работе</span></td>
           <td>КПП / журнал событий</td>
-          <td><a href="#admin-request-modal" class="wf-btn">Открыть</a></td>
         </tr>
       </tbody>
     </table>
@@ -80,4 +89,5 @@
 </section>
 
 {% include "partials/admin-request-modal.njk" %}
+{% include "partials/admin-client-modal.njk" %}
 {% endblock %}

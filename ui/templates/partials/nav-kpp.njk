@@ -1,0 +1,8 @@
+{# Вспомогательная навигация раздела «КПП»: Панель (по умолчанию), Журнал въезда‑выезда #}
+{% set current = nav_current | default(current_nav) | default('') %}
+<nav class="wf-nav wf-nav--aux" aria-label="КПП: подразделы">
+  <ul>
+    <li><a href="kpp-panel.html"{% if current == 'admin-kpp-dashboard' %} aria-current="page"{% endif %}>Панель</a></li>
+    <li><a href="kpp-log.html"{% if current == 'admin-kpp-log' %} aria-current="page"{% endif %}>Журнал въезда‑выезда</a></li>
+  </ul>
+</nav>

@@ -10,40 +10,37 @@
   <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
   <div class="wf-page">
     <header class="wf-header wf-header--lk" role="banner">
-  <div class="wf-header__title">
-    <h1>Личный кабинет клиента</h1>
-    <p class="wf-muted"><a href="profile.html">Иванов Иван Иванович</a></p>
-  </div>
-  <a href="notifications.html" class="wf-header__notifications" aria-label="Уведомления клиента">
-    <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
-    <span class="wf-header__notifications-text">Оплата сессии S‑1045 на 350 ₽ прошла успешно</span>
-  </a>
-  <button type="button"
-          class="wf-burger"
-          aria-label="Открыть навигацию"
-          aria-controls="lk-nav"
-          aria-expanded="false">
-    <span class="wf-burger__line" aria-hidden="true"></span>
-    <span class="wf-burger__line" aria-hidden="true"></span>
-    <span class="wf-burger__line" aria-hidden="true"></span>
-  </button>
-</header>
-
+      <div class="wf-header__title">
+        <h1>Личный кабинет клиента</h1>
+        <p class="wf-muted"><a href="profile.html">Иванов Иван Иванович</a></p>
+      </div>
+      <a href="notifications.html" class="wf-header__notifications" aria-label="Уведомления клиента">
+        <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
+        <span class="wf-header__notifications-text">Оплата сессии С-1045 на 350 ₽ прошла успешно</span>
+      </a>
+      <button type="button"
+              class="wf-burger"
+              aria-label="Открыть навигацию"
+              aria-controls="lk-nav"
+              aria-expanded="false">
+        <span class="wf-burger__line" aria-hidden="true"></span>
+        <span class="wf-burger__line" aria-hidden="true"></span>
+        <span class="wf-burger__line" aria-hidden="true"></span>
+      </button>
+    </header>
     
-    
-<nav class="wf-nav wf-nav--lk" aria-label="Навигация ЛК клиента" id="lk-nav">
-  <p class="wf-nav-current" tabindex="0" role="button">
-    
-      Уведомления
-    
-  </p>
+    <nav class="wf-nav wf-nav--lk" aria-label="Навигация ЛК клиента" id="lk-nav">
+      <div class="wf-nav__breadcrumbs" aria-label="Текущий раздел">
+        <span class="wf-breadcrumbs__current">Уведомления</span>
+      </div>
+      
   <ul>
     <li><a href="dashboard.html">Парковка</a></li>
     <li><a href="payment-settings.html">Оплаты</a></li>
-    <li><a href="profile.html">Профиль</a></li>
+    <li class="wf-nav__item--end"><a href="profile.html">Профиль</a></li>
   </ul>
-</nav>
 
+    </nav>
     <main id="main-content" class="wf-main">
       
   <div class="wf-page-head">
@@ -92,13 +89,13 @@
       <li class="wf-notification wf-notification--unread">
         <a href="#client-notif-1-modal" class="wf-notification__link">
           <strong>24.02.2026 10:20</strong> — Оплата
-          <br>Оплата парковочной сессии <a href="sessions-history.html">S-1001</a> на сумму 350 ₽ прошла успешно.
+          <br>Оплата парковочной сессии <a href="sessions-history.html">С-1001</a> на сумму 350 ₽ прошла успешно.
         </a>
       </li>
       <li class="wf-notification wf-notification--unread">
         <a href="#client-notif-2-modal" class="wf-notification__link">
           <strong>24.02.2026 09:00</strong> — Договор
-          <br>Срок действия договора №1001 истекает через <strong>5 дней</strong>.
+          <br>Срок действия договора Д-1001 истекает через <strong>5 дней</strong>.
         </a>
       </li>
       <li class="wf-notification wf-notification--read">
@@ -116,7 +113,7 @@
       <li class="wf-notification wf-notification--read">
         <a href="#client-notif-5-modal" class="wf-notification__link">
           <strong>22.02.2026 21:30</strong> — Ошибка оплаты
-          <br>Не удалось списать оплату за парковочную сессию <a href="sessions-history.html">S-0998</a>.
+          <br>Не удалось списать оплату за парковочную сессию <a href="sessions-history.html">С-0998</a>.
         </a>
       </li>
     </ul>
@@ -132,7 +129,7 @@
       <div class="wf-modal__body">
         <p><strong>Дата и время:</strong> 24.02.2026 10:20</p>
         <p><strong>Тип:</strong> Оплата</p>
-        <p><strong>Описание:</strong> Оплата парковочной сессии S‑1001 на сумму 350 ₽ прошла успешно.</p>
+        <p><strong>Описание:</strong> Оплата парковочной сессии С-1001 на сумму 350 ₽ прошла успешно.</p>
         <p class="wf-muted">Подробную информацию о платеже вы можете посмотреть в разделе «Оплаты» или в истории сессий.</p>
       </div>
     </div>
@@ -147,7 +144,7 @@
       <div class="wf-modal__body">
         <p><strong>Дата и время:</strong> 24.02.2026 09:00</p>
         <p><strong>Тип:</strong> Договор</p>
-        <p><strong>Описание:</strong> Срок действия договора №1001 истекает через 5 дней. Для сохранения доступа к парковочным местам необходимо продлить договор.</p>
+        <p><strong>Описание:</strong> Срок действия договора Д-1001 истекает через 5 дней. Для сохранения доступа к парковочным местам необходимо продлить договор.</p>
         <p class="wf-muted">Перейдите в раздел «Договоры», чтобы продлить договор или ознакомиться с его условиями.</p>
       </div>
     </div>
@@ -162,7 +159,7 @@
       <div class="wf-modal__body">
         <p><strong>Дата и время:</strong> 23.02.2026 18:45</p>
         <p><strong>Тип:</strong> Бронирование</p>
-        <p><strong>Описание:</strong> Создано бронирование B‑204 на ПМ 12, сектор A на сегодня в 19:00.</p>
+        <p><strong>Описание:</strong> Создано бронирование Б-204 на ПМ 12, сектор A на сегодня в 19:00.</p>
         <p class="wf-muted">Отследить или изменить бронирование можно в разделе «Бронирование».</p>
       </div>
     </div>
@@ -192,7 +189,7 @@
       <div class="wf-modal__body">
         <p><strong>Дата и время:</strong> 22.02.2026 21:30</p>
         <p><strong>Тип:</strong> Ошибка оплаты</p>
-        <p><strong>Описание:</strong> Не удалось списать оплату за парковочную сессию S‑0998.</p>
+        <p><strong>Описание:</strong> Не удалось списать оплату за парковочную сессию С-0998.</p>
         <p class="wf-muted">Проверьте способ оплаты в разделе «Оплаты» и повторите платёж. В случае повторной ошибки обратитесь в службу поддержки.</p>
       </div>
     </div>
@@ -256,7 +253,6 @@
       // Бургер-меню для навигации ЛК клиента
       var burger = document.querySelector('.wf-burger');
       var lkNav = document.getElementById('lk-nav');
-      var navCurrent = lkNav && lkNav.querySelector('.wf-nav-current');
 
       function setNavOpen(isOpen) {
         if (!lkNav || !burger) return;
@@ -274,6 +270,11 @@
           toggleNav();
         });
 
+        var breadcrumbsEl = document.querySelector('.wf-nav__breadcrumbs');
+        if (breadcrumbsEl) {
+          breadcrumbsEl.addEventListener('click', function () { setNavOpen(true); });
+        }
+
         // При загрузке по умолчанию навигация закрыта в мобильном режиме
         if (!body.dataset.nav) {
           setNavOpen(false);
@@ -286,19 +287,7 @@
           }
         });
 
-        // Открывать/закрывать меню по клику на название текущей страницы
-        if (navCurrent) {
-          navCurrent.addEventListener('click', function () {
-            toggleNav();
-          });
-
-          navCurrent.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter' || event.key === ' ') {
-              event.preventDefault();
-              toggleNav();
-            }
-          });
-        }
+        // Открывать меню по клику на хлебные крошки (см. breadcrumbsEl выше)
       }
 
       // Закрытие модалки: вернуться к предыдущему модальному окну (history.back) или к странице

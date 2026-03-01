@@ -1,6 +1,7 @@
 {% extends "layouts/lk.njk" %}
 
 {% block title %}Оплата через платёжный сервис — ЛК клиента{% endblock %}
+{% block header_breadcrumbs %}<a href="payment-settings.html">Оплаты</a><span class="wf-breadcrumbs__sep">/</span><span class="wf-breadcrumbs__current">Оплата</span>{% endblock %}
 
 {% block content %}
   <div class="wf-page-head">
@@ -15,7 +16,7 @@
     <h3>Пример информации о счёте</h3>
     <div class="wf-card">
       <p><strong>Номер счёта:</strong> INV‑2026‑0001</p>
-      <p><strong>Описание:</strong> Оплата по договору №1001 за март 2026</p>
+      <p><strong>Описание:</strong> Оплата по договору Д-1001 за март 2026</p>
       <p><strong>Сумма к оплате:</strong> 4 500 ₽</p>
     </div>
     <p class="wf-muted">

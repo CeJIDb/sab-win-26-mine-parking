@@ -10,40 +10,37 @@
   <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
   <div class="wf-page">
     <header class="wf-header wf-header--lk" role="banner">
-  <div class="wf-header__title">
-    <h1>Личный кабинет клиента</h1>
-    <p class="wf-muted"><a href="profile.html">Иванов Иван Иванович</a></p>
-  </div>
-  <a href="notifications.html" class="wf-header__notifications" aria-label="Уведомления клиента">
-    <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
-    <span class="wf-header__notifications-text">Оплата сессии S‑1045 на 350 ₽ прошла успешно</span>
-  </a>
-  <button type="button"
-          class="wf-burger"
-          aria-label="Открыть навигацию"
-          aria-controls="lk-nav"
-          aria-expanded="false">
-    <span class="wf-burger__line" aria-hidden="true"></span>
-    <span class="wf-burger__line" aria-hidden="true"></span>
-    <span class="wf-burger__line" aria-hidden="true"></span>
-  </button>
-</header>
-
+      <div class="wf-header__title">
+        <h1>Личный кабинет клиента</h1>
+        <p class="wf-muted"><a href="profile.html">Иванов Иван Иванович</a></p>
+      </div>
+      <a href="notifications.html" class="wf-header__notifications" aria-label="Уведомления клиента">
+        <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
+        <span class="wf-header__notifications-text">Оплата сессии С-1045 на 350 ₽ прошла успешно</span>
+      </a>
+      <button type="button"
+              class="wf-burger"
+              aria-label="Открыть навигацию"
+              aria-controls="lk-nav"
+              aria-expanded="false">
+        <span class="wf-burger__line" aria-hidden="true"></span>
+        <span class="wf-burger__line" aria-hidden="true"></span>
+        <span class="wf-burger__line" aria-hidden="true"></span>
+      </button>
+    </header>
     
-    
-<nav class="wf-nav wf-nav--lk" aria-label="Навигация ЛК клиента" id="lk-nav">
-  <p class="wf-nav-current" tabindex="0" role="button">
-    
-      Профиль
-    
-  </p>
+    <nav class="wf-nav wf-nav--lk" aria-label="Навигация ЛК клиента" id="lk-nav">
+      <div class="wf-nav__breadcrumbs" aria-label="Текущий раздел">
+        <span class="wf-breadcrumbs__current">Профиль</span>
+      </div>
+      
   <ul>
     <li><a href="dashboard.html">Парковка</a></li>
     <li><a href="payment-settings.html">Оплаты</a></li>
-    <li><a href="profile.html" aria-current="page">Профиль</a></li>
+    <li class="wf-nav__item--end"><a href="profile.html" aria-current="page">Профиль</a></li>
   </ul>
-</nav>
 
+    </nav>
     <main id="main-content" class="wf-main">
       
   <div class="wf-page-head">
@@ -70,6 +67,23 @@
       <a href="#profile-settings-modal" class="wf-btn">Настройки</a>
       <a href="#profile-vehicles-modal" class="wf-btn">Список ТС</a>
     </div>
+  </section>
+
+  
+  <section class="wf-section" aria-labelledby="profile-org-heading">
+    <h3 id="profile-org-heading">Данные организации (ЮЛ)</h3>
+    <p class="wf-muted">Реквизиты юридического лица для заключения договоров от имени организации. Необязательный блок.</p>
+    
+      <div class="wf-card">
+        <p><strong>Наименование:</strong> ООО «Ромашка»</p>
+        <p><strong>ИНН / КПП:</strong> 7700000000 / 770001001</p>
+        <p><strong>ОГРН:</strong> 1027700000000</p>
+        <p><strong>Юридический адрес:</strong> 190000, г. Санкт‑Петербург, ул. Примерная, д. 10, оф. 5</p>
+      </div>
+      <div class="wf-actions">
+        <a href="#profile-organization-edit-modal" class="wf-btn">Изменить данные организации</a>
+      </div>
+    
   </section>
 
   <section class="wf-section" aria-labelledby="profile-support-heading">
@@ -646,11 +660,11 @@
             <select id="appeal-related-id" name="related_id" aria-required="false">
               <option value="">— выбрать —</option>
               <optgroup label="Последние бронирования">
-                <option value="B-101">Бронирование №101 от 24.02.2026, сектор А, 2 ч</option>
-                <option value="B-098">Бронирование №98 от 22.02.2026, долгосрочная</option>
+                <option value="B-101">Бронирование Б-101 от 24.02.2026, сектор А, 2 ч</option>
+                <option value="B-098">Бронирование Б-98 от 22.02.2026, долгосрочная</option>
               </optgroup>
               <optgroup label="Последние сессии">
-                <option value="S-456">Сессия #456, 24.02.2026, А123БВ777, 350 ₽</option>
+                <option value="S-456">Сессия С-456, 24.02.2026, А123БВ777, 350 ₽</option>
               </optgroup>
               <optgroup label="Последние платежи">
                 <option value="P-789">Платёж от 24.02.2026, 350 ₽</option>
@@ -681,6 +695,106 @@
         </footer>
       </form>
     </div>
+  </div>
+</section>
+
+  <section id="profile-organization-add-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="profile-organization-add-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="profile-organization-add-title">Добавить данные организации</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <form class="wf-form">
+      <fieldset class="wf-fieldset">
+        <legend class="wf-fieldset__legend">Реквизиты организации</legend>
+        <div class="wf-field">
+          <label for="profile-org-add-name">Полное наименование организации</label>
+          <input id="profile-org-add-name" type="text" placeholder="ООО «Пример»" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-add-name-short">Сокращённое наименование (необязательно)</label>
+          <input id="profile-org-add-name-short" type="text" placeholder="ООО «Пример»">
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-add-inn">ИНН</label>
+          <input id="profile-org-add-inn" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="12" placeholder="10 или 12 цифр" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-add-kpp">КПП</label>
+          <input id="profile-org-add-kpp" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="9" placeholder="9 цифр" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-add-ogrn">ОГРН / ОГРНИП</label>
+          <input id="profile-org-add-ogrn" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="15" placeholder="13 или 15 цифр" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-add-legal-address">Юридический адрес</label>
+          <input id="profile-org-add-legal-address" type="text" placeholder="Индекс, город, улица, дом, офис" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-add-actual-address">Фактический адрес (необязательно)</label>
+          <input id="profile-org-add-actual-address" type="text" placeholder="Если совпадает с юридическим, можно не заполнять">
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-add-contact">Контактное лицо (необязательно)</label>
+          <input id="profile-org-add-contact" type="text" placeholder="ФИО контактного лица">
+        </div>
+      </fieldset>
+      <div class="wf-actions">
+        <button type="submit" class="wf-btn">Сохранить</button>
+        <a href="#main-content" class="wf-btn wf-btn-secondary">Отмена</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+  <section id="profile-organization-edit-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="profile-organization-edit-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="profile-organization-edit-title">Изменить данные организации</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <form class="wf-form">
+      <fieldset class="wf-fieldset">
+        <legend class="wf-fieldset__legend">Реквизиты организации</legend>
+        <div class="wf-field">
+          <label for="profile-org-edit-name">Полное наименование организации</label>
+          <input id="profile-org-edit-name" type="text" value="Общество с ограниченной ответственностью «Ромашка»" placeholder="ООО «Пример»" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-edit-name-short">Сокращённое наименование (необязательно)</label>
+          <input id="profile-org-edit-name-short" type="text" value="ООО «Ромашка»" placeholder="ООО «Пример»">
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-edit-inn">ИНН</label>
+          <input id="profile-org-edit-inn" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="12" value="7700000000" placeholder="10 или 12 цифр" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-edit-kpp">КПП</label>
+          <input id="profile-org-edit-kpp" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="9" value="770001001" placeholder="9 цифр" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-edit-ogrn">ОГРН / ОГРНИП</label>
+          <input id="profile-org-edit-ogrn" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="15" value="1027700000000" placeholder="13 или 15 цифр" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-edit-legal-address">Юридический адрес</label>
+          <input id="profile-org-edit-legal-address" type="text" value="190000, г. Санкт‑Петербург, ул. Примерная, д. 10, оф. 5" placeholder="Индекс, город, улица, дом, офис" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-edit-actual-address">Фактический адрес (необязательно)</label>
+          <input id="profile-org-edit-actual-address" type="text" value="190000, г. Санкт‑Петербург, пр. Образцовый, д. 20" placeholder="Если совпадает с юридическим, можно не заполнять">
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-edit-contact">Контактное лицо (необязательно)</label>
+          <input id="profile-org-edit-contact" type="text" value="Иванов Иван Иванович" placeholder="ФИО контактного лица">
+        </div>
+      </fieldset>
+      <div class="wf-actions">
+        <button type="submit" class="wf-btn">Сохранить</button>
+        <a href="#main-content" class="wf-btn wf-btn-secondary">Отмена</a>
+      </div>
+    </form>
   </div>
 </section>
 
@@ -743,7 +857,6 @@
       // Бургер-меню для навигации ЛК клиента
       var burger = document.querySelector('.wf-burger');
       var lkNav = document.getElementById('lk-nav');
-      var navCurrent = lkNav && lkNav.querySelector('.wf-nav-current');
 
       function setNavOpen(isOpen) {
         if (!lkNav || !burger) return;
@@ -761,6 +874,11 @@
           toggleNav();
         });
 
+        var breadcrumbsEl = document.querySelector('.wf-nav__breadcrumbs');
+        if (breadcrumbsEl) {
+          breadcrumbsEl.addEventListener('click', function () { setNavOpen(true); });
+        }
+
         // При загрузке по умолчанию навигация закрыта в мобильном режиме
         if (!body.dataset.nav) {
           setNavOpen(false);
@@ -773,19 +891,7 @@
           }
         });
 
-        // Открывать/закрывать меню по клику на название текущей страницы
-        if (navCurrent) {
-          navCurrent.addEventListener('click', function () {
-            toggleNav();
-          });
-
-          navCurrent.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter' || event.key === ' ') {
-              event.preventDefault();
-              toggleNav();
-            }
-          });
-        }
+        // Открывать меню по клику на хлебные крошки (см. breadcrumbsEl выше)
       }
 
       // Закрытие модалки: вернуться к предыдущему модальному окну (history.back) или к странице

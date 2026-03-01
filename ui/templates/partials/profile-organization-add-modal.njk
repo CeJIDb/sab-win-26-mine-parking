@@ -1,0 +1,49 @@
+<section id="profile-organization-add-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="profile-organization-add-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="profile-organization-add-title">Добавить данные организации</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <form class="wf-form">
+      <fieldset class="wf-fieldset">
+        <legend class="wf-fieldset__legend">Реквизиты организации</legend>
+        <div class="wf-field">
+          <label for="profile-org-add-name">Полное наименование организации</label>
+          <input id="profile-org-add-name" type="text" placeholder="ООО «Пример»" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-add-name-short">Сокращённое наименование (необязательно)</label>
+          <input id="profile-org-add-name-short" type="text" placeholder="ООО «Пример»">
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-add-inn">ИНН</label>
+          <input id="profile-org-add-inn" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="12" placeholder="10 или 12 цифр" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-add-kpp">КПП</label>
+          <input id="profile-org-add-kpp" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="9" placeholder="9 цифр" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-add-ogrn">ОГРН / ОГРНИП</label>
+          <input id="profile-org-add-ogrn" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="15" placeholder="13 или 15 цифр" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-add-legal-address">Юридический адрес</label>
+          <input id="profile-org-add-legal-address" type="text" placeholder="Индекс, город, улица, дом, офис" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-add-actual-address">Фактический адрес (необязательно)</label>
+          <input id="profile-org-add-actual-address" type="text" placeholder="Если совпадает с юридическим, можно не заполнять">
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-add-contact">Контактное лицо (необязательно)</label>
+          <input id="profile-org-add-contact" type="text" placeholder="ФИО контактного лица">
+        </div>
+      </fieldset>
+      <div class="wf-actions">
+        <button type="submit" class="wf-btn">Сохранить</button>
+        <a href="#main-content" class="wf-btn wf-btn-secondary">Отмена</a>
+      </div>
+    </form>
+  </div>
+</section>

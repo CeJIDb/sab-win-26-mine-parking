@@ -1,4 +1,4 @@
-<section id="admin-client-fl-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-fl-title">
+<section id="admin-modal-client-fl" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-fl-title">
   <div class="wf-modal__dialog wf-modal__dialog--form">
     <header class="wf-modal__header">
       <h2 id="admin-client-fl-title" class="wf-modal__title">Карточка клиента (ФЛ)</h2>
@@ -37,7 +37,7 @@
             </thead>
             <tbody>
               <tr>
-                <td><a href="contracts.html">Д‑045</a></td>
+                <td><a href="contracts.html">Д-045</a></td>
                 <td>Долгосрочная парковка, сектор Б</td>
                 <td>01.01.2026–31.12.2026</td>
                 <td>Активен, оплат нет просрочек</td>
@@ -56,36 +56,27 @@
           <table class="wf-table">
             <thead>
               <tr>
-                <th>ГРЗ</th>
-                <th>Марка / модель</th>
-                <th>Статус</th>
-                <th>Действия</th>
+                <th scope="col">ГРЗ</th>
+                <th scope="col">Марка / модель</th>
+                <th scope="col">Статус</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><a href="client-sessions.html?plate=A123BV777">А123БВ777</a></td>
+                <td><a href="#admin-modal-client-vehicle-edit" aria-label="Открыть ТС А123БВ777">А123БВ777</a></td>
                 <td>Toyota Camry</td>
                 <td>Разрешён, по активному договору</td>
-                <td>
-                  <a href="#admin-client-vehicle-edit-modal" class="wf-btn">Изменить</a>
-                  <a href="#admin-client-vehicle-delete-modal" class="wf-btn">Удалить</a>
-                </td>
               </tr>
               <tr>
-                <td><a href="client-sessions.html?plate=B456GD199">В456ГД199</a></td>
+                <td><a href="#admin-modal-client-vehicle-edit" aria-label="Открыть ТС В456ГД199">В456ГД199</a></td>
                 <td>Volkswagen Polo</td>
                 <td>Разрешён, оплаченные сессии</td>
-                <td>
-                  <a href="#admin-client-vehicle-edit-modal" class="wf-btn">Изменить</a>
-                  <a href="#admin-client-vehicle-delete-modal" class="wf-btn">Удалить</a>
-                </td>
               </tr>
             </tbody>
           </table>
         </div>
         <div class="wf-actions">
-          <a href="#admin-client-vehicle-add-modal" class="wf-btn">Добавить ТС</a>
+          <a href="#admin-modal-client-vehicle-add" class="wf-btn">Добавить ТС</a>
         </div>
       </section>
 
@@ -134,7 +125,7 @@
   </div>
 </section>
 
-<section id="admin-client-yl-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-yl-title">
+<section id="admin-modal-client-yl" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-yl-title">
   <div class="wf-modal__dialog wf-modal__dialog--form">
     <header class="wf-modal__header">
       <h2 id="admin-client-yl-title" class="wf-modal__title">Карточка клиента (ЮЛ)</h2>
@@ -182,13 +173,13 @@
             </thead>
             <tbody>
               <tr>
-                <td><a href="contracts.html">Д‑052</a></td>
+                <td><a href="contracts.html">Д-052</a></td>
                 <td>Долгосрочная парковка для ЮЛ</td>
                 <td>15.02.2026–14.05.2026</td>
                 <td>Активен, есть просроченные платежи</td>
               </tr>
               <tr>
-                <td><a href="contracts.html">Д‑060</a></td>
+                <td><a href="contracts.html">Д-060</a></td>
                 <td>Корпоративный тариф ЮЛ — премиум</td>
                 <td>01.03.2026–01.03.2027</td>
                 <td>В силе, оплат нет просрочек</td>

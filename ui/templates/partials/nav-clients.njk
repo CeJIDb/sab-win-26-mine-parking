@@ -1,0 +1,10 @@
+{# Вспомогательная навигация раздела «Клиенты»: Задолженности, Бронирования, Договоры, Профили (профили клиентов) #}
+{% set current = nav_current | default(current_nav) | default('') %}
+<nav class="wf-nav wf-nav--aux" aria-label="Клиенты: подразделы">
+  <ul>
+    <li><a href="debts.html"{% if current == 'admin-debts' %} aria-current="page"{% endif %}>Задолженности</a></li>
+    <li><a href="bookings.html"{% if current == 'admin-bookings' %} aria-current="page"{% endif %}>Бронирования</a></li>
+    <li><a href="contracts.html"{% if current == 'admin-contracts' %} aria-current="page"{% endif %}>Договоры</a></li>
+    <li><a href="clients.html"{% if current in ['admin-clients','admin-client-sessions'] %} aria-current="page"{% endif %}>Профили</a></li>
+  </ul>
+</nav>

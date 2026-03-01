@@ -3,6 +3,12 @@
 {% set current_nav = 'admin-contracts' %}
 
 {% block title %}Создать договор — ЛК админа{% endblock %}
+{% block header_breadcrumbs %}<a href="debts.html">Клиенты</a><span class="wf-breadcrumbs__sep">/</span><span class="wf-breadcrumbs__current">Создать договор</span>{% endblock %}
+
+{% block auxiliary_nav %}
+  {% set nav_current = current_nav %}
+  {% include "partials/nav-clients.njk" %}
+{% endblock %}
 
 {% block content %}
   <div class="wf-page-head">

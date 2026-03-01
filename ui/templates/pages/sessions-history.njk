@@ -2,6 +2,7 @@
 
 {% set current_nav = 'sessions-history' %}
 
+{% block header_breadcrumbs %}<a href="dashboard.html">Парковка</a><span class="wf-breadcrumbs__sep">/</span><span class="wf-breadcrumbs__current">История сессий</span>{% endblock %}
 {% block title %}История парковочных сессий — ЛК клиента{% endblock %}
 
 {% block content %}
@@ -23,18 +24,16 @@
             <th scope="col">ТС (ГРЗ)</th>
             <th scope="col">ПМ / сектор</th>
             <th scope="col">К оплате</th>
-            <th scope="col">Действия</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><a href="#" aria-label="Открыть детали сессии S-1045">S-1045</a></td>
+            <td><a href="#lk-modal-session-view" aria-label="Открыть детали сессии С-1045">С-1045</a></td>
             <td>24.02.2026 10:05</td>
             <td>Постоплата</td>
             <td>А123БВ777</td>
             <td>КПП‑1, краткосрочная</td>
-            <td>350 ₽</td>
-            <td><a href="payment-external.html" class="wf-btn">Оплатить</a></td>
+            <td>350 ₽ · <a href="payment-external.html">Оплатить</a></td>
           </tr>
         </tbody>
       </table>
@@ -94,7 +93,7 @@
         </thead>
         <tbody>
           <tr>
-            <td><a href="#" aria-label="Открыть детали сессии S-1001">S-1001</a></td>
+            <td><a href="#lk-modal-session-view" aria-label="Открыть детали сессии С-1001">С-1001</a></td>
             <td>20.02.2026 09:15</td>
             <td>20.02.2026 18:42</td>
             <td>Договор</td>
@@ -104,7 +103,7 @@
             <td>—</td>
           </tr>
           <tr>
-            <td><a href="#" aria-label="Открыть детали сессии S-0999">S-0999</a></td>
+            <td><a href="#lk-modal-session-view" aria-label="Открыть детали сессии С-0999">С-0999</a></td>
             <td>18.02.2026 14:00</td>
             <td>19.02.2026 08:30</td>
             <td>Постоплата</td>
@@ -114,7 +113,7 @@
             <td>320 ₽</td>
           </tr>
           <tr>
-            <td><a href="#" aria-label="Открыть детали сессии S-0995">S-0995</a></td>
+            <td><a href="#lk-modal-session-view" aria-label="Открыть детали сессии С-0995">С-0995</a></td>
             <td>15.02.2026 07:50</td>
             <td>17.02.2026 07:50</td>
             <td>Договор</td>
@@ -124,7 +123,7 @@
             <td>—</td>
           </tr>
           <tr>
-            <td><a href="#" aria-label="Открыть детали сессии S-0988">S-0988</a></td>
+            <td><a href="#lk-modal-session-view" aria-label="Открыть детали сессии С-0988">С-0988</a></td>
             <td>10.02.2026 16:20</td>
             <td>10.02.2026 19:45</td>
             <td>Бронирование</td>
@@ -138,4 +137,6 @@
     </div>
     <p class="wf-muted">Сумма указывается только для сессий по постоплате (краткосрочные тарифы). Для бронирования и договора оплата произведена заранее. [Пагинация.]</p>
   </section>
+
+  {% include "partials/lk-session-view-modal.njk" %}
 {% endblock %}

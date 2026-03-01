@@ -10,40 +10,37 @@
   <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
   <div class="wf-page">
     <header class="wf-header wf-header--lk" role="banner">
-  <div class="wf-header__title">
-    <h1>Личный кабинет клиента</h1>
-    <p class="wf-muted"><a href="profile.html">Иванов Иван Иванович</a></p>
-  </div>
-  <a href="notifications.html" class="wf-header__notifications" aria-label="Уведомления клиента">
-    <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
-    <span class="wf-header__notifications-text">Оплата сессии S‑1045 на 350 ₽ прошла успешно</span>
-  </a>
-  <button type="button"
-          class="wf-burger"
-          aria-label="Открыть навигацию"
-          aria-controls="lk-nav"
-          aria-expanded="false">
-    <span class="wf-burger__line" aria-hidden="true"></span>
-    <span class="wf-burger__line" aria-hidden="true"></span>
-    <span class="wf-burger__line" aria-hidden="true"></span>
-  </button>
-</header>
-
+      <div class="wf-header__title">
+        <h1>Личный кабинет клиента</h1>
+        <p class="wf-muted"><a href="profile.html">Иванов Иван Иванович</a></p>
+      </div>
+      <a href="notifications.html" class="wf-header__notifications" aria-label="Уведомления клиента">
+        <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
+        <span class="wf-header__notifications-text">Оплата сессии С-1045 на 350 ₽ прошла успешно</span>
+      </a>
+      <button type="button"
+              class="wf-burger"
+              aria-label="Открыть навигацию"
+              aria-controls="lk-nav"
+              aria-expanded="false">
+        <span class="wf-burger__line" aria-hidden="true"></span>
+        <span class="wf-burger__line" aria-hidden="true"></span>
+        <span class="wf-burger__line" aria-hidden="true"></span>
+      </button>
+    </header>
     
-    
-<nav class="wf-nav wf-nav--lk" aria-label="Навигация ЛК клиента" id="lk-nav">
-  <p class="wf-nav-current" tabindex="0" role="button">
-    
-      Навигация
-    
-  </p>
+    <nav class="wf-nav wf-nav--lk" aria-label="Навигация ЛК клиента" id="lk-nav">
+      <div class="wf-nav__breadcrumbs" aria-label="Текущий раздел">
+        <span class="wf-breadcrumbs__current">Договоры</span>
+      </div>
+      
   <ul>
     <li><a href="dashboard.html">Парковка</a></li>
     <li><a href="payment-settings.html">Оплаты</a></li>
-    <li><a href="profile.html">Профиль</a></li>
+    <li class="wf-nav__item--end"><a href="profile.html">Профиль</a></li>
   </ul>
-</nav>
 
+    </nav>
     <main id="main-content" class="wf-main">
       
   <div class="wf-page-head">
@@ -66,33 +63,22 @@
             <th scope="col">Статус</th>
             <th scope="col">ТС / ПМ</th>
             <th scope="col">Задолженность</th>
-            <th scope="col">Действия</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>№1001</td>
+            <td><a href="#lk-modal-contract-view">Д-1001</a></td>
             <td>01.01.2026–31.12.2026</td>
             <td>Активен</td>
             <td>2 ТС, 2 ПМ</td>
             <td>Нет</td>
-            <td class="contracts-actions">
-              <a href="#" class="wf-btn">Скачать</a>
-              <a href="#contract-edit-modal" class="wf-btn">Изменить</a>
-              <a href="#contract-terminate-modal" class="wf-btn wf-btn-secondary">Расторгнуть</a>
-            </td>
           </tr>
           <tr>
-            <td>№1002</td>
+            <td><a href="#lk-modal-contract-view">Д-1002</a></td>
             <td>15.02.2026–14.05.2026</td>
             <td>Активен</td>
             <td>1 ТС, 1 ПМ</td>
             <td>Есть 1 просроченный платёж — <a href="payment-external.html">Оплатить</a></td>
-            <td class="contracts-actions">
-              <a href="#" class="wf-btn">Скачать</a>
-              <a href="#contract-edit-modal" class="wf-btn">Изменить</a>
-              <a href="#contract-terminate-modal" class="wf-btn wf-btn-secondary">Расторгнуть</a>
-            </td>
           </tr>
         </tbody>
       </table>
@@ -106,7 +92,7 @@
       <div class="filters-row">
         <div class="wf-field">
           <label for="filter-history-contract-number">Номер договора</label>
-          <input id="filter-history-contract-number" type="text" placeholder="Например, 0999">
+          <input id="filter-history-contract-number" type="text" placeholder="Например, Д-0999">
         </div>
         <div class="wf-field">
           <label for="filter-history-contract-status">Статус</label>
@@ -138,37 +124,56 @@
             <th scope="col">Период</th>
             <th scope="col">Статус</th>
             <th scope="col">ТС / ПМ</th>
-            <th scope="col">Действия</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>№0999</td>
+            <td><a href="#lk-modal-contract-view" aria-label="Открыть договор Д-0999">Д-0999</a></td>
             <td>01.06.2025–31.12.2025</td>
             <td><span class="wf-badge">Завершён</span></td>
             <td>1 ТС, 1 ПМ</td>
-            <td>
-              <a href="#" class="wf-btn" aria-label="Скачать сканы договора №0999">Скачать</a>
-            </td>
           </tr>
           <tr>
-            <td>№0998</td>
+            <td><a href="#lk-modal-contract-view" aria-label="Открыть договор Д-0998">Д-0998</a></td>
             <td>01.03.2025–15.05.2025</td>
             <td><span class="wf-badge">Расторгнут</span></td>
             <td>1 ТС, 1 ПМ</td>
-            <td>
-              <a href="#" class="wf-btn" aria-label="Скачать сканы договора №0998">Скачать</a>
-            </td>
           </tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <section id="contract-edit-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="contract-edit-title">
+  
+<section id="lk-modal-contract-view" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="lk-contract-view-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="lk-contract-view-title" class="wf-modal__title">Договор Д-1001</h2>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <section class="wf-section">
+        <h3>Основная информация</h3>
+        <div class="wf-card">
+          <p><strong>Период:</strong> 01.01.2026–31.12.2026</p>
+          <p><strong>Статус:</strong> <span class="wf-badge">Активен</span></p>
+          <p><strong>ТС / ПМ:</strong> 2 ТС, 2 ПМ</p>
+          <p><strong>Задолженность:</strong> Нет</p>
+        </div>
+      </section>
+      <div class="wf-actions">
+        <a href="#" class="wf-btn" aria-label="Скачать сканы договора">Скачать</a>
+        <a href="#lk-modal-contract-edit" class="wf-btn">Изменить</a>
+        <a href="#lk-modal-contract-terminate" class="wf-btn wf-btn-secondary">Расторгнуть</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section id="lk-modal-contract-edit" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="contract-edit-title">
   <div class="wf-modal__dialog wf-section">
     <header class="wf-modal__header">
-      <h3 id="contract-edit-title">Изменение договора №1001</h3>
+      <h3 id="contract-edit-title">Изменение договора Д-1001</h3>
       <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
     </header>
     <form class="wf-form">
@@ -222,10 +227,10 @@
   </div>
 </section>
 
-  <section id="contract-terminate-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="contract-terminate-title">
+  <section id="lk-modal-contract-terminate" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="contract-terminate-title">
   <div class="wf-modal__dialog wf-section">
     <header class="wf-modal__header">
-      <h3 id="contract-terminate-title">Расторжение договора №1001</h3>
+      <h3 id="contract-terminate-title">Расторжение договора Д-1001</h3>
       <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
     </header>
     <form class="wf-form">
@@ -314,7 +319,6 @@
       // Бургер-меню для навигации ЛК клиента
       var burger = document.querySelector('.wf-burger');
       var lkNav = document.getElementById('lk-nav');
-      var navCurrent = lkNav && lkNav.querySelector('.wf-nav-current');
 
       function setNavOpen(isOpen) {
         if (!lkNav || !burger) return;
@@ -332,6 +336,11 @@
           toggleNav();
         });
 
+        var breadcrumbsEl = document.querySelector('.wf-nav__breadcrumbs');
+        if (breadcrumbsEl) {
+          breadcrumbsEl.addEventListener('click', function () { setNavOpen(true); });
+        }
+
         // При загрузке по умолчанию навигация закрыта в мобильном режиме
         if (!body.dataset.nav) {
           setNavOpen(false);
@@ -344,19 +353,7 @@
           }
         });
 
-        // Открывать/закрывать меню по клику на название текущей страницы
-        if (navCurrent) {
-          navCurrent.addEventListener('click', function () {
-            toggleNav();
-          });
-
-          navCurrent.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter' || event.key === ' ') {
-              event.preventDefault();
-              toggleNav();
-            }
-          });
-        }
+        // Открывать меню по клику на хлебные крошки (см. breadcrumbsEl выше)
       }
 
       // Закрытие модалки: вернуться к предыдущему модальному окну (history.back) или к странице

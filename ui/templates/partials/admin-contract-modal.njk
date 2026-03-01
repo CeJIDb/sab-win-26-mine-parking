@@ -1,7 +1,7 @@
-<section id="admin-contract-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-contract-title">
+<section id="admin-modal-contract-view" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-contract-title">
   <div class="wf-modal__dialog wf-modal__dialog--form">
     <header class="wf-modal__header">
-      <h2 id="admin-contract-title" class="wf-modal__title">Детали договора Д‑045</h2>
+      <h2 id="admin-contract-title" class="wf-modal__title">Детали договора Д-045</h2>
       <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
     </header>
     <div class="wf-modal__body">
@@ -27,8 +27,8 @@
           <table class="wf-table">
             <thead>
               <tr>
-                <th>ГРЗ</th>
-                <th>Марка / модель</th>
+                <th scope="col">ГРЗ</th>
+                <th scope="col">Марка / модель</th>
               </tr>
             </thead>
             <tbody>
@@ -51,8 +51,8 @@
           <table class="wf-table">
             <thead>
               <tr>
-                <th>ПМ</th>
-                <th>Сектор</th>
+                <th scope="col">ПМ</th>
+                <th scope="col">Сектор</th>
               </tr>
             </thead>
             <tbody>
@@ -68,6 +68,11 @@
           </table>
         </div>
       </section>
+
+      <div class="wf-actions">
+        <a href="#admin-modal-contract-edit" class="wf-btn">Изменить</a>
+        <a href="#admin-modal-contract-terminate" class="wf-btn">Расторгнуть</a>
+      </div>
     </div>
   </div>
 </section>

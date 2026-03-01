@@ -1,9 +1,9 @@
 {# Модальные окна для добавления, редактирования и удаления ТС в карточке клиента (админка) #}
-<section id="admin-client-vehicle-add-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-vehicle-add-title">
+<section id="admin-modal-client-vehicle-add" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-vehicle-add-title">
   <div class="wf-modal__dialog wf-modal__dialog--form">
     <header class="wf-modal__header">
       <h2 id="admin-client-vehicle-add-title" class="wf-modal__title">Добавить ТС</h2>
-      <a href="#admin-client-fl-modal" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
     </header>
     <div class="wf-modal__body">
       <form class="wf-form">
@@ -37,11 +37,11 @@
   </div>
 </section>
 
-<section id="admin-client-vehicle-edit-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-vehicle-edit-title">
+<section id="admin-modal-client-vehicle-edit" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-vehicle-edit-title">
   <div class="wf-modal__dialog wf-modal__dialog--form">
     <header class="wf-modal__header">
       <h2 id="admin-client-vehicle-edit-title" class="wf-modal__title">Редактировать ТС</h2>
-      <a href="#admin-client-fl-modal" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
     </header>
     <div class="wf-modal__body">
       <form class="wf-form">
@@ -69,24 +69,25 @@
         </div>
         <div class="wf-actions">
           <button type="submit">Сохранить изменения</button>
+          <a href="#admin-modal-client-vehicle-delete" class="wf-btn wf-btn-secondary">Удалить ТС</a>
         </div>
       </form>
     </div>
   </div>
 </section>
 
-<section id="admin-client-vehicle-delete-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-vehicle-delete-title">
+<section id="admin-modal-client-vehicle-delete" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-client-vehicle-delete-title">
   <div class="wf-modal__dialog wf-modal__dialog--form">
     <header class="wf-modal__header">
       <h2 id="admin-client-vehicle-delete-title" class="wf-modal__title">Удаление ТС</h2>
-      <a href="#admin-client-fl-modal" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
     </header>
     <div class="wf-modal__body">
       <p>Вы уверены, что хотите удалить <strong>ТС А123БВ777 — Toyota Camry</strong> из списка клиента?</p>
       <p class="wf-muted">При привязке к договору или бронированию может потребоваться согласование.</p>
       <div class="wf-actions">
         <button type="button">Подтвердить удаление</button>
-        <a href="#admin-client-fl-modal" class="wf-btn">Отмена</a>
+        <a href="#main-content" class="wf-btn">Отмена</a>
       </div>
     </div>
   </div>

@@ -1,0 +1,49 @@
+<section id="profile-organization-edit-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="profile-organization-edit-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="profile-organization-edit-title">Изменить данные организации</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <form class="wf-form">
+      <fieldset class="wf-fieldset">
+        <legend class="wf-fieldset__legend">Реквизиты организации</legend>
+        <div class="wf-field">
+          <label for="profile-org-edit-name">Полное наименование организации</label>
+          <input id="profile-org-edit-name" type="text" value="Общество с ограниченной ответственностью «Ромашка»" placeholder="ООО «Пример»" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-edit-name-short">Сокращённое наименование (необязательно)</label>
+          <input id="profile-org-edit-name-short" type="text" value="ООО «Ромашка»" placeholder="ООО «Пример»">
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-edit-inn">ИНН</label>
+          <input id="profile-org-edit-inn" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="12" value="7700000000" placeholder="10 или 12 цифр" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-edit-kpp">КПП</label>
+          <input id="profile-org-edit-kpp" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="9" value="770001001" placeholder="9 цифр" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-edit-ogrn">ОГРН / ОГРНИП</label>
+          <input id="profile-org-edit-ogrn" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="15" value="1027700000000" placeholder="13 или 15 цифр" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-edit-legal-address">Юридический адрес</label>
+          <input id="profile-org-edit-legal-address" type="text" value="190000, г. Санкт‑Петербург, ул. Примерная, д. 10, оф. 5" placeholder="Индекс, город, улица, дом, офис" required>
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-edit-actual-address">Фактический адрес (необязательно)</label>
+          <input id="profile-org-edit-actual-address" type="text" value="190000, г. Санкт‑Петербург, пр. Образцовый, д. 20" placeholder="Если совпадает с юридическим, можно не заполнять">
+        </div>
+        <div class="wf-field">
+          <label for="profile-org-edit-contact">Контактное лицо (необязательно)</label>
+          <input id="profile-org-edit-contact" type="text" value="Иванов Иван Иванович" placeholder="ФИО контактного лица">
+        </div>
+      </fieldset>
+      <div class="wf-actions">
+        <button type="submit" class="wf-btn">Сохранить</button>
+        <a href="#main-content" class="wf-btn wf-btn-secondary">Отмена</a>
+      </div>
+    </form>
+  </div>
+</section>

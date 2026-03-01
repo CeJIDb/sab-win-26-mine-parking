@@ -1,0 +1,184 @@
+{% extends "layouts/admin.njk" %}
+
+{% set current_nav = 'admin-sessions' %}
+
+{% block title %}Парковочные сессии — ЛК админа{% endblock %}
+{% block header_breadcrumbs %}<a href="sessions.html">Парковка</a><span class="wf-breadcrumbs__sep">/</span><span class="wf-breadcrumbs__current">Парковочные сессии</span>{% endblock %}
+
+{% block auxiliary_nav %}
+  {% set nav_current = current_nav %}
+  {% include "partials/nav-parking.njk" %}
+{% endblock %}
+
+{% block content %}
+  <div class="wf-page-head">
+    <button type="button" class="wf-back">Назад</button>
+    <h2>Парковочные сессии</h2>
+  </div>
+
+  <section class="wf-section" aria-labelledby="sessions-active-heading">
+    <h3 id="sessions-active-heading">Активные парковочные сессии</h3>
+    <p class="wf-muted">Текущие сессии по парковке без выезда. Для администрирования и контроля оплат.</p>
+    <div class="wf-table-wrap" role="region" aria-label="Активные сессии">
+      <table class="wf-table">
+        <thead>
+          <tr>
+            <th scope="col">ID сессии</th>
+            <th scope="col">Тип клиента</th>
+            <th scope="col">Клиент</th>
+            <th scope="col">Тип сессии</th>
+            <th scope="col">Дата въезда</th>
+            <th scope="col">ТС (ГРЗ)</th>
+            <th scope="col">ПМ / сектор</th>
+            <th scope="col">К оплате</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="#admin-modal-session-view">С-1045</a></td>
+            <td>ФЛ</td>
+            <td><a href="#admin-modal-client-fl">Иванов Иван Иванович</a></td>
+            <td>Постоплата</td>
+            <td>24.02.2026 10:05</td>
+            <td>А123БВ777</td>
+            <td>КПП‑1, краткосрочная</td>
+            <td>350 ₽</td>
+          </tr>
+          <tr>
+            <td><a href="#admin-modal-session-view">С-1048</a></td>
+            <td>ЮЛ</td>
+            <td><a href="#admin-modal-client-yl">ООО «Ромашка»</a></td>
+            <td>Договор</td>
+            <td>26.02.2026 08:20</td>
+            <td>А555АА750</td>
+            <td>Сектор Б, ПМ 201</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="wf-muted"><strong>Тип сессии:</strong> постоплата — краткосрочные тарифы; бронирование — с предоплатой; договор — долгосрочные по договору.</p>
+  </section>
+
+  <section class="wf-section" aria-labelledby="sessions-history-heading">
+    <h3 id="sessions-history-heading">История сессий</h3>
+    <p class="wf-muted">Завершённые и отменённые парковочные сессии по всей парковке.</p>
+    <form class="wf-form sessions-filters" aria-label="Фильтры по истории сессий">
+      <div class="filters-row">
+        <div class="wf-field">
+          <label for="admin-filter-sessions-date-from">Период с</label>
+          <input id="admin-filter-sessions-date-from" type="date">
+        </div>
+        <div class="wf-field">
+          <label for="admin-filter-sessions-date-to">по</label>
+          <input id="admin-filter-sessions-date-to" type="date">
+        </div>
+        <div class="wf-field">
+          <label for="admin-filter-sessions-client">Клиент / ГРЗ</label>
+          <input id="admin-filter-sessions-client" type="text" placeholder="ФИО, организация или ГРЗ">
+        </div>
+        <div class="wf-field">
+          <label for="admin-filter-sessions-client-type">Тип клиента</label>
+          <select id="admin-filter-sessions-client-type">
+            <option value="">Любой</option>
+            <option value="fl">ФЛ</option>
+            <option value="yl">ЮЛ</option>
+          </select>
+        </div>
+        <div class="wf-field">
+          <label for="admin-filter-sessions-type">Тип сессии</label>
+          <select id="admin-filter-sessions-type">
+            <option value="">Все</option>
+            <option value="postpay">Постоплата</option>
+            <option value="booking">Бронирование</option>
+            <option value="contract">Договор</option>
+          </select>
+        </div>
+        <div class="wf-field">
+          <label for="admin-filter-sessions-kpp">КПП</label>
+          <select id="admin-filter-sessions-kpp">
+            <option value="">Любой</option>
+            <option value="kpp1">КПП‑1</option>
+            <option value="kpp2">КПП‑2</option>
+          </select>
+        </div>
+        <div class="filter-actions">
+          <button type="submit">Применить</button>
+          <button type="button">Сбросить</button>
+        </div>
+      </div>
+    </form>
+    <div class="wf-table-wrap" role="region" aria-label="История сессий">
+      <table class="wf-table">
+        <thead>
+          <tr>
+            <th scope="col">ID сессии</th>
+            <th scope="col">Тип клиента</th>
+            <th scope="col">Клиент</th>
+            <th scope="col">Тип сессии</th>
+            <th scope="col">Дата въезда</th>
+            <th scope="col">Дата выезда</th>
+            <th scope="col">Длительность</th>
+            <th scope="col">ТС (ГРЗ)</th>
+            <th scope="col">ПМ / сектор</th>
+            <th scope="col">Сумма</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="#admin-modal-session-view">С-1001</a></td>
+            <td>ФЛ</td>
+            <td><a href="#admin-modal-client-fl">Иванов Иван Иванович</a></td>
+            <td>Договор</td>
+            <td>20.02.2026 09:15</td>
+            <td>20.02.2026 18:42</td>
+            <td>9 ч 27 мин</td>
+            <td>А123БВ777</td>
+            <td>Долгосрочная, сектор А</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><a href="#admin-modal-session-view">С-0999</a></td>
+            <td>ФЛ</td>
+            <td><a href="#admin-modal-client-fl">Петров Пётр Петрович</a></td>
+            <td>Постоплата</td>
+            <td>18.02.2026 14:00</td>
+            <td>19.02.2026 08:30</td>
+            <td>18 ч 30 мин</td>
+            <td>В456ГД199</td>
+            <td>Краткосрочная, ОВЗ</td>
+            <td>320 ₽</td>
+          </tr>
+          <tr>
+            <td><a href="#admin-modal-session-view">С-0995</a></td>
+            <td>ФЛ</td>
+            <td><a href="#admin-modal-client-fl">Иванов Иван Иванович</a></td>
+            <td>Договор</td>
+            <td>15.02.2026 07:50</td>
+            <td>17.02.2026 07:50</td>
+            <td>2 д 0 ч</td>
+            <td>А123БВ777</td>
+            <td>Долгосрочная, сектор Б</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><a href="#admin-modal-session-view">С-0988</a></td>
+            <td>ЮЛ</td>
+            <td><a href="#admin-modal-client-yl">ООО «Ромашка»</a></td>
+            <td>Бронирование</td>
+            <td>10.02.2026 16:20</td>
+            <td>10.02.2026 19:45</td>
+            <td>3 ч 25 мин</td>
+            <td>А555АА750</td>
+            <td>Краткосрочная</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="wf-muted">Сумма указывается для сессий по постоплате. Для бронирования и договора оплата произведена заранее.</p>
+  </section>
+
+  {% include "partials/admin-session-modal.njk" %}
+  {% include "partials/admin-client-modal.njk" %}
+{% endblock %}

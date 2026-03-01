@@ -2,6 +2,7 @@
 
 {% set current_nav = 'payment-settings' %}
 
+{% block header_breadcrumbs %}<span class="wf-breadcrumbs__current">Оплаты</span>{% endblock %}
 {% block title %}Оплаты — ЛК клиента{% endblock %}
 
 {% block content %}
@@ -28,27 +29,20 @@
             <th scope="col">Описание</th>
             <th scope="col">Сумма</th>
             <th scope="col">Статус</th>
-            <th scope="col">Действия</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>25.02.2026</td>
-            <td>Счёт по договору <a href="contracts.html">№1001</a> за март 2026</td>
+            <td>Счёт по договору <a href="contracts.html">Д-1001</a> за март 2026</td>
             <td>4 500 ₽</td>
-            <td>К оплате</td>
-            <td>
-              <a href="payment-external.html" class="wf-btn">Оплатить</a>
-            </td>
+            <td>К оплате · <a href="payment-external.html">Оплатить</a></td>
           </tr>
           <tr>
             <td>24.02.2026</td>
             <td>Счёт за парковочные сессии за 24.02.2026 (ТС А123БВ777)</td>
             <td>350 ₽</td>
-            <td>Ожидает оплаты</td>
-            <td>
-              <a href="payment-external.html" class="wf-btn">Оплатить</a>
-            </td>
+            <td>Ожидает оплаты · <a href="payment-external.html">Оплатить</a></td>
           </tr>
         </tbody>
       </table>
@@ -74,15 +68,15 @@
           <tr>
             <td>24.02.2026 10:15</td>
             <td>Сессия</td>
-            <td>Парковочная сессия №S-1001 (ТС А123БВ777)</td>
+            <td>Парковочная сессия С-1001 (ТС А123БВ777)</td>
             <td>350 ₽</td>
             <td>Успешно</td>
-            <td><a href="#" aria-label="Открыть чек по оплате S-1001">Скачать чек</a></td>
+            <td><a href="#" aria-label="Открыть чек по оплате С-1001">Скачать чек</a></td>
           </tr>
           <tr>
             <td>23.02.2026 18:40</td>
             <td>Бронирование</td>
-            <td>Бронирование №B-204 на ПМ 12, сектор A</td>
+            <td>Бронирование Б-204 на ПМ 12, сектор A</td>
             <td>500 ₽</td>
             <td>Успешно</td>
             <td><a href="#" aria-label="Открыть чек по бронированию B-204">Скачать чек</a></td>
@@ -90,7 +84,7 @@
           <tr>
             <td>22.02.2026 09:05</td>
             <td>Договор</td>
-            <td>Оплата по договору №1001 за месяц</td>
+            <td>Оплата по договору Д-1001 за месяц</td>
             <td>4 500 ₽</td>
             <td>Успешно</td>
             <td><a href="#" aria-label="Открыть чек по оплате договора 1001">Скачать чек</a></td>
@@ -98,10 +92,10 @@
           <tr>
             <td>21.02.2026 21:30</td>
             <td>Сессия</td>
-            <td>Парковочная сессия №S-0998 (ТС В456ГД177)</td>
+            <td>Парковочная сессия С-0998 (ТС В456ГД177)</td>
             <td>300 ₽</td>
             <td>Отклонено</td>
-            <td><a href="#" aria-label="Подробнее об ошибке оплаты S-0998">Подробнее</a></td>
+            <td><a href="#" aria-label="Подробнее об ошибке оплаты С-0998">Подробнее</a></td>
           </tr>
         </tbody>
       </table>

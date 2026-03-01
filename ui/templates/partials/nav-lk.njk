@@ -1,21 +1,6 @@
 {% set current = nav_current | default('') %}
-<nav class="wf-nav wf-nav--lk" aria-label="Навигация ЛК клиента" id="lk-nav">
-  <p class="wf-nav-current" tabindex="0" role="button">
-    {% if current == 'dashboard' %}
-      Парковка
-    {% elif current == 'payment-settings' %}
-      Оплаты
-    {% elif current == 'profile' %}
-      Профиль
-    {% elif current == 'notifications' %}
-      Уведомления
-    {% else %}
-      Навигация
-    {% endif %}
-  </p>
   <ul>
     <li><a href="dashboard.html"{% if current == 'dashboard' %} aria-current="page"{% endif %}>Парковка</a></li>
     <li><a href="payment-settings.html"{% if current == 'payment-settings' %} aria-current="page"{% endif %}>Оплаты</a></li>
-    <li><a href="profile.html"{% if current == 'profile' %} aria-current="page"{% endif %}>Профиль</a></li>
+    <li class="wf-nav__item--end"><a href="profile.html"{% if current == 'profile' %} aria-current="page"{% endif %}>Профиль</a></li>
   </ul>
-</nav>

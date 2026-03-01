@@ -3,6 +3,7 @@
 {% set current_nav = 'dashboard' %}
 
 {% block title %}Парковка — ЛК клиента{% endblock %}
+{% block header_breadcrumbs %}<span class="wf-breadcrumbs__current">Парковка</span>{% endblock %}
 
 {% block content %}
   <h2>Парковка</h2>
@@ -11,7 +12,7 @@
     <div class="wf-grid wf-grid--three">
       <section class="wf-card">
         <h4>Парковочная сессия</h4>
-        <p><strong>Активная сессия:</strong> S‑1045, КПП‑1, с 24.02.2026 10:05.</p>
+        <p><strong>Активная сессия:</strong> С-1045, КПП‑1, с 24.02.2026 10:05.</p>
         <p class="wf-muted">Ориентировочная сумма к оплате: 350 ₽ по тарифу «Почасовой А».</p>
         <p class="wf-actions">
           <a href="payment-external.html" class="wf-btn">Оплатить</a>
@@ -23,13 +24,13 @@
         <p><strong>Планируемое бронирование:</strong> 27.02.2026 19:00–22:00, сектор Б, место 203.</p>
         <p class="wf-muted">Рекомендуем создать или скорректировать бронирование заранее.</p>
         <p class="wf-actions">
-          <a href="bookings.html#booking-create-modal" class="wf-btn">Забронировать</a>
+          <a href="bookings.html#lk-modal-booking-create" class="wf-btn">Забронировать</a>
           <a href="bookings.html" class="wf-btn">Бронирования</a>
         </p>
       </section>
       <section class="wf-card wf-card--attention" aria-label="Договор — к оплате">
         <h4>Договор <span class="wf-badge wf-badge--attention">К оплате</span></h4>
-        <p><strong>Договор Д‑045:</strong> долг 1 200 ₽, срок оплаты до 01.03.2026.</p>
+        <p><strong>Договор Д-045:</strong> долг 1 200 ₽, срок оплаты до 01.03.2026.</p>
         <p class="wf-muted">Оплатите договор, чтобы избежать ограничений доступа на парковку.</p>
         <p class="wf-actions">
           <a href="payment-external.html" class="wf-btn">Оплатить</a>

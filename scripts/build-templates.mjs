@@ -78,6 +78,7 @@ async function main() {
     { template: 'pages/admin-index.njk', out: 'index.html' },
     { template: 'pages/admin-profile.njk', out: 'profile.html' },
     { template: 'pages/admin-sectors.njk', out: 'sectors.html' },
+    { template: 'pages/admin-sessions.njk', out: 'sessions.html' },
     { template: 'pages/admin-tariffs.njk', out: 'tariffs.html' },
     { template: 'pages/admin-contracts.njk', out: 'contracts.html' },
     { template: 'pages/admin-contracts-create.njk', out: 'contracts-create.html' },
@@ -90,6 +91,7 @@ async function main() {
     { template: 'pages/admin-requests.njk', out: 'requests.html' },
     { template: 'pages/admin-analytics.njk', out: 'analytics.html' },
     { template: 'pages/admin-client-sessions.njk', out: 'client-sessions.html' },
+    { template: 'pages/admin-client-summary.njk', out: 'client-summary.html' },
     { template: 'pages/admin-kpp-dashboard.njk', out: 'kpp-panel.html' },
     { template: 'pages/admin-kpp-log.njk', out: 'kpp-log.html' },
   ];

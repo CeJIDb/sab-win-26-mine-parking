@@ -30,9 +30,34 @@
       </button>
     </header>
     <div id="admin-nav" class="wf-nav-wrap wf-nav-wrap--admin">
-      {% set role = "admin" %}
-      {% set nav_current = current_nav|default('') %}
-      {% include "partials/nav-role.njk" %}
+      <div class="wf-nav__breadcrumbs" aria-label="Текущий раздел">
+        {% block header_breadcrumbs %}<span class="wf-breadcrumbs__current">Главная</span>{% endblock %}
+      </div>
+      <div class="wf-nav-level wf-nav-level--main">
+        {% set role = "admin" %}
+        {% set nav_current = current_nav|default('') %}
+        {% include "partials/nav-role.njk" %}
+      </div>
+      <div class="wf-nav-level wf-nav-level--sub" id="admin-nav-sub" aria-hidden="true">
+        <div class="wf-nav-sub-panel" id="admin-nav-sub-parking" data-nav-sub-panel="parking">
+          <button type="button" class="wf-nav-sub-back" data-nav-sub-back aria-label="Назад в меню">← Назад</button>
+          {% set nav_current = current_nav|default('') %}
+          {% include "partials/nav-parking.njk" %}
+        </div>
+        <div class="wf-nav-sub-panel" id="admin-nav-sub-clients" data-nav-sub-panel="clients">
+          <button type="button" class="wf-nav-sub-back" data-nav-sub-back aria-label="Назад в меню">← Назад</button>
+          {% set nav_current = current_nav|default('') %}
+          {% include "partials/nav-clients.njk" %}
+        </div>
+        <div class="wf-nav-sub-panel" id="admin-nav-sub-kpp" data-nav-sub-panel="kpp">
+          <button type="button" class="wf-nav-sub-back" data-nav-sub-back aria-label="Назад в меню">← Назад</button>
+          {% set nav_current = current_nav|default('') %}
+          {% include "partials/nav-kpp.njk" %}
+        </div>
+      </div>
+      <div class="wf-nav-level wf-nav-level--aux-desktop">
+        {% block auxiliary_nav %}{% endblock %}
+      </div>
     </div>
     <main id="main-content" class="wf-main">
       {% block content %}{% endblock %}
@@ -91,14 +116,51 @@
           burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         }
         burger.addEventListener('click', function () { setNavOpen(body.dataset.nav !== 'open'); });
+        var breadcrumbsEl = document.querySelector('.wf-nav-wrap--admin .wf-nav__breadcrumbs');
+        if (breadcrumbsEl) {
+          breadcrumbsEl.addEventListener('click', function () { setNavOpen(true); });
+        }
         adminNav.addEventListener('click', function (e) {
-          if (e.target.tagName === 'A') setNavOpen(false);
+          var link = e.target.closest('a');
+          if (link && link.hasAttribute('data-nav-sub') && (body.dataset.view === 'mobile' || window.matchMedia('(max-width: 640px)').matches)) {
+            e.preventDefault();
+            var subId = link.getAttribute('data-nav-sub');
+            var subPanel = adminNav.querySelector('[data-nav-sub-panel="' + subId + '"]');
+            if (subPanel) {
+              adminNav.querySelectorAll('.wf-nav-sub-panel').forEach(function (p) { p.classList.remove('wf-nav-sub-panel--active'); });
+              subPanel.classList.add('wf-nav-sub-panel--active');
+              adminNav.setAttribute('data-nav-sub-open', subId);
+              adminNav.querySelector('.wf-nav-level--sub').setAttribute('aria-hidden', 'false');
+            }
+            return;
+          }
+          if (link) {
+            if (link.closest('.wf-nav-level--sub')) {
+              adminNav.removeAttribute('data-nav-sub-open');
+              adminNav.querySelectorAll('.wf-nav-sub-panel').forEach(function (p) { p.classList.remove('wf-nav-sub-panel--active'); });
+              adminNav.querySelector('.wf-nav-level--sub').setAttribute('aria-hidden', 'true');
+            }
+            if (!link.hasAttribute('data-nav-sub')) setNavOpen(false);
+          }
+        });
+        adminNav.querySelectorAll('[data-nav-sub-back]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            adminNav.removeAttribute('data-nav-sub-open');
+            adminNav.querySelectorAll('.wf-nav-sub-panel').forEach(function (p) { p.classList.remove('wf-nav-sub-panel--active'); });
+            adminNav.querySelector('.wf-nav-level--sub').setAttribute('aria-hidden', 'true');
+          });
         });
         if (!body.dataset.nav) setNavOpen(false);
       }
 
       document.querySelectorAll('.wf-back').forEach(function (btn) {
-        btn.addEventListener('click', function () {
+        btn.addEventListener('click', function (e) {
+          var href = btn.getAttribute && btn.getAttribute('href');
+          if (href && href !== '' && href !== '#') {
+            e.preventDefault();
+            window.location.href = href;
+            return;
+          }
           if (window.history.length > 1) {
             window.history.back();
           } else {

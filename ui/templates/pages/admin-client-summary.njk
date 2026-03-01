@@ -1,0 +1,113 @@
+{% extends "layouts/admin.njk" %}
+
+{% set current_nav = 'admin-kpp-dashboard' %}
+
+{% block title %}Карточка клиента — ЛК администратора{% endblock %}
+{% block header_breadcrumbs %}<a href="kpp-panel.html">КПП</a><span class="wf-breadcrumbs__sep">/</span><span class="wf-breadcrumbs__current">Карточка клиента</span>{% endblock %}
+
+{% block auxiliary_nav %}
+  {% set nav_current = current_nav %}
+  {% include "partials/nav-kpp.njk" %}
+{% endblock %}
+
+{% block content %}
+  <div class="wf-page-head">
+    <a href="kpp-panel.html" class="wf-back">Назад</a>
+    <h2>Карточка клиента</h2>
+  </div>
+  <section class="wf-section">
+    <h3>Основная информация</h3>
+    <div class="wf-grid wf-grid--two">
+      <div class="wf-card">
+        <p><strong>Тип клиента:</strong> Физическое лицо</p>
+        <p><strong>ФИО:</strong> Иванов Иван Иванович</p>
+        <p><strong>Телефон:</strong> +7 (900) 123‑45‑67</p>
+        <p><strong>E‑mail:</strong> ivanov@example.com</p>
+      </div>
+      <div class="wf-card">
+        <p><strong>Статус доступа:</strong> Разрешён (нет блокировок)</p>
+        <p><strong>Задолженность:</strong> Нет</p>
+        <p><strong>Чёрный список:</strong> Не числится</p>
+        <p><strong>Замечания:</strong> Нет проблем, клиент в зелёной зоне.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wf-section">
+    <h3>Договоры и оплаты</h3>
+    <div class="wf-table-wrap">
+      <table class="wf-table">
+        <thead>
+          <tr>
+            <th scope="col">Договор</th>
+            <th scope="col">Тип</th>
+            <th scope="col">Период</th>
+            <th scope="col">Состояние</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Д-045</td>
+            <td>Долгосрочная парковка, сектор Б</td>
+            <td>01.01.2026–31.03.2026</td>
+            <td>Активен</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="wf-card">
+      <p><strong>Текущая парковочная сессия:</strong> С-1001 · КПП‑1 · ТС А123БВ777</p>
+      <p><strong>Сумма к оплате:</strong> 350 ₽</p>
+      <p class="wf-muted">
+        При оплате наличными или через банковский терминал охранник фиксирует факт оплаты в системе вручную.
+      </p>
+      <div class="wf-actions">
+        <a href="#guard-payment-manual-modal" class="wf-btn">Рассчитать и принять оплату</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wf-section">
+    <h3>Транспортные средства клиента</h3>
+    <div class="wf-table-wrap">
+      <table class="wf-table">
+        <thead>
+          <tr>
+            <th scope="col">ГРЗ</th>
+            <th scope="col">Марка / модель</th>
+            <th scope="col">Тип ТС</th>
+            <th scope="col">Статус</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="client-sessions.html?plate=A123БВ777">А123БВ777</a></td>
+            <td>Toyota Camry</td>
+            <td>Легковой</td>
+            <td>Разрешён, по активному договору</td>
+          </tr>
+          <tr>
+            <td><a href="client-sessions.html?plate=В456ГД199">В456ГД199</a></td>
+            <td>Volkswagen Polo</td>
+            <td>Легковой</td>
+            <td>Разрешён, оплаченные сессии</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="wf-section">
+    <h3>Служебные действия</h3>
+    <p class="wf-muted">При необходимости можно зафиксировать решения по доступу клиента.</p>
+    <div class="wf-field">
+      <label for="admin-blacklist-reason">Причина добавления или удаления из чёрного списка</label>
+      <textarea id="admin-blacklist-reason" rows="3" placeholder="Кратко опишите причину (например, нарушение правил, неверные данные и т.п.)."></textarea>
+    </div>
+    <div class="wf-actions">
+      <button type="button">Добавить в чёрный список</button>
+      <button type="button" class="wf-btn-secondary">Удалить из чёрного списка</button>
+    </div>
+  </section>
+  {% include "partials/guard-payment-manual-modal.njk" %}
+{% endblock %}

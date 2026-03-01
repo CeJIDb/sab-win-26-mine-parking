@@ -30,44 +30,104 @@
       </button>
     </header>
     <div id="admin-nav" class="wf-nav-wrap wf-nav-wrap--admin">
-      
-      
-      
+      <div class="wf-nav__breadcrumbs" aria-label="Текущий раздел">
+        <a href="kpp-panel.html">КПП</a><span class="wf-breadcrumbs__sep">/</span><span class="wf-breadcrumbs__current">Панель</span>
+      </div>
+      <div class="wf-nav-level wf-nav-level--main">
+        
+        
+        
 
 
 
 <nav class="wf-nav wf-nav--admin" aria-label="Навигация ЛК администратора">
   <ul>
     <li><a href="index.html">Главная</a></li>
+    <li><a href="sessions.html" class="wf-nav__link--has-sub" data-nav-sub="parking">Парковка</a></li>
+    <li><a href="debts.html" class="wf-nav__link--has-sub" data-nav-sub="clients">Клиенты</a></li>
+    <li><a href="requests.html">Обращения</a></li>
+    <li><a href="kpp-panel.html" class="wf-nav__link--has-sub" data-nav-sub="kpp" aria-current="page">КПП</a></li>
+    <li class="wf-nav__item--end"><a href="profile.html">Профиль</a></li>
+  </ul>
+</nav>
+
+
+
+      </div>
+      <div class="wf-nav-level wf-nav-level--sub" id="admin-nav-sub" aria-hidden="true">
+        <div class="wf-nav-sub-panel" id="admin-nav-sub-parking" data-nav-sub-panel="parking">
+          <button type="button" class="wf-nav-sub-back" data-nav-sub-back aria-label="Назад в меню">← Назад</button>
+          
+          
+
+<nav class="wf-nav wf-nav--aux" aria-label="Парковка: подразделы">
+  <ul>
+    <li><a href="sessions.html">Парковочные сессии</a></li>
     <li><a href="sectors.html">Секторы и ПМ</a></li>
     <li><a href="tariffs.html">Тарифы</a></li>
-    <li><a href="contracts.html">Договоры</a></li>
-    <li><a href="bookings.html">Бронирования</a></li>
-    <li><a href="debts.html">Задолженности</a></li>
-    <li><a href="clients.html">Профили клиентов</a></li>
-    <li><a href="admins.html">Профили админов</a></li>
-    <li><a href="notifications-manage.html">Управление уведомлениями</a></li>
-    <li><a href="requests.html">Обращения</a></li>
-    <li><a href="analytics.html">Аналитика</a></li>
+    <li><a href="notifications-manage.html">Уведомления</a></li>
+    <li><a href="admins.html">Профили сотрудников</a></li>
+    <li class="wf-nav--aux__item--end"><a href="https://analytics.example.com" target="_blank" rel="noopener noreferrer">Аналитика</a></li>
   </ul>
 </nav>
 
-<nav class="wf-nav" aria-label="Интерфейс КПП (для администратора)">
+        </div>
+        <div class="wf-nav-sub-panel" id="admin-nav-sub-clients" data-nav-sub-panel="clients">
+          <button type="button" class="wf-nav-sub-back" data-nav-sub-back aria-label="Назад в меню">← Назад</button>
+          
+          
+
+<nav class="wf-nav wf-nav--aux" aria-label="Клиенты: подразделы">
   <ul>
-    <li><a href="kpp-panel.html">КПП — панель</a></li>
-    <li><a href="kpp-log.html">КПП — журнал въезда‑выезда</a></li>
+    <li><a href="debts.html">Задолженности</a></li>
+    <li><a href="bookings.html">Бронирования</a></li>
+    <li><a href="contracts.html">Договоры</a></li>
+    <li><a href="clients.html">Профили</a></li>
+  </ul>
+</nav>
+
+        </div>
+        <div class="wf-nav-sub-panel" id="admin-nav-sub-kpp" data-nav-sub-panel="kpp">
+          <button type="button" class="wf-nav-sub-back" data-nav-sub-back aria-label="Назад в меню">← Назад</button>
+          
+          
+
+<nav class="wf-nav wf-nav--aux" aria-label="КПП: подразделы">
+  <ul>
+    <li><a href="kpp-panel.html" aria-current="page">Панель</a></li>
+    <li><a href="kpp-log.html">Журнал въезда‑выезда</a></li>
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      <div class="wf-nav-level wf-nav-level--aux-desktop">
+        
+  
+  
+
+<nav class="wf-nav wf-nav--aux" aria-label="КПП: подразделы">
+  <ul>
+    <li><a href="kpp-panel.html" aria-current="page">Панель</a></li>
+    <li><a href="kpp-log.html">Журнал въезда‑выезда</a></li>
   </ul>
 </nav>
 
 
-
+      </div>
     </div>
     <main id="main-content" class="wf-main">
       
   <div class="wf-page-head">
-    <button type="button" class="wf-back">Назад</button>
+    <a href="sessions.html" class="wf-back wf-btn">Назад</a>
   </div>
-  <h2>Панель КПП</h2>
+  
+  
+
+
+
+
+<h2>Панель КПП</h2>
 
 <section class="wf-section">
   <h3>Последние события КПП</h3>
@@ -75,15 +135,15 @@
     <table class="wf-table">
       <thead>
         <tr>
-          <th>Время</th>
-          <th>ГРЗ</th>
-          <th>Направление</th>
-          <th>Статус</th>
+          <th scope="col">Время</th>
+          <th scope="col">ГРЗ</th>
+          <th scope="col">Направление</th>
+          <th scope="col">Статус</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><a href="../guard/client-summary.html">24.02.2026 10:20</a></td>
+          <td><a href="client-summary.html">24.02.2026 10:20</a></td>
           <td style="background:#ffe0e0;"><strong>—</strong></td>
           <td>Въезд</td>
           <td>
@@ -94,26 +154,26 @@
           </td>
         </tr>
         <tr>
-          <td><a href="../guard/client-summary.html">24.02.2026 10:15</a></td>
-          <td><a href="../guard/client-summary.html">А123БВ777</a></td>
+          <td><a href="client-summary.html?plate=A123БВ777">24.02.2026 10:15</a></td>
+          <td><a href="client-summary.html?plate=A123БВ777">А123БВ777</a></td>
           <td>Въезд</td>
           <td>Разрешено (автоматически по договору)</td>
         </tr>
         <tr>
-          <td><a href="../guard/client-summary.html">24.02.2026 10:02</a></td>
-          <td><a href="../guard/client-summary.html">В456ГД199</a></td>
+          <td><a href="client-summary.html?plate=В456ГД199">24.02.2026 10:02</a></td>
+          <td><a href="client-summary.html?plate=В456ГД199">В456ГД199</a></td>
           <td>Выезд</td>
           <td>Разрешено (по сессии)</td>
         </tr>
         <tr>
-          <td><a href="../guard/client-summary.html">24.02.2026 09:50</a></td>
-          <td><a href="../guard/client-summary.html">С789ЕЕ750</a></td>
+          <td><a href="client-summary.html?plate=С789ЕЕ750">24.02.2026 09:50</a></td>
+          <td><a href="client-summary.html?plate=С789ЕЕ750">С789ЕЕ750</a></td>
           <td>Въезд</td>
           <td>Отказ (чёрный список)</td>
         </tr>
         <tr>
-          <td><a href="../guard/client-summary.html">24.02.2026 09:42</a></td>
-          <td><a href="../guard/client-summary.html">Д111АА750</a></td>
+          <td><a href="client-summary.html?plate=Д111АА750">24.02.2026 09:42</a></td>
+          <td><a href="client-summary.html?plate=Д111АА750">Д111АА750</a></td>
           <td>Въезд</td>
           <td>Отказ (решение охранника)</td>
         </tr>
@@ -128,7 +188,7 @@
     <div class="wf-card">
       <h4>Поиск по номеру ТС</h4>
       <p class="wf-muted">Быстрая проверка права въезда по государственному номеру ТС.</p>
-      <form class="wf-form" action="../guard/client-summary.html" method="get">
+      <form class="wf-form" action="client-summary.html" method="get">
         <div class="wf-field">
           <label for="guard-plate-search">ГРЗ (государственный регистрационный знак)</label>
           <input id="guard-plate-search" name="plate" type="text" placeholder="А123БВ777" required>
@@ -141,7 +201,7 @@
     <div class="wf-card">
       <h4>Поиск клиента по ФИО</h4>
       <p class="wf-muted">Найти клиента по ФИО, телефону или ГРЗ и открыть его карточку с краткой сводкой.</p>
-      <form class="wf-form" action="../guard/client-summary.html" method="get">
+      <form class="wf-form" action="client-summary.html" method="get">
         <div class="wf-field">
           <label for="guard-client-search">ФИО или телефон</label>
           <input id="guard-client-search" name="q" type="text" placeholder="Иванов Иван Иванович / +7…" required>
@@ -312,14 +372,51 @@
           burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         }
         burger.addEventListener('click', function () { setNavOpen(body.dataset.nav !== 'open'); });
+        var breadcrumbsEl = document.querySelector('.wf-nav-wrap--admin .wf-nav__breadcrumbs');
+        if (breadcrumbsEl) {
+          breadcrumbsEl.addEventListener('click', function () { setNavOpen(true); });
+        }
         adminNav.addEventListener('click', function (e) {
-          if (e.target.tagName === 'A') setNavOpen(false);
+          var link = e.target.closest('a');
+          if (link && link.hasAttribute('data-nav-sub') && (body.dataset.view === 'mobile' || window.matchMedia('(max-width: 640px)').matches)) {
+            e.preventDefault();
+            var subId = link.getAttribute('data-nav-sub');
+            var subPanel = adminNav.querySelector('[data-nav-sub-panel="' + subId + '"]');
+            if (subPanel) {
+              adminNav.querySelectorAll('.wf-nav-sub-panel').forEach(function (p) { p.classList.remove('wf-nav-sub-panel--active'); });
+              subPanel.classList.add('wf-nav-sub-panel--active');
+              adminNav.setAttribute('data-nav-sub-open', subId);
+              adminNav.querySelector('.wf-nav-level--sub').setAttribute('aria-hidden', 'false');
+            }
+            return;
+          }
+          if (link) {
+            if (link.closest('.wf-nav-level--sub')) {
+              adminNav.removeAttribute('data-nav-sub-open');
+              adminNav.querySelectorAll('.wf-nav-sub-panel').forEach(function (p) { p.classList.remove('wf-nav-sub-panel--active'); });
+              adminNav.querySelector('.wf-nav-level--sub').setAttribute('aria-hidden', 'true');
+            }
+            if (!link.hasAttribute('data-nav-sub')) setNavOpen(false);
+          }
+        });
+        adminNav.querySelectorAll('[data-nav-sub-back]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            adminNav.removeAttribute('data-nav-sub-open');
+            adminNav.querySelectorAll('.wf-nav-sub-panel').forEach(function (p) { p.classList.remove('wf-nav-sub-panel--active'); });
+            adminNav.querySelector('.wf-nav-level--sub').setAttribute('aria-hidden', 'true');
+          });
         });
         if (!body.dataset.nav) setNavOpen(false);
       }
 
       document.querySelectorAll('.wf-back').forEach(function (btn) {
-        btn.addEventListener('click', function () {
+        btn.addEventListener('click', function (e) {
+          var href = btn.getAttribute && btn.getAttribute('href');
+          if (href && href !== '' && href !== '#') {
+            e.preventDefault();
+            window.location.href = href;
+            return;
+          }
           if (window.history.length > 1) {
             window.history.back();
           } else {

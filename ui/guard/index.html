@@ -31,7 +31,7 @@
   <ul>
     <li><a href="index.html" aria-current="page">КПП — панель</a></li>
     <li><a href="log.html">Журнал въезда‑выезда</a></li>
-    <li><a href="profile.html">Профиль</a></li>
+    <li class="wf-nav__item--end"><a href="profile.html">Профиль</a></li>
   </ul>
 </nav>
 
@@ -39,7 +39,12 @@
 
     <main id="main-content" class="wf-main">
       
-  <h2>Панель КПП</h2>
+  
+
+
+
+
+<h2>Панель КПП</h2>
 
 <section class="wf-section">
   <h3>Последние события КПП</h3>
@@ -47,15 +52,15 @@
     <table class="wf-table">
       <thead>
         <tr>
-          <th>Время</th>
-          <th>ГРЗ</th>
-          <th>Направление</th>
-          <th>Статус</th>
+          <th scope="col">Время</th>
+          <th scope="col">ГРЗ</th>
+          <th scope="col">Направление</th>
+          <th scope="col">Статус</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><a href="../guard/client-summary.html">24.02.2026 10:20</a></td>
+          <td><a href="client-summary.html">24.02.2026 10:20</a></td>
           <td style="background:#ffe0e0;"><strong>—</strong></td>
           <td>Въезд</td>
           <td>
@@ -66,26 +71,26 @@
           </td>
         </tr>
         <tr>
-          <td><a href="../guard/client-summary.html">24.02.2026 10:15</a></td>
-          <td><a href="../guard/client-summary.html">А123БВ777</a></td>
+          <td><a href="client-summary.html?plate=A123БВ777">24.02.2026 10:15</a></td>
+          <td><a href="client-summary.html?plate=A123БВ777">А123БВ777</a></td>
           <td>Въезд</td>
           <td>Разрешено (автоматически по договору)</td>
         </tr>
         <tr>
-          <td><a href="../guard/client-summary.html">24.02.2026 10:02</a></td>
-          <td><a href="../guard/client-summary.html">В456ГД199</a></td>
+          <td><a href="client-summary.html?plate=В456ГД199">24.02.2026 10:02</a></td>
+          <td><a href="client-summary.html?plate=В456ГД199">В456ГД199</a></td>
           <td>Выезд</td>
           <td>Разрешено (по сессии)</td>
         </tr>
         <tr>
-          <td><a href="../guard/client-summary.html">24.02.2026 09:50</a></td>
-          <td><a href="../guard/client-summary.html">С789ЕЕ750</a></td>
+          <td><a href="client-summary.html?plate=С789ЕЕ750">24.02.2026 09:50</a></td>
+          <td><a href="client-summary.html?plate=С789ЕЕ750">С789ЕЕ750</a></td>
           <td>Въезд</td>
           <td>Отказ (чёрный список)</td>
         </tr>
         <tr>
-          <td><a href="../guard/client-summary.html">24.02.2026 09:42</a></td>
-          <td><a href="../guard/client-summary.html">Д111АА750</a></td>
+          <td><a href="client-summary.html?plate=Д111АА750">24.02.2026 09:42</a></td>
+          <td><a href="client-summary.html?plate=Д111АА750">Д111АА750</a></td>
           <td>Въезд</td>
           <td>Отказ (решение охранника)</td>
         </tr>
@@ -100,7 +105,7 @@
     <div class="wf-card">
       <h4>Поиск по номеру ТС</h4>
       <p class="wf-muted">Быстрая проверка права въезда по государственному номеру ТС.</p>
-      <form class="wf-form" action="../guard/client-summary.html" method="get">
+      <form class="wf-form" action="client-summary.html" method="get">
         <div class="wf-field">
           <label for="guard-plate-search">ГРЗ (государственный регистрационный знак)</label>
           <input id="guard-plate-search" name="plate" type="text" placeholder="А123БВ777" required>
@@ -113,7 +118,7 @@
     <div class="wf-card">
       <h4>Поиск клиента по ФИО</h4>
       <p class="wf-muted">Найти клиента по ФИО, телефону или ГРЗ и открыть его карточку с краткой сводкой.</p>
-      <form class="wf-form" action="../guard/client-summary.html" method="get">
+      <form class="wf-form" action="client-summary.html" method="get">
         <div class="wf-field">
           <label for="guard-client-search">ФИО или телефон</label>
           <input id="guard-client-search" name="q" type="text" placeholder="Иванов Иван Иванович / +7…" required>

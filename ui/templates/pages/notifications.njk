@@ -2,6 +2,7 @@
 
 {% set current_nav = 'notifications' %}
 
+{% block header_breadcrumbs %}<span class="wf-breadcrumbs__current">Уведомления</span>{% endblock %}
 {% block title %}Уведомления — ЛК клиента{% endblock %}
 
 {% block content %}
@@ -51,13 +52,13 @@
       <li class="wf-notification wf-notification--unread">
         <a href="#client-notif-1-modal" class="wf-notification__link">
           <strong>24.02.2026 10:20</strong> — Оплата
-          <br>Оплата парковочной сессии <a href="sessions-history.html">S-1001</a> на сумму 350 ₽ прошла успешно.
+          <br>Оплата парковочной сессии <a href="sessions-history.html">С-1001</a> на сумму 350 ₽ прошла успешно.
         </a>
       </li>
       <li class="wf-notification wf-notification--unread">
         <a href="#client-notif-2-modal" class="wf-notification__link">
           <strong>24.02.2026 09:00</strong> — Договор
-          <br>Срок действия договора №1001 истекает через <strong>5 дней</strong>.
+          <br>Срок действия договора Д-1001 истекает через <strong>5 дней</strong>.
         </a>
       </li>
       <li class="wf-notification wf-notification--read">
@@ -75,7 +76,7 @@
       <li class="wf-notification wf-notification--read">
         <a href="#client-notif-5-modal" class="wf-notification__link">
           <strong>22.02.2026 21:30</strong> — Ошибка оплаты
-          <br>Не удалось списать оплату за парковочную сессию <a href="sessions-history.html">S-0998</a>.
+          <br>Не удалось списать оплату за парковочную сессию <a href="sessions-history.html">С-0998</a>.
         </a>
       </li>
     </ul>
@@ -91,7 +92,7 @@
       <div class="wf-modal__body">
         <p><strong>Дата и время:</strong> 24.02.2026 10:20</p>
         <p><strong>Тип:</strong> Оплата</p>
-        <p><strong>Описание:</strong> Оплата парковочной сессии S‑1001 на сумму 350 ₽ прошла успешно.</p>
+        <p><strong>Описание:</strong> Оплата парковочной сессии С-1001 на сумму 350 ₽ прошла успешно.</p>
         <p class="wf-muted">Подробную информацию о платеже вы можете посмотреть в разделе «Оплаты» или в истории сессий.</p>
       </div>
     </div>
@@ -106,7 +107,7 @@
       <div class="wf-modal__body">
         <p><strong>Дата и время:</strong> 24.02.2026 09:00</p>
         <p><strong>Тип:</strong> Договор</p>
-        <p><strong>Описание:</strong> Срок действия договора №1001 истекает через 5 дней. Для сохранения доступа к парковочным местам необходимо продлить договор.</p>
+        <p><strong>Описание:</strong> Срок действия договора Д-1001 истекает через 5 дней. Для сохранения доступа к парковочным местам необходимо продлить договор.</p>
         <p class="wf-muted">Перейдите в раздел «Договоры», чтобы продлить договор или ознакомиться с его условиями.</p>
       </div>
     </div>
@@ -121,7 +122,7 @@
       <div class="wf-modal__body">
         <p><strong>Дата и время:</strong> 23.02.2026 18:45</p>
         <p><strong>Тип:</strong> Бронирование</p>
-        <p><strong>Описание:</strong> Создано бронирование B‑204 на ПМ 12, сектор A на сегодня в 19:00.</p>
+        <p><strong>Описание:</strong> Создано бронирование Б-204 на ПМ 12, сектор A на сегодня в 19:00.</p>
         <p class="wf-muted">Отследить или изменить бронирование можно в разделе «Бронирование».</p>
       </div>
     </div>
@@ -151,7 +152,7 @@
       <div class="wf-modal__body">
         <p><strong>Дата и время:</strong> 22.02.2026 21:30</p>
         <p><strong>Тип:</strong> Ошибка оплаты</p>
-        <p><strong>Описание:</strong> Не удалось списать оплату за парковочную сессию S‑0998.</p>
+        <p><strong>Описание:</strong> Не удалось списать оплату за парковочную сессию С-0998.</p>
         <p class="wf-muted">Проверьте способ оплаты в разделе «Оплаты» и повторите платёж. В случае повторной ошибки обратитесь в службу поддержки.</p>
       </div>
     </div>

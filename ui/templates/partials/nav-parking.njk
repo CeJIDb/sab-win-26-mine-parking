@@ -1,0 +1,12 @@
+{# Вспомогательная навигация раздела «Парковка»: Парковочные сессии (по умолчанию), Секторы и ПМ, Тарифы, Уведомления, Профили сотрудников, Аналитика (внешний ресурс, справа) #}
+{% set current = nav_current | default(current_nav) | default('') %}
+<nav class="wf-nav wf-nav--aux" aria-label="Парковка: подразделы">
+  <ul>
+    <li><a href="sessions.html"{% if current == 'admin-sessions' %} aria-current="page"{% endif %}>Парковочные сессии</a></li>
+    <li><a href="sectors.html"{% if current == 'admin-sectors' %} aria-current="page"{% endif %}>Секторы и ПМ</a></li>
+    <li><a href="tariffs.html"{% if current == 'admin-tariffs' %} aria-current="page"{% endif %}>Тарифы</a></li>
+    <li><a href="notifications-manage.html"{% if current == 'admin-notifications-manage' %} aria-current="page"{% endif %}>Уведомления</a></li>
+    <li><a href="admins.html"{% if current == 'admin-admins' %} aria-current="page"{% endif %}>Профили сотрудников</a></li>
+    <li class="wf-nav--aux__item--end"><a href="https://analytics.example.com" target="_blank" rel="noopener noreferrer">Аналитика</a></li>
+  </ul>
+</nav>

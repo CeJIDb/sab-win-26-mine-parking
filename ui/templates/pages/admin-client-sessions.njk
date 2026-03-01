@@ -1,5 +1,11 @@
 {% extends "layouts/admin.njk" %}
+{% set current_nav = 'admin-clients' %}
 {% block title %}История парковочных сессий — ЛК админа{% endblock %}
+{% block header_breadcrumbs %}<a href="debts.html">Клиенты</a><span class="wf-breadcrumbs__sep">/</span><span class="wf-breadcrumbs__current">История сессий</span>{% endblock %}
+{% block auxiliary_nav %}
+  {% set nav_current = current_nav %}
+  {% include "partials/nav-clients.njk" %}
+{% endblock %}
 {% block content %}
   <div class="wf-page-head">
     <button type="button" class="wf-back">Назад</button>
@@ -65,7 +71,7 @@
           <td>Въезд</td>
           <td>Разрешено</td>
           <td>Автоматически (по договору)</td>
-          <td>Активный договор Д‑045, нет задолженности.</td>
+          <td>Активный договор Д-045, нет задолженности.</td>
         </tr>
         <tr>
           <td>23.02.2026 18:40</td>

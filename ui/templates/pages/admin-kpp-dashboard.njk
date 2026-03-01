@@ -3,11 +3,18 @@
 {% set current_nav = 'admin-kpp-dashboard' %}
 
 {% block title %}КПП — панель (ЛК администратора){% endblock %}
+{% block header_breadcrumbs %}<a href="kpp-panel.html">КПП</a><span class="wf-breadcrumbs__sep">/</span><span class="wf-breadcrumbs__current">Панель</span>{% endblock %}
+
+{% block auxiliary_nav %}
+  {% set nav_current = current_nav %}
+  {% include "partials/nav-kpp.njk" %}
+{% endblock %}
 
 {% block content %}
   <div class="wf-page-head">
-    <button type="button" class="wf-back">Назад</button>
+    <a href="sessions.html" class="wf-back wf-btn">Назад</a>
   </div>
+  {% set from_admin = true %}
   {% include "partials/guard-dashboard-content.njk" %}
 {% endblock %}
 

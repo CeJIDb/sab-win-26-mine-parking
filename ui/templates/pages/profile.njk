@@ -3,6 +3,7 @@
 {% set current_nav = 'profile' %}
 
 {% block title %}Профиль — ЛК клиента{% endblock %}
+{% block header_breadcrumbs %}<span class="wf-breadcrumbs__current">Профиль</span>{% endblock %}
 
 {% block content %}
   <div class="wf-page-head">
@@ -29,6 +30,28 @@
       <a href="#profile-settings-modal" class="wf-btn">Настройки</a>
       <a href="#profile-vehicles-modal" class="wf-btn">Список ТС</a>
     </div>
+  </section>
+
+  {% set has_organization = true %}
+  <section class="wf-section" aria-labelledby="profile-org-heading">
+    <h3 id="profile-org-heading">Данные организации (ЮЛ)</h3>
+    <p class="wf-muted">Реквизиты юридического лица для заключения договоров от имени организации. Необязательный блок.</p>
+    {% if has_organization %}
+      <div class="wf-card">
+        <p><strong>Наименование:</strong> ООО «Ромашка»</p>
+        <p><strong>ИНН / КПП:</strong> 7700000000 / 770001001</p>
+        <p><strong>ОГРН:</strong> 1027700000000</p>
+        <p><strong>Юридический адрес:</strong> 190000, г. Санкт‑Петербург, ул. Примерная, д. 10, оф. 5</p>
+      </div>
+      <div class="wf-actions">
+        <a href="#profile-organization-edit-modal" class="wf-btn">Изменить данные организации</a>
+      </div>
+    {% else %}
+      <p>Данные организации не добавлены. Укажите реквизиты для заключения договоров от имени юридического лица.</p>
+      <div class="wf-actions">
+        <a href="#profile-organization-add-modal" class="wf-btn">Добавить данные организации</a>
+      </div>
+    {% endif %}
   </section>
 
   <section class="wf-section" aria-labelledby="profile-support-heading">
@@ -59,4 +82,6 @@
   {% include "partials/vehicles-edit-modal.njk" %}
   {% include "partials/vehicles-delete-modal.njk" %}
   {% include "partials/appeal-create-modal.njk" %}
+  {% include "partials/profile-organization-add-modal.njk" %}
+  {% include "partials/profile-organization-edit-modal.njk" %}
 {% endblock %}

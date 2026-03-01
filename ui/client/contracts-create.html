@@ -10,40 +10,37 @@
   <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
   <div class="wf-page">
     <header class="wf-header wf-header--lk" role="banner">
-  <div class="wf-header__title">
-    <h1>Личный кабинет клиента</h1>
-    <p class="wf-muted"><a href="profile.html">Иванов Иван Иванович</a></p>
-  </div>
-  <a href="notifications.html" class="wf-header__notifications" aria-label="Уведомления клиента">
-    <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
-    <span class="wf-header__notifications-text">Оплата сессии S‑1045 на 350 ₽ прошла успешно</span>
-  </a>
-  <button type="button"
-          class="wf-burger"
-          aria-label="Открыть навигацию"
-          aria-controls="lk-nav"
-          aria-expanded="false">
-    <span class="wf-burger__line" aria-hidden="true"></span>
-    <span class="wf-burger__line" aria-hidden="true"></span>
-    <span class="wf-burger__line" aria-hidden="true"></span>
-  </button>
-</header>
-
+      <div class="wf-header__title">
+        <h1>Личный кабинет клиента</h1>
+        <p class="wf-muted"><a href="profile.html">Иванов Иван Иванович</a></p>
+      </div>
+      <a href="notifications.html" class="wf-header__notifications" aria-label="Уведомления клиента">
+        <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
+        <span class="wf-header__notifications-text">Оплата сессии С-1045 на 350 ₽ прошла успешно</span>
+      </a>
+      <button type="button"
+              class="wf-burger"
+              aria-label="Открыть навигацию"
+              aria-controls="lk-nav"
+              aria-expanded="false">
+        <span class="wf-burger__line" aria-hidden="true"></span>
+        <span class="wf-burger__line" aria-hidden="true"></span>
+        <span class="wf-burger__line" aria-hidden="true"></span>
+      </button>
+    </header>
     
-    
-<nav class="wf-nav wf-nav--lk" aria-label="Навигация ЛК клиента" id="lk-nav">
-  <p class="wf-nav-current" tabindex="0" role="button">
-    
-      Навигация
-    
-  </p>
+    <nav class="wf-nav wf-nav--lk" aria-label="Навигация ЛК клиента" id="lk-nav">
+      <div class="wf-nav__breadcrumbs" aria-label="Текущий раздел">
+        <a href="contracts.html">Договоры</a><span class="wf-breadcrumbs__sep">/</span><span class="wf-breadcrumbs__current">Создать договор</span>
+      </div>
+      
   <ul>
     <li><a href="dashboard.html">Парковка</a></li>
     <li><a href="payment-settings.html">Оплаты</a></li>
-    <li><a href="profile.html">Профиль</a></li>
+    <li class="wf-nav__item--end"><a href="profile.html">Профиль</a></li>
   </ul>
-</nav>
 
+    </nav>
     <main id="main-content" class="wf-main">
       
   <div class="wf-page-head">
@@ -207,7 +204,6 @@
       // Бургер-меню для навигации ЛК клиента
       var burger = document.querySelector('.wf-burger');
       var lkNav = document.getElementById('lk-nav');
-      var navCurrent = lkNav && lkNav.querySelector('.wf-nav-current');
 
       function setNavOpen(isOpen) {
         if (!lkNav || !burger) return;
@@ -225,6 +221,11 @@
           toggleNav();
         });
 
+        var breadcrumbsEl = document.querySelector('.wf-nav__breadcrumbs');
+        if (breadcrumbsEl) {
+          breadcrumbsEl.addEventListener('click', function () { setNavOpen(true); });
+        }
+
         // При загрузке по умолчанию навигация закрыта в мобильном режиме
         if (!body.dataset.nav) {
           setNavOpen(false);
@@ -237,19 +238,7 @@
           }
         });
 
-        // Открывать/закрывать меню по клику на название текущей страницы
-        if (navCurrent) {
-          navCurrent.addEventListener('click', function () {
-            toggleNav();
-          });
-
-          navCurrent.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter' || event.key === ' ') {
-              event.preventDefault();
-              toggleNav();
-            }
-          });
-        }
+        // Открывать меню по клику на хлебные крошки (см. breadcrumbsEl выше)
       }
 
       // Закрытие модалки: вернуться к предыдущему модальному окну (history.back) или к странице

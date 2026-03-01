@@ -1,9 +1,9 @@
 {# Модальные окна добавления ТС и ПМ к договору — шаблон как у admin-contract-edit-modal #}
-<section id="admin-contract-add-vehicle-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-contract-add-vehicle-title">
+<section id="admin-modal-contract-add-vehicle" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-contract-add-vehicle-title">
   <div class="wf-modal__dialog wf-modal__dialog--form">
     <header class="wf-modal__header">
       <h2 id="admin-contract-add-vehicle-title" class="wf-modal__title">Добавить ТС к договору</h2>
-      <a href="#admin-contract-edit-modal" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+      <a href="#admin-modal-contract-edit" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
     </header>
     <div class="wf-modal__body">
       <section class="wf-section">
@@ -33,7 +33,7 @@
           </div>
           <div class="wf-actions">
             <button type="submit">Добавить ТС</button>
-            <a href="#admin-contract-edit-modal" class="wf-btn">Отмена</a>
+            <a href="#admin-modal-contract-edit" class="wf-btn">Отмена</a>
           </div>
         </form>
       </section>
@@ -41,11 +41,11 @@
   </div>
 </section>
 
-<section id="admin-contract-add-pm-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-contract-add-pm-title">
+<section id="admin-modal-contract-add-pm" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-contract-add-pm-title">
   <div class="wf-modal__dialog wf-modal__dialog--form">
     <header class="wf-modal__header">
       <h2 id="admin-contract-add-pm-title" class="wf-modal__title">Добавить ПМ к договору</h2>
-      <a href="#admin-contract-edit-modal" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+      <a href="#admin-modal-contract-edit" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
     </header>
     <div class="wf-modal__body">
       <section class="wf-section">
@@ -73,7 +73,7 @@
           </div>
           <div class="wf-actions">
             <button type="submit">Добавить ПМ</button>
-            <a href="#admin-contract-edit-modal" class="wf-btn">Отмена</a>
+            <a href="#admin-modal-contract-edit" class="wf-btn">Отмена</a>
           </div>
         </form>
       </section>

@@ -30,37 +30,95 @@
       </button>
     </header>
     <div id="admin-nav" class="wf-nav-wrap wf-nav-wrap--admin">
-      
-      
-      
+      <div class="wf-nav__breadcrumbs" aria-label="Текущий раздел">
+        <a href="sessions.html">Парковка</a><span class="wf-breadcrumbs__sep">/</span><span class="wf-breadcrumbs__current">Тарифы</span>
+      </div>
+      <div class="wf-nav-level wf-nav-level--main">
+        
+        
+        
 
 
 
 <nav class="wf-nav wf-nav--admin" aria-label="Навигация ЛК администратора">
   <ul>
     <li><a href="index.html">Главная</a></li>
+    <li><a href="sessions.html" class="wf-nav__link--has-sub" data-nav-sub="parking" aria-current="page">Парковка</a></li>
+    <li><a href="debts.html" class="wf-nav__link--has-sub" data-nav-sub="clients">Клиенты</a></li>
+    <li><a href="requests.html">Обращения</a></li>
+    <li><a href="kpp-panel.html" class="wf-nav__link--has-sub" data-nav-sub="kpp">КПП</a></li>
+    <li class="wf-nav__item--end"><a href="profile.html">Профиль</a></li>
+  </ul>
+</nav>
+
+
+
+      </div>
+      <div class="wf-nav-level wf-nav-level--sub" id="admin-nav-sub" aria-hidden="true">
+        <div class="wf-nav-sub-panel" id="admin-nav-sub-parking" data-nav-sub-panel="parking">
+          <button type="button" class="wf-nav-sub-back" data-nav-sub-back aria-label="Назад в меню">← Назад</button>
+          
+          
+
+<nav class="wf-nav wf-nav--aux" aria-label="Парковка: подразделы">
+  <ul>
+    <li><a href="sessions.html">Парковочные сессии</a></li>
     <li><a href="sectors.html">Секторы и ПМ</a></li>
     <li><a href="tariffs.html" aria-current="page">Тарифы</a></li>
-    <li><a href="contracts.html">Договоры</a></li>
-    <li><a href="bookings.html">Бронирования</a></li>
-    <li><a href="debts.html">Задолженности</a></li>
-    <li><a href="clients.html">Профили клиентов</a></li>
-    <li><a href="admins.html">Профили админов</a></li>
-    <li><a href="notifications-manage.html">Управление уведомлениями</a></li>
-    <li><a href="requests.html">Обращения</a></li>
-    <li><a href="analytics.html">Аналитика</a></li>
+    <li><a href="notifications-manage.html">Уведомления</a></li>
+    <li><a href="admins.html">Профили сотрудников</a></li>
+    <li class="wf-nav--aux__item--end"><a href="https://analytics.example.com" target="_blank" rel="noopener noreferrer">Аналитика</a></li>
   </ul>
 </nav>
 
-<nav class="wf-nav" aria-label="Интерфейс КПП (для администратора)">
+        </div>
+        <div class="wf-nav-sub-panel" id="admin-nav-sub-clients" data-nav-sub-panel="clients">
+          <button type="button" class="wf-nav-sub-back" data-nav-sub-back aria-label="Назад в меню">← Назад</button>
+          
+          
+
+<nav class="wf-nav wf-nav--aux" aria-label="Клиенты: подразделы">
   <ul>
-    <li><a href="kpp-panel.html">КПП — панель</a></li>
-    <li><a href="kpp-log.html">КПП — журнал въезда‑выезда</a></li>
+    <li><a href="debts.html">Задолженности</a></li>
+    <li><a href="bookings.html">Бронирования</a></li>
+    <li><a href="contracts.html">Договоры</a></li>
+    <li><a href="clients.html">Профили</a></li>
+  </ul>
+</nav>
+
+        </div>
+        <div class="wf-nav-sub-panel" id="admin-nav-sub-kpp" data-nav-sub-panel="kpp">
+          <button type="button" class="wf-nav-sub-back" data-nav-sub-back aria-label="Назад в меню">← Назад</button>
+          
+          
+
+<nav class="wf-nav wf-nav--aux" aria-label="КПП: подразделы">
+  <ul>
+    <li><a href="kpp-panel.html">Панель</a></li>
+    <li><a href="kpp-log.html">Журнал въезда‑выезда</a></li>
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      <div class="wf-nav-level wf-nav-level--aux-desktop">
+        
+  
+  
+
+<nav class="wf-nav wf-nav--aux" aria-label="Парковка: подразделы">
+  <ul>
+    <li><a href="sessions.html">Парковочные сессии</a></li>
+    <li><a href="sectors.html">Секторы и ПМ</a></li>
+    <li><a href="tariffs.html" aria-current="page">Тарифы</a></li>
+    <li><a href="notifications-manage.html">Уведомления</a></li>
+    <li><a href="admins.html">Профили сотрудников</a></li>
+    <li class="wf-nav--aux__item--end"><a href="https://analytics.example.com" target="_blank" rel="noopener noreferrer">Аналитика</a></li>
   </ul>
 </nav>
 
 
-
+      </div>
     </div>
     <main id="main-content" class="wf-main">
       
@@ -72,7 +130,7 @@
   <section class="wf-section">
     <h3>Реестр тарифов</h3>
     <div class="wf-actions" style="margin-bottom: 1rem;">
-      <a href="#admin-tariff-create-modal" class="wf-btn">Создать тариф</a>
+      <a href="#admin-modal-tariff-create" class="wf-btn">Создать тариф</a>
     </div>
     <form class="wf-form sessions-filters" aria-label="Фильтры по тарифам">
       <div class="filters-row">
@@ -107,44 +165,40 @@
       <thead>
         <tr>
           <th scope="col">Название тарифа</th>
-          <th scope="col">Тип</th>
+          <th scope="col">Тип тарифа</th>
           <th scope="col">Парковка / сектор</th>
           <th scope="col">Основные условия</th>
           <th scope="col">Статус</th>
-          <th scope="col">Действия</th>
         </tr>
       </thead>
         <tbody>
           <tr>
-            <td>Почасовой А</td>
+            <td><a href="#admin-modal-tariff-view">Почасовой А</a></td>
             <td>Почасовой</td>
             <td>Основная парковка, сектор А</td>
             <td>Первые 15 минут бесплатно, далее поминутно</td>
             <td><span class="wf-badge">Активен</span></td>
-            <td><a href="#admin-tariff-modal" class="wf-btn">Настроить</a></td>
           </tr>
           <tr>
-            <td>Долгосрочная парковка, сектор Б</td>
+            <td><a href="#admin-modal-tariff-view">Долгосрочная парковка, сектор Б</a></td>
             <td>Договорный</td>
             <td>Многоуровневая парковка, сектор Б</td>
             <td>Месячный платёж, фиксированное место</td>
             <td><span class="wf-badge">Активен</span></td>
-            <td><a href="#admin-tariff-modal" class="wf-btn">Настроить</a></td>
           </tr>
           <tr>
-            <td>Ночной тариф</td>
+            <td><a href="#admin-modal-tariff-view">Ночной тариф</a></td>
             <td>Почасовой</td>
             <td>Все секторы</td>
             <td>С 22:00 до 07:00, пониженная ставка</td>
             <td><span class="wf-badge">Архив</span></td>
-            <td><a href="#admin-tariff-modal" class="wf-btn">Настроить</a></td>
           </tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <section id="admin-tariff-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-tariff-title">
+  <section id="admin-modal-tariff-view" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-tariff-title">
     <div class="wf-modal__dialog wf-modal__dialog--form">
       <header class="wf-modal__header">
         <h2 id="admin-tariff-title" class="wf-modal__title">Настройки тарифа</h2>
@@ -257,7 +311,7 @@
     </div>
   </section>
 
-  <section id="admin-tariff-create-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-tariff-create-title">
+  <section id="admin-modal-tariff-create" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-tariff-create-title">
     <div class="wf-modal__dialog wf-modal__dialog--form">
       <header class="wf-modal__header">
         <h2 id="admin-tariff-create-title" class="wf-modal__title">Создание тарифа</h2>
@@ -417,14 +471,51 @@
           burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         }
         burger.addEventListener('click', function () { setNavOpen(body.dataset.nav !== 'open'); });
+        var breadcrumbsEl = document.querySelector('.wf-nav-wrap--admin .wf-nav__breadcrumbs');
+        if (breadcrumbsEl) {
+          breadcrumbsEl.addEventListener('click', function () { setNavOpen(true); });
+        }
         adminNav.addEventListener('click', function (e) {
-          if (e.target.tagName === 'A') setNavOpen(false);
+          var link = e.target.closest('a');
+          if (link && link.hasAttribute('data-nav-sub') && (body.dataset.view === 'mobile' || window.matchMedia('(max-width: 640px)').matches)) {
+            e.preventDefault();
+            var subId = link.getAttribute('data-nav-sub');
+            var subPanel = adminNav.querySelector('[data-nav-sub-panel="' + subId + '"]');
+            if (subPanel) {
+              adminNav.querySelectorAll('.wf-nav-sub-panel').forEach(function (p) { p.classList.remove('wf-nav-sub-panel--active'); });
+              subPanel.classList.add('wf-nav-sub-panel--active');
+              adminNav.setAttribute('data-nav-sub-open', subId);
+              adminNav.querySelector('.wf-nav-level--sub').setAttribute('aria-hidden', 'false');
+            }
+            return;
+          }
+          if (link) {
+            if (link.closest('.wf-nav-level--sub')) {
+              adminNav.removeAttribute('data-nav-sub-open');
+              adminNav.querySelectorAll('.wf-nav-sub-panel').forEach(function (p) { p.classList.remove('wf-nav-sub-panel--active'); });
+              adminNav.querySelector('.wf-nav-level--sub').setAttribute('aria-hidden', 'true');
+            }
+            if (!link.hasAttribute('data-nav-sub')) setNavOpen(false);
+          }
+        });
+        adminNav.querySelectorAll('[data-nav-sub-back]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            adminNav.removeAttribute('data-nav-sub-open');
+            adminNav.querySelectorAll('.wf-nav-sub-panel').forEach(function (p) { p.classList.remove('wf-nav-sub-panel--active'); });
+            adminNav.querySelector('.wf-nav-level--sub').setAttribute('aria-hidden', 'true');
+          });
         });
         if (!body.dataset.nav) setNavOpen(false);
       }
 
       document.querySelectorAll('.wf-back').forEach(function (btn) {
-        btn.addEventListener('click', function () {
+        btn.addEventListener('click', function (e) {
+          var href = btn.getAttribute && btn.getAttribute('href');
+          if (href && href !== '' && href !== '#') {
+            e.preventDefault();
+            window.location.href = href;
+            return;
+          }
           if (window.history.length > 1) {
             window.history.back();
           } else {

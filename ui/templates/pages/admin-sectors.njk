@@ -3,6 +3,12 @@
 {% set current_nav = 'admin-sectors' %}
 
 {% block title %}Секторы и ПМ — ЛК админа{% endblock %}
+{% block header_breadcrumbs %}<a href="sessions.html">Парковка</a><span class="wf-breadcrumbs__sep">/</span><span class="wf-breadcrumbs__current">Секторы и ПМ</span>{% endblock %}
+
+{% block auxiliary_nav %}
+  {% set nav_current = current_nav %}
+  {% include "partials/nav-parking.njk" %}
+{% endblock %}
 
 {% block content %}
   <div class="wf-page-head">
@@ -16,21 +22,21 @@
     <div class="wf-parking-map" role="img" aria-label="Схема парковки по секторам">
       <div class="wf-parking-map__zones">
         <div class="wf-parking-map__column">
-          <a href="#admin-sector-settings-modal" class="wf-parking-map__zone" id="sector-block-A">
+          <a href="#admin-modal-sector-settings" class="wf-parking-map__zone" id="sector-block-A">
             <p class="wf-parking-map__zone-title">Сектор А — 200 мест</p>
             <p class="wf-parking-map__zone-meta">забронировано: 140 (ФЛ/ЮЛ) · заблокировано: 10</p>
           </a>
-          <a href="#admin-sector-settings-modal" class="wf-parking-map__zone" id="sector-block-B">
+          <a href="#admin-modal-sector-settings" class="wf-parking-map__zone" id="sector-block-B">
             <p class="wf-parking-map__zone-title">Сектор Б — 220 мест</p>
             <p class="wf-parking-map__zone-meta">забронировано: 160 (ФЛ/ЮЛ) · заблокировано: 20</p>
           </a>
         </div>
         <div class="wf-parking-map__column">
-          <a href="#admin-sector-settings-modal" class="wf-parking-map__zone" id="sector-block-C">
+          <a href="#admin-modal-sector-settings" class="wf-parking-map__zone" id="sector-block-C">
             <p class="wf-parking-map__zone-title">Сектор В — 180 мест</p>
             <p class="wf-parking-map__zone-meta">забронировано: 110 (ФЛ/ЮЛ) · заблокировано: 15</p>
           </a>
-          <a href="#admin-sector-settings-modal" class="wf-parking-map__zone" id="sector-block-D">
+          <a href="#admin-modal-sector-settings" class="wf-parking-map__zone" id="sector-block-D">
             <p class="wf-parking-map__zone-title">Резерв / служебные — 0 мест</p>
             <p class="wf-parking-map__zone-meta">используются под технику и обслуживание</p>
           </a>
@@ -39,7 +45,7 @@
       <p class="wf-parking-map__total">Всего 600 мест · забронировано: 410 · нераспределено: 150 · заблокировано: 40.</p>
     </div>
     <div class="wf-actions" style="margin-top: 1rem;">
-      <a href="#admin-sector-add-modal" class="wf-btn">Добавить сектор</a>
+      <a href="#admin-modal-sector-add" class="wf-btn">Добавить сектор</a>
     </div>
   </section>
 
@@ -58,11 +64,15 @@
           </select>
         </div>
         <div class="wf-field">
-          <label for="search-client-type">Тип клиента</label>
-          <select id="search-client-type">
-            <option value="">Все</option>
+          <label for="search-sector-pm">Парковочное место</label>
+          <input id="search-sector-pm" type="text" placeholder="Например, ПМ 101">
+        </div>
+        <div class="wf-field">
+          <label for="search-sector-client-type">Тип клиента</label>
+          <select id="search-sector-client-type">
+            <option value="">Любой</option>
             <option value="fl">ФЛ</option>
-            <option value="ul">ЮЛ</option>
+            <option value="yl">ЮЛ</option>
           </select>
         </div>
         <div class="wf-field">
@@ -74,7 +84,8 @@
           </select>
         </div>
         <div class="filter-actions">
-          <button type="submit">Показать</button>
+          <button type="submit">Применить</button>
+          <button type="button">Сбросить</button>
         </div>
       </div>
     </form>
@@ -87,40 +98,36 @@
             <th scope="col">Тип клиента</th>
             <th scope="col">Статус договора</th>
             <th scope="col">Договор / клиент</th>
-            <th scope="col">Действия</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Сектор А</td>
-            <td>ПМ 101</td>
+            <td><a href="#admin-modal-sector-pm">ПМ 101</a></td>
             <td>ФЛ</td>
             <td><span class="wf-badge">Активен</span></td>
-            <td>Д‑045, Иванов И.И.</td>
-            <td><a href="#admin-sector-modal" class="wf-btn">Настроить</a></td>
+            <td><a href="#admin-modal-contract-view">Д-045</a>, <a href="#admin-modal-client-fl">Иванов И.И.</a></td>
           </tr>
           <tr>
             <td>Сектор А</td>
-            <td>ПМ 103</td>
+            <td><a href="#admin-modal-sector-pm">ПМ 103</a></td>
             <td>ЮЛ</td>
             <td><span class="wf-badge">Активен</span></td>
-            <td>Д‑078, ООО «СтройИнвест»</td>
-            <td><a href="#admin-sector-modal" class="wf-btn">Настроить</a></td>
+            <td><a href="#admin-modal-contract-view">Д-078</a>, <a href="#admin-modal-client-yl">ООО «СтройИнвест»</a></td>
           </tr>
           <tr>
             <td>Сектор Б</td>
-            <td>ПМ 201</td>
+            <td><a href="#admin-modal-sector-pm">ПМ 201</a></td>
             <td>ФЛ</td>
             <td><span class="wf-badge">Заблокировано</span></td>
-            <td>Д‑102, Петров П.П. (задолженность)</td>
-            <td><a href="#admin-sector-modal" class="wf-btn">Настроить</a></td>
+            <td><a href="#admin-modal-contract-view">Д-102</a>, <a href="#admin-modal-client-fl">Петров П.П.</a> (задолженность)</td>
           </tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <section id="admin-sector-settings-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-sector-settings-title">
+  <section id="admin-modal-sector-settings" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-sector-settings-title">
     <div class="wf-modal__dialog wf-modal__dialog--form">
       <header class="wf-modal__header">
         <h2 id="admin-sector-settings-title" class="wf-modal__title">Настройки сектора</h2>
@@ -165,7 +172,7 @@
     </div>
   </section>
 
-  <section id="admin-sector-add-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-sector-add-title">
+  <section id="admin-modal-sector-add" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-sector-add-title">
     <div class="wf-modal__dialog wf-modal__dialog--form">
       <header class="wf-modal__header">
         <h2 id="admin-sector-add-title" class="wf-modal__title">Добавить сектор</h2>
@@ -203,7 +210,7 @@
     </div>
   </section>
 
-  <section id="admin-sector-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-sector-title">
+  <section id="admin-modal-sector-pm" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-sector-title">
     <div class="wf-modal__dialog wf-modal__dialog--form">
       <header class="wf-modal__header">
         <h2 id="admin-sector-title" class="wf-modal__title">Настройки парковочного места</h2>
@@ -247,15 +254,20 @@
             <h3>Привязка к договору</h3>
             <div class="wf-field">
               <label for="admin-spot-contract">Договор / комментарий</label>
-              <input id="admin-spot-contract" type="text" value="Д‑045, Иванов И.И.">
+              <input id="admin-spot-contract" type="text" value="Д-045, Иванов И.И.">
             </div>
           </section>
 
           <div class="wf-actions">
             <button type="submit">Сохранить изменения</button>
+            <a href="#admin-modal-contract-view" class="wf-btn">Договор</a>
+            <a href="#admin-modal-client-fl" class="wf-btn">Карточка клиента</a>
           </div>
         </form>
       </div>
     </div>
   </section>
+
+  {% include "partials/admin-contract-modal.njk" %}
+  {% include "partials/admin-client-modal.njk" %}
 {% endblock %}

@@ -3,6 +3,12 @@
 {% set current_nav = 'admin-tariffs' %}
 
 {% block title %}Тарифы — ЛК админа{% endblock %}
+{% block header_breadcrumbs %}<a href="sessions.html">Парковка</a><span class="wf-breadcrumbs__sep">/</span><span class="wf-breadcrumbs__current">Тарифы</span>{% endblock %}
+
+{% block auxiliary_nav %}
+  {% set nav_current = current_nav %}
+  {% include "partials/nav-parking.njk" %}
+{% endblock %}
 
 {% block content %}
   <div class="wf-page-head">
@@ -13,7 +19,7 @@
   <section class="wf-section">
     <h3>Реестр тарифов</h3>
     <div class="wf-actions" style="margin-bottom: 1rem;">
-      <a href="#admin-tariff-create-modal" class="wf-btn">Создать тариф</a>
+      <a href="#admin-modal-tariff-create" class="wf-btn">Создать тариф</a>
     </div>
     <form class="wf-form sessions-filters" aria-label="Фильтры по тарифам">
       <div class="filters-row">
@@ -48,44 +54,40 @@
       <thead>
         <tr>
           <th scope="col">Название тарифа</th>
-          <th scope="col">Тип</th>
+          <th scope="col">Тип тарифа</th>
           <th scope="col">Парковка / сектор</th>
           <th scope="col">Основные условия</th>
           <th scope="col">Статус</th>
-          <th scope="col">Действия</th>
         </tr>
       </thead>
         <tbody>
           <tr>
-            <td>Почасовой А</td>
+            <td><a href="#admin-modal-tariff-view">Почасовой А</a></td>
             <td>Почасовой</td>
             <td>Основная парковка, сектор А</td>
             <td>Первые 15 минут бесплатно, далее поминутно</td>
             <td><span class="wf-badge">Активен</span></td>
-            <td><a href="#admin-tariff-modal" class="wf-btn">Настроить</a></td>
           </tr>
           <tr>
-            <td>Долгосрочная парковка, сектор Б</td>
+            <td><a href="#admin-modal-tariff-view">Долгосрочная парковка, сектор Б</a></td>
             <td>Договорный</td>
             <td>Многоуровневая парковка, сектор Б</td>
             <td>Месячный платёж, фиксированное место</td>
             <td><span class="wf-badge">Активен</span></td>
-            <td><a href="#admin-tariff-modal" class="wf-btn">Настроить</a></td>
           </tr>
           <tr>
-            <td>Ночной тариф</td>
+            <td><a href="#admin-modal-tariff-view">Ночной тариф</a></td>
             <td>Почасовой</td>
             <td>Все секторы</td>
             <td>С 22:00 до 07:00, пониженная ставка</td>
             <td><span class="wf-badge">Архив</span></td>
-            <td><a href="#admin-tariff-modal" class="wf-btn">Настроить</a></td>
           </tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <section id="admin-tariff-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-tariff-title">
+  <section id="admin-modal-tariff-view" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-tariff-title">
     <div class="wf-modal__dialog wf-modal__dialog--form">
       <header class="wf-modal__header">
         <h2 id="admin-tariff-title" class="wf-modal__title">Настройки тарифа</h2>
@@ -198,7 +200,7 @@
     </div>
   </section>
 
-  <section id="admin-tariff-create-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-tariff-create-title">
+  <section id="admin-modal-tariff-create" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="admin-tariff-create-title">
     <div class="wf-modal__dialog wf-modal__dialog--form">
       <header class="wf-modal__header">
         <h2 id="admin-tariff-create-title" class="wf-modal__title">Создание тарифа</h2>

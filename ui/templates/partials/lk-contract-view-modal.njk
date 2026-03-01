@@ -1,0 +1,25 @@
+{# Просмотр договора в ЛК клиента: детали и действия (Скачать, Изменить, Расторгнуть) #}
+<section id="lk-modal-contract-view" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="lk-contract-view-title">
+  <div class="wf-modal__dialog wf-modal__dialog--form">
+    <header class="wf-modal__header">
+      <h2 id="lk-contract-view-title" class="wf-modal__title">Договор Д-1001</h2>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть">✕</a>
+    </header>
+    <div class="wf-modal__body">
+      <section class="wf-section">
+        <h3>Основная информация</h3>
+        <div class="wf-card">
+          <p><strong>Период:</strong> 01.01.2026–31.12.2026</p>
+          <p><strong>Статус:</strong> <span class="wf-badge">Активен</span></p>
+          <p><strong>ТС / ПМ:</strong> 2 ТС, 2 ПМ</p>
+          <p><strong>Задолженность:</strong> Нет</p>
+        </div>
+      </section>
+      <div class="wf-actions">
+        <a href="#" class="wf-btn" aria-label="Скачать сканы договора">Скачать</a>
+        <a href="#lk-modal-contract-edit" class="wf-btn">Изменить</a>
+        <a href="#lk-modal-contract-terminate" class="wf-btn wf-btn-secondary">Расторгнуть</a>
+      </div>
+    </div>
+  </div>
+</section>
