@@ -1,0 +1,49 @@
+<section id="profile-edit-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="profile-edit-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="profile-edit-title">Изменить данные профиля</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <form class="wf-form">
+      <div class="wf-field wf-field--inline-control">
+        <label>Номер телефона</label>
+        <div class="wf-inline">
+          <span class="wf-muted">+7 900 123-45-67</span>
+          <a href="#phone-change-modal" class="wf-btn-link">Изменить номер</a>
+        </div>
+      </div>
+      <div class="wf-field">
+        <label for="profile-edit-last-name">Фамилия</label>
+        <input id="profile-edit-last-name" type="text" value="Иванов" placeholder="Иванов">
+      </div>
+      <div class="wf-field">
+        <label for="profile-edit-first-name">Имя</label>
+        <input id="profile-edit-first-name" type="text" value="Иван" placeholder="Иван">
+      </div>
+      <div class="wf-field">
+        <label for="profile-edit-middle-name">Отчество (необязательно)</label>
+        <input id="profile-edit-middle-name" type="text" value="Иванович" placeholder="Иванович">
+      </div>
+      <div class="wf-field wf-field--inline-control">
+        <label>E-mail</label>
+        <div class="wf-inline">
+          <span class="wf-muted">ivanov@example.com</span>
+          <a href="#email-change-modal" class="wf-btn-link">Изменить e-mail</a>
+        </div>
+      </div>
+      <div class="wf-field">
+        <label for="profile-edit-benefit-doc">Документ льготной категории / ОВЗ (фото, скан)</label>
+        <input id="profile-edit-benefit-doc" type="file" accept="image/*,.pdf" aria-describedby="profile-edit-benefit-hint">
+        <p id="profile-edit-benefit-hint" class="wf-muted">Формат: изображение или PDF. Текущий документ загружен.</p>
+      </div>
+      <div class="wf-field">
+        <label>Паспортные данные</label>
+        <p class="wf-muted">Для просмотра и изменения паспортных данных требуется подтверждение (ввод пароля) в соответствии с ФЗ‑152.</p>
+        <a href="#profile-passport-confirm-modal" class="wf-btn">Изменить паспортные данные</a>
+      </div>
+      <div class="wf-actions">
+        <button type="submit">Сохранить</button>
+      </div>
+    </form>
+  </div>
+</section>

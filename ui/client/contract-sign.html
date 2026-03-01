@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Подписание договора — ЛК клиента</title>
+  <link rel="stylesheet" href="../wireframe.css">
+</head>
+<body>
+  <a href="#main-content" class="wf-skip-link">Перейти к содержимому</a>
+  <div class="wf-page">
+    <header class="wf-header wf-header--lk" role="banner">
+  <div class="wf-header__title">
+    <h1>Личный кабинет клиента</h1>
+    <p class="wf-muted"><a href="profile.html">Иванов Иван Иванович</a></p>
+  </div>
+  <a href="notifications.html" class="wf-header__notifications" aria-label="Уведомления клиента">
+    <span class="wf-header__notifications-icon" aria-hidden="true">🔔</span>
+    <span class="wf-header__notifications-text">Оплата сессии S‑1045 на 350 ₽ прошла успешно</span>
+  </a>
+  <button type="button"
+          class="wf-burger"
+          aria-label="Открыть навигацию"
+          aria-controls="lk-nav"
+          aria-expanded="false">
+    <span class="wf-burger__line" aria-hidden="true"></span>
+    <span class="wf-burger__line" aria-hidden="true"></span>
+    <span class="wf-burger__line" aria-hidden="true"></span>
+  </button>
+</header>
+
+    
+    
+<nav class="wf-nav wf-nav--lk" aria-label="Навигация ЛК клиента" id="lk-nav">
+  <p class="wf-nav-current" tabindex="0" role="button">
+    
+      Навигация
+    
+  </p>
+  <ul>
+    <li><a href="dashboard.html">Парковка</a></li>
+    <li><a href="payment-settings.html">Оплаты</a></li>
+    <li><a href="profile.html">Профиль</a></li>
+  </ul>
+</nav>
+
+    <main id="main-content" class="wf-main">
+      
+  <div class="wf-page-head">
+    <button type="button" class="wf-back">Назад</button>
+    <h2>Подписание договора</h2>
+  </div>
+
+  <section class="wf-section" aria-labelledby="contract-doc-heading">
+    <h3 id="contract-doc-heading">Договор к подписанию</h3>
+    <div class="wf-card">
+      <p><strong>Договор:</strong> Долгосрочная парковка ФЛ — стандарт</p>
+      <p><strong>Период:</strong> 01.03.2026 – 28.02.2027</p>
+      <p><strong>Сумма к оплате за первый период:</strong> 4 500 ₽</p>
+      <p class="wf-actions">
+        <a href="#" class="wf-btn" aria-label="Открыть файл договора для просмотра">Открыть договор</a>
+      </p>
+      <p class="wf-muted">После подписания вы будете перенаправлены на страницу оплаты через платёжный сервис партнёра.</p>
+    </div>
+  </section>
+
+  <section class="wf-section" aria-labelledby="contract-sign-heading">
+    <h3 id="contract-sign-heading">Подтверждение кодом из SMS</h3>
+    <p>На номер <strong>+7 900 ***-**-67</strong> отправлен код подтверждения. Введите код из SMS для подписания договора.</p>
+    <form class="wf-form" action="payment-external.html" method="get">
+      <div class="wf-field">
+        <label for="contract-sign-sms-code">Код из SMS</label>
+        <input id="contract-sign-sms-code" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" placeholder="000000" aria-label="Код из SMS" autocomplete="one-time-code">
+      </div>
+      <p class="wf-muted">Не пришёл код? <button type="button" class="wf-link-button">Отправить повторно</button> (доступно через 60 сек.)</p>
+      <div class="wf-actions">
+        <button type="submit" class="wf-btn">Подписать и перейти к оплате</button>
+        <a href="contracts-create.html" class="wf-btn wf-btn-secondary">Отмена</a>
+      </div>
+    </form>
+  </section>
+
+    </main>
+    <footer class="wf-footer">
+      <div class="wf-footer__service">
+        <a href="../site/index.html">На сайт парковки</a>
+      </div>
+      <div class="wf-footer__version-toggle" aria-label="Переключение версии интерфейса">
+        <span class="wf-footer__version-label">Версия интерфейса:</span>
+        <button type="button" class="wf-link-button" data-view-target="desktop" aria-pressed="true">
+          для компьютера
+        </button>
+        <button type="button" class="wf-link-button" data-view-target="mobile" aria-pressed="false">
+          для телефона
+        </button>
+      </div>
+    </footer>
+  </div>
+  <script>
+    (function () {
+      var body = document.body;
+      if (!body) return;
+
+      // Переключение версии интерфейса (десктоп / мобильная)
+      var buttons = document.querySelectorAll('.wf-footer__version-toggle [data-view-target]');
+
+      function applyView(view) {
+        body.dataset.view = view;
+        try {
+          if (window.localStorage) {
+            window.localStorage.setItem('lkView', view);
+          }
+        } catch (e) {}
+
+        buttons.forEach(function (btn) {
+          var active = btn.getAttribute('data-view-target') === view;
+          btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+      }
+
+      if (buttons.length) {
+        var stored = null;
+        try {
+          stored = window.localStorage && window.localStorage.getItem('lkView');
+        } catch (e) {}
+        if (stored === 'mobile' || stored === 'desktop') {
+          applyView(stored);
+        }
+
+        buttons.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var view = btn.getAttribute('data-view-target') || 'desktop';
+            applyView(view);
+          });
+        });
+      }
+
+      // Бургер-меню для навигации ЛК клиента
+      var burger = document.querySelector('.wf-burger');
+      var lkNav = document.getElementById('lk-nav');
+      var navCurrent = lkNav && lkNav.querySelector('.wf-nav-current');
+
+      function setNavOpen(isOpen) {
+        if (!lkNav || !burger) return;
+        body.dataset.nav = isOpen ? 'open' : 'closed';
+        burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+
+      function toggleNav() {
+        var isOpen = body.dataset.nav === 'open';
+        setNavOpen(!isOpen);
+      }
+
+      if (burger && lkNav) {
+        burger.addEventListener('click', function () {
+          toggleNav();
+        });
+
+        // При загрузке по умолчанию навигация закрыта в мобильном режиме
+        if (!body.dataset.nav) {
+          setNavOpen(false);
+        }
+
+        // Закрывать меню при клике по любому пункту навигации (на мобильных удобно)
+        lkNav.addEventListener('click', function (event) {
+          if (event.target.tagName === 'A') {
+            setNavOpen(false);
+          }
+        });
+
+        // Открывать/закрывать меню по клику на название текущей страницы
+        if (navCurrent) {
+          navCurrent.addEventListener('click', function () {
+            toggleNav();
+          });
+
+          navCurrent.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              toggleNav();
+            }
+          });
+        }
+      }
+
+      // Закрытие модалки: вернуться к предыдущему модальному окну (history.back) или к странице
+      document.querySelectorAll('.wf-modal__close[href="#main-content"]').forEach(function (closeBtn) {
+        closeBtn.addEventListener('click', function (e) {
+          if (window.history.length > 1) {
+            e.preventDefault();
+            window.history.back();
+          }
+        });
+      });
+
+      // Кнопка «Назад»: при пустой истории — переход на главную (1.2)
+      document.querySelectorAll('.wf-back').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (window.history.length > 1) {
+            window.history.back();
+          } else {
+            window.location.href = 'dashboard.html';
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

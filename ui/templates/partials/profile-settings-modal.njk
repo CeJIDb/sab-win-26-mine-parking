@@ -1,0 +1,63 @@
+<section id="profile-settings-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="profile-settings-title">
+  <div class="wf-modal__dialog wf-section wf-modal__dialog--scroll">
+    <header class="wf-modal__header">
+      <h3 id="profile-settings-title">Настройки</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+
+    <h4>Настройки уведомлений</h4>
+    <form class="wf-form">
+      <div class="wf-field wf-field--checkbox">
+        <label for="profile-notify-sessions">
+          <input id="profile-notify-sessions" type="checkbox" checked>
+          <span>О парковочных сессиях: въезд/выезд, превышение времени, блокировки доступа</span>
+        </label>
+      </div>
+      <div class="wf-field wf-field--checkbox">
+        <label for="profile-notify-bookings">
+          <input id="profile-notify-bookings" type="checkbox" checked>
+          <span>О бронированиях: создание, изменение, отмена, напоминания перед началом</span>
+        </label>
+      </div>
+      <div class="wf-field wf-field--checkbox">
+        <label for="profile-notify-contracts">
+          <input id="profile-notify-contracts" type="checkbox" checked>
+          <span>О договорах: активация, продление, истечение срока, наличие задолженности</span>
+        </label>
+      </div>
+      <div class="wf-field wf-field--checkbox">
+        <label for="profile-notify-payments">
+          <input id="profile-notify-payments" type="checkbox" checked>
+          <span>Об оплатах и счетах: новые счета к оплате, успешные и отклонённые платежи</span>
+        </label>
+      </div>
+      <div class="wf-field wf-field--checkbox">
+        <label for="profile-notify-marketing">
+          <input id="profile-notify-marketing" type="checkbox">
+          <span>Маркетинговые рассылки: акции, новости парковки и партнёров</span>
+        </label>
+      </div>
+
+      <h4>Настройки автосписания</h4>
+      <div class="wf-field wf-field--checkbox">
+        <label for="profile-autopay-enabled">
+          <input id="profile-autopay-enabled" type="checkbox" checked>
+          <span>Разрешить автосписание по активным договорам</span>
+        </label>
+      </div>
+      <div class="wf-field wf-field--checkbox">
+        <label for="profile-autopay-sessions">
+          <input id="profile-autopay-sessions" type="checkbox">
+          <span>Разрешить автосписание по парковочным сессиям</span>
+        </label>
+      </div>
+      <div class="wf-field">
+        <label for="profile-autopay-limit">Лимит автосписания в месяц</label>
+        <input id="profile-autopay-limit" type="text" placeholder="Сумма, ₽">
+      </div>
+      <div class="wf-actions">
+        <button type="submit">Сохранить настройки</button>
+      </div>
+    </form>
+  </div>
+</section>

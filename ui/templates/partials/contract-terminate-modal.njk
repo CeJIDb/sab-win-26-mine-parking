@@ -1,0 +1,32 @@
+<section id="contract-terminate-modal" class="wf-modal" role="dialog" aria-modal="true" aria-labelledby="contract-terminate-title">
+  <div class="wf-modal__dialog wf-section">
+    <header class="wf-modal__header">
+      <h3 id="contract-terminate-title">Расторжение договора №1001</h3>
+      <a href="#main-content" class="wf-btn wf-modal__close" aria-label="Закрыть окно">✕</a>
+    </header>
+    <form class="wf-form">
+      <p class="wf-notice">
+        <strong>Юридически значимое действие.</strong> Фактическое расторжение договора выполняется управляющей компанией на основании поданной заявки.
+      </p>
+      <div class="wf-card">
+        <p><strong>Что произойдёт после отправки заявки</strong></p>
+        <p class="wf-muted">
+          Заявка на расторжение будет передана управляющему парковкой. После проверки задолженности и отсутствия активных бронирований/парковочных сессий договор будет расторгнут, доступ на парковку по данному договору будет прекращён, а излишне уплаченные суммы (при наличии) могут быть возвращены согласно условиям договора.
+        </p>
+      </div>
+      <div class="wf-field">
+        <label for="contract-terminate-reason">Причина расторжения</label>
+        <textarea id="contract-terminate-reason" rows="3" placeholder="Кратко опишите причину расторжения договора (например, смена ТС, прекращение пользования парковкой)"></textarea>
+      </div>
+      <div class="wf-checkbox-group">
+        <label class="wf-checkbox">
+          <input type="checkbox" required>
+          Подтверждаю, что ознакомлен(а) с условиями расторжения и прошу направить заявку управляющему
+        </label>
+      </div>
+      <div class="wf-actions">
+        <button type="submit">Отправить заявку на расторжение</button>
+      </div>
+    </form>
+  </div>
+</section>

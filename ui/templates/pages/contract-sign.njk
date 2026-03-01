@@ -1,0 +1,39 @@
+{% extends "layouts/lk.njk" %}
+
+{% block title %}Подписание договора — ЛК клиента{% endblock %}
+
+{% block content %}
+  <div class="wf-page-head">
+    <button type="button" class="wf-back">Назад</button>
+    <h2>Подписание договора</h2>
+  </div>
+
+  <section class="wf-section" aria-labelledby="contract-doc-heading">
+    <h3 id="contract-doc-heading">Договор к подписанию</h3>
+    <div class="wf-card">
+      <p><strong>Договор:</strong> Долгосрочная парковка ФЛ — стандарт</p>
+      <p><strong>Период:</strong> 01.03.2026 – 28.02.2027</p>
+      <p><strong>Сумма к оплате за первый период:</strong> 4 500 ₽</p>
+      <p class="wf-actions">
+        <a href="#" class="wf-btn" aria-label="Открыть файл договора для просмотра">Открыть договор</a>
+      </p>
+      <p class="wf-muted">После подписания вы будете перенаправлены на страницу оплаты через платёжный сервис партнёра.</p>
+    </div>
+  </section>
+
+  <section class="wf-section" aria-labelledby="contract-sign-heading">
+    <h3 id="contract-sign-heading">Подтверждение кодом из SMS</h3>
+    <p>На номер <strong>+7 900 ***-**-67</strong> отправлен код подтверждения. Введите код из SMS для подписания договора.</p>
+    <form class="wf-form" action="payment-external.html" method="get">
+      <div class="wf-field">
+        <label for="contract-sign-sms-code">Код из SMS</label>
+        <input id="contract-sign-sms-code" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" placeholder="000000" aria-label="Код из SMS" autocomplete="one-time-code">
+      </div>
+      <p class="wf-muted">Не пришёл код? <button type="button" class="wf-link-button">Отправить повторно</button> (доступно через 60 сек.)</p>
+      <div class="wf-actions">
+        <button type="submit" class="wf-btn">Подписать и перейти к оплате</button>
+        <a href="contracts-create.html" class="wf-btn wf-btn-secondary">Отмена</a>
+      </div>
+    </form>
+  </section>
+{% endblock %}
