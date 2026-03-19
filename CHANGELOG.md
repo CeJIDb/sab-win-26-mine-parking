@@ -25,3 +25,6 @@ The format is based on Keep a Changelog.
 - `.github/CODEOWNERS` with multi-owner mapping placeholders for key domains
 - markdown quality checks hardened for contributor/process docs (`scripts/check-markdown.mjs`)
 - changelog exception policy clarified for CI/process-only updates
+- traceability matrix workflow and related docs updated (`docs/process/traceability-matrix-*`, `docs/process/templates/*`)
+- added/updated traceability guard scripts for CI (`scripts/check-traceability-matrix-update.mjs` and linked checks)
+- updated repository requirements documentation structure (constraints + NFR docs) and contributor-facing protocol/transcript/readme files
