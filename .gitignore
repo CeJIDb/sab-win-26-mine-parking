@@ -17,3 +17,4 @@ node_modules/
 
 # System context (temporary Markdown exchanged between agents)
 docs/_system-context/
+.cursor/rules/
