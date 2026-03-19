@@ -2,7 +2,7 @@
 version: 1.0.0
 last_updated: 2026-02-22
 source: Интервью 1.1 транскрибация 21 01 2026.docx → .txt
-protocol: docs/protocols/protocol-1-1.md
+protocol: docs/protocols/protocol-1-1-2026-01-21-v01.md
 date: 2026-01-21
 ---
 
@@ -58,3 +58,4 @@ date: 2026-01-21
 ---
 
 *Полный текст стенограммы см. в исходном .txt в этой папке.*
+

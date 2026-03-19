@@ -1,8 +1,8 @@
 ---
 version: 1.0.0
 last_updated: 2026-02-22
-source: Сенограмма встречи 04 02 2026.docx → .txt
-protocol: docs/protocols/protocol-3.md
+source: Стенограмма встречи 04 02 2026.docx → .txt
+protocol: docs/protocols/protocol-3-2026-02-04-v01.md
 date: 2026-02-04
 ---
 
@@ -47,3 +47,4 @@ date: 2026-02-04
 ---
 
 *Полный текст стенограммы см. в исходном .txt в этой папке.*
+

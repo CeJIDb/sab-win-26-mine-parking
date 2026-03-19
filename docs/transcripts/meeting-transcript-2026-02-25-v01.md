@@ -2,7 +2,7 @@
 version: 1.0.0
 last_updated: 2026-03-01
 source: Стенограмма встречи 25 02 2026.docx.txt
-protocol: docs/protocols/protocol-6.md
+protocol: docs/protocols/protocol-6-2026-02-25-v01.md
 date: 2026-02-25
 ---
 
@@ -82,3 +82,4 @@ date: 2026-02-25
 ---
 
 *Полный текст стенограммы см. в исходном .txt в этой папке.*
+

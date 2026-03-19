@@ -23,6 +23,11 @@ For a quick onboarding path:
 - [transcripts/](transcripts/readme.md) - interview and meeting transcripts
 - [demo-days/](demo-days/readme.md) - demo-related scripts, notes, and presentation materials
 
+## Supporting Tooling
+
+- Documentation helper scripts are collected in `../scripts/docs/`.
+- `temp_context/` at repo root is a temporary workspace; canonical outputs must be moved to `docs/`.
+
 ## Canonical vs Supporting Materials
 
 - Canonical analytical documents are in [artifacts/](artifacts/readme.md), [specs/](specs/readme.md), and [architecture/](architecture/readme.md).

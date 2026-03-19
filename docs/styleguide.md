@@ -8,6 +8,9 @@ This guide defines naming and structure conventions for the `docs/` tree.
 - Avoid spaces in new file names.
 - Prefer ASCII names for new technical/process files.
 - Existing legacy names may remain until a dedicated migration PR.
+- Use `readme.md` for section indexes under `docs/*` and `README.md` only at repository root.
+- For transcript/protocol source files, prefer `<type>-<source>-<yyyy-mm-dd>-vNN.<ext>`.
+- In UI naming, prefer role-explicit names (`client`, `admin`, `guard`) instead of ambiguous aliases.
 
 ## Language Policy
 

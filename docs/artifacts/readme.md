@@ -21,3 +21,4 @@ This section contains core analytical artifacts of the project.
 
 - Naming has been normalized to english kebab-case.
 - Keep links relative and update references in the same PR when moving files.
+- Helper script for splitting large images into tiles is located at `../../scripts/docs/split-image.py`.

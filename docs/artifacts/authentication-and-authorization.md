@@ -6,8 +6,8 @@ source:
   - "use-case-registry.md"
   - "conceptual-model-with-attributes.md"
   - "Данные и методы защиты.md"
-  - "protocols/protocol-4.md"
-  - "protocols/protocol-6.md"
+  - "protocols/protocol-4-2026-02-11-v01.md"
+  - "protocols/protocol-6-2026-02-25-v01.md"
 ---
 
 # Аутентификация и авторизация

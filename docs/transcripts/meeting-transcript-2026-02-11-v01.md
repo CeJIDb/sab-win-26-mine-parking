@@ -2,7 +2,7 @@
 version: 1.0.0
 last_updated: 2026-02-22
 source: Стенограмма встречи 11 02 2026.docx → .txt
-protocol: docs/protocols/protocol-4.md
+protocol: docs/protocols/protocol-4-2026-02-11-v01.md
 date: 2026-02-11
 ---
 
@@ -43,3 +43,4 @@ date: 2026-02-11
 ---
 
 *Полная стенограмма с тайм-кодами и деталями по каждой User Story — в файле `Стенограмма встречи 11 02 2026.txt` в этой папке.*
+
