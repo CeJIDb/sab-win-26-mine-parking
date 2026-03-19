@@ -10,10 +10,15 @@
     "test": "npm run test:smoke",
     "test:smoke": "npm run build",
     "lint:md": "node ./scripts/check-markdown.mjs",
+    "lint:md-links": "node ./scripts/check-markdown-links.mjs",
+    "check:branch": "node ./scripts/check-branch-name.mjs",
+    "check:changelog": "node ./scripts/check-changelog-required.mjs",
+    "commitlint": "commitlint --from HEAD~1 --to HEAD",
+    "prepare": "husky",
     "build:css": "sass ui/scss/wireframe.scss ui/wireframe.css --no-source-map",
     "build:templates": "node ./scripts/build-templates.mjs",
     "build": "npm run build:css && npm run build:templates",
-    "ci:check": "npm run lint:md && npm run build"
+    "ci:check": "npm run lint:md && npm run lint:md-links && npm run build"
   },
   "repository": {
     "type": "git",
@@ -27,6 +32,9 @@
   },
   "homepage": "https://github.com/CeJIDb/sab-win-26-mine-parking#readme",
   "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "husky": "^9.1.7",
     "nunjucks": "^3.2.4",
     "sass": "^1.77.0"
   }

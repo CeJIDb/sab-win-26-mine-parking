@@ -1,9 +1,10 @@
 # Default owners
-* @CeJIDb
+* @CeJIDb @team-maintainers
 
 # Domain ownership
-/docs/specs/ @CeJIDb
-/docs/architecture/ @CeJIDb
-/docs/artifacts/ @CeJIDb
-/ui/ @CeJIDb
-/scripts/ @CeJIDb
+/docs/specs/ @CeJIDb @team-specs
+/docs/architecture/ @CeJIDb @team-architecture
+/docs/artifacts/ @CeJIDb @team-analysts
+/ui/ @CeJIDb @team-frontend
+/scripts/ @CeJIDb @team-ops
+/.github/workflows/ @CeJIDb @team-ops

@@ -6,9 +6,7 @@ const TARGETS = [
   "README.md",
   "CONTRIBUTING.md",
   "CHANGELOG.md",
-  "docs/specs",
-  "docs/architecture",
-  "docs/artifacts"
+  "docs/process"
 ];
 const EXCLUDE_DIRS = new Set(["node_modules", ".git", ".cursor", ".venv", ".venv-markitdown"]);
 
@@ -35,8 +33,41 @@ async function collectMarkdownFiles(targetPath, acc) {
 
 function lintContent(filePath, content) {
   const errors = [];
+  const rel = path.relative(ROOT, filePath);
   if (content.trim().length === 0) {
     errors.push("file is empty");
+  }
+  if (!content.endsWith("\n")) {
+    errors.push("file must end with newline");
+  }
+
+  const lines = content.split("\n");
+  const firstNonEmpty = lines.find((line) => line.trim().length > 0) || "";
+  if (!(firstNonEmpty.startsWith("# ") || firstNonEmpty.startsWith("## "))) {
+    errors.push("first non-empty line must start with markdown heading");
+  }
+
+  lines.forEach((line, index) => {
+    if (/[ \t]+$/.test(line)) {
+      errors.push(`line ${index + 1}: trailing whitespace`);
+    }
+    if (line.length > 500) {
+      errors.push(`line ${index + 1}: line too long (>500 chars)`);
+    }
+  });
+
+  // Guard against accidental unresolved merge conflicts in governance docs.
+  if (/^(<<<<<<<|=======|>>>>>>>)$/m.test(content)) {
+    errors.push("contains merge conflict markers");
+  }
+
+  if (
+    rel.startsWith("docs/process/") &&
+    !rel.includes("/templates/") &&
+    !rel.endsWith("traceability-matrix-log.md") &&
+    !content.includes("## ")
+  ) {
+    errors.push("process doc must include at least one H2 section");
   }
   return errors;
 }

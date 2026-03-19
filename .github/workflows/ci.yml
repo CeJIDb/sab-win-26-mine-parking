@@ -10,9 +10,34 @@ on:
       - "chore/**"
       - "hotfix/**"
 
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
+  policy-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate branch naming
+        run: node ./scripts/check-branch-name.mjs
+
+      - name: Validate changelog guard
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            export CI_MERGE_RANGE="${{ github.event.pull_request.base.sha }}..${{ github.sha }}"
+          else
+            export CI_MERGE_RANGE="HEAD~1..HEAD"
+          fi
+          node ./scripts/check-changelog-required.mjs
+
   quality-gates:
     runs-on: ubuntu-latest
+    needs: policy-checks
     steps:
       - name: Checkout
         uses: actions/checkout@v4
