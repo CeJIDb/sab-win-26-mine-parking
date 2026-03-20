@@ -29,3 +29,4 @@ The format is based on Keep a Changelog.
 - traceability matrix workflow and related docs updated (`docs/process/traceability-matrix-*`, `docs/process/templates/*`)
 - added/updated traceability guard scripts for CI (`scripts/check-traceability-matrix-update.mjs` and linked checks)
 - updated repository requirements documentation structure (constraints + NFR docs) and contributor-facing protocol/transcript/readme files
+- infosec analysis artifact formalized: `docs/artifacts/infosec/infosec-analyze-parking.md` expanded (threats, vulnerabilities, risks, glossary)
