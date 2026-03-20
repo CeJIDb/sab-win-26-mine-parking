@@ -9,6 +9,10 @@
 *.scss text eol=lf
 *.css text eol=lf
 
+# Wireframe HTML from `npm run build:templates` — force LF to avoid CRLF/LF false dirty state (Windows/WSL).
+ui/**/*.html text eol=lf
+*.njk text eol=lf
+
 *.png binary
 *.jpg binary
 *.jpeg binary

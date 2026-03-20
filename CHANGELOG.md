@@ -33,3 +33,4 @@ The format is based on Keep a Changelog.
 - consolidated links after infosec artifact merge and removed duplicated auth/data docs references
 - regenerated client wireframe pages in `ui/client/*` after template build
 - обновлён артефакт `docs/artifacts/infosec/infosec-analyze-parking-study.md` (анализ парковочного исследования)
+- wireframe HTML: явные правила LF в `.gitattributes` (`ui/**/*.html`, `*.njk`) и запись с нормализацией LF в `scripts/build-templates.mjs`, чтобы не было ложных `git diff` после сборки на Windows/WSL

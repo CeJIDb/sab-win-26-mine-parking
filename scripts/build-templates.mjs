@@ -10,6 +10,15 @@ const SITE_DIR = path.join(ROOT, 'ui', 'site');
 const ROOT_UI_DIR = path.join(ROOT, 'ui');
 const TEMPLATES_DIR = path.join(ROOT, 'ui', 'templates');
 
+/** Нормализация к LF: на Windows шаблоны/рендер могут дать CRLF и ломать git status. */
+function toLf(s) {
+  return s.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+}
+
+async function writeHtml(outPath, html) {
+  await fs.writeFile(outPath, toLf(html), 'utf8');
+}
+
 // Настраиваем окружение nunjucks
 const env = new nunjucks.Environment(
   new nunjucks.FileSystemLoader([TEMPLATES_DIR]),
@@ -19,35 +28,35 @@ const env = new nunjucks.Environment(
 async function buildClientPage(templateName, outName) {
   const html = env.render(templateName, {});
   const outPath = path.join(CLIENT_DIR, outName);
-  await fs.writeFile(outPath, html, 'utf8');
+  await writeHtml(outPath, html);
   console.log(`Built ${outName} from ${templateName}`);
 }
 
 async function buildGuardPage(templateName, outName) {
   const html = env.render(templateName, {});
   const outPath = path.join(GUARD_DIR, outName);
-  await fs.writeFile(outPath, html, 'utf8');
+  await writeHtml(outPath, html);
   console.log(`Built guard/${outName} from ${templateName}`);
 }
 
 async function buildAdminPage(templateName, outName) {
   const html = env.render(templateName, {});
   const outPath = path.join(ADMIN_DIR, outName);
-  await fs.writeFile(outPath, html, 'utf8');
+  await writeHtml(outPath, html);
   console.log(`Built admin/${outName} from ${templateName}`);
 }
 
 async function buildSitePage(templateName, outName) {
   const html = env.render(templateName, {});
   const outPath = path.join(SITE_DIR, outName);
-  await fs.writeFile(outPath, html, 'utf8');
+  await writeHtml(outPath, html);
   console.log(`Built site/${outName} from ${templateName}`);
 }
 
 async function buildRootPage(templateName, outName) {
   const html = env.render(templateName, {});
   const outPath = path.join(ROOT_UI_DIR, outName);
-  await fs.writeFile(outPath, html, 'utf8');
+  await writeHtml(outPath, html);
   console.log(`Built ui/${outName} from ${templateName}`);
 }
 
