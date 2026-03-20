@@ -1,5 +1,12 @@
 # Release Checklist
 
+## Оглавление
+
+1. [Preparation](#preparation)
+2. [Documentation and Traceability](#documentation-and-traceability)
+3. [Release](#release)
+4. [Post-release](#post-release)
+
 ## Preparation
 
 - [ ] All target PRs are merged.

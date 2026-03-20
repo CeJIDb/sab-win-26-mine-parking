@@ -11,6 +11,12 @@ source:
   - "context-diagram.md"
 ---
 
+## Оглавление
+
+1. [1. Легенда Software Design (цвета Event Storming)](#1-легенда-software-design-цвета-event-storming)
+2. [2. Поток событий TO‑BE (Software Design)](#2-поток-событий-tobe-software-design)
+3. [3. Сводка по агрегатам и связям](#3-сводка-по-агрегатам-и-связям)
+
 ## 1. Легенда Software Design (цвета Event Storming)
 
 - **Событие** — факт, который уже произошёл в домене.

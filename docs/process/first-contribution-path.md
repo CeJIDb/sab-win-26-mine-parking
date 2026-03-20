@@ -1,6 +1,17 @@
 # First Contribution Path
 
+## Оглавление
+
+1. [Goal](#goal)
+2. [Steps](#steps)
+3. [Done Criteria](#done-criteria)
+
 ## Goal
+
+## Связанные документы
+
+- [docs/process/pr-dor-dod.md](pr-dor-dod.md)
+- [docs/process/traceability-matrix.md](traceability-matrix.md)
 
 Help a new contributor make a safe and traceable first change.
 

@@ -1,5 +1,11 @@
 # PR Definition of Ready / Definition of Done
 
+## Оглавление
+
+1. [DoR (Ready)](#dor-ready)
+2. [DoD (Done)](#dod-done)
+3. [Exceptions](#exceptions)
+
 ## DoR (Ready)
 
 - [ ] Change goal is stated in 1-2 clear sentences.

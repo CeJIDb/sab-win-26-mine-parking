@@ -2,6 +2,14 @@
 
 This file is the entry point for project documentation.
 
+## Оглавление
+
+1. [Start Here](#start-here)
+2. [Sections](#sections)
+3. [Supporting Tooling](#supporting-tooling)
+4. [Canonical vs Supporting Materials](#canonical-vs-supporting-materials)
+5. [Naming and Style Rules](#naming-and-style-rules)
+
 ## Start Here
 
 For a quick onboarding path:

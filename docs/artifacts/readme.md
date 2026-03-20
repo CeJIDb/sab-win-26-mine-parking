@@ -2,6 +2,12 @@
 
 This section contains core analytical artifacts of the project.
 
+## Оглавление
+
+1. [Key Documents](#key-documents)
+2. [Subsections](#subsections)
+3. [Notes](#notes)
+
 ## Key Documents
 
 - [project-charter.md](project-charter.md)

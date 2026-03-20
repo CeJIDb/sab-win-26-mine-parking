@@ -1,5 +1,14 @@
 # ADR-001: Онлайн‑проверка права доступа в платформе, а не в СКУД
 
+## Оглавление
+
+1. [Status](#status)
+2. [Context](#context)
+3. [Decision](#decision)
+4. [Rationale](#rationale)
+5. [Trade-offs](#trade-offs)
+6. [Consequences](#consequences)
+
 ## Status
 Accepted
 

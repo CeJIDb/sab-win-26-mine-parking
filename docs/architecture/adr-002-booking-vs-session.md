@@ -1,5 +1,15 @@
 # ADR-002: Бронирование vs Парковочная сессия как мастер-сущности
 
+## Оглавление
+
+1. [Status](#status)
+2. [Context](#context)
+3. [Options](#options)
+4. [Decision](#decision)
+5. [Rationale](#rationale)
+6. [Trade-offs](#trade-offs)
+7. [Consequences](#consequences)
+
 ## Status
 Proposed
 

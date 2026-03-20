@@ -1,6 +1,33 @@
 # Repo Context
 
+## Оглавление
+
+1. [1. Project Summary](#1-project-summary)
+2. [2. Tech Stack](#2-tech-stack)
+3. [3. Repository Structure](#3-repository-structure)
+4. [4. Runtime / Entry Points](#4-runtime-entry-points)
+5. [5. Core Architecture](#5-core-architecture)
+6. [6. Domain Knowledge](#6-domain-knowledge)
+7. [7. APIs / Integrations](#7-apis-integrations)
+8. [8. Important Files](#8-important-files)
+9. [9. Developer Workflows](#9-developer-workflows)
+10. [10. Open Questions / Risks](#10-open-questions-risks)
+11. [Compression Notes](#compression-notes)
+
 ## 1. Project Summary
+## Связанные документы
+
+- [docs/architecture/adr-001-online-access-rights-evaluation.md](architecture/adr-001-online-access-rights-evaluation.md)
+- [docs/architecture/adr-002-booking-vs-session.md](architecture/adr-002-booking-vs-session.md)
+- [docs/artifacts/authentication-and-authorization.md](artifacts/authentication-and-authorization.md)
+- [docs/artifacts/conceptual-model-with-attributes.md](artifacts/conceptual-model-with-attributes.md)
+- [docs/artifacts/context-diagram.md](artifacts/context-diagram.md)
+- [docs/artifacts/data-and-protection-methods.md](artifacts/data-and-protection-methods.md)
+- [docs/artifacts/navigation-map.md](artifacts/navigation-map.md)
+- [docs/artifacts/project-charter.md](artifacts/project-charter.md)
+- [docs/protocols/readme.md](protocols/readme.md)
+- [docs/transcripts/readme.md](transcripts/readme.md)
+
 - Репозиторий **документации системного анализа/проектирования** для темы **«Цифровая платформа парковки»**.
 - Основная ценность — **набор артефактов**: контекстная диаграмма (DFD0), доменная/концептуальная модель с атрибутами, use case, функциональные требования (FR/UC), ADR, материалы по аутентификации/авторизации и защите данных (152‑ФЗ).
 - `ui/` — вспомогательный **wireframe‑макет** (статические HTML, генерируемые из Nunjucks) для визуализации сценариев/навигации; это не реализация продукта.
