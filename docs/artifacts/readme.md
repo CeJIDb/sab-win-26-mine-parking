@@ -15,8 +15,7 @@ This section contains core analytical artifacts of the project.
 - [conceptual-model-with-attributes.md](conceptual-model-with-attributes.md)
 - [use-case-registry.md](use-case-registry.md)
 - [navigation-map.md](navigation-map.md)
-- [authentication-and-authorization.md](authentication-and-authorization.md)
-- [data-and-protection-methods.md](data-and-protection-methods.md)
+- [infosec/infosec-analyze-parking.md](infosec/infosec-analyze-parking.md)
 
 ## Subsections
 
