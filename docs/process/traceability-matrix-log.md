@@ -7,6 +7,7 @@
 | CHG-20260320-001 | docs/specs/nonfunctional-requirements/nfr-external-quality.md | NFR-EXT-SEC-001..004 | docs/artifacts/infosec/*.md, docs/artifacts/infosec/context/* | review + `npm run ci:check` | PR #<TBD>  |
 | CHG-20260320-002 | docs/artifacts/infosec/infosec-analyze-parking.md | NFR-EXT-SEC-001..004 | docs/artifacts/infosec/infosec-analyze-parking.md | review + `npm run ci:check` | PR #<TBD>  |
 | CHG-20260320-004 | docs/artifacts/project-charter.md, infosec analyze | NFR-EXT-SEC-001..004 | docs/artifacts/infosec/infosec-analyze-parking.md, CHANGELOG.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD>  |
+| CHG-20260320-005 | docs/architecture/readme.md, ADR-003, DDD bounded contexts | — | docs/architecture/adr-003-*.md, docs/architecture/ddd-*.md, docs/architecture/readme.md, CHANGELOG.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD>  |
 ## Связанные документы
 
 - [docs/artifacts/infosec/infosec-analyze-parking.md](../artifacts/infosec/infosec-analyze-parking.md)
