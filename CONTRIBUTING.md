@@ -17,22 +17,38 @@
 
 ## Соглашение о коммитах
 
-Формат **Conventional Commits** (текст сообщения на английском, как принято в стандарте):
+Формат **Conventional Commits** с проверкой **commitlint** (`commitlint.config.cjs`; при необходимости см. подсказки в `.cursor/agents/git-workflow-master.md`):
 
-- `docs(scope): ...`
-- `feat(scope): ...`
-- `fix(scope): ...`
-- `chore(scope): ...`
+- **Тип** и **scope** (если есть) — **латиницей**; краткое **описание после двоеточия — на русском** (до 100 символов в заголовке).
+- `docs(scope): …`, `feat(scope): …`, `fix(scope): …`, `chore(scope): …` и другие разрешённые типы из конфига.
 
 Примеры:
 
-- `docs(specs): add NFR for external quality`
-- `chore(ci): add markdown and build quality gates`
+- `docs(specs): уточнить NFR по внешнему качеству`
+- `chore(ci): добавить проверку ссылок в markdown`
 
 Локальная проверка:
 
 - сообщения коммитов — Husky + Commitlint (`.husky/commit-msg`);
 - заголовок PR — CI (`.github/workflows/pr-title.yml`).
+
+### Атомарные коммиты по зонам репозитория
+
+Чтобы разнести несвязанные правки в отдельные коммиты с корректными типом и scope (без ручного `git add` по частям), используйте:
+
+- `npm run commit:atomic` — показать план и запросить подтверждение;
+- `npm run commit:atomic:yes` — выполнить без вопроса (удобно в скриптах);
+- `node ./scripts/atomic-commit.mjs --dry-run` — только план, без коммитов.
+
+Скрипт группирует изменённые файлы (относительно `HEAD`) по каталогам: `docs/specs/`, `docs/architecture/`, `ui/`, `.cursor/`, `CHANGELOG.md` и т.д., затем создаёт последовательность коммитов в фиксированном порядке (например, `CHANGELOG.md` — среди последних).
+
+Заголовки коммитов — **на русском после двоеточия**, в том же духе, что и правила **git-workflow-master**; сам агент Cursor **не вызывается** — шаблоны заданы в скрипте.
+
+Не выполняет `git push`. При незавершённом merge/rebase завершается с ошибкой.
+
+Подробности и порядок групп — в `scripts/atomic-commit.mjs` (комментарии в начале файла).
+
+**Субагент git-workflow-master из git-хуков автоматически не вызывается** (технически недоступно). При крупном диффе Husky запускает `scripts/git-workflow-agent-reminder.mjs` и выводит напоминание в терминал (см. `.husky/pre-commit`, `pre-push`).
 
 ## Определение готовности PR (Definition of Ready)
 
