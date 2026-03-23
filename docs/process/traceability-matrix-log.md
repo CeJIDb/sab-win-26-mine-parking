@@ -2,6 +2,7 @@
 
 | Change ID        | Source                        | Requirement ID | Changed files                                                     | Validation                   | Evidence |
 |------------------|-------------------------------|----------------|-------------------------------------------------------------------|------------------------------|----------|
+| CHG-20260323-001 | docs/artifacts/infosec/infosec-analyze-parking-study.md | NFR-EXT-SEC-001..004 | docs/artifacts/infosec/infosec-analyze-parking-study.md, CHANGELOG.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD>  |
 | CHG-20260322-012 | docs/architecture/c4 L2 телемед, формулировки L1 | — | docs/architecture/c4/*.md, docs/architecture/readme.md, CHANGELOG.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD>  |
 | CHG-20260322-011 | docs/architecture — ревью техписателем и архитектором | — | docs/architecture/ddd/ddd-bounded-contexts.md, docs/architecture/ddd/ddd-bounded-contexts-study.md, docs/architecture/ddd/ddd-pseudocode-study.md, docs/architecture/c4/c4-parking-platform.md, docs/architecture/readme.md, CHANGELOG.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD>  |
 | CHG-20260322-011 | docs/architecture/c4 инфо-дисплеи vs табло L1 | — | docs/architecture/c4/c4-l1-system-context.md, docs/architecture/c4/c4-parking-platform.md, CHANGELOG.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD>  |
