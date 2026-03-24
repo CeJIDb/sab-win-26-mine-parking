@@ -24,9 +24,9 @@ def text_from_docx(path):
 
 
 def main():
-    # Default target is docs/transcripts at repo root.
+    # Default target is the folder passed as the first argument or repo root.
     repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-    folder = os.path.join(repo_root, "docs", "transcripts")
+    folder = repo_root
     if len(sys.argv) > 1:
         folder = os.path.abspath(sys.argv[1])
     for f in sorted(os.listdir(folder)):

@@ -19,7 +19,7 @@ Ensure each meaningful change is linked from source evidence to requirement and 
 ## Required Fields
 
 - Change ID
-- Source (artifact/protocol/transcript)
+- Source (artifact/protocol/source note)
 - Requirement ID (`FR-*`, `NFR-*`, `CONSTR-*`, `ADR-*`)
 - Changed files
 - Validation method

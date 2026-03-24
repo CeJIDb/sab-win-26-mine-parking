@@ -40,6 +40,14 @@
 - архитектурных решениях и допущениях;
 - прототипах интерфейсов для проверки пользовательских сценариев.
 
+## Команда
+
+- [Denis333admin](https://github.com/Denis333admin)
+- [malinkaemail-blip](https://github.com/malinkaemail-blip)
+- [mrneatly](https://github.com/mrneatly)
+- [skifup](https://github.com/skifup)
+- [CeJIDb](https://github.com/CeJIDb)
+
 ## Структура репозитория
 
 ### `docs/`
@@ -50,7 +58,6 @@
 - `specs/` — функциональные требования и спецификации;
 - `architecture/` — ADR с архитектурными решениями;
 - `protocols/` — протоколы встреч;
-- `transcripts/` — транскрибации интервью и обсуждений;
 - `demo-days/` — материалы для демо и презентаций.
 
 ### `ui/`
@@ -83,7 +90,7 @@
 3. `docs/artifacts/conceptual-model-with-attributes.md`
 4. `docs/specs/functional-requirements/`
 5. `docs/architecture/`
-6. `docs/protocols/` и `docs/transcripts/` для проверки источников решений
+6. `docs/protocols/` для проверки источников решений
 
 Такой порядок помогает быстро понять бизнес-контекст, границы системы, терминологию и основные проектные решения.
 

@@ -19,7 +19,6 @@ Describe the desired behavior in testable form ("the system shall ...").
 - [ ] docs/specs
 - [ ] docs/architecture
 - [ ] docs/protocols
-- [ ] docs/transcripts
 - [ ] ui wireframe
 - [ ] scripts/ (build CSS/templates)
 - [ ] CI workflow

@@ -10,7 +10,7 @@ Describe the purpose of this PR and the business/analysis context.
 ## Traceability
 
 - Related requirement(s):
-- Related protocol/transcript/artifact:
+- Related protocol/artifact/source:
 - Traceability matrix row(s):
 
 ## Validation

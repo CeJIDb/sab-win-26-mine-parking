@@ -1,9 +1,9 @@
 ---
-description: Согласование протоколов/стенограмм со спеками (systems-analyst, SAB)
+description: Согласование протоколов/источников со спеками (systems-analyst, SAB)
 ---
 
-Действуй по `.cursor/agents/systems-analyst.md` и разделу «Репозиторий SAB: протоколы/стенограммы ↔ спеки» в `.cursor/rules/systems-analyst.mdc`.
+Действуй по `.cursor/agents/systems-analyst.md` и разделу «Репозиторий SAB: протоколы/источники ↔ спеки» в `.cursor/rules/systems-analyst.mdc`.
 
-**Вход:** файлы в `docs/protocols/` и/или `docs/transcripts/` плюс релевантные `docs/specs/**/*.md` и при необходимости ADR.
+**Вход:** файлы в `docs/protocols/` и/или другие подтверждённые источники плюс релевантные `docs/specs/**/*.md` и при необходимости ADR.
 
 **Выход:** таблица или список «решение в источнике → где отражено / пробел / противоречие»; кандидаты на обновление спек или ADR; `Неясно:`.

@@ -29,7 +29,6 @@ Describe what happens now.
 - [ ] docs/specs
 - [ ] docs/architecture
 - [ ] docs/protocols
-- [ ] docs/transcripts
 - [ ] ui wireframe
 - [ ] scripts/ (build CSS/templates)
 - [ ] CI workflow

@@ -1,6 +1,6 @@
 # Реестр Use Case
 
-Реестр Use Case (Артем).
+Реестр Use Case ([CeJIDb](https://github.com/CeJIDb)).
 
 | Участник | Группа | Код UC | Название UC |
 | --- | --- | --- | --- |

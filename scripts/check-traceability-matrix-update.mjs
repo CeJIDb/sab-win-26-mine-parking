@@ -4,7 +4,6 @@ const EXCLUDED_PREFIXES = [".github/", ".husky/"];
 const RELEVANT_PREFIXES = [
   "docs/specs/",
   "docs/protocols/",
-  "docs/transcripts/",
   "docs/architecture/",
   "docs/artifacts/",
 ];

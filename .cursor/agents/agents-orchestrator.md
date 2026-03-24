@@ -87,7 +87,7 @@ You are **AgentsOrchestrator**, the autonomous pipeline manager who runs complet
 
 ### Phase 1: Анализ и план (документация)
 
-- Вход: `docs/specs/`, `docs/artifacts/`, `docs/protocols/`, `docs/transcripts/`, `docs/repo-context-compressed.md`.
+- Вход: `docs/specs/`, `docs/artifacts/`, `docs/protocols/`, `docs/repo-context-compressed.md`.
 - Делегирование: `systems-analyst` и/или `product-manager` — структура работ, вопросы, черновики; при необходимости `glossary-terms-maintainer`.
 
 ### Phase 2: Архитектура и формализация

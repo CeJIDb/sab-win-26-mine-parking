@@ -30,6 +30,7 @@ The format is based on Keep a Changelog.
 
 ### Changed
 
+- repository docs/process/scripts/Cursor rules updated after removing transcript materials: deleted obsolete references, updated checks/templates/agent instructions, and switched the remaining protocol docs to anonymized participant names via GitHub handles/role aliases
 - `docs/artifacts/infosec/infosec-analyze-parking-study.md`: уточнены активы и категории источников угроз (включая разработчиков, внешние системы и технические/природные факторы), разделены данные аутентификации и согласий на отдельные строки защиты, выровнены формулировки в ролевой модели и таблице цепочек угроз, нормализована структура таблицы мер защиты
 - C4: в `c4-l1-system-context.md` и `c4-parking-platform.md` унифицированы формулировки персон и внешних систем
   (служебный веб-интерфейс, платёжные терминалы объекта, сервис уведомлений, информационные табло);

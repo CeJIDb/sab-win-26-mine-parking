@@ -96,11 +96,6 @@ const BUCKET_DEFS = [
     message: "docs(protocols): обновить протоколы встреч",
   },
   {
-    id: "transcripts",
-    test: (f) => f.startsWith("docs/transcripts/"),
-    message: "docs(transcripts): обновить транскрипты",
-  },
-  {
     id: "demo-days",
     test: (f) => f.startsWith("docs/demo-days/"),
     message: "docs(demo-days): обновить материалы demo-days",
@@ -143,7 +138,6 @@ const BUCKET_ORDER = [
   "artifacts",
   "process",
   "protocols",
-  "transcripts",
   "demo-days",
   "docs-root",
   "ui",

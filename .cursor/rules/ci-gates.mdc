@@ -21,7 +21,7 @@ alwaysApply: true
 
 3. Если меняются значимые пути (см. `scripts/check-changelog-required.mjs`: в т.ч. `docs/`, `ui/`, `scripts/`, …) — обнови `CHANGELOG.md` в секции `## [Unreleased]` **в том же наборе коммитов**, чтобы при push последний коммит не оставлял значимые файлы без записи в changelog (на push CI проверяет только `HEAD~1..HEAD`).
 
-4. Если меняются пути из `docs/specs/`, `docs/protocols/`, `docs/transcripts/`, `docs/architecture/`, `docs/artifacts/` — обнови `docs/process/traceability-matrix-log.md` согласно правилам репозитория.
+4. Если меняются пути из `docs/specs/`, `docs/protocols/`, `docs/architecture/`, `docs/artifacts/` — обнови `docs/process/traceability-matrix-log.md` согласно правилам репозитория.
 
 5. Сообщения коммитов и ветки — как в `CONTRIBUTING.md` и `commitlint.config.cjs`; при подготовке к PR сверяйся с субагентом **`git-workflow-master`** (`.cursor/agents/git-workflow-master.md`).
 

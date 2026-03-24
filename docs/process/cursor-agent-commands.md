@@ -21,7 +21,7 @@
 | [review-wireframe.md](../../.cursor/commands/review-wireframe.md) | Wireframe `ui/` vs спеки + доступность | `.cursor/rules/ux-architect.mdc`, `.cursor/rules/accessibility-auditor.mdc` |
 | [review-reality.md](../../.cursor/commands/review-reality.md) | Документы vs факты репозитория | `.cursor/rules/reality-checker.mdc` |
 | [review-pr-readiness.md](../../.cursor/commands/review-pr-readiness.md) | Готовность к PR/push (ветка, changelog, трассировка, CI) | `.cursor/rules/git-workflow-master.mdc`, `.cursor/rules/ci-gates.mdc` |
-| [review-sources-sync.md](../../.cursor/commands/review-sources-sync.md) | Протоколы/стенограммы ↔ спеки | `.cursor/rules/systems-analyst.mdc` |
+| [review-sources-sync.md](../../.cursor/commands/review-sources-sync.md) | Протоколы/источники ↔ спеки | `.cursor/rules/systems-analyst.mdc` |
 | [review-glossary.md](../../.cursor/commands/review-glossary.md) | Терминология, дрейф от глоссария | `.cursor/rules/glossary-terms-maintainer.mdc`, `.cursor/agents/glossary-terms-maintainer.md` |
 
 ## Правила с автоподключением (globs)
@@ -29,7 +29,7 @@
 | Правило | Пути (кратко) |
 |---------|----------------|
 | `technical-writer.mdc` | `docs/**/*.md`, `README.md`, `CONTRIBUTING.md` |
-| `systems-analyst.mdc` | `docs/specs/`, `docs/artifacts/`, `docs/protocols/`, `docs/transcripts/`, `docs/process/traceability-matrix*.md` |
+| `systems-analyst.mdc` | `docs/specs/`, `docs/artifacts/`, `docs/protocols/`, `docs/process/traceability-matrix*.md` |
 | `glossary-terms-maintainer.mdc` | `docs/artifacts/project-glossary.md`, `docs/specs/`, `docs/architecture/`, `docs/artifacts/conceptual-model*.md` |
 | `software-architect.mdc` | `docs/architecture/**/*.md` |
 | `security-engineer.mdc` | `docs/artifacts/infosec/`, `docs/specs/nonfunctional-requirements/` |

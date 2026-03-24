@@ -19,7 +19,7 @@ This guide defines naming and structure conventions for the `docs/` tree.
 - Prefer ASCII names for new technical/process files.
 - Existing legacy names may remain until a dedicated migration PR.
 - Use `readme.md` for section indexes under `docs/*` and `README.md` only at repository root.
-- For transcript/protocol source files, prefer `<type>-<source>-<yyyy-mm-dd>-vNN.<ext>`.
+- For protocol/source files, prefer `<type>-<source>-<yyyy-mm-dd>-vNN.<ext>`.
 - In UI naming, prefer role-explicit names (`client`, `admin`, `guard`) instead of ambiguous aliases.
 
 ## Language Policy
@@ -49,7 +49,7 @@ This guide defines naming and structure conventions for the `docs/` tree.
 ## Related Documents Policy
 
 - If a document depends on or references specific canonical artifacts/specs/protocols (beyond one-off mentions), add a short `## Связанные документы` (or `### Связанные документы`) section with relative links to those sources.
-- Prefer linking to canonical files under `docs/artifacts/`, `docs/specs/`, `docs/architecture/`, `docs/protocols/` and `docs/transcripts/`.
+- Prefer linking to canonical files under `docs/artifacts/`, `docs/specs/`, `docs/architecture/` and `docs/protocols/`.
 
 ## Link Stability
 
