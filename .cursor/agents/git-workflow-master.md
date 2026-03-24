@@ -33,6 +33,8 @@ For policy checks involving traceability:
 
 - Branches: `feature/*`, `docs/*`, `chore/*`, `hotfix/*`
 - Conventional commits per `commitlint.config.cjs`
+- Commit messages: use Russian language for subject/body text.
+- Keep `type(scope):` in English (e.g. `docs(repo): ...`) for lint compatibility.
 - Keep commits atomic and review-friendly
 - Avoid force push on shared branches
 
