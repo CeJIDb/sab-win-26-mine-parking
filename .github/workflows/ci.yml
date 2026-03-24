@@ -26,14 +26,8 @@ jobs:
       - name: Validate branch naming
         run: node ./scripts/check-branch-name.mjs
 
-      - name: Validate changelog guard
+      - name: Validate traceability guard
         run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            export CI_MERGE_RANGE="${{ github.event.pull_request.base.sha }}..${{ github.sha }}"
-          else
-            export CI_MERGE_RANGE="HEAD~1..HEAD"
-          fi
-          node ./scripts/check-changelog-required.mjs
           node ./scripts/check-traceability-matrix-update.mjs
 
   quality-gates:

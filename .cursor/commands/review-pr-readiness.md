@@ -1,16 +1,16 @@
 ---
-description: Чеклист готовности к PR/push (git-workflow + ci-gates, SAB)
+description: PR/push readiness checklist (git-workflow + ci-gates, SAB)
 ---
 
-Действуй по `.cursor/rules/git-workflow-master.mdc` (раздел «Репозиторий SAB: готовность к PR / push») и **канонично** по `.cursor/rules/ci-gates.mdc`.
+Follow `.cursor/rules/git-workflow-master.mdc` and **canonically** `.cursor/rules/ci-gates.mdc`.
+Use the repository-specific "SAB Repository: PR / Push Readiness" checklist in the git workflow rule.
 
-**Вход:** текущая ветка и список изменённых файлов (или попроси пользователя дать `git status` / описание PR).
+**Input:** current branch and changed files (or ask the user for `git status` / PR summary).
 
-**Выход:** по пунктам — выполнено / риск / что сделать:
+**Output:** itemized checklist — done / risk / next action:
 
 - `npm run check:branch`, `npm run ci:check`;
-- `CHANGELOG.md` при значимых путях;
-- `docs/process/traceability-matrix-log.md` при изменениях в зонах из `scripts/check-traceability-matrix-update.mjs`;
-- при необходимости `CI_MERGE_RANGE` и `npm run check:changelog`.
+- `docs/process/traceability-matrix-log.md` when changes hit zones from `scripts/check-traceability-matrix-update.mjs`;
+- when needed, set `CI_MERGE_RANGE` and run `node ./scripts/check-traceability-matrix-update.mjs`.
 
-Не заменяй выполнение команд — только чеклист и риски.
+Do not replace command execution with assumptions — provide checklist status and risks.

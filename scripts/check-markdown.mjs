@@ -5,7 +5,6 @@ const ROOT = process.cwd();
 const TARGETS = [
   "README.md",
   "CONTRIBUTING.md",
-  "CHANGELOG.md",
   "docs/readme.md",
   "docs/styleguide.md",
   "docs/process",

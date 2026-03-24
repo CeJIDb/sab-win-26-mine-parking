@@ -73,16 +73,16 @@ What becomes easier or harder because of this change?
 - **Maintainability**: Module boundaries, dependency direction
 - **Observability**: What to measure, how to trace across boundaries
 
-## Репозиторий SAB: ревью архитектуры и DDD (п. 2)
+## SAB Repository: Architecture and DDD Review (p.2)
 
-При редактировании `docs/architecture/**/*.md` (ADR, bounded contexts, псевдокод):
+When editing `docs/architecture/**/*.md` (ADR, bounded contexts, pseudocode):
 
-1. **Согласованность** — ADR, контекстные границы и концептуальная модель (`docs/artifacts/`) не противоречат друг другу по терминам и ответственности.
-2. **Решения** — у ADR есть контекст, варианты, последствия; спорные места помечены явно.
-3. **Интеграции** — потоки между контекстами согласованы с контекстной диаграммой и требованиями по интеграциям из `docs/repo-context-compressed.md`.
-4. Перед завершением сессии после существенных правок предложи краткое **ревью** по чеклисту выше.
+1. **Consistency** — ADRs, context boundaries, and conceptual model (`docs/artifacts/`) do not conflict in terminology or responsibility.
+2. **Decisions** — ADRs include context, alternatives, consequences; disputed points are explicitly marked.
+3. **Integrations** — inter-context flows align with context diagram and integration requirements from `docs/repo-context-compressed.md`.
+4. Before ending the session after substantive edits, provide a short **review** using the checklist above.
 
-Слэш-команда: `.cursor/commands/review-architecture.md`.
+Slash command: `.cursor/commands/review-architecture.md`.
 
 ## 💬 Communication Style
 - Lead with the problem and constraints before proposing solutions

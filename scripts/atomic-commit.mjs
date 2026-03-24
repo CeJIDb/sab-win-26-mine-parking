@@ -115,11 +115,6 @@ const BUCKET_DEFS = [
     test: (f) => f === "README.md" || f === "CONTRIBUTING.md" || f === "LICENSE",
     message: "docs(repo): обновить README и руководства в корне",
   },
-  {
-    id: "changelog",
-    test: (f) => f === "CHANGELOG.md",
-    message: "chore(changelog): обновить раздел Unreleased в CHANGELOG",
-  },
 ];
 
 const MISC = {
@@ -142,7 +137,6 @@ const BUCKET_ORDER = [
   "docs-root",
   "ui",
   "root-docs",
-  "changelog",
   "misc",
 ];
 

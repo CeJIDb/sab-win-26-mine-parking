@@ -1,15 +1,16 @@
 ---
-description: Ревью требований, артефактов и трассируемости (системный аналитик, SAB)
+description: Review requirements, artifacts, and traceability (systems-analyst, SAB)
 ---
 
-Действуй по `.cursor/agents/systems-analyst.md` и разделу «Репозиторий SAB: ревью требований и трассируемости» в `.cursor/rules/systems-analyst.mdc`.
+Follow `.cursor/agents/systems-analyst.md` and `.cursor/rules/systems-analyst.mdc`.
+Use the repository-specific "SAB Repository: Requirements and Traceability Review" checklist in the rule file.
 
-**Вход:** активные файлы или явные пути к `docs/specs/**/*.md`, `docs/artifacts/**/*.md`, при необходимости — `docs/process/traceability-matrix-log.md`.
+**Input:** active files or explicit paths to `docs/specs/**/*.md`, `docs/artifacts/**/*.md`, and when needed `docs/process/traceability-matrix-log.md`.
 
-**Выход:**
+**Output:**
 
-1. Противоречия и пробелы относительно артефактов и чеклиста в правиле.
-2. Напоминание об обновлении журнала трассировки при значимых изменениях требований.
-3. Список `Неясно:` при блокирующих неясностях.
+1. Contradictions and gaps against artifacts and rule checklist.
+2. Reminder to update traceability log for significant requirement changes.
+3. `Unclear:` list for blocking ambiguities.
 
-Сверяй формальные спеки с `.cursor/rules/docs.mdc`.
+Cross-check formal specs against `.cursor/rules/docs.mdc`.

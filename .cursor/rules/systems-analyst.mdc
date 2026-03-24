@@ -1,5 +1,5 @@
 ---
-description: Системный аналитик — требования, протоколы, источники и трассируемость (проект SAB).
+description: Systems analyst — requirements, protocols, source alignment, and traceability (SAB project).
 globs:
   - "docs/specs/**/*.md"
   - "docs/process/traceability-matrix-log.md"
@@ -9,28 +9,28 @@ globs:
 alwaysApply: false
 ---
 
-# Системный аналитик — контекст ревью (SAB)
+# Systems Analyst — Review Context (SAB)
 
-Полная инструкция агента: `.cursor/agents/systems-analyst.md`. Базовый контекст: `docs/repo-context-compressed.md`. Правила формальных спек: `.cursor/rules/docs.mdc` (для `docs/specs/**/*.md`).
+Full agent instruction: `.cursor/agents/systems-analyst.md`. Base context: `docs/repo-context-compressed.md`. Formal spec rules: `.cursor/rules/docs.mdc` (for `docs/specs/**/*.md`).
 
-## Репозиторий SAB: ревью требований и трассируемости (п. 1)
+## SAB Repository: Requirements and Traceability Review (p.1)
 
-Когда открыты или правятся файлы из `globs` (спеки, артефакты, журнал трассировки):
+When files from `globs` are open or edited (specs, artifacts, traceability log):
 
-1. **Согласованность** — нет ли противоречий между FR/NFR/ограничениями и артефактами (`docs/artifacts/`), ссылками на UC и сценарии.
-2. **Идентификаторы** — требования с ID там, где это принято; нет дублирования смысла под разными ID без явной связи.
-3. **Трассируемость** — при изменении значимых требований напомни про обновление `docs/process/traceability-matrix-log.md` и политику CI (`scripts/check-traceability-matrix-update.mjs`).
-4. **Полнота критичных сценариев** — заезд/выезд, оплата, КПП, уведомления, роли (клиент/админ/охрана): нет ли очевидных пробелов относительно контекстной модели и чартера.
-5. **Проверяемость** — формулировки в духе «система должна …» с критериями приёмки, без размытых «удобно/быстро» без метрик.
+1. **Consistency** — detect contradictions between FR/NFR/constraints and artifacts (`docs/artifacts/`), UC references, and scenarios.
+2. **Identifiers** — ensure requirement IDs are present where expected; avoid duplicated meaning under different IDs without explicit linkage.
+3. **Traceability** — for significant requirement changes, remind to update `docs/process/traceability-matrix-log.md` and follow CI policy (`scripts/check-traceability-matrix-update.mjs`).
+4. **Critical scenario coverage** — entry/exit, payment, gate control, notifications, roles (client/admin/security): detect obvious gaps vs context model and charter.
+5. **Testability** — prefer "the system shall ..." style with acceptance criteria; avoid vague wording without metrics.
 
-Перед завершением сессии после существенных правок предложи короткое **ревью по чеклисту** или укажи блокеры (`Неясно:`).
+Before finishing a session after substantive edits, offer a short **checklist-based review** or list blockers (`Unclear:`).
 
-## Репозиторий SAB: протоколы/источники ↔ спеки (п. 7)
+## SAB Repository: Protocols/Sources <-> Specs (p.7)
 
-При работе с `docs/protocols/` и другими подтверждёнными источниками:
+When working with `docs/protocols/` and other confirmed sources:
 
-1. Выяви **решения и термины**, которые должны отразиться в `docs/specs/` или ADR; отметь, если в спеках противоречие или отсутствует решение из протокола.
-2. Проверь **двустороннюю согласованность**: нет ли в спеке утверждений, опровергаемых последним протоколом (или наоборот).
-3. Зафиксируй **открытые вопросы** для стейкхолдеров одной строкой `Неясно:` при необходимости.
+1. Identify **decisions and terms** that must be reflected in `docs/specs/` or ADR; flag missing or conflicting protocol decisions in specs.
+2. Check **bidirectional consistency**: spec statements contradicted by latest protocol (or vice versa).
+3. Capture **open stakeholder questions** as one-line `Unclear:` items when needed.
 
-Слэш-команда: `.cursor/commands/review-sources-sync.md`.
+Slash command: `.cursor/commands/review-sources-sync.md`.

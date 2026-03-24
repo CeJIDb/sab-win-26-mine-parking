@@ -1,30 +1,28 @@
 ---
-description: Обязательное соблюдение проверок и политик CI репозитория перед пушем и при подготовке к PR.
+description: Mandatory CI policy checks before push and PR readiness statements.
 alwaysApply: true
 ---
 
-## CI — обязательно к соблюдению
+## CI Compliance Rules
 
-Каноничные источники: `CONTRIBUTING.md`, `.github/workflows/ci.yml`, `package.json` (скрипты `check:*`, `ci:check`).
+Canonical sources: `CONTRIBUTING.md`, `.github/workflows/ci.yml`, `package.json` (`check:*`, `ci:check` scripts).
 
-### Перед `git push` или формулировкой «готово к PR»
+### Before `git push` or saying "ready for PR"
 
-1. Выполни из корня репозитория (исправь ошибки, если exit code ≠ 0):
+1. Run from repository root (fix errors if exit code != 0):
    - `npm ci`
    - `npm run check:branch`
-   - `npm run ci:check` (эквивалент job `quality-gates`: markdown, ссылки, сборка wireframe).
+   - `npm run ci:check` (equivalent to `quality-gates`: markdown, links, wireframe build).
 
-2. Политика job `policy-checks` (changelog и трассировка) — для диапазона коммитов, который уйдёт на GitHub, задай `CI_MERGE_RANGE` и выполни:
-   - для PR-диапазона: `base_sha..HEAD` (как в CI для `pull_request`);
-   - для проверки последнего коммита перед push: `HEAD~1..HEAD` (как в CI для `push`);
-   - затем: `npm run check:changelog` и `node ./scripts/check-traceability-matrix-update.mjs`.
+2. `policy-checks` traceability policy — set `CI_MERGE_RANGE` for the commit range that will go to GitHub:
+   - PR range: `base_sha..HEAD` (as in CI for `pull_request`);
+   - pre-push last commit check: `HEAD~1..HEAD` (as in CI for `push`);
+   - then run: `node ./scripts/check-traceability-matrix-update.mjs`.
 
-3. Если меняются значимые пути (см. `scripts/check-changelog-required.mjs`: в т.ч. `docs/`, `ui/`, `scripts/`, …) — обнови `CHANGELOG.md` в секции `## [Unreleased]` **в том же наборе коммитов**, чтобы при push последний коммит не оставлял значимые файлы без записи в changelog (на push CI проверяет только `HEAD~1..HEAD`).
+3. If paths in `docs/specs/`, `docs/protocols/`, `docs/architecture/`, `docs/artifacts/` changed — update `docs/process/traceability-matrix-log.md` per repository policy.
 
-4. Если меняются пути из `docs/specs/`, `docs/protocols/`, `docs/architecture/`, `docs/artifacts/` — обнови `docs/process/traceability-matrix-log.md` согласно правилам репозитория.
+4. Branch names and commit messages must follow `CONTRIBUTING.md` and `commitlint.config.cjs`; for PR prep, align with subagent **`git-workflow-master`** (`.cursor/agents/git-workflow-master.md`).
 
-5. Сообщения коммитов и ветки — как в `CONTRIBUTING.md` и `commitlint.config.cjs`; при подготовке к PR сверяйся с субагентом **`git-workflow-master`** (`.cursor/agents/git-workflow-master.md`).
+### Hard rule
 
-### Жёсткое правило
-
-Не завершай сценарий «запушено / можно мержить», пока перечисленные проверки не прошли локально (или явно не предупредил пользователя о риске красного CI и о том, что пропущено).
+Do not finish with "pushed / ready to merge" until all checks above pass locally (or you explicitly warn the user about red-CI risk and skipped checks).

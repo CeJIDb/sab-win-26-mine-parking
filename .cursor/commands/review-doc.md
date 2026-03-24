@@ -1,16 +1,17 @@
 ---
-description: Ревью markdown-документа ролью технического писателя (SAB)
+description: Markdown documentation review by technical-writer role (SAB)
 ---
 
-Действуй по инструкции из `.cursor/rules/technical-writer.mdc` и разделу «Репозиторий SAB: ревью документации» в нём.
+Follow `.cursor/rules/technical-writer.mdc`.
+Use the repository-specific "SAB Repository: Documentation Review" checklist in that file.
 
-**Цель:** содержательное ревью документа — активный файл в редакторе или путь(и), которые укажет пользователь.
+**Goal:** substantive review of a document — active editor file or user-provided path(s).
 
-**Шаги:**
+**Steps:**
 
-1. Определи целевой файл: если неочевидно, попроси путь к `docs/**/*.md` (или `README.md` / `CONTRIBUTING.md`).
-2. Прочитай документ и пройди чеклист ревью из правила `technical-writer` (структура, навигация/оглавление, проверяемость, ссылки, согласованность с каноническими артефактами).
-3. Для `docs/specs/**/*.md` проверь соответствие `.cursor/rules/docs.mdc`.
-4. Выдай результат: краткое резюме; замечания с уровнем серьёзности (блокер / важно / желательно); конкретные предложения правок (по возможности — готовые фрагменты замены).
+1. Identify target file. If unclear, ask for path in `docs/**/*.md` (or `README.md` / `CONTRIBUTING.md`).
+2. Read the document and run the `technical-writer` checklist (structure, navigation/TOC, testability, links, consistency with canonical artifacts).
+3. For `docs/specs/**/*.md`, verify compliance with `.cursor/rules/docs.mdc`.
+4. Return: short summary; findings by severity (blocker / important / nice-to-have); concrete edit proposals (ideally ready replacement snippets).
 
-Не дублируй то, что гарантированно ловит CI (`npm run ci:check`), если только не видишь явную ошибку разметки или ссылки в контексте сессии.
+Do not duplicate what CI already guarantees (`npm run ci:check`) unless you see an explicit markdown/link issue in session context.

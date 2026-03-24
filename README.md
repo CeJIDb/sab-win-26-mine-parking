@@ -148,7 +148,7 @@ npm run ci:check
 3. Создайте ветку: `docs/<тема>`, `feature/<тема>`, `chore/<тема>`, `hotfix/<тема>`.
 4. Внесите минимальный набор трассируемых изменений.
 5. Обновите матрицу трассировки (`docs/process/traceability-matrix-log.md`), если это требуется по [регламенту](docs/process/traceability-matrix.md).
-6. Обновите `CHANGELOG.md` в секции `Unreleased`.
+6. Обновите `docs/process/traceability-matrix-log.md`, если это требуется по регламенту.
 7. Запустите проверки:
 
    ```bash
@@ -179,7 +179,6 @@ npm run ci:check
 
 ## Политика релизов и изменений
 
-- Все значимые изменения фиксируются в `CHANGELOG.md` в секции `Unreleased`.
 - При выпуске версии записи переносятся в версионированный блок.
 - Релиз выполняется по чеклисту `docs/process/release-checklist.md`.
 

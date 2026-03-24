@@ -18,7 +18,6 @@ Describe the purpose of this PR and the business/analysis context.
 - [ ] `npm ci`
 - [ ] `npm run ci:check`
 - [ ] Branch name matches policy (`feature/*`, `docs/*`, `chore/*`, `hotfix/*`)
-- [ ] `CHANGELOG.md` updated in `Unreleased` or marked as not required with reason
 - [ ] Manual checks (if needed) documented
 
 ## Risks and Mitigations

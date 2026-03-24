@@ -1,18 +1,14 @@
 ---
-alwaysApply: true
----
-
----
-description: Применять при работе с файлами спецификаций требований (*.md в docs/specs).
+description: Apply when editing requirement specification files (`*.md` in `docs/specs`).
 alwaysApply: true
 globs:
   - "docs/specs/**/*.md"
 ---
 
-При редактировании этих файлов:
-- Сохраняй структуру документа (оглавление, уровни заголовков).
-- Если документ содержит 3+ раздела уровня `##` (т.е. `## ...` headings), добавляй секцию `## Оглавление` в начале документа с кликабельными ссылками на каждый такой раздел (в формате Markdown-ссылок `- [Текст](#якорь)`).
-- Якоря в оглавлении формируются в стиле GitHub (как проверяет `scripts/check-markdown-links.mjs`): при изменении заголовков оглавление обязательно обновляй.
-- Не удаляй существующие требования без явного запроса, вместо этого помечай как «устарело» или «заменено».
-- При добавлении нового требования всегда добавляй идентификатор (например, `FR-001`, `NFR-010`) и краткое обоснование.
-- При необходимости добавляй/поддерживай секцию `Связанные документы` с относительными ссылками на канонические артефакты (`docs/artifacts/*`, `docs/specs/*`, `docs/protocols/*`, `docs/architecture/*`).
+When editing these files:
+- Preserve document structure (table of contents, heading hierarchy).
+- If a document has 3+ `##` sections, add a `## Table of Contents` section near the top with clickable links to each section (Markdown list format: `- [Text](#anchor)`).
+- TOC anchors must follow GitHub style (as validated by `scripts/check-markdown-links.mjs`); update TOC when headings change.
+- Do not delete existing requirements without explicit request; mark them as "deprecated" or "replaced" instead.
+- When adding a new requirement, always include an identifier (for example `FR-001`, `NFR-010`) and short rationale.
+- Add/maintain a `Related Documents` section when needed, with relative links to canonical artifacts (`docs/artifacts/*`, `docs/specs/*`, `docs/protocols/*`, `docs/architecture/*`).

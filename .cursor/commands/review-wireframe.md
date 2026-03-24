@@ -1,16 +1,18 @@
 ---
-description: Ревью wireframe vs спеки + доступность (UX + a11y, SAB)
+description: Review wireframe vs specs + accessibility (UX + a11y, SAB)
 ---
 
-Совместно применяй:
+Apply together:
 
-- `.cursor/rules/ux-architect.mdc` — раздел «Репозиторий SAB: wireframe vs требования»;
-- `.cursor/rules/accessibility-auditor.mdc` — раздел «Репозиторий SAB: доступность wireframe».
+- `.cursor/rules/ux-architect.mdc` — section "SAB repository: wireframe vs requirements";
+- `.cursor/rules/accessibility-auditor.mdc` — section "SAB repository: wireframe accessibility".
 
-**Вход:** шаблоны и стили в `ui/` (активный файл или указанные пути).
+Use the repository-specific SAB checklists in both rule files.
 
-**Выход:**
+**Input:** templates and styles in `ui/` (active file or specified paths).
 
-1. Несоответствия экранов/потоков требованиям и глоссарию.
-2. Проблемы IA/навигации по ролям.
-3. Замечания по WCAG 2.2 AA для разметки макета (с оговоркой про статику).
+**Output:**
+
+1. Screen/flow mismatches against requirements and glossary.
+2. IA and role-based navigation issues.
+3. WCAG 2.2 AA findings for static wireframe markup (with static-context caveat).

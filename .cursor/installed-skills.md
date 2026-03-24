@@ -74,3 +74,19 @@ mcp skillsmp.com skillsmp_install_skill \
   --agents "cursor"
 ```
 
+## Verification for current subagents
+
+Checked against active files in `.cursor/agents/*.md`:
+
+- `systems-analyst.md`
+- `glossary-terms-maintainer.md`
+- `git-workflow-master.md`
+- `doc-to-markdown.md`
+- `demo-days-presentations.md`
+
+Result:
+
+- All referenced **skills** are present in this installed list.
+- No additional skill installation is required at the moment.
+- Names like `technical-writer`, `security-engineer`, `ux-architect`, etc. are review role names from `.cursor/rules/*.mdc`, not installable skills.
+

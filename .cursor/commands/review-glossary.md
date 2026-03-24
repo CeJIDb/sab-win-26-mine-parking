@@ -1,9 +1,10 @@
 ---
-description: Ревью терминологии и дрейфа от глоссария (glossary-terms-maintainer, SAB)
+description: Review terminology and glossary drift (glossary-terms-maintainer, SAB)
 ---
 
-Действуй по `.cursor/agents/glossary-terms-maintainer.md` и `.cursor/rules/glossary-terms-maintainer.mdc` (раздел «Репозиторий SAB: ревью терминологии»).
+Follow `.cursor/agents/glossary-terms-maintainer.md` and `.cursor/rules/glossary-terms-maintainer.mdc`.
+Use the repository-specific "SAB Repository: Terminology Review" checklist in the rule file.
 
-**Вход:** изменённые документы или явный запрос на проход по `docs/artifacts/project-glossary.md` и связанным спекам/архитектуре.
+**Input:** changed documents or explicit request to review `docs/artifacts/project-glossary.md` and related specs/architecture docs.
 
-**Выход:** дрейф синонимов; кандидаты на добавление в глоссарий; конфликты имён DDD/контекстов; конкретные правки формулировок.
+**Output:** synonym drift; glossary addition candidates; DDD/context naming conflicts; concrete wording fixes.

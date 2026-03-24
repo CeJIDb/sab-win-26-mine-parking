@@ -19,7 +19,6 @@
 - [ ] `npm ci` completed.
 - [ ] `npm run ci:check` is green.
 - [ ] Traceability matrix updated.
-- [ ] `CHANGELOG.md` updated in `Unreleased` (or justified as not required).
 - [ ] PR description includes context, scope, risks, and validation.
 - [ ] Review comments are resolved and approvals received.
 

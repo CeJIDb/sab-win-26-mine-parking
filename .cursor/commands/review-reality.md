@@ -1,9 +1,10 @@
 ---
-description: Проверка документов на соответствие фактам репозитория (reality-checker, SAB)
+description: Check docs against repository facts (reality-checker, SAB)
 ---
 
-Действуй по `.cursor/rules/reality-checker.mdc` (раздел «Репозиторий SAB: документы vs репозиторий»).
+Follow `.cursor/rules/reality-checker.mdc`.
+Use the repository-specific "SAB Repository: Documents vs Repository Reality" checklist in that file.
 
-**Вход:** один или несколько `docs/**/*.md` (или активный документ).
+**Input:** one or more `docs/**/*.md` files (or the active document).
 
-**Выход:** где утверждения расходятся с тем, что есть в репо (wireframe, скрипты, отсутствие backend); битые отсылки к файлам/командам; завышенные формулировки готовности — с требованием **доказательств** (пути, команды, цитаты).
+**Output:** where claims diverge from repository reality (wireframe, scripts, no backend); broken file/command references; overconfident readiness claims — with required **evidence** (paths, commands, quotes).

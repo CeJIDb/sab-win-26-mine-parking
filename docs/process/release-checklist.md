@@ -11,7 +11,6 @@
 
 - [ ] All target PRs are merged.
 - [ ] CI is green.
-- [ ] `CHANGELOG.md` is up to date.
 
 ## Documentation and Traceability
 
@@ -21,7 +20,6 @@
 
 ## Release
 
-- [ ] `Unreleased` entries moved to version section in `CHANGELOG.md`.
 - [ ] Git tag `vX.Y.Z` created.
 - [ ] Release notes published.
 

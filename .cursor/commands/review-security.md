@@ -1,9 +1,10 @@
 ---
-description: Ревью ИБ и NFR безопасности (security-engineer, SAB)
+description: Security and security-NFR review (security-engineer, SAB)
 ---
 
-Действуй по `.cursor/rules/security-engineer.mdc` (раздел «Репозиторий SAB: ревью ИБ и соответствия»).
+Follow `.cursor/rules/security-engineer.mdc`.
+Use the repository-specific "SAB Repository: Security and Compliance Review" checklist in that file.
 
-**Вход:** `docs/artifacts/infosec/**/*.md`, `docs/specs/nonfunctional-requirements/**/*.md`.
+**Input:** `docs/artifacts/infosec/**/*.md`, `docs/specs/nonfunctional-requirements/**/*.md`.
 
-**Выход:** риски и пробелы по угрозам/контролям; согласованность с артефактами ИБ; формулировки по ПДн/платежам/доступу; приоритеты (блокер / важно / желательно).
+**Output:** risk and control gaps; consistency with security artifacts; wording issues for personal data/payments/access; priorities (blocker / important / nice-to-have).

@@ -1,7 +1,6 @@
 ---
 description: Expert in Git workflows, branching strategies, and version control best practices including conventional commits, rebasing, worktrees, and CI-friendly branch management.
 globs:
-  - "CHANGELOG.md"
   - "CONTRIBUTING.md"
   - "package.json"
   - "docs/process/traceability-matrix-log.md"
@@ -86,16 +85,14 @@ git push origin --delete feat/my-feature
 - Warn about destructive operations before suggesting them
 - Provide recovery steps alongside risky operations
 
-## Репозиторий SAB: готовность к PR / push (п. 6)
+## SAB Repository: PR / Push Readiness (p.6)
 
-При правках ветки, changelog, трассировки или workflow CI — напоминай о политике из `.cursor/rules/ci-gates.mdc` и `CONTRIBUTING.md`:
+When branch state, traceability, or CI workflow files change, enforce policy from `.cursor/rules/ci-gates.mdc` (canonical) and `CONTRIBUTING.md`:
 
-1. **Ветка и коммиты** — согласованность с `commitlint` и именованием веток (`npm run check:branch`).
-2. **Changelog** — для значимых путей обновлён `CHANGELOG.md` в том же наборе коммитов (`scripts/check-changelog-required.mjs`).
-3. **Трассировка** — при изменениях в `docs/specs/`, `docs/protocols/`, `docs/architecture/`, `docs/artifacts/` обновлён `docs/process/traceability-matrix-log.md` при необходимости по правилам репозитория.
-4. **Перед push** — `npm run ci:check`, при необходимости `CI_MERGE_RANGE` + `check:changelog` и проверка трассировки.
-5. **Атомарные коммиты из скрипта** — `npm run commit:atomic` подставляет заголовки в этом же стиле (тип/scope латиницей, описание на русском); агент не вызывается, см. `scripts/atomic-commit.mjs`.
+1. **Branch and commits** — enforce `commitlint` and branch naming policy (`npm run check:branch`).
+2. **Traceability and pre-push checks** — follow `.cursor/rules/ci-gates.mdc` exactly (including `CI_MERGE_RANGE` and traceability checks when applicable).
+3. **Atomic commits via script** — `npm run commit:atomic` generates commit headers in repository style (Latin `type/scope`, Russian subject text); the agent is not invoked, see `scripts/atomic-commit.mjs`.
 
-**Автозапуск субагента из git-хуков невозможен** — у Husky нет API к Cursor. Вместо этого при превышении порога изменений скрипт `scripts/git-workflow-agent-reminder.mjs` печатает напоминание (`.husky/pre-commit` для индекса, `pre-push` для рабочего дерева). Пороги: `GIT_WORKFLOW_REMINDER_MIN_FILES`, `GIT_WORKFLOW_REMINDER_MIN_LINES`.
+**Auto-starting this subagent from Git hooks is not possible** — Husky has no Cursor API access. Instead, when change thresholds are exceeded, `scripts/git-workflow-agent-reminder.mjs` prints a reminder (`.husky/pre-commit` for index, `pre-push` for working tree). Thresholds: `GIT_WORKFLOW_REMINDER_MIN_FILES`, `GIT_WORKFLOW_REMINDER_MIN_LINES`.
 
-Слэш-команда: `.cursor/commands/review-pr-readiness.md`.
+Slash command: `.cursor/commands/review-pr-readiness.md`.

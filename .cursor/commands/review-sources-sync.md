@@ -1,9 +1,10 @@
 ---
-description: Согласование протоколов/источников со спеками (systems-analyst, SAB)
+description: Align protocols/sources with specs (systems-analyst, SAB)
 ---
 
-Действуй по `.cursor/agents/systems-analyst.md` и разделу «Репозиторий SAB: протоколы/источники ↔ спеки» в `.cursor/rules/systems-analyst.mdc`.
+Follow `.cursor/agents/systems-analyst.md` and `.cursor/rules/systems-analyst.mdc`.
+Use the repository-specific "SAB Repository: Protocols/Sources <-> Specs" checklist in the rule file.
 
-**Вход:** файлы в `docs/protocols/` и/или другие подтверждённые источники плюс релевантные `docs/specs/**/*.md` и при необходимости ADR.
+**Input:** files in `docs/protocols/` and/or other confirmed sources, plus relevant `docs/specs/**/*.md` and ADRs when needed.
 
-**Выход:** таблица или список «решение в источнике → где отражено / пробел / противоречие»; кандидаты на обновление спек или ADR; `Неясно:`.
+**Output:** table or list in format "source decision -> reflected / gap / contradiction"; candidates for spec/ADR updates; `Unclear:` items.

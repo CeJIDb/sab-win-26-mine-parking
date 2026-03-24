@@ -1,14 +1,11 @@
 ---
+description: How to route requirement analysis and show subagent-file changes before applying them.
 alwaysApply: true
 ---
 
----
-description: Как агенту использовать субагентов meta-instructor и systems-analyst.
-alwaysApply: true
----
+# Subagent Usage Rule
 
-Если пользователь просит:
-- создать или улучшить субагента / инструкцию к нему — делегируй задачу субагенту `meta-instructor` и покажи пользователю предложенные файлы.
-- проанализировать/структурировать требования, проверить их полноту или согласованность — делегируй основную аналитическую часть субагенту `systems-analyst`.
+If the user asks to:
 
-Всегда явно показывай пользователю результат работы субагентов и предлагаемые изменения файлов перед применением.
+- analyze/structure requirements or validate completeness/consistency — delegate the core analytical part to subagent `systems-analyst`.
+- reduce, delete, create, or improve a subagent/instruction file — first show the proposed file changes explicitly to the user, then apply only after confirmation.

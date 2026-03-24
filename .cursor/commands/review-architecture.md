@@ -1,9 +1,10 @@
 ---
-description: Ревью архитектурных документов и DDD (software-architect, SAB)
+description: Review architecture docs and DDD (software-architect, SAB)
 ---
 
-Действуй по `.cursor/rules/software-architect.mdc` (раздел «Репозиторий SAB: ревью архитектуры и DDD»).
+Follow `.cursor/rules/software-architect.mdc`.
+Use the repository-specific "SAB Repository: Architecture and DDD Review" checklist in that file.
 
-**Вход:** `docs/architecture/**/*.md` (ADR, bounded contexts, учебные материалы).
+**Input:** `docs/architecture/**/*.md` (ADR, bounded contexts, study materials).
 
-**Выход:** согласованность ADR ↔ модели ↔ контекстной диаграмме; термины; пробелы в интеграциях; приоритизированные замечания.
+**Output:** ADR <-> model <-> context-diagram consistency; terminology issues; integration gaps; prioritized findings.

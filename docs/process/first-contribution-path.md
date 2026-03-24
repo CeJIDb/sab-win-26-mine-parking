@@ -22,13 +22,12 @@ Help a new contributor make a safe and traceable first change.
 3. Create a branch using policy: `feature/*`, `docs/*`, `chore/*`, `hotfix/*`.
 4. Implement a minimal and focused change.
 5. Update traceability records in `docs/process/traceability-matrix.md`.
-6. Update `CHANGELOG.md` in `Unreleased`.
-7. Run:
+6. Run:
    ```bash
    npm ci
    npm run ci:check
    ```
-8. Open a PR and complete DoR/DoD from `docs/process/pr-dor-dod.md`.
+7. Open a PR and complete DoR/DoD from `docs/process/pr-dor-dod.md`.
 
 ## Done Criteria
 
