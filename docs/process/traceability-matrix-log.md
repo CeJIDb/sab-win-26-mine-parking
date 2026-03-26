@@ -2,6 +2,7 @@
 
 | Change ID        | Source                        | Requirement ID | Changed files                                                     | Validation                   | Evidence |
 |------------------|-------------------------------|----------------|-------------------------------------------------------------------|------------------------------|----------|
+| CHG-20260325-002 | docs/artifacts/infosec/infosec-analyze-parking.md | NFR-EXT-SEC-001..004 | docs/artifacts/infosec/infosec-analyze-parking.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260325-001 | docs/artifacts/infosec/infosec-analyze-parking.md | NFR-EXT-SEC-001..004 | docs/artifacts/infosec/infosec-analyze-parking.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260324-002 | ИБ учебный артефакт, синхронизация ФТ с 2FA, стиль доков | FR-EMPLOYEE-006, NFR-UI-AUTH-001 | docs/artifacts/infosec/infosec-analyze-parking.md, docs/specs/functional-requirements/fr-employee.md, CONTRIBUTING.md, .cursor/rules/docs.mdc, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260324-001 | docs/protocols/*, docs/artifacts/project-charter.md, repository governance docs | — | docs/protocols/*.md, docs/artifacts/project-charter.md, docs/readme.md, README.md, scripts/*.mjs, scripts/docs/*, .cursor/**/*, .github/*, CHANGELOG.md, docs/process/traceability-matrix*.md | review + `npm run ci:check` | PR #<TBD> |
