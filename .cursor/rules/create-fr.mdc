@@ -2,8 +2,8 @@
 description: >-
   Defines structure and checks for functional requirements (FR) under docs/specs/functional-requirements/.
   Requires alignment with the UC registry, conceptual data model, glossary, and project charter; document shape
-  follows _template-fr.md; phrasing depth and system-action (.СД) examples align with fr-booking.md. Apply this
-  rule whenever creating or materially editing fr-*.md, adding Object.Action candidates, .СД suffixes, FR-* registry
+  follows _template-fr.md; worked examples: fr-booking.md (полнота .СД), fr-parking-session.md (лаконичные списки и `.СД`).
+  Apply this rule whenever creating or materially editing fr-*.md, adding Object.Action candidates, .СД suffixes, FR-* registry
   entries, per-role sections or ## Системы, FR↔UC traceability, or when the user mentions FR/functional requirements,
   FR registry, system actions, FR hierarchy, or specs in this folder.
 globs:
@@ -17,7 +17,7 @@ General markup and ID rules for `docs/specs/**/*.md`: [.cursor/rules/docs.mdc](d
 
 ## Sources (order)
 
-1. [Use case registry](../../docs/artifacts/use-case-registry.md) — UC codes and titles for the “Входные UC” section.
+1. [Use case registry](../../docs/artifacts/use-case-registry.md) — UC codes and titles for the “Входные UC” section (**только строки реестра**, без пояснений в скобках; см. шаблон).
 2. UC write-ups (including [docs/artifacts/use-case/](../../docs/artifacts/use-case/)) — flows and boundaries for wording and `.СД`.
 3. [Conceptual model with attributes](../../docs/artifacts/conceptual-model-with-attributes.md) — entity and attribute names; `` `[Entity]:field` `` in lists.
 4. [Glossary](../../docs/artifacts/project-glossary.md); on term mismatch, record explicitly (`Unclear:` / question to analyst).
@@ -26,7 +26,7 @@ General markup and ID rules for `docs/specs/**/*.md`: [.cursor/rules/docs.mdc](d
 ## Document references
 
 - **Structure, CRUDL table, phrase templates, checklist** — follow [_template-fr.md](../../docs/specs/functional-requirements/_template-fr.md); do not invent a parallel outline.
-- **Worked example of volume, `.СД`, and algorithms** — [fr-booking.md](../../docs/specs/functional-requirements/fr-booking.md). Treat other `fr-*.md` files in the folder as non-canonical if they diverge from the template.
+- **Examples:** [fr-booking.md](../../docs/specs/functional-requirements/fr-booking.md) — объем `.СД` и алгоритмы; [fr-parking-session.md](../../docs/specs/functional-requirements/fr-parking-session.md) — лаконичные **«Входные UC»**, списки атрибутов у ролей, родительский `.СД` в одно предложение, кросс-объектные подпункты `.СД.[имя]`. Остальные `fr-*.md` не каноничны, если расходятся с шаблоном.
 
 ## CRUDL and verbs
 
@@ -36,13 +36,25 @@ Canonical C/R/U/D/L mapping and domain variants are in the template table. **D:*
 
 The suffix marks **system** behavior (calculations, statuses, derived fields, event reactions), not a user UI action. Do not use “позволять пользователю” phrasing — see the template and `fr-booking.md`.
 
+## Wording (no UC codes in requirement text)
+
+- **UC codes** belong in **«Входные UC»** and in the **FR-\*** registry line (`— UC-x.y`), not in the body of role sections or `## Системы`.
+- Requirement text: **condition + object + attributes/algorithms** in domain terms; avoid long parenthetical scenario chains and “воду”.
+- Follow [_template-fr.md](../../docs/specs/functional-requirements/_template-fr.md): **Краткость**, **Списки атрибутов у ролей (строгий формат)**, **Входные UC** (строго).
+
+## Conditions and algorithms (attribute-level `.СД.*`)
+
+- Put **conditions, branches, and sources of values** under **`[Object].[Action].СД.[name]`** — «Система должна изменять `[Объект]:[атрибут]` по следующему алгоритму:» or **кросс-объектный** блок «Система должна [глагол] … по следующему алгоритму:» (see template **«Где описывать условия и алгоритмы»**, **«Кросс-объектное действие»**).
+- Do not stack algorithms in the parent `[Object].[Action].СД` paragraph beyond **one sentence** (trigger + input); cross-entity effects get their own `.СД.[name]` or a pointer to another FR doc.
+
 ## Workflow
 
 1. Collect UCs for the object from the registry; open full UC docs when needed.
 2. Reconcile entity and attributes with the conceptual model and glossary.
-3. Fill the doc per **_template-fr.md** (TOC, входные UC, candidates, `FR-*` registry, roles, `## Системы` if required).
-4. Align wording and `.СД` depth with **fr-booking.md** as the example.
-5. On substantive FR changes, remind about [traceability-matrix-log.md](../../docs/process/traceability-matrix-log.md) and repo CI policy.
+3. Fill the doc per **_template-fr.md** (TOC, **Входные UC** без хвостов, кандидаты, `FR-*` реестр, роли со **строгими списками**, `## Системы` при необходимости).
+4. Align depth: **fr-booking.md** for `.СД` algorithms; **fr-parking-session.md** for concise lists and `Фильтры:`.
+5. Self-check against **Чеклист качества** in the template (в т.ч. **Формат списков у ролей**).
+6. On substantive FR changes, remind about [traceability-matrix-log.md](../../docs/process/traceability-matrix-log.md) and repo CI policy.
 
 ## Link checks
 
