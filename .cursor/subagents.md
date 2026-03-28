@@ -31,6 +31,8 @@
 
 - `technical-writer`
 - `software-architect`
+- `database-optimizer` (схемы БД, индексы, миграции; источник: [agency-agents](https://github.com/msitarzewski/agency-agents))
+- `backend-architect` (бэкенд/API/масштабирование; источник: [agency-agents](https://github.com/msitarzewski/agency-agents))
 - `security-engineer`
 - `ux-architect`
 - `accessibility-auditor`
