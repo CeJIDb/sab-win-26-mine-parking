@@ -6,7 +6,6 @@
     "plaintext",
     "git-commit"
   ],
-
   "ltex.enabled": true,
   "ltex.language": "auto",
   "ltex.diagnosticSeverity": "information",
@@ -14,13 +13,24 @@
     "markdown"
   ],
   "ltex.additionalRules.motherTongue": "ru-RU",
-
   "[markdown]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.markdownlint": "explicit"
     },
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },
-
-  "markdownlint.run": "onSave"
+  "markdownlint.run": "onSave",
+  "sqltools.connections": [
+    {
+      "ssh": "Disabled",
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "askForPassword": true,
+      "driver": "PostgreSQL",
+      "name": "WSL Postgres",
+      "database": "practice",
+      "username": "practice"
+    }
+  ]
 }
