@@ -1,8 +1,8 @@
 # ERD Review — контекст для нового чата (сессия 4+)
 
-**Дата:** 2026-03-31  
-**Документ:** `docs/artifacts/temp-normalized-er-model.md`  
-**Предыдущий контекст:** `docs/process/chat-context-er-model-review-2-2026-03-31.md`  
+**Дата:** 2026-03-31
+**Документ:** `docs/artifacts/temp-normalized-er-model.md`
+**Предыдущий контекст:** `docs/process/chat-context-er-model-review-2-2026-03-31.md`
 **Источник (первый чат):** ae7a9fe3-6111-45e3-a183-93bb60ea3260
 
 ## Оглавление

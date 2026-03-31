@@ -1,6 +1,6 @@
 # ERD Review Notes — сессия 2
 
-Заметки по результатам ревью `temp-normalized-er-model.md`.  
+Заметки по результатам ревью `temp-normalized-er-model.md`.
 Источник: чат ae7a9fe3-6111-45e3-a183-93bb60ea3260 (первая сессия) + продолжение.
 
 ## Оглавление
