@@ -333,6 +333,7 @@ erDiagram
     CLIENT |o--|| ORGANIZATION : has_ul_profile
     CLIENT ||--o{ CLIENT_ACCOUNT : authenticates
     CLIENT ||--o{ VEHICLE : owns
+    VEHICLE_TYPE ||--o{ VEHICLE : classifies
     CLIENT ||--|| NOTIFICATION_SETTINGS : has
     NOTIFICATION_SETTINGS ||--o{ NOTIFICATION_SETTINGS_CHANNEL : has
     CLIENT ||--|| PAYMENT_SETTINGS : has
