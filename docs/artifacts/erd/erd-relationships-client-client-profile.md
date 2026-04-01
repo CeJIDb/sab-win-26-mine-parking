@@ -194,7 +194,7 @@
 | `external_payer_id` | `VARCHAR(100)` | NULL | — |
 | `auto_debit_contract` | `BOOLEAN` | NOT NULL | `DEFAULT false` |
 | `auto_debit_parking_session` | `BOOLEAN` | NOT NULL | `DEFAULT false` |
-| `monthly_limit` | `NUMERIC(19, 4)` | NULL | — |
+| `monthly_limit_minor` | `BIGINT` | NULL | сумма в минорных единицах валюты (для `RUB` — копейки) |
 
 ---
 

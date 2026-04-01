@@ -78,7 +78,7 @@
 | `license_plate_snapshot` | `VARCHAR(32)` | NOT NULL | иммутабельный снимок ГРЗ |
 | `type` | `VARCHAR(32)` | NOT NULL | `CHECK (type IN ('AUTO', 'SHORT_TERM', 'CONTRACT'))` |
 | `status` | `VARCHAR(32)` | NOT NULL | `CHECK (status IN ('PENDING','CONFIRMED','ACTIVE','COMPLETED','CANCELLED','NO_SHOW'))` |
-| `amount_due` | `NUMERIC(19, 4)` | NULL | Для `type='AUTO'` сумма рассчитывается в реальном времени и фиксируется при завершении (при выезде/закрытии), поэтому до завершения может быть `NULL`. Для `SHORT_TERM` и `CONTRACT` — `NOT NULL` (инвариант — Application Service). |
+| `amount_due_minor` | `BIGINT` | NULL | Для `type='AUTO'` сумма рассчитывается в реальном времени и фиксируется при завершении (при выезде/закрытии), поэтому до завершения может быть `NULL`. Для `SHORT_TERM` и `CONTRACT` — `NOT NULL` (инвариант — Application Service). |
 
 ---
 

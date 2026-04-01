@@ -26,6 +26,11 @@
   - Table Notes для ограничений DrawSQL (CHECK, partial unique, generated columns и т.п.),
   - Mermaid-фрагментами связей.
 - Сотрудники (`employee.*`) и уведомления (`notification.*`) добавлены в файл "Тарифы" для более равномерного распределения нагрузки между участниками.
+- КПП переименованы в **AP (access point)** во всех ERD-артефактах: `KPP/kpp_id/entry_kpp_id/exit_kpp_id` → `AP/ap_id/entry_ap_id/exit_ap_id`.
+- `APPEAL` вынесен из файла "Booking/Session/Contract" в файл "Tariff/Employee/Notification/Appeal", чтобы связи `EMPLOYEE → APPEAL` были в рамках одного файла.
+- Инфраструктура: `PARKING_TYPE` переведен из справочника в `PARKING.parking_type` с `CHECK (...)`; в `PARKING_PLACE` добавлены `is_reserved` и `is_occupied`.
+- Денежные поля унифицированы: вместо `NUMERIC(19,4)` используются `*_minor BIGINT` (сумма в минорных единицах валюты, для `RUB` — копейки).
+- Структура артефактов ERD приведена к единому каталогу `docs/artifacts/erd/` с индексом `readme.md`; контексты чатов собраны в подпапке `docs/artifacts/erd/chat-context/`.
 
 ---
 
@@ -45,9 +50,9 @@
 Итоговый набор файлов для работы командой:
 
 - `CLIENT` (существующий, обновлен): клиент/организация/ТС/настройки/PII и теперь также `VEHICLE_TYPE`.
-- `FACILITY + ACCESS_LOG`: инфраструктура парковки + журнал событий КПП.
-- `TARIFF + EMPLOYEE + NOTIFICATION`: тарифы + сотрудники + уведомления (для выравнивания нагрузки).
-- `BOOKING + SESSION + CONTRACT + APPEAL`: бронирования, сессии, договоры, обращения (с полиморфизмом предмета).
+- `FACILITY + ACCESS_LOG`: инфраструктура парковки + журнал событий AP.
+- `TARIFF + EMPLOYEE + NOTIFICATION + APPEAL`: тарифы + сотрудники + уведомления + обращения (для выравнивания нагрузки).
+- `BOOKING + SESSION + CONTRACT`: бронирования, сессии, договоры.
 - `PAYMENT`: выставление счетов, прием оплат, чеки, возвраты, задолженность, методы оплаты.
 
 ---
