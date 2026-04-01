@@ -64,8 +64,8 @@
 ### Создано
 
 - `docs/artifacts/erd-work/erd-relationships-facility-access-log.md`
-- `docs/artifacts/erd-work/erd-relationships-tariff-pricing.md`
-- `docs/artifacts/erd-work/erd-relationships-booking-session-contract-appeal.md`
+- `docs/artifacts/erd-work/erd-relationships-tariff-employee-notification-appeal.md`
+- `docs/artifacts/erd-work/erd-relationships-booking-session-contract.md`
 - `docs/artifacts/erd-work/erd-relationships-payment-billing.md`
 
 ---
