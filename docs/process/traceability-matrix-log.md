@@ -2,6 +2,7 @@
 
 | Change ID        | Source                        | Requirement ID | Changed files                                                     | Validation                   | Evidence |
 |------------------|-------------------------------|----------------|-------------------------------------------------------------------|------------------------------|----------|
+| CHG-20260401-012 | ERD: добавить `VEHICLE_TYPE` в Mermaid-диаграмму домена CLIENT | — | docs/artifacts/erd/erd-relationships-client-client-profile.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260401-011 | ERD: убрать "(полностью)" из TOC/заголовков в разделенных ERD; уточнить статусность chat-context заметок | — | docs/artifacts/erd/erd-relationships-*.md, docs/artifacts/erd/chat-context/*.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260401-010 | ERD: уточнить артефакты и индекс ERD (readme); обновить контексты ревью | — | docs/artifacts/erd/readme.md, docs/artifacts/erd/erd-normalized-er-model.md, docs/artifacts/erd/erd-relationships-*.md, docs/artifacts/erd/chat-context/*.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260401-009 | ERD: унифицировать денежные поля на `*_minor BIGINT`; обновить контекстные заметки | — | docs/artifacts/erd/erd-normalized-er-model.md, docs/artifacts/erd/erd-relationships-*.md, docs/artifacts/erd/chat-context/*.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
