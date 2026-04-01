@@ -2,6 +2,7 @@
 
 | Change ID        | Source                        | Requirement ID | Changed files                                                     | Validation                   | Evidence |
 |------------------|-------------------------------|----------------|-------------------------------------------------------------------|------------------------------|----------|
+| CHG-20260401-008 | ERD: удалить устаревший артефакт разбиения DrawSQL | — | docs/artifacts/erd/erd-drawsql-split.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260401-007 | ERD: поправлены ссылки после переноса артефактов | — | docs/artifacts/erd/erd-drawsql-split.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260401-006 | ERD: уточнение файлов связей по доменам (booking/session/contract; tariff/employee/notification/appeal) | — | docs/artifacts/erd/chat-context/chat-context-er-model-review-4-2026-04-01.md, docs/artifacts/erd/erd-relationships-booking-session-contract.md, docs/artifacts/erd/erd-relationships-tariff-employee-notification-appeal.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260401-005 | ERD: добавлены файлы связей по доменам и контекст ревью (сессия 10+) | — | docs/artifacts/erd/chat-context/chat-context-er-model-review-4-2026-04-01.md, docs/artifacts/erd/erd-relationships-*.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
