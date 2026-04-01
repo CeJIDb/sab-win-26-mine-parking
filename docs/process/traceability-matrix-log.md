@@ -2,6 +2,7 @@
 
 | Change ID        | Source                        | Requirement ID | Changed files                                                     | Validation                   | Evidence |
 |------------------|-------------------------------|----------------|-------------------------------------------------------------------|------------------------------|----------|
+| CHG-20260401-014 | ERD: синхронизировать Mermaid с денежными `*_minor`, кардинальностью учетной записи сотрудника и уточнениями обращений/логических ссылок | — | docs/artifacts/erd/erd-normalized-er-model.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260401-013 | ERD: удалить дублирующий Mermaid-фрагмент в артефакте CLIENT | — | docs/artifacts/erd/erd-relationships-client-client-profile.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260401-012 | ERD: добавить `VEHICLE_TYPE` в Mermaid-диаграмму домена CLIENT | — | docs/artifacts/erd/erd-relationships-client-client-profile.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260401-011 | ERD: убрать "(полностью)" из TOC/заголовков в разделенных ERD; уточнить статусность chat-context заметок | — | docs/artifacts/erd/erd-relationships-*.md, docs/artifacts/erd/chat-context/*.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
