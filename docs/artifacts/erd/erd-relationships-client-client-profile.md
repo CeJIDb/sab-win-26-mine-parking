@@ -5,18 +5,18 @@
 ## Table of Contents
 
 - [Связь между ключевыми таблицами](#связь-между-ключевыми-таблицами)
-- [Таблица `CLIENT` (полностью)](#таблица-client-полностью)
-- [Таблица `CLIENT_ACCOUNT` (полностью)](#таблица-client_account-полностью)
-- [Таблица `ORGANIZATION` (полностью)](#таблица-organization-полностью)
-- [Таблица `VEHICLE` (полностью)](#таблица-vehicle-полностью)
-- [Таблица `VEHICLE_TYPE` (полностью)](#таблица-vehicle_type-полностью)
-- [Таблица `NOTIFICATION_SETTINGS` (полностью)](#таблица-notification_settings-полностью)
-- [Таблица `NOTIFICATION_SETTINGS_CHANNEL` (полностью)](#таблица-notification_settings_channel-полностью)
-- [Таблица `PAYMENT_SETTINGS` (полностью)](#таблица-payment_settings-полностью)
-- [Таблица `CONSENT` (полностью)](#таблица-consent-полностью)
-- [Таблица `ORGANIZATION_BANK_ACCOUNT` (полностью)](#таблица-organization_bank_account-полностью)
-- [Таблица `PASSPORT_DATA` (полностью)](#таблица-passport_data-полностью)
-- [Таблица `BENEFIT_DOCUMENT` (полностью)](#таблица-benefit_document-полностью)
+- [Таблица `CLIENT`](#таблица-client)
+- [Таблица `CLIENT_ACCOUNT`](#таблица-client_account)
+- [Таблица `ORGANIZATION`](#таблица-organization)
+- [Таблица `VEHICLE`](#таблица-vehicle)
+- [Таблица `VEHICLE_TYPE`](#таблица-vehicle_type)
+- [Таблица `NOTIFICATION_SETTINGS`](#таблица-notification_settings)
+- [Таблица `NOTIFICATION_SETTINGS_CHANNEL`](#таблица-notification_settings_channel)
+- [Таблица `PAYMENT_SETTINGS`](#таблица-payment_settings)
+- [Таблица `CONSENT`](#таблица-consent)
+- [Таблица `ORGANIZATION_BANK_ACCOUNT`](#таблица-organization_bank_account)
+- [Таблица `PASSPORT_DATA`](#таблица-passport_data)
+- [Таблица `BENEFIT_DOCUMENT`](#таблица-benefit_document)
 - [Связанные таблицы](#связанные-таблицы)
 - [Диаграмма связей (Mermaid)](#диаграмма-связей-mermaid)
 - [Схема БД и ограничения FK](#схема-бд-и-ограничения-fk)
@@ -37,7 +37,7 @@
 
 ---
 
-## Таблица `CLIENT` (полностью)
+## Таблица `CLIENT`
 
 Схема: `client`.
 
@@ -62,7 +62,7 @@
 
 ---
 
-## Таблица `CLIENT_ACCOUNT` (полностью)
+## Таблица `CLIENT_ACCOUNT`
 
 Схема: `auth` (инфраструктурный слой).
 
@@ -93,7 +93,7 @@
 
 ---
 
-## Таблица `ORGANIZATION` (полностью)
+## Таблица `ORGANIZATION`
 
 Схема: `client`.
 
@@ -114,7 +114,7 @@
 
 ---
 
-## Таблица `VEHICLE` (полностью)
+## Таблица `VEHICLE`
 
 Схема: `client`.
 
@@ -134,7 +134,7 @@
 
 ---
 
-## Таблица `VEHICLE_TYPE` (полностью)
+## Таблица `VEHICLE_TYPE`
 
 Схема: `facility` (связанный справочник в контексте клиента).
 
@@ -152,7 +152,7 @@
 
 ---
 
-## Таблица `NOTIFICATION_SETTINGS` (полностью)
+## Таблица `NOTIFICATION_SETTINGS`
 
 Схема: `client`.
 
@@ -170,7 +170,7 @@
 
 ---
 
-## Таблица `NOTIFICATION_SETTINGS_CHANNEL` (полностью)
+## Таблица `NOTIFICATION_SETTINGS_CHANNEL`
 
 Схема: `client`.
 
@@ -183,7 +183,7 @@
 
 ---
 
-## Таблица `PAYMENT_SETTINGS` (полностью)
+## Таблица `PAYMENT_SETTINGS`
 
 Схема: `client`.
 
@@ -198,7 +198,7 @@
 
 ---
 
-## Таблица `CONSENT` (полностью)
+## Таблица `CONSENT`
 
 Схема: `client`.
 
@@ -213,7 +213,7 @@
 
 ---
 
-## Таблица `ORGANIZATION_BANK_ACCOUNT` (полностью)
+## Таблица `ORGANIZATION_BANK_ACCOUNT`
 
 Схема: `client`.
 
@@ -231,7 +231,7 @@
 
 ---
 
-## Таблица `PASSPORT_DATA` (полностью)
+## Таблица `PASSPORT_DATA`
 
 Схема: `pii` (152-ФЗ).
 
@@ -249,7 +249,7 @@
 
 ---
 
-## Таблица `BENEFIT_DOCUMENT` (полностью)
+## Таблица `BENEFIT_DOCUMENT`
 
 Схема: `pii` (152-ФЗ).
 

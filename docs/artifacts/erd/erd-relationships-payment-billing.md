@@ -5,12 +5,12 @@
 ## Table of Contents
 
 - [Связь между ключевыми таблицами](#связь-между-ключевыми-таблицами)
-- [Таблица `INVOICE` (полностью)](#таблица-invoice-полностью)
-- [Таблица `PAYMENT` (полностью)](#таблица-payment-полностью)
-- [Таблица `RECEIPT` (полностью)](#таблица-receipt-полностью)
-- [Таблица `REFUND` (полностью)](#таблица-refund-полностью)
-- [Таблица `DEBT` (полностью)](#таблица-debt-полностью)
-- [Таблица `PAYMENT_METHOD` (полностью)](#таблица-payment_method-полностью)
+- [Таблица `INVOICE`](#таблица-invoice)
+- [Таблица `PAYMENT`](#таблица-payment)
+- [Таблица `RECEIPT`](#таблица-receipt)
+- [Таблица `REFUND`](#таблица-refund)
+- [Таблица `DEBT`](#таблица-debt)
+- [Таблица `PAYMENT_METHOD`](#таблица-payment_method)
 - [Кросс-контекстные логические ссылки (без REFERENCES)](#кросс-контекстные-логические-ссылки-без-references)
 - [Table Notes (DrawSQL)](#table-notes-drawsql)
 - [Диаграмма связей (Mermaid)](#диаграмма-связей-mermaid)
@@ -30,7 +30,7 @@
 
 ---
 
-## Таблица `INVOICE` (полностью)
+## Таблица `INVOICE`
 
 Схема: `payment`.
 
@@ -58,7 +58,7 @@ Table Notes (DrawSQL):
 
 ---
 
-## Таблица `PAYMENT` (полностью)
+## Таблица `PAYMENT`
 
 Схема: `payment`.
 
@@ -80,7 +80,7 @@ Table Notes (DrawSQL):
 
 ---
 
-## Таблица `RECEIPT` (полностью)
+## Таблица `RECEIPT`
 
 Схема: `payment`.
 
@@ -95,7 +95,7 @@ Table Notes (DrawSQL):
 
 ---
 
-## Таблица `REFUND` (полностью)
+## Таблица `REFUND`
 
 Схема: `payment`.
 
@@ -116,7 +116,7 @@ Table Notes (DrawSQL):
 
 ---
 
-## Таблица `DEBT` (полностью)
+## Таблица `DEBT`
 
 Схема: `payment`.
 
@@ -137,7 +137,7 @@ Table Notes (DrawSQL):
 
 ---
 
-## Таблица `PAYMENT_METHOD` (полностью)
+## Таблица `PAYMENT_METHOD`
 
 Схема: `payment` (словарная).
 

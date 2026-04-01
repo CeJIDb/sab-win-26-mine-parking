@@ -5,16 +5,16 @@
 ## Table of Contents
 
 - [Связь между ключевыми таблицами](#связь-между-ключевыми-таблицами)
-- [Таблица `PARKING` (полностью)](#таблица-parking-полностью)
-- [Таблица `PARKING_SCHEDULE` (полностью)](#таблица-parking_schedule-полностью)
-- [Таблица `SECTOR` (полностью)](#таблица-sector-полностью)
-- [Таблица `ZONE_TYPE` (полностью)](#таблица-zone_type-полностью)
-- [Таблица `OPERATIONAL_STATUS` (полностью)](#таблица-operational_status-полностью)
-- [Таблица `AP` (полностью)](#таблица-ap-полностью)
-- [Таблица `PARKING_PLACE` (полностью)](#таблица-parking_place-полностью)
-- [Таблица `ZONE_TYPE_VEHICLE_TYPE` (полностью)](#таблица-zone_type_vehicle_type-полностью)
-- [Таблица `ZONE_TYPE_TARIFF` (полностью)](#таблица-zone_type_tariff-полностью)
-- [Таблица `ACCESS_LOG` (полностью)](#таблица-access_log-полностью)
+- [Таблица `PARKING`](#таблица-parking)
+- [Таблица `PARKING_SCHEDULE`](#таблица-parking_schedule)
+- [Таблица `SECTOR`](#таблица-sector)
+- [Таблица `ZONE_TYPE`](#таблица-zone_type)
+- [Таблица `OPERATIONAL_STATUS`](#таблица-operational_status)
+- [Таблица `AP`](#таблица-ap)
+- [Таблица `PARKING_PLACE`](#таблица-parking_place)
+- [Таблица `ZONE_TYPE_VEHICLE_TYPE`](#таблица-zone_type_vehicle_type)
+- [Таблица `ZONE_TYPE_TARIFF`](#таблица-zone_type_tariff)
+- [Таблица `ACCESS_LOG`](#таблица-access_log)
 - [Кросс-контекстные логические ссылки (без REFERENCES)](#кросс-контекстные-логические-ссылки-без-references)
 - [Диаграмма связей (Mermaid)](#диаграмма-связей-mermaid)
 - [Связанные документы](#связанные-документы)
@@ -37,7 +37,7 @@
 
 ---
 
-## Таблица `PARKING` (полностью)
+## Таблица `PARKING`
 
 Схема: `facility`.
 
@@ -52,7 +52,7 @@
 
 ---
 
-## Таблица `PARKING_SCHEDULE` (полностью)
+## Таблица `PARKING_SCHEDULE`
 
 Схема: `facility`.
 
@@ -73,7 +73,7 @@ Table Notes (DrawSQL):
 
 ---
 
-## Таблица `SECTOR` (полностью)
+## Таблица `SECTOR`
 
 Схема: `facility`.
 
@@ -87,7 +87,7 @@ Table Notes (DrawSQL):
 
 ---
 
-## Таблица `ZONE_TYPE` (полностью)
+## Таблица `ZONE_TYPE`
 
 Схема: `facility`.
 
@@ -100,7 +100,7 @@ Table Notes (DrawSQL):
 
 ---
 
-## Таблица `OPERATIONAL_STATUS` (полностью)
+## Таблица `OPERATIONAL_STATUS`
 
 Схема: `facility` (словарная).
 
@@ -117,7 +117,7 @@ Table Notes (DrawSQL):
 
 ---
 
-## Таблица `AP` (полностью)
+## Таблица `AP`
 
 Схема: `facility`.
 
@@ -132,7 +132,7 @@ Table Notes (DrawSQL):
 
 ---
 
-## Таблица `PARKING_PLACE` (полностью)
+## Таблица `PARKING_PLACE`
 
 Схема: `facility`.
 
@@ -148,7 +148,7 @@ Table Notes (DrawSQL):
 
 ---
 
-## Таблица `ZONE_TYPE_VEHICLE_TYPE` (полностью)
+## Таблица `ZONE_TYPE_VEHICLE_TYPE`
 
 Схема: `facility` (таблица связи M:N).
 
@@ -161,7 +161,7 @@ Table Notes (DrawSQL):
 
 ---
 
-## Таблица `ZONE_TYPE_TARIFF` (полностью)
+## Таблица `ZONE_TYPE_TARIFF`
 
 Схема: `facility` (таблица связи M:N).
 
@@ -174,7 +174,7 @@ Table Notes (DrawSQL):
 
 ---
 
-## Таблица `ACCESS_LOG` (полностью)
+## Таблица `ACCESS_LOG`
 
 Схема: `report` (append-only журнал).
 

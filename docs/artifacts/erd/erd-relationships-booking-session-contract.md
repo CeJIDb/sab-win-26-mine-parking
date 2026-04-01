@@ -5,10 +5,10 @@
 ## Table of Contents
 
 - [Связь между ключевыми таблицами](#связь-между-ключевыми-таблицами)
-- [Таблица `CONTRACT_TEMPLATE` (полностью)](#таблица-contract_template-полностью)
-- [Таблица `CONTRACT` (полностью)](#таблица-contract-полностью)
-- [Таблица `BOOKING` (полностью)](#таблица-booking-полностью)
-- [Таблица `PARKING_SESSION` (полностью)](#таблица-parking_session-полностью)
+- [Таблица `CONTRACT_TEMPLATE`](#таблица-contract_template)
+- [Таблица `CONTRACT`](#таблица-contract)
+- [Таблица `BOOKING`](#таблица-booking)
+- [Таблица `PARKING_SESSION`](#таблица-parking_session)
 - [Кросс-контекстные логические ссылки (без REFERENCES)](#кросс-контекстные-логические-ссылки-без-references)
 - [Table Notes (DrawSQL)](#table-notes-drawsql)
 - [Диаграмма связей (Mermaid)](#диаграмма-связей-mermaid)
@@ -26,7 +26,7 @@
 
 ---
 
-## Таблица `CONTRACT_TEMPLATE` (полностью)
+## Таблица `CONTRACT_TEMPLATE`
 
 Схема: `contract`.
 
@@ -43,7 +43,7 @@
 
 ---
 
-## Таблица `CONTRACT` (полностью)
+## Таблица `CONTRACT`
 
 Схема: `contract`.
 
@@ -60,7 +60,7 @@
 
 ---
 
-## Таблица `BOOKING` (полностью)
+## Таблица `BOOKING`
 
 Схема: `booking`.
 
@@ -82,7 +82,7 @@
 
 ---
 
-## Таблица `PARKING_SESSION` (полностью)
+## Таблица `PARKING_SESSION`
 
 Схема: `session`.
 

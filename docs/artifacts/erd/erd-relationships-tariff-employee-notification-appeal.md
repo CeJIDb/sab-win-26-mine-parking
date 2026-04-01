@@ -5,14 +5,14 @@
 ## Table of Contents
 
 - [Связь между ключевыми таблицами](#связь-между-ключевыми-таблицами)
-- [Таблица `TARIFF` (полностью)](#таблица-tariff-полностью)
-- [Таблица `TARIFF_RATE` (полностью)](#таблица-tariff_rate-полностью)
-- [Таблица `EMPLOYEE` (полностью)](#таблица-employee-полностью)
-- [Таблица `EMPLOYEE_ACCOUNT` (полностью)](#таблица-employee_account-полностью)
-- [Таблица `EMPLOYEE_ROLE` (полностью)](#таблица-employee_role-полностью)
-- [Таблица `NOTIFICATION_TEMPLATE` (полностью)](#таблица-notification_template-полностью)
-- [Таблица `NOTIFICATION` (полностью)](#таблица-notification-полностью)
-- [Таблица `APPEAL` (полностью)](#таблица-appeal-полностью)
+- [Таблица `TARIFF`](#таблица-tariff)
+- [Таблица `TARIFF_RATE`](#таблица-tariff_rate)
+- [Таблица `EMPLOYEE`](#таблица-employee)
+- [Таблица `EMPLOYEE_ACCOUNT`](#таблица-employee_account)
+- [Таблица `EMPLOYEE_ROLE`](#таблица-employee_role)
+- [Таблица `NOTIFICATION_TEMPLATE`](#таблица-notification_template)
+- [Таблица `NOTIFICATION`](#таблица-notification)
+- [Таблица `APPEAL`](#таблица-appeal)
 - [Кросс-контекстные логические ссылки (без REFERENCES)](#кросс-контекстные-логические-ссылки-без-references)
 - [Table Notes (DrawSQL)](#table-notes-drawsql)
 - [Диаграмма связей (Mermaid)](#диаграмма-связей-mermaid)
@@ -33,7 +33,7 @@
 
 ---
 
-## Таблица `TARIFF` (полностью)
+## Таблица `TARIFF`
 
 Схема: `tariff`.
 
@@ -52,7 +52,7 @@
 
 ---
 
-## Таблица `TARIFF_RATE` (полностью)
+## Таблица `TARIFF_RATE`
 
 Схема: `tariff`.
 
@@ -68,7 +68,7 @@
 
 ---
 
-## Таблица `EMPLOYEE` (полностью)
+## Таблица `EMPLOYEE`
 
 Схема: `employee`.
 
@@ -85,7 +85,7 @@
 
 ---
 
-## Таблица `EMPLOYEE_ACCOUNT` (полностью)
+## Таблица `EMPLOYEE_ACCOUNT`
 
 Схема: `auth` (инфраструктурный слой).
 
@@ -101,7 +101,7 @@
 
 ---
 
-## Таблица `EMPLOYEE_ROLE` (полностью)
+## Таблица `EMPLOYEE_ROLE`
 
 Схема: `employee` (словарная).
 
@@ -118,7 +118,7 @@ Table Notes (DrawSQL):
 
 ---
 
-## Таблица `NOTIFICATION_TEMPLATE` (полностью)
+## Таблица `NOTIFICATION_TEMPLATE`
 
 Схема: `notification`.
 
@@ -133,7 +133,7 @@ Table Notes (DrawSQL):
 
 ---
 
-## Таблица `NOTIFICATION` (полностью)
+## Таблица `NOTIFICATION`
 
 Схема: `notification`.
 
@@ -151,7 +151,7 @@ Table Notes (DrawSQL):
 
 ---
 
-## Таблица `APPEAL` (полностью)
+## Таблица `APPEAL`
 
 Схема: `support`.
 
