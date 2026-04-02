@@ -4,6 +4,7 @@
 
 | Change ID        | Source                        | Requirement ID | Changed files                                                     | Validation                   | Evidence |
 |------------------|-------------------------------|----------------|-------------------------------------------------------------------|------------------------------|----------|
+| CHG-20260402-011 | Docs: привести верхнеуровневые image-based артефакты к шаблону описания | — | docs/artifacts/{impact-map.md,opportunity-canvas.md,user-story-map.md,context-diagram.md,conceptual-model-with-attributes.md,navigation-map.md}, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260402-010 | Docs: добавить изображение схемы парковки и оформить UML Class Diagram предметной области как AS-IS артефакт | — | docs/artifacts/as-is/{assets/{parking-as-is-diagram.jpg,uml-class-domain-as-is.jpg,readme.md},parking-as-is-diagram.md,uml-class-domain-as-is.md,readme.md}, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260402-009 | Docs: добавить Bow-Tie артефакт по несанкционированному доступу и встроить его в ИБ-раздел | — | docs/artifacts/{readme.md,infosec/**}, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260402-008 | Docs: добавить каноничное описание UML Use Case Diagram и связать его с разделом use case | — | docs/artifacts/{readme.md,use-case/**}, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
