@@ -45,6 +45,4 @@ Bow-Tie отражает логику слева направо: от источ
 ## Связанные документы
 
 - [infosec-analyze-parking.md](infosec-analyze-parking.md)
-- [threat-vulnerability-remediation-context.md](threat-vulnerability-remediation-context.md)
-- [context/bow-tie-examples.md](context/bow-tie-examples.md)
 - [../../specs/nonfunctional-requirements/nfr-external-quality.md](../../specs/nonfunctional-requirements/nfr-external-quality.md)

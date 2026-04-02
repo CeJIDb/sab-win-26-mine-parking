@@ -27,7 +27,7 @@
 
 - Этап проекта: Этап 4. Основы информационной безопасности
 - Тип артефакта: Анализ угроз, уязвимостей и их устранения
-- Источник: контекстные материалы раздела `infosec/context/`, проектные артефакты и модель системы
+- Источник: проектные артефакты, модель системы и согласованные командой ИБ-принципы
 - Статус: основной ИБ-артефакт репозитория
 
 ## Диаграмма
@@ -68,12 +68,6 @@
 
 ## Связанные материалы
 
-Методические опоры из каталога контекста (относительно этого файла):
-
-- [information-security-requirements-stakeholder-involvement-systems-education.md](context/information-security-requirements-stakeholder-involvement-systems-education.md) — риск-ориентированный подход и этапы выявления требований к ИБ.
-- [information-security-for-analysts-requirements-and-design-decisions-babok-school.md](context/information-security-for-analysts-requirements-and-design-decisions-babok-school.md) — триада ИБ, риски и реестр.
-- [information-security-basics-buildin-ai.md](context/information-security-basics-buildin-ai.md) — базовые определения (угрозы, уязвимости, аутентификация).
-- [owasp-top-10-web-application-vulnerabilities-skillbox.md](context/owasp-top-10-web-application-vulnerabilities-skillbox.md) — ориентир по типовым веб-уязвимостям (в учебной версии не раскрывается).
 - [bow-tie-unauthorized-access-to-system-and-data.md](bow-tie-unauthorized-access-to-system-and-data.md) — проектная визуализация риска несанкционированного доступа к системе и данным.
 
 ---
@@ -248,14 +242,14 @@
 - Это сокращенная версия ИБ-анализа, достаточная для учебного проекта и согласования базовых рисков и контрмер.
 - Связь **активы → источники угроз → уязвимости → риски (R-01–R-08) → контрмеры** зафиксирована в разделе [Сводная трассировка рисков](#сводная-трассировка-рисков) и в [реестре рисков ИБ](#реестр-рисков-иб).
 - Намеренно упрощены: детали конкретных алгоритмов (bcrypt/Argon2), версии TLS, CVSS-приоритеты рисков, физические контрмеры для оборудования СКУД, включая распознавание ГРЗ, анализ Bow-Tie (метод визуализации причин и последствий риска).
-- Веб-слой: базовые меры (валидация ввода, заголовки безопасности, защита от XSS/CSRF на уровне фреймворка) в этой версии даны на уровне общих принципов; при необходимости ориентироваться на [OWASP в материалах контекста](context/owasp-top-10-web-application-vulnerabilities-skillbox.md).
+- Веб-слой: базовые меры (валидация ввода, заголовки безопасности, защита от XSS/CSRF на уровне фреймворка) в этой версии даны на уровне общих принципов; при необходимости требования можно детализировать отдельным ИБ-решением или НФТ.
 - За рамками этой версии: детальный разбор SSRF, SSO-специфичных атак, состояний гонки (race conditions), правовой контур 152-ФЗ.
 
 ## Выводы и решения
 
 - Для проекта критичны риски несанкционированного доступа, потери данных, нарушения доступности и проблемного контура оплаты/допуска.
 - Артефакт формирует базу для НФТ, ИБ-барьеров и архитектурных решений по доступу, журналированию, резервированию и реагированию.
-- Документ полезен как общий ИБ-слой проекта, а Bow-Tie и контекстные материалы выступают его дополнением.
+- Документ полезен как общий ИБ-слой проекта, а Bow-Tie выступает его визуальным дополнением.
 
 ## Ограничения и открытые вопросы
 
@@ -264,7 +258,6 @@
 
 ## Связанные документы
 
-- [threat-vulnerability-remediation-context.md](threat-vulnerability-remediation-context.md)
 - [bow-tie-unauthorized-access-to-system-and-data.md](bow-tie-unauthorized-access-to-system-and-data.md)
 - [../../specs/nonfunctional-requirements/nfr-external-quality.md](../../specs/nonfunctional-requirements/nfr-external-quality.md)
 - [../../architecture/readme.md](../../architecture/readme.md)
