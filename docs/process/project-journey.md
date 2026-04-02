@@ -110,6 +110,7 @@
 - [docs/artifacts/project-glossary.md](../artifacts/project-glossary.md)
 - [docs/artifacts/use-case/use-case-diagram.md](../artifacts/use-case/use-case-diagram.md)
 - [docs/artifacts/use-case/use-case-registry.md](../artifacts/use-case/use-case-registry.md)
+- [docs/artifacts/use-case/crudl.md](../artifacts/use-case/crudl.md)
 - [docs/architecture/database/erd/readme.md](../architecture/database/erd/readme.md)
 
 ### 2.4. Эскизное макетирование интерфейсов

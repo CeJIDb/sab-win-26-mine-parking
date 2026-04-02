@@ -18,6 +18,7 @@
 - [conceptual-model-with-attributes.md](conceptual-model-with-attributes.md)
 - [use-case/use-case-diagram.md](use-case/use-case-diagram.md)
 - [use-case/use-case-registry.md](use-case/use-case-registry.md)
+- [use-case/crudl.md](use-case/crudl.md)
 - [navigation-map.md](navigation-map.md)
 - [infosec/infosec-analyze-parking.md](infosec/infosec-analyze-parking.md)
 - [infosec/bow-tie-unauthorized-access-to-system-and-data.md](infosec/bow-tie-unauthorized-access-to-system-and-data.md)

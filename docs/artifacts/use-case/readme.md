@@ -11,6 +11,7 @@
 ## Ключевые документы
 
 - [use-case-registry.md](use-case-registry.md) — каноничный реестр use case проекта.
+- [crudl.md](crudl.md) — каноничная CRUDL-матрица по ролям и сущностям проекта.
 - [use-case-diagram.md](use-case-diagram.md) — визуальная карта вариантов использования и актеров.
 - [uc-12-1-pass-auto-identification-entry.md](uc-12-1-pass-auto-identification-entry.md)
 - [uc-12-2-create-booking-auto-entry.md](uc-12-2-create-booking-auto-entry.md)

@@ -4,6 +4,7 @@
 
 | Change ID        | Source                        | Requirement ID | Changed files                                                     | Validation                   | Evidence |
 |------------------|-------------------------------|----------------|-------------------------------------------------------------------|------------------------------|----------|
+| CHG-20260402-025 | Docs: извлечь каноничный CRUDL из импортированного use-case markdown, обновить индексы и удалить temp | — | docs/artifacts/{readme.md,use-case/{crudl.md,readme.md,temp/**}}, docs/process/{project-journey.md,traceability-matrix-log.md} | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260402-024 | Docs: вынести MVP Definition of Done из импортированного BuildIn markdown в каноничный процессный документ | — | docs/process/{mvp-definition-of-done.md,readme.md,project-journey.md,traceability-matrix-log.md}, docs/artifacts/user-story-map.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260402-023 | Docs: извлечь презентации demo days в markdown/слайды, удалить исходные PDF и убрать preview HTML C4 | — | docs/demo-days/**, docs/architecture/c4/c4-parking-platform-preview.html, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260402-022 | Docs: убрать учебные и внешние reference-материалы из architecture, оставить проектные C4/DDD артефакты и добавить импортированный словарь ERD | — | docs/architecture/{readme.md,c4/**,ddd/**,database/erd/{readme.md,data-dictionary-buildin-import.md}} | review + `npm run ci:check` | PR #<TBD> |
