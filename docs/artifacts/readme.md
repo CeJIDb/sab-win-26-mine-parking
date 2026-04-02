@@ -11,6 +11,9 @@
 ## Ключевые документы
 
 - [project-charter.md](project-charter.md)
+- [opportunity-canvas.md](opportunity-canvas.md)
+- [impact-map.md](impact-map.md)
+- [user-story-map.md](user-story-map.md)
 - [context-diagram.md](context-diagram.md)
 - [conceptual-model-with-attributes.md](conceptual-model-with-attributes.md)
 - [use-case/use-case-registry.md](use-case/use-case-registry.md)
@@ -19,6 +22,7 @@
 
 ## Подразделы
 
+- [assets/](assets/readme.md) — изображения для верхнеуровневых каноничных артефактов
 - [as-is/](as-is/readme.md) — артефакты исследования текущих процессов и моделей предметной области
 - [algorithms/](algorithms/readme.md) — учебные и вспомогательные алгоритмические артефакты
 - [infosec/](infosec/readme.md) — анализ ИБ, угроз, уязвимостей и контрмер

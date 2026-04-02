@@ -1,6 +1,8 @@
 # Opportunity Canvas — автоматизация парковки
 
-Текстовое представление диаграммы по результатам чтения тайлов `opportunity_canvas_tiles/tile_r*_c*.png` (исходник: `Opportunity Canvas.jpg`).
+Текстовое представление диаграммы по результатам чтения тайлов `opportunity_canvas_tiles/tile_r*_c*.png`. Каноническое изображение артефакта сохранено в `assets/opportunity-canvas.jpg`, исходное имя файла при импорте было `Opportunity Canvas.jpg`.
+
+![Opportunity Canvas](assets/opportunity-canvas.jpg)
 
 ---
 

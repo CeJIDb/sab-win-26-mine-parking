@@ -1,6 +1,8 @@
 # User Story Map — автоматизация парковки
 
-Текстовое представление диаграммы по результатам чтения тайлов `user_story_map_tiles/tile_r*_c*.png` (исходник: `User Story Map.jpg`).
+Текстовое представление диаграммы по результатам чтения тайлов `user_story_map_tiles/tile_r*_c*.png`. Каноническое изображение артефакта сохранено в `assets/user-story-map.jpg`, исходное имя файла при импорте было `User Story Map.jpg`.
+
+![User Story Map](assets/user-story-map.jpg)
 
 ---
 
