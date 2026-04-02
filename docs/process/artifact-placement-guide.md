@@ -31,10 +31,10 @@
 
 | Этап | Что относится | Куда класть |
 |------|---------------|-------------|
-| Этап 1. Моделирование бизнеса | AS-IS, BPMN, ED AS-IS, UML Class Diagram, UML StateChart Diagram | `docs/artifacts/as-is/` |
+| Этап 1. Моделирование бизнеса | AS-IS, BPMN, ES AS-IS, UML Class Diagram, UML StateChart Diagram | `docs/artifacts/as-is/` |
 | Этап 2. Концептуальное проектирование | Opportunity Canvas, Impact Map, project charter, User Story Map, navigation map, контекст, use case, концептуальная модель, ES TO-BE | `docs/artifacts/`, `docs/artifacts/use-case/`, `docs/artifacts/es-to-be/`, `ui/` |
 | Этап 3. Требования к ПО | FR, NFR, ограничения | `docs/specs/` |
-| Этап 4. Архитектура и БД | ADR, DDD, C4, архитектурные решения | `docs/architecture/` |
+| Этап 4. Архитектура и БД | ADR, DDD, C4, архитектурные решения, ES-артефакты, которые стали входом в архитектурную проработку | `docs/architecture/` |
 | Этап 4. ERD и практика SQL | ERD, проработка физической модели, SQL-практика | `docs/architecture/database/erd/` и `sql/practice/` |
 | Этап 4. Инфобез | анализ угроз, bow-tie, контекстные материалы | `docs/artifacts/infosec/` |
 | Этап 4. Алгоритмизация | DRAKON и учебные алгоритмы | `docs/artifacts/algorithms/` |
@@ -58,6 +58,7 @@ docs/artifacts/as-is/
 - В `*.md` должна быть вставка изображения через относительную ссылку.
 - Если изображение обновляется, файл `md` обновляется в том же изменении.
 - Если артефакт имеет несколько итераций, используйте версионирование в имени файла или отдельный блок истории внутри `md`.
+- Если ES-артефакт перестал быть только аналитической схемой и используется как вход в DDD/C4, его можно перенести из `docs/artifacts/es-to-be/` в `docs/architecture/ddd/` с обновлением всех ссылок в том же изменении.
 
 Для стартового шаблона используйте [templates/artifact-from-image-template.md](templates/artifact-from-image-template.md).
 
@@ -85,7 +86,9 @@ docs/
     nonfunctional-requirements/
     constraints/
   process/
-  protocols/
+  interviews/
+    plans/
+    protocols/
   demo-days/
     demo-1/
     demo-2/
