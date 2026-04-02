@@ -22,8 +22,14 @@
 - `drakon-access-check.md`
 - `drakon-parking-session-lifecycle.md`
 - `algorithm-manual-access-decision.md`
+- `drakon-parking-payment.md`
 
 Если схема существует как изображение, размещайте его рядом с `md`-описанием.
+
+Текущий каноничный артефакт раздела:
+
+- [drakon-parking-payment.md](drakon-parking-payment.md)
+- [assets/readme.md](assets/readme.md)
 
 ## Заметки по использованию
 
@@ -34,6 +40,7 @@
 ## Связанные документы
 
 - [../readme.md](../readme.md)
+- [assets/readme.md](assets/readme.md)
 - [../../process/artifact-placement-guide.md](../../process/artifact-placement-guide.md)
 - [../../process/templates/artifact-from-image-template.md](../../process/templates/artifact-from-image-template.md)
 - [../../architecture/readme.md](../../architecture/readme.md)
