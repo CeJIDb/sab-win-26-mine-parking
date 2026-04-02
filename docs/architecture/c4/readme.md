@@ -12,7 +12,6 @@
 - [c4-parking-platform.md](c4-parking-platform.md)
 - [c4-l1-system-context.md](c4-l1-system-context.md)
 - [c4-l2-container.md](c4-l2-container.md)
-- [c4-parking-platform-preview.html](c4-parking-platform-preview.html)
 
 ## Связанные документы
 
