@@ -4,6 +4,7 @@
 
 ## Table of Contents
 
+- [Аудитные поля](#аудитные-поля)
 - [Связь между ключевыми таблицами](#связь-между-ключевыми-таблицами)
 - [Таблица `INVOICE`](#таблица-invoice)
 - [Таблица `PAYMENT`](#таблица-payment)
@@ -15,6 +16,12 @@
 - [Table Notes (DrawSQL)](#table-notes-drawsql)
 - [Диаграмма связей (Mermaid)](#диаграмма-связей-mermaid)
 - [Связанные документы](#связанные-документы)
+
+---
+
+## Аудитные поля
+
+У **каждой** таблицы этого файла в целевой БД есть **`created_at`** и **`updated_at`**: `TIMESTAMPTZ NOT NULL DEFAULT now()`; обновление **`updated_at`** — триггером `moddatetime` (см. `erd-normalized-er-model.md`).
 
 ---
 
@@ -48,6 +55,8 @@
 | `issued_at` | `DATE` | NOT NULL | — |
 | `due_at` | `DATE` | NULL | — |
 | `paid_at` | `TIMESTAMPTZ` | NULL | — |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 Table Notes (DrawSQL):
 
@@ -73,6 +82,8 @@ Table Notes (DrawSQL):
 | `initiated_at` | `TIMESTAMPTZ` | NOT NULL | — |
 | `completed_at` | `TIMESTAMPTZ` | NULL | — |
 | `provider_id` | `VARCHAR(512)` | NULL | idempotency key (partial unique, см. Table Notes) |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 Table Notes (DrawSQL):
 
@@ -92,6 +103,8 @@ Table Notes (DrawSQL):
 | `receipt_at` | `TIMESTAMPTZ` | NOT NULL | — |
 | `fiscal_status` | `VARCHAR(32)` | NOT NULL | `CHECK (fiscal_status IN ('PENDING','ISSUED','FAILED'))` |
 | `amount_minor` | `BIGINT` | NOT NULL | сумма в минорных единицах валюты (для `RUB` — копейки) |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 ---
 
@@ -109,6 +122,8 @@ Table Notes (DrawSQL):
 | `status` | `VARCHAR(32)` | NOT NULL | `CHECK (status IN ('INITIATED','COMPLETED','FAILED'))` |
 | `initiated_at` | `TIMESTAMPTZ` | NOT NULL | — |
 | `completed_at` | `TIMESTAMPTZ` | NULL | — |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 Table Notes (DrawSQL):
 
@@ -129,6 +144,8 @@ Table Notes (DrawSQL):
 | `remaining_amount_minor` | `BIGINT` | NOT NULL | текущий остаток (минорные единицы); `CHECK (remaining_amount_minor >= 0 AND remaining_amount_minor <= amount_minor)` |
 | `overdue_since` | `DATE` | NOT NULL | дата просрочки (= `INVOICE.due_at`) |
 | `status` | `VARCHAR(32)` | NOT NULL | `CHECK (status IN ('ACTIVE','PAID','WRITTEN_OFF'))` |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 Table Notes (DrawSQL):
 
@@ -147,6 +164,8 @@ Table Notes (DrawSQL):
 | `code` | `VARCHAR(64)` | NOT NULL | `UNIQUE` |
 | `name` | `VARCHAR(200)` | NOT NULL | — |
 | `description` | `TEXT` | NULL | — |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 Table Notes (DrawSQL):
 

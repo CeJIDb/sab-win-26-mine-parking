@@ -4,6 +4,7 @@
 
 ## Table of Contents
 
+- [Аудитные поля](#аудитные-поля)
 - [Связь между ключевыми таблицами](#связь-между-ключевыми-таблицами)
 - [Таблица `CONTRACT_TEMPLATE`](#таблица-contract_template)
 - [Таблица `CONTRACT`](#таблица-contract)
@@ -13,6 +14,12 @@
 - [Table Notes (DrawSQL)](#table-notes-drawsql)
 - [Диаграмма связей (Mermaid)](#диаграмма-связей-mermaid)
 - [Связанные документы](#связанные-документы)
+
+---
+
+## Аудитные поля
+
+У **каждой** таблицы этого файла в целевой БД есть **`created_at`** и **`updated_at`**: `TIMESTAMPTZ NOT NULL DEFAULT now()`; обновление **`updated_at`** — триггером `moddatetime` (см. `erd-normalized-er-model.md`).
 
 ---
 
@@ -40,6 +47,8 @@
 | `body` | `TEXT` | NOT NULL | — |
 | `effective_from` | `DATE` | NOT NULL | — |
 | `effective_to` | `DATE` | NULL | — |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 ---
 
@@ -57,6 +66,8 @@
 | `end_date` | `DATE` | NULL | — |
 | `status` | `VARCHAR(32)` | NOT NULL | `CHECK (status IN ('DRAFT','ACTIVE','EXPIRED','TERMINATED'))` |
 | `document_file_ref` | `VARCHAR(512)` | NULL | — |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 ---
 
@@ -79,6 +90,8 @@
 | `type` | `VARCHAR(32)` | NOT NULL | `CHECK (type IN ('AUTO', 'SHORT_TERM', 'CONTRACT'))` |
 | `status` | `VARCHAR(32)` | NOT NULL | `CHECK (status IN ('PENDING','CONFIRMED','ACTIVE','COMPLETED','CANCELLED','NO_SHOW'))` |
 | `amount_due_minor` | `BIGINT` | NULL | Для `type='AUTO'` сумма рассчитывается в реальном времени и фиксируется при завершении (при выезде/закрытии), поэтому до завершения может быть `NULL`. Для `SHORT_TERM` и `CONTRACT` — `NOT NULL` (инвариант — Application Service). |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 ---
 
@@ -100,6 +113,8 @@
 | `access_method` | `VARCHAR(32)` | NOT NULL | `CHECK (access_method IN ('PLATE_RECOGNITION','QR','RFID','MANUAL'))`; `MANUAL` — ручной доступ (сотрудник), остальные — автоматический |
 | `access_comment` | `TEXT` | NULL | — |
 | `status` | `VARCHAR(32)` | NOT NULL | `CHECK (status IN ('ACTIVE','COMPLETED'))`; `INTERRUPTED` — устаревающее значение (см. Table Notes) |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 ---
 

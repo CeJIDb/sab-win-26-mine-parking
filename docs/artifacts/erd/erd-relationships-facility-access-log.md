@@ -4,6 +4,7 @@
 
 ## Table of Contents
 
+- [Аудитные поля](#аудитные-поля)
 - [Связь между ключевыми таблицами](#связь-между-ключевыми-таблицами)
 - [Таблица `PARKING`](#таблица-parking)
 - [Таблица `PARKING_SCHEDULE`](#таблица-parking_schedule)
@@ -18,6 +19,12 @@
 - [Кросс-контекстные логические ссылки (без REFERENCES)](#кросс-контекстные-логические-ссылки-без-references)
 - [Диаграмма связей (Mermaid)](#диаграмма-связей-mermaid)
 - [Связанные документы](#связанные-документы)
+
+---
+
+## Аудитные поля
+
+У **каждой** таблицы этого файла в целевой БД есть **`created_at`** и **`updated_at`**: `TIMESTAMPTZ NOT NULL DEFAULT now()`; обновление **`updated_at`** — триггером `moddatetime` (см. `erd-normalized-er-model.md`). Для append-only (`ACCESS_LOG`) `updated_at` может совпадать с `created_at`.
 
 ---
 
@@ -49,6 +56,8 @@
 | `parking_type` | `VARCHAR(64)` | NOT NULL | `CHECK (parking_type IN ('SURFACE','MULTILEVEL','UNDERGROUND','ROOFTOP'))` |
 | `description` | `TEXT` | NULL | — |
 | `operational_status_id` | `BIGINT` | NOT NULL | `REFERENCES operational_status(id)` |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 ---
 
@@ -66,6 +75,8 @@
 | `is_closed` | `BOOLEAN` | NOT NULL | `DEFAULT false` |
 | `effective_from` | `DATE` | NOT NULL | — |
 | `effective_to` | `DATE` | NULL | — |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 Table Notes (DrawSQL):
 
@@ -84,6 +95,8 @@ Table Notes (DrawSQL):
 | `zone_type_id` | `BIGINT` | NOT NULL | `REFERENCES zone_type(id)` |
 | `name` | `VARCHAR(200)` | NOT NULL | — |
 | `operational_status_id` | `BIGINT` | NOT NULL | `REFERENCES operational_status(id)` |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 ---
 
@@ -97,6 +110,8 @@ Table Notes (DrawSQL):
 | `code` | `VARCHAR(64)` | NOT NULL | `UNIQUE` |
 | `name` | `VARCHAR(200)` | NOT NULL | — |
 | `description` | `TEXT` | NULL | — |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 ---
 
@@ -110,6 +125,8 @@ Table Notes (DrawSQL):
 | `code` | `VARCHAR(64)` | NOT NULL | `UNIQUE` |
 | `name` | `VARCHAR(200)` | NOT NULL | — |
 | `description` | `TEXT` | NULL | — |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 Table Notes (DrawSQL):
 
@@ -129,6 +146,8 @@ Table Notes (DrawSQL):
 | `type` | `VARCHAR(32)` | NOT NULL | `CHECK (type IN ('MANUAL','AUTOMATIC','SEMI_AUTO'))` |
 | `direction` | `VARCHAR(16)` | NOT NULL | `CHECK (direction IN ('ENTRY','EXIT','BIDIRECTIONAL'))` |
 | `operational_status_id` | `BIGINT` | NOT NULL | `REFERENCES operational_status(id)` |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 ---
 
@@ -145,6 +164,8 @@ Table Notes (DrawSQL):
 | `is_reserved` | `BOOLEAN` | NOT NULL | `DEFAULT false`; зарезервировано (забронировано) |
 | `is_occupied` | `BOOLEAN` | NOT NULL | `DEFAULT false`; фактически занято |
 | `operational_status_id` | `BIGINT` | NOT NULL | `REFERENCES operational_status(id)` |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 ---
 
@@ -156,6 +177,8 @@ Table Notes (DrawSQL):
 |------|----------------|------|---------------------------|
 | `zone_type_id` | `BIGINT` | NOT NULL | `REFERENCES zone_type(id)` |
 | `vehicle_type_id` | `BIGINT` | NOT NULL | логическая ссылка на `facility.vehicle_type(id)` (описана в клиентском артефакте) |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 Первичный ключ: `PRIMARY KEY (zone_type_id, vehicle_type_id)`.
 
@@ -169,6 +192,8 @@ Table Notes (DrawSQL):
 |------|----------------|------|---------------------------|
 | `zone_type_id` | `BIGINT` | NOT NULL | `REFERENCES zone_type(id)` |
 | `tariff_id` | `BIGINT` | NOT NULL | кросс-схемная логическая ссылка на `tariff.tariff(id)` (ADR-003) |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 Первичный ключ: `PRIMARY KEY (zone_type_id, tariff_id)`.
 
@@ -187,6 +212,8 @@ Table Notes (DrawSQL):
 | `decision` | `VARCHAR(16)` | NOT NULL | `CHECK (decision IN ('ALLOW', 'DENY', 'MANUAL'))` |
 | `reason` | `TEXT` | NULL | — |
 | `decided_at` | `TIMESTAMPTZ` | NOT NULL | — |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; для append-only может совпадать с `created_at` |
 
 Table Notes (DrawSQL):
 

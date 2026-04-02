@@ -4,6 +4,7 @@
 
 ## Table of Contents
 
+- [Аудитные поля](#аудитные-поля)
 - [Связь между ключевыми таблицами](#связь-между-ключевыми-таблицами)
 - [Таблица `TARIFF`](#таблица-tariff)
 - [Таблица `TARIFF_RATE`](#таблица-tariff_rate)
@@ -17,6 +18,12 @@
 - [Table Notes (DrawSQL)](#table-notes-drawsql)
 - [Диаграмма связей (Mermaid)](#диаграмма-связей-mermaid)
 - [Связанные документы](#связанные-документы)
+
+---
+
+## Аудитные поля
+
+У **каждой** таблицы этого файла в целевой БД есть **`created_at`** и **`updated_at`**: `TIMESTAMPTZ NOT NULL DEFAULT now()`; обновление **`updated_at`** — триггером `moddatetime` (см. `erd-normalized-er-model.md`).
 
 ---
 
@@ -49,6 +56,8 @@
 | `grace_period_minutes` | `INTEGER` | NOT NULL | `DEFAULT 0` |
 | `effective_from` | `DATE` | NOT NULL | — |
 | `effective_to` | `DATE` | NULL | — |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 ---
 
@@ -65,6 +74,8 @@
 | `time_from` | `TIME` | NULL | — |
 | `time_to` | `TIME` | NULL | — |
 | `priority` | `INTEGER` | NOT NULL | `DEFAULT 0` |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 ---
 
@@ -82,6 +93,8 @@
 | `phone` | `VARCHAR(32)` | NULL | — |
 | `email` | `VARCHAR(320)` | NULL | — |
 | `status` | `VARCHAR(32)` | NOT NULL | `CHECK (status IN ('ACTIVE','DISMISSED'))` |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 ---
 
@@ -97,6 +110,7 @@
 | `totp_secret_encrypted` | `TEXT` | NULL | хранится в зашифрованном виде (алгоритм/ротация ключей фиксируются в политике ИБ) |
 | `account_status` | `VARCHAR(32)` | NOT NULL | `CHECK (account_status IN ('ACTIVE','BLOCKED','SUSPENDED'))` |
 | `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 | `last_login_at` | `TIMESTAMPTZ` | NULL | — |
 
 ---
@@ -111,6 +125,8 @@
 | `code` | `VARCHAR(64)` | NOT NULL | `UNIQUE` |
 | `name` | `VARCHAR(200)` | NOT NULL | — |
 | `description` | `TEXT` | NULL | — |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 Table Notes (DrawSQL):
 
@@ -130,6 +146,8 @@ Table Notes (DrawSQL):
 | `type` | `VARCHAR(32)` | NOT NULL | `CHECK (type IN ('SMS','EMAIL','PUSH'))` |
 | `subject` | `VARCHAR(500)` | NULL | — |
 | `body` | `TEXT` | NOT NULL | — |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 ---
 
@@ -148,6 +166,8 @@ Table Notes (DrawSQL):
 | `channel` | `VARCHAR(32)` | NOT NULL | `CHECK (channel IN ('SMS','EMAIL','PUSH'))` |
 | `delivery_address` | `VARCHAR(320)` | NOT NULL | “самодостаточный” адрес доставки без JOIN к `CLIENT` |
 | `delivery_status` | `VARCHAR(32)` | NOT NULL | `CHECK (delivery_status IN ('PENDING','SENT','DELIVERED','FAILED'))` |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 ---
 
@@ -167,6 +187,8 @@ Table Notes (DrawSQL):
 | `subject` | `VARCHAR(500)` | NOT NULL | — |
 | `description` | `TEXT` | NULL | — |
 | `status` | `VARCHAR(32)` | NOT NULL | `CHECK (status IN ('OPEN','IN_PROGRESS','RESOLVED','CLOSED'))` |
+| `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
 ---
 
