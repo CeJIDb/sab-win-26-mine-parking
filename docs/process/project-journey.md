@@ -86,6 +86,7 @@
 Связанные артефакты:
 
 - [docs/artifacts/user-story-map.md](../artifacts/user-story-map.md)
+- [docs/process/mvp-definition-of-done.md](mvp-definition-of-done.md)
 - [docs/specs/readme.md](../specs/readme.md)
 
 ### 2.3. Моделирование данных и проектирование взаимодействия
