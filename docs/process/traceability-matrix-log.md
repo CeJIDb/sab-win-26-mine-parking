@@ -4,6 +4,7 @@
 
 | Change ID        | Source                        | Requirement ID | Changed files                                                     | Validation                   | Evidence |
 |------------------|-------------------------------|----------------|-------------------------------------------------------------------|------------------------------|----------|
+| CHG-20260402-014 | Docs: привести use case артефакты к единому шаблонному каркасу | — | docs/artifacts/use-case/{use-case-registry.md,uc-12-*.md}, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260402-013 | Docs: привести ИБ-артефакты к единому шаблонному каркасу | — | docs/artifacts/infosec/{infosec-analyze-parking.md,threat-vulnerability-remediation-context.md}, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260402-012 | Docs: привести карточку проекта и глоссарий к единому шаблонному каркасу | — | docs/artifacts/{project-charter.md,project-glossary.md}, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260402-011 | Docs: привести верхнеуровневые image-based артефакты к шаблону описания | — | docs/artifacts/{impact-map.md,opportunity-canvas.md,user-story-map.md,context-diagram.md,conceptual-model-with-attributes.md,navigation-map.md}, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
