@@ -31,7 +31,7 @@
 
 В работе фигурировали следующие типы артефактов:
 
-- ED AS-IS.
+- ES AS-IS.
 - BPMN.
 - UML Class Diagram.
 - UML StateChart Diagram.
@@ -128,6 +128,8 @@
 
 Связанные артефакты:
 
+- [docs/architecture/ddd/es-tobe-sd-contexts.md](../architecture/ddd/es-tobe-sd-contexts.md)
+- [docs/artifacts/es-to-be/es-tobe-sd-team-board.md](../artifacts/es-to-be/es-tobe-sd-team-board.md)
 - [docs/artifacts/es-to-be/es-tobe-sd-access-and-parking-flow.md](../artifacts/es-to-be/es-tobe-sd-access-and-parking-flow.md)
 - [docs/artifacts/es-to-be/es-tobe-bp-booking-and-contract.md](../artifacts/es-to-be/es-tobe-bp-booking-and-contract.md)
 - [docs/artifacts/es-to-be/es-tobe-bp-payment.md](../artifacts/es-to-be/es-tobe-bp-payment.md)
@@ -166,6 +168,8 @@
 
 Связанные артефакты:
 
+- [docs/architecture/ddd/es-tobe-sd-contexts.md](../architecture/ddd/es-tobe-sd-contexts.md)
+- [docs/artifacts/es-to-be/es-tobe-sd-team-board.md](../artifacts/es-to-be/es-tobe-sd-team-board.md)
 - [docs/architecture/ddd/readme.md](../architecture/ddd/readme.md)
 - [docs/architecture/c4/readme.md](../architecture/c4/readme.md)
 - [docs/architecture/adr/readme.md](../architecture/adr/readme.md)

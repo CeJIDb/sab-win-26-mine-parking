@@ -9,6 +9,8 @@
 
 ## Файлы
 
+- [es-tobe-sd-team-board.jpg](es-tobe-sd-team-board.jpg)
+- [es-tobe-sd-contexts.jpg](es-tobe-sd-contexts.jpg)
 - [es-tobe-sd-access-and-parking-flow.jpg](es-tobe-sd-access-and-parking-flow.jpg)
 - [es-tobe-bp-booking-and-contract.jpg](es-tobe-bp-booking-and-contract.jpg)
 - [es-tobe-bp-payment.jpg](es-tobe-bp-payment.jpg)
@@ -17,4 +19,3 @@
 ## Заметки
 
 - Каноничным документом считается `md`-описание рядом в разделе [`../`](../readme.md).
-- Папка `../temp_es-to-be/` хранит исходно загруженные изображения и может использоваться как временный буфер до поступления остальных схем.

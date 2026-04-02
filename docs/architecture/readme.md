@@ -13,6 +13,7 @@
 - [ddd/readme.md](ddd/readme.md) — индекс DDD-материалов проекта
 - [c4/readme.md](c4/readme.md) — индекс C4-диаграмм проекта
 
+- [ddd/es-tobe-sd-contexts.md](ddd/es-tobe-sd-contexts.md) — ES TO-BE контексты как входной артефакт Этапа 4 для DDD, модульных границ и последующего C4
 - [ddd/ddd-bounded-contexts.md](ddd/ddd-bounded-contexts.md) — DDD bounded contexts и контекстная карта
 - [c4/c4-parking-platform.md](c4/c4-parking-platform.md) — **C4-диаграммы платформы**: Level 1 (контекст), Level 2 (контейнеры), Level 3 (компоненты); Mermaid + текстовые описания + ключевые сценарии; статический предпросмотр: [`c4/c4-parking-platform-preview.html`](c4/c4-parking-platform-preview.html) (сборка: `npm run docs:c4-preview`)
 - [c4/c4-l1-system-context.md](c4/c4-l1-system-context.md) — C4 Level 1 (System Context): пользователи и внешние системы в формате референса `Телемед` (легенда периметра, Mermaid `C4Context`)
