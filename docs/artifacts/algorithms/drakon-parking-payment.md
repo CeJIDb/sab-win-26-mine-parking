@@ -118,5 +118,5 @@
 - [readme.md](readme.md)
 - [../use-case/uc-12-7-complete-booking-auto-exit.md](../use-case/uc-12-7-complete-booking-auto-exit.md)
 - [../use-case/uc-12-9-complete-parking-session.md](../use-case/uc-12-9-complete-parking-session.md)
-- [../es-to-be/es-tobe-bp-parking-main.md](../es-to-be/es-tobe-bp-parking-main.md)
+- [../es-to-be/es-tobe-bp-payment.md](../es-to-be/es-tobe-bp-payment.md)
 - [../../specs/functional-requirements/readme.md](../../specs/functional-requirements/readme.md)

@@ -128,10 +128,10 @@
 
 Связанные артефакты:
 
-- [docs/artifacts/es-to-be/es-tobe-bp-parking-big-picture-overview.md](../artifacts/es-to-be/es-tobe-bp-parking-big-picture-overview.md)
-- [docs/artifacts/es-to-be/es-tobe-bp-parking-big-picture.md](../artifacts/es-to-be/es-tobe-bp-parking-big-picture.md)
-- [docs/artifacts/es-to-be/es-tobe-bp-parking-main.md](../artifacts/es-to-be/es-tobe-bp-parking-main.md)
-- [docs/artifacts/es-to-be/es-tobe-bp-parking-subprocesses.md](../artifacts/es-to-be/es-tobe-bp-parking-subprocesses.md)
+- [docs/artifacts/es-to-be/es-tobe-sd-access-and-parking-flow.md](../artifacts/es-to-be/es-tobe-sd-access-and-parking-flow.md)
+- [docs/artifacts/es-to-be/es-tobe-bp-booking-and-contract.md](../artifacts/es-to-be/es-tobe-bp-booking-and-contract.md)
+- [docs/artifacts/es-to-be/es-tobe-bp-payment.md](../artifacts/es-to-be/es-tobe-bp-payment.md)
+- [docs/artifacts/es-to-be/es-tobe-bp-client-profile-and-vehicles.md](../artifacts/es-to-be/es-tobe-bp-client-profile-and-vehicles.md)
 
 ## Этап 3. Требования к ПО
 
