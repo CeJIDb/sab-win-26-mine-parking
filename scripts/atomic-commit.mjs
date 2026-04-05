@@ -16,16 +16,37 @@ import { execFileSync, execSync } from "node:child_process";
 import { createInterface } from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 
+function isSandboxSpawnError(error) {
+  return error && (error.code === "EPERM" || error.code === "EACCES");
+}
+
+function printSandboxHint(error) {
+  if (!isSandboxSpawnError(error)) return false;
+
+  console.error(
+    "atomic-commit: sandbox blocked Node.js from spawning git. " +
+      "Run this command with elevated permissions or use the shell fallback:",
+  );
+  console.error("  npm run commit:atomic:sh");
+  return true;
+}
+
 function gitStdout(args) {
   try {
     return execFileSync("git", args, { encoding: "utf-8" }).trim();
-  } catch {
+  } catch (error) {
+    if (printSandboxHint(error)) process.exit(1);
     return "";
   }
 }
 
 function gitRun(args, inherit = false) {
-  execFileSync("git", args, inherit ? { stdio: "inherit" } : { encoding: "utf-8" });
+  try {
+    execFileSync("git", args, inherit ? { stdio: "inherit" } : { encoding: "utf-8" });
+  } catch (error) {
+    if (printSandboxHint(error)) process.exit(1);
+    throw error;
+  }
 }
 
 function getChangedFiles() {
@@ -238,6 +259,7 @@ async function main() {
 }
 
 main().catch((e) => {
+  if (printSandboxHint(e)) process.exit(1);
   console.error(e);
   process.exit(1);
 });
