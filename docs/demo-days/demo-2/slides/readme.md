@@ -29,7 +29,7 @@
 - [23.jpg](23.jpg) — USM: Истории “за бортом”
 - [24.jpg](24.jpg) — Сложности и вызовы этапа
 - [25.jpg](25.jpg) — Заключение
-- [../demo-2-presentation-deck.md](../demo-2-presentation-deck.md) — markdown-версия всей презентации.
+- [Презентация Demo 2](../demo-2-presentation-deck.md) — markdown-версия всей презентации.
 
 ## Заметки
 

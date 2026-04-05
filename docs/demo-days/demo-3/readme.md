@@ -16,12 +16,12 @@
 
 ## Текущее содержимое
 
-- [demo-3-context-diagram-presentation-3-min.md](demo-3-context-diagram-presentation-3-min.md) — короткий сценарий выступления.
-- [context-diagram-buildin-ai.md](context-diagram-buildin-ai.md) — вспомогательный материал по контекстной диаграмме.
-- [slides/demo-3-context-diagram-all-mockups.md](slides/demo-3-context-diagram-all-mockups.md) — описание комплекта слайдов.
+- [Сценарий выступления Demo 3](demo-3-context-diagram-presentation-3-min.md) — короткий текст выступления.
+- [Контекстная диаграмма из BuildIn AI](context-diagram-buildin-ai.md) — вспомогательный материал по контекстной диаграмме.
+- [Описание комплекта слайдов Demo 3](slides/demo-3-context-diagram-all-mockups.md) — поясняет состав и логику слайдов.
 - `slides/1.jpg` ... `slides/5.jpg` — изображения слайдов.
-- [demo-3-presentation-deck.md](demo-3-presentation-deck.md) — markdown-версия полной PDF-презентации Demo 3.
-- [slides/](slides/readme.md) — каталог со слайдами Demo 3, включая извлеченные изображения полной презентации.
+- [Презентация Demo 3](demo-3-presentation-deck.md) — markdown-версия полной презентации третьего демо дня.
+- [Индекс слайдов Demo 3](slides/readme.md) — ведет к слайдам и извлеченным изображениям полной презентации.
 
 ## Фокус демо
 
@@ -37,6 +37,6 @@
 
 ## Связанные документы
 
-- [../demo-days-overview.md](../demo-days-overview.md)
-- [../../artifacts/context-diagram.md](../../artifacts/context-diagram.md)
-- [../../process/project-journey.md](../../process/project-journey.md)
+- [Обзор Demo Days](../demo-days-overview.md) — задает общий формат и ожидания по демо.
+- [Контекстная диаграмма](../../artifacts/context-diagram.md) — каноничный артефакт, вокруг которого строится Demo 3.
+- [История развития проекта](../../process/project-journey.md) — показывает место третьего демо в общей траектории проекта.

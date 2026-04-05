@@ -20,7 +20,7 @@
 - [14.jpg](14.jpg) — Problem Statement
 - [15.jpg](15.jpg) — Сложности и вызовы этапа
 - [16.jpg](16.jpg) — Заключение
-- [../demo-1-presentation-deck.md](../demo-1-presentation-deck.md) — markdown-версия всей презентации.
+- [Презентация Demo 1](../demo-1-presentation-deck.md) — markdown-версия всей презентации.
 
 ## Заметки
 

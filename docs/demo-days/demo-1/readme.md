@@ -18,8 +18,8 @@
 
 ## Текущее содержимое
 
-- [demo-1-presentation-deck.md](demo-1-presentation-deck.md) — markdown-версия всей презентации Demo 1.
-- [slides/](slides/readme.md) — 16 слайдов, сохраненных как изображения.
+- [Презентация Demo 1](demo-1-presentation-deck.md) — markdown-версия всей презентации первого демо дня.
+- [Индекс слайдов Demo 1](slides/readme.md) — ведет к 16 слайдам, сохраненным как изображения.
 
 ## Фокус демо
 
@@ -33,6 +33,6 @@
 
 ## Связанные документы
 
-- [../demo-days-overview.md](../demo-days-overview.md)
-- [../../process/project-journey.md](../../process/project-journey.md)
-- [../../artifacts/as-is/readme.md](../../artifacts/as-is/readme.md)
+- [Обзор Demo Days](../demo-days-overview.md) — задает общий формат и ожидания по демо.
+- [История развития проекта](../../process/project-journey.md) — показывает место первого демо в общей траектории проекта.
+- [Индекс AS-IS артефактов](../../artifacts/as-is/readme.md) — собирает материалы, на которые опирается первое демо.

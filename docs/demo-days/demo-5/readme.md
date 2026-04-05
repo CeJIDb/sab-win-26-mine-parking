@@ -25,7 +25,7 @@
 
 ## Связанные документы
 
-- [../demo-days-overview.md](../demo-days-overview.md)
-- [../../process/project-journey.md](../../process/project-journey.md)
-- [../../architecture/readme.md](../../architecture/readme.md)
-- [../../specs/readme.md](../../specs/readme.md)
+- [Обзор Demo Days](../demo-days-overview.md) — задает общий формат и ожидания по демо.
+- [История развития проекта](../../process/project-journey.md) — помогает собрать финальный narrative проекта.
+- [Индекс архитектуры](../../architecture/readme.md) — ведет к архитектурным материалам для итогового показа.
+- [Индекс спецификаций](../../specs/readme.md) — собирает требования и ограничения для финального демо.

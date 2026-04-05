@@ -16,8 +16,8 @@
 
 ## Текущее содержимое
 
-- [demo-2-presentation-deck.md](demo-2-presentation-deck.md) — markdown-версия всей презентации Demo 2.
-- [slides/](slides/readme.md) — 25 слайдов, сохраненных как изображения.
+- [Презентация Demo 2](demo-2-presentation-deck.md) — markdown-версия всей презентации второго демо дня.
+- [Индекс слайдов Demo 2](slides/readme.md) — ведет к 25 слайдам, сохраненным как изображения.
 
 ## Фокус демо
 
@@ -33,7 +33,7 @@
 
 ## Связанные документы
 
-- [../demo-days-overview.md](../demo-days-overview.md)
-- [../../artifacts/opportunity-canvas.md](../../artifacts/opportunity-canvas.md)
-- [../../artifacts/impact-map.md](../../artifacts/impact-map.md)
-- [../../artifacts/user-story-map.md](../../artifacts/user-story-map.md)
+- [Обзор Demo Days](../demo-days-overview.md) — задает общий формат и ожидания по демо.
+- [Opportunity Canvas](../../artifacts/opportunity-canvas.md) — фиксирует проблемную ситуацию и ценность решения.
+- [Impact Map](../../artifacts/impact-map.md) — связывает цель проекта с влияниями и поставками.
+- [User Story Map](../../artifacts/user-story-map.md) — описывает пользовательские сценарии и состав MVP.

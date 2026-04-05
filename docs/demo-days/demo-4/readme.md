@@ -52,7 +52,7 @@ demo-4/
 
 ## Связанные документы
 
-- [../readme.md](../readme.md)
-- [../../process/project-journey.md](../../process/project-journey.md)
-- [../../architecture/readme.md](../../architecture/readme.md)
-- [../../artifacts/readme.md](../../artifacts/readme.md)
+- [Индекс Demo Days](../readme.md) — верхний каталог демонстрационных материалов.
+- [История развития проекта](../../process/project-journey.md) — помогает собрать narrative для следующего демо.
+- [Индекс архитектуры](../../architecture/readme.md) — ведет к архитектурным материалам, которые логично показать в Demo 4.
+- [Индекс артефактов](../../artifacts/readme.md) — собирает каноничные аналитические материалы для демонстрации.
