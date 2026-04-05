@@ -17,9 +17,6 @@
 ## Текущее содержимое
 
 - [Сценарий выступления Demo 3](demo-3-context-diagram-presentation-3-min.md) — короткий текст выступления.
-- [Контекстная диаграмма из BuildIn AI](context-diagram-buildin-ai.md) — вспомогательный материал по контекстной диаграмме.
-- [Описание комплекта слайдов Demo 3](slides/demo-3-context-diagram-all-mockups.md) — поясняет состав и логику слайдов.
-- `slides/1.jpg` ... `slides/5.jpg` — изображения слайдов.
 - [Презентация Demo 3](demo-3-presentation-deck.md) — markdown-версия полной презентации третьего демо дня.
 - [Индекс слайдов Demo 3](slides/readme.md) — ведет к слайдам и извлеченным изображениям полной презентации.
 
