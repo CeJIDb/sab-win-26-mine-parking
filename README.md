@@ -54,7 +54,7 @@
 - Этап 4 — техническое проектирование: DDD, модульный монолит, C4, ERD, SQL-практика, инфобез, DRAKON.
 - Этап 5 — интеграции: в планировании.
 
-Подробная история развития проекта и рекомендации по размещению новых артефактов вынесены в [`docs/process/project-journey.md`](docs/process/project-journey.md) и [`docs/process/artifact-placement-guide.md`](docs/process/artifact-placement-guide.md).
+Подробная история развития проекта и рекомендации по размещению новых артефактов вынесены в [Историю развития проекта](docs/process/project-journey.md) и [Гайд по размещению артефактов](docs/process/artifact-placement-guide.md).
 
 ## Команда
 
@@ -78,7 +78,7 @@
 - `demo-days/` — материалы для демо и презентаций;
 - `readme.md` — индекс проектной документации, удобная точка входа в `docs/`.
 
-Рекомендуем начинать навигацию именно с [`docs/readme.md`](docs/readme.md).
+Рекомендуем начинать навигацию именно с [Индекса документации](docs/readme.md).
 
 ### `ui/`
 
@@ -133,13 +133,13 @@
 
 Если вы впервые открыли репозиторий, удобнее всего читать материалы в таком порядке:
 
-1. `docs/readme.md`
-2. `docs/artifacts/project-charter.md`
-3. `docs/artifacts/context-diagram.md`
-4. `docs/artifacts/conceptual-model-with-attributes.md`
-5. `docs/specs/readme.md`
-6. `docs/architecture/readme.md`
-7. `docs/interviews/readme.md` для проверки источников решений
+1. [Индекс документации](docs/readme.md)
+2. [Карточка проекта](docs/artifacts/project-charter.md)
+3. [Контекстная диаграмма](docs/artifacts/context-diagram.md)
+4. [Концептуальная модель с атрибутами](docs/artifacts/conceptual-model-with-attributes.md)
+5. [Индекс спецификаций](docs/specs/readme.md)
+6. [Индекс архитектуры](docs/architecture/readme.md)
+7. [Индекс интервью](docs/interviews/readme.md) для проверки источников решений
 
 Такой порядок помогает быстро понять бизнес-контекст, границы системы, терминологию и основные проектные решения.
 
@@ -209,23 +209,23 @@ npm run ci:check
 
 ## Быстрые ссылки
 
-- [`docs/readme.md`](docs/readme.md) — общий индекс документации
-- [`docs/artifacts/readme.md`](docs/artifacts/readme.md) — аналитические артефакты
-- [`docs/specs/readme.md`](docs/specs/readme.md) — спецификации и требования
-- [`docs/architecture/readme.md`](docs/architecture/readme.md) — архитектурные материалы
-- [`docs/process/readme.md`](docs/process/readme.md) — процесс участия и шаблоны
-- [`docs/interviews/readme.md`](docs/interviews/readme.md) — интервью, планы встреч и протоколы
-- [`ui/README.md`](ui/README.md) — устройство wireframe-макета
-- [`scripts/docs/readme.md`](scripts/docs/readme.md) — утилиты для документации
+- [Индекс документации](docs/readme.md) — общий индекс документации
+- [Индекс артефактов](docs/artifacts/readme.md) — аналитические артефакты
+- [Индекс спецификаций](docs/specs/readme.md) — спецификации и требования
+- [Индекс архитектуры](docs/architecture/readme.md) — архитектурные материалы
+- [Процессная документация](docs/process/readme.md) — процесс участия и шаблоны
+- [Индекс интервью](docs/interviews/readme.md) — интервью, планы встреч и протоколы
+- [Wireframe — цифровая платформа парковки](ui/README.md) — устройство wireframe-макета
+- [Скрипты для документации](scripts/docs/readme.md) — утилиты для документации
 
 ## Документация процесса участия
 
-- [`docs/readme.md`](docs/readme.md) — оглавление проектной документации
-- [`docs/process/first-contribution-path.md`](docs/process/first-contribution-path.md) — первый вклад, по шагам
-- [`docs/process/traceability-matrix.md`](docs/process/traceability-matrix.md) — регламент трассировки
-- [`docs/process/traceability-matrix-log.md`](docs/process/traceability-matrix-log.md) — журнал трассировки по изменениям
-- [`docs/process/pr-dor-dod.md`](docs/process/pr-dor-dod.md) — DoR/DoD для pull request
-- [`docs/process/release-checklist.md`](docs/process/release-checklist.md) — релизный чеклист
+- [Индекс документации](docs/readme.md) — оглавление проектной документации
+- [Путь первого вклада](docs/process/first-contribution-path.md) — первый вклад, по шагам
+- [Матрица трассировки](docs/process/traceability-matrix.md) — регламент трассировки
+- [Журнал изменений матрицы трассировки](docs/process/traceability-matrix-log.md) — журнал трассировки по изменениям
+- [PR DoR/DoD](docs/process/pr-dor-dod.md) — DoR/DoD для pull request
+- [Чеклист релиза](docs/process/release-checklist.md) — релизный чеклист
 
 ## Контрольные точки качества
 
