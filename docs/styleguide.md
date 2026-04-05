@@ -59,8 +59,8 @@ This guide defines naming and structure conventions for the `docs/` tree.
 - Prefer one of these patterns for link text:
   - official artifact title: `Карточка проекта`, `Impact Map`, `ADR-003: Модульный монолит`;
   - section/index title: `Индекс архитектуры`, `Индекс интервью`, `Индекс слайдов Demo 2`;
-  - short descriptive label if there is no stable title yet: `Шаблон артефакта из изображения`, `Команда review-doc`.
-- In `Связанные документы` sections, prefer the format `- [Название артефакта](relative/path.md) — краткое пояснение.`
+  - short descriptive label if there is no stable title yet: `Шаблон артефакта из изображения`, `Команда review-doc`, `Гайд по относительным ссылкам`.
+- In `Связанные документы` sections, prefer the format `- [Название артефакта](artifacts/context-diagram.md) — краткое пояснение.`
 - The same rule applies to inline links in regular paragraphs, not only to `Связанные документы`.
 - Exceptions are allowed only for literal examples inside templates, where a path is shown as a sample value and is not presented as the final wording of a real document.
 
