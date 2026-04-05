@@ -4,11 +4,11 @@
 
 ## Содержимое
 
-- [chat-context-er-model-review-2-2026-03-31.md](chat-context-er-model-review-2-2026-03-31.md)
-- [chat-context-er-model-review-3-2026-03-31.md](chat-context-er-model-review-3-2026-03-31.md)
-- [chat-context-er-model-review-4-2026-04-01.md](chat-context-er-model-review-4-2026-04-01.md)
+- [Контекст ревью ER-модели №2](chat-context-er-model-review-2-2026-03-31.md) — рабочие заметки и обсуждения первого раунда ревью.
+- [Контекст ревью ER-модели №3](chat-context-er-model-review-3-2026-03-31.md) — продолжение обсуждений и уточнений по модели.
+- [Контекст ревью ER-модели №4](chat-context-er-model-review-4-2026-04-01.md) — финальный рабочий контекст по ревью ERD.
 
 ## Заметки
 
 - Эти файлы сохраняют историю обсуждений.
-- Источником истины по текущей модели остаются документы уровнем выше в [`../readme.md`](../readme.md).
+- Источником истины по текущей модели остаются документы уровнем выше в [Индексе ERD](../readme.md).

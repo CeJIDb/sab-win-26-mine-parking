@@ -6,20 +6,19 @@
 
 Все файлы ADR вынесены в каталог [`adr/`](adr/):
 
-- [adr/readme.md](adr/readme.md) — оглавление ADR-001 и последующих решений с краткими описаниями.
+- [Индекс ADR](adr/readme.md) — оглавление архитектурных решений проекта с краткими описаниями.
 
 ## Архитектурные артефакты
 
-- [ddd/readme.md](ddd/readme.md) — индекс DDD-материалов проекта
-- [c4/readme.md](c4/readme.md) — индекс C4-диаграмм проекта
-
-- [ddd/es-tobe-sd-contexts.md](ddd/es-tobe-sd-contexts.md) — ES TO-BE контексты как входной артефакт Этапа 4 для DDD, модульных границ и последующего C4
-- [ddd/ddd-bounded-contexts.md](ddd/ddd-bounded-contexts.md) — DDD bounded contexts и контекстная карта
-- [c4/c4-parking-platform.md](c4/c4-parking-platform.md) — **C4-диаграммы платформы**: Level 1 (контекст), Level 2 (контейнеры), Level 3 (компоненты); Mermaid + текстовые описания + ключевые сценарии; статический предпросмотр можно локально пересобрать командой `npm run docs:c4-preview`
-- [c4/c4-l1-system-context.md](c4/c4-l1-system-context.md) — C4 Level 1 (System Context): пользователи и внешние системы в формате референса `Телемед` (легенда периметра, Mermaid `C4Context`)
-- [c4/c4-l2-container.md](c4/c4-l2-container.md) — C4 Level 2 (Container): контейнеры платформы парковки в формате референса `Телемед` (граница системы, контейнеры, внешние системы, Mermaid `C4Container`)
-- [database/readme.md](database/readme.md) — архитектура данных, ERD, обоснование PostgreSQL и решения по БД
-- [integration/readme.md](integration/readme.md) — будущий раздел для интеграционной архитектуры, сценариев и контрактов
+- [Индекс DDD материалов](ddd/readme.md) — собирает доменные контексты, границы модулей и контекстные карты.
+- [Индекс C4 материалов](c4/readme.md) — ведет к C4-диаграммам системы.
+- [ES TO-BE SD: Контексты](ddd/es-tobe-sd-contexts.md) — переводит TO-BE материал в контексты модулей и архитектурные границы.
+- [DDD bounded contexts](ddd/ddd-bounded-contexts.md) — описывает bounded contexts и контекстную карту.
+- [C4-диаграммы платформы](c4/c4-parking-platform.md) — объединяют Level 1, Level 2 и Level 3 с пояснениями и ключевыми сценариями.
+- [C4 Level 1: System Context](c4/c4-l1-system-context.md) — показывает пользователей и внешние системы вокруг платформы.
+- [C4 Level 2: Container](c4/c4-l2-container.md) — описывает контейнеры платформы и их взаимодействия.
+- [Индекс архитектуры данных](database/readme.md) — ведет к ERD, обоснованию PostgreSQL и решениям по БД.
+- [Индекс интеграционной архитектуры](integration/readme.md) — резервирует пространство под интеграционные сценарии и контракты.
 
 ## Правила использования
 

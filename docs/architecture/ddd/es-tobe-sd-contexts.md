@@ -64,10 +64,10 @@
 
 ## Связанные документы
 
-- [../../artifacts/es-to-be/es-tobe-sd-team-board.md](../../artifacts/es-to-be/es-tobe-sd-team-board.md)
-- [ddd-bounded-contexts.md](ddd-bounded-contexts.md)
-- [../adr/adr-003-modular-monolith.md](../adr/adr-003-modular-monolith.md)
-- [../c4/c4-l1-system-context.md](../c4/c4-l1-system-context.md)
-- [../c4/c4-l2-container.md](../c4/c4-l2-container.md)
-- [../c4/c4-parking-platform.md](../c4/c4-parking-platform.md)
-- [../../artifacts/context-diagram.md](../../artifacts/context-diagram.md)
+- [ES TO-BE SD: Командная диаграмма](../../artifacts/es-to-be/es-tobe-sd-team-board.md) — исходная TO-BE доска, из которой выделены контексты.
+- [DDD bounded contexts](ddd-bounded-contexts.md) — развивают выделенные контексты в более формальную доменную карту.
+- [ADR-003: Модульный монолит](../adr/adr-003-modular-monolith.md) — задает архитектурный стиль для выделенных контекстов.
+- [C4 Level 1: System Context](../c4/c4-l1-system-context.md) — показывает внешний контур системы, внутри которого живут контексты.
+- [C4 Level 2: Container](../c4/c4-l2-container.md) — отражает контексты на контейнерном уровне архитектуры.
+- [C4-диаграммы платформы](../c4/c4-parking-platform.md) — дают полный архитектурный взгляд на систему.
+- [Контекстная диаграмма](../../artifacts/context-diagram.md) — связывает доменные контексты с аналитическим описанием границ системы.

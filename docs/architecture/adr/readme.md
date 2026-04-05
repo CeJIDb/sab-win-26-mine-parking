@@ -12,19 +12,19 @@
 
 ## ADR-001: доступ на КПП
 
-- [adr-001-online-access-rights-evaluation.md](adr-001-online-access-rights-evaluation.md) — оценка прав доступа онлайн на каждый запрос КПП (`allow/deny`).
+- [ADR-001: Онлайн-оценка прав доступа на КПП](adr-001-online-access-rights-evaluation.md) — фиксирует проверку права доступа на каждый запрос КПП (`allow/deny`).
 
 ## ADR-002: бронирование и сессия
 
-- [adr-002-booking-vs-session.md](adr-002-booking-vs-session.md) — бронирование vs парковочная сессия, мастер-сущности.
+- [ADR-002: Бронирование vs парковочная сессия](adr-002-booking-vs-session.md) — разделяет мастер-сущности и их ответственность.
 
 ## ADR-003: стиль развёртывания
 
-- [adr-003-modular-monolith.md](adr-003-modular-monolith.md) — модульный монолит для учебного проекта; ссылки на NFR и ADR-001/002.
+- [ADR-003: Модульный монолит](adr-003-modular-monolith.md) — закрепляет стиль развертывания и связи с NFR и предыдущими ADR.
 
 ## ADR-004: реестр организаций
 
-- [adr-004-dadata-organization-lookup.md](adr-004-dadata-organization-lookup.md) — интеграция с DADATA для автозаполнения реквизитов ЮЛ по ИНН при регистрации; fallback на ручной ввод.
+- [ADR-004: Интеграция с DADATA для поиска организаций](adr-004-dadata-organization-lookup.md) — описывает автозаполнение реквизитов ЮЛ по ИНН с fallback на ручной ввод.
 
 ## Связанные документы
 

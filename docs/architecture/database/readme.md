@@ -29,8 +29,8 @@
 
 ## Текущие опорные материалы
 
-- [erd/readme.md](erd/readme.md) — каноничный индекс ERD и связанных моделей.
-- [../ddd/ddd-bounded-contexts.md](../ddd/ddd-bounded-contexts.md) — модульные контексты, которые помогают понять границы данных.
+- [Индекс ERD](erd/readme.md) — каноничный каталог ERD и связанных моделей.
+- [DDD bounded contexts](../ddd/ddd-bounded-contexts.md) — описывают модульные контексты, которые помогают понять границы данных.
 
 Практические SQL-материалы пока остаются в `sql/practice/`.
 
@@ -44,7 +44,7 @@
 
 ## Связанные документы
 
-- [../readme.md](../readme.md)
-- [erd/readme.md](erd/readme.md)
-- [../../process/project-journey.md](../../process/project-journey.md)
-- [../../process/artifact-placement-guide.md](../../process/artifact-placement-guide.md)
+- [Индекс архитектуры](../readme.md) — верхний каталог архитектурных материалов.
+- [Индекс ERD](erd/readme.md) — собирает модель данных и связанные материалы.
+- [История развития проекта](../../process/project-journey.md) — показывает, как проект пришел к текущей модели данных.
+- [Гайд по размещению артефактов](../../process/artifact-placement-guide.md) — подсказывает, где хранить материалы по данным и БД.

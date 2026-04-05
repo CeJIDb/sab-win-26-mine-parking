@@ -41,14 +41,14 @@
 
 ## Связь с текущими артефактами
 
-- [../c4/c4-l1-system-context.md](../c4/c4-l1-system-context.md) и [../c4/c4-l2-container.md](../c4/c4-l2-container.md) уже задают внешний контур и точки интеграции.
-- [../../specs/constraints/constr-system.md](../../specs/constraints/constr-system.md) фиксирует ограничения, которые могут влиять на интеграции.
-- [../../artifacts/infosec/infosec-analyze-parking.md](../../artifacts/infosec/infosec-analyze-parking.md) важен для требований к безопасности интеграционного взаимодействия.
+- [C4 Level 1: System Context](../c4/c4-l1-system-context.md) и [C4 Level 2: Container](../c4/c4-l2-container.md) уже задают внешний контур и точки интеграции.
+- [Системные ограничения](../../specs/constraints/constr-system.md) фиксируют ограничения, которые могут влиять на интеграции.
+- [Анализ ИБ парковки](../../artifacts/infosec/infosec-analyze-parking.md) важен для требований к безопасности интеграционного взаимодействия.
 
 ## Связанные документы
 
-- [../readme.md](../readme.md)
-- [../../process/project-journey.md](../../process/project-journey.md)
-- [../../process/artifact-placement-guide.md](../../process/artifact-placement-guide.md)
-- [../c4/c4-l1-system-context.md](../c4/c4-l1-system-context.md)
-- [../c4/c4-l2-container.md](../c4/c4-l2-container.md)
+- [Индекс архитектуры](../readme.md) — верхний каталог архитектурных материалов.
+- [История развития проекта](../../process/project-journey.md) — показывает место интеграционного слоя в общей траектории проекта.
+- [Гайд по размещению артефактов](../../process/artifact-placement-guide.md) — подсказывает, где хранить интеграционные материалы.
+- [C4 Level 1: System Context](../c4/c4-l1-system-context.md) — задает внешний контур системы.
+- [C4 Level 2: Container](../c4/c4-l2-container.md) — показывает контейнеры и точки межсистемного взаимодействия.

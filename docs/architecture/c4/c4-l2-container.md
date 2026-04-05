@@ -164,7 +164,7 @@ C4Container
 
 ## Связанные документы
 
-- [c4-l1-system-context.md](c4-l1-system-context.md) — C4 Level 1 (System Context) в стиле референса `Телемед`
-- [c4-parking-platform.md](c4-parking-platform.md) — полный C4 для парковки (Level 1–3)
-- [../adr/adr-003-modular-monolith.md](../adr/adr-003-modular-monolith.md) — архитектурный стиль и границы контейнеров
-- [../ddd/ddd-bounded-contexts.md](../ddd/ddd-bounded-contexts.md) — bounded contexts, раскрываемые на Level 3
+- [C4 Level 1: System Context](c4-l1-system-context.md) — задает внешний контекст для контейнерной модели.
+- [C4-диаграммы платформы](c4-parking-platform.md) — объединяют все уровни C4-модели парковочной платформы.
+- [ADR-003: Модульный монолит](../adr/adr-003-modular-monolith.md) — фиксирует архитектурный стиль и границы контейнеров.
+- [DDD bounded contexts](../ddd/ddd-bounded-contexts.md) — раскрывают доменные контексты, которые уточняются на уровне контейнеров и компонентов.

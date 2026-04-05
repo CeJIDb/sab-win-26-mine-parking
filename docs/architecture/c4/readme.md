@@ -9,12 +9,12 @@
 
 ## Ключевые документы
 
-- [c4-parking-platform.md](c4-parking-platform.md)
-- [c4-l1-system-context.md](c4-l1-system-context.md)
-- [c4-l2-container.md](c4-l2-container.md)
+- [C4-диаграммы платформы](c4-parking-platform.md) — объединяют основные уровни C4-модели системы.
+- [C4 Level 1: System Context](c4-l1-system-context.md) — показывает пользователей и внешние системы вокруг платформы.
+- [C4 Level 2: Container](c4-l2-container.md) — описывает контейнеры платформы и их взаимодействия.
 
 ## Связанные документы
 
-- [../readme.md](../readme.md)
-- [../ddd/readme.md](../ddd/readme.md)
-- [../integration/readme.md](../integration/readme.md)
+- [Индекс архитектуры](../readme.md) — верхний каталог архитектурных материалов.
+- [Индекс DDD материалов](../ddd/readme.md) — связывает C4 с доменными контекстами и модульными границами.
+- [Индекс интеграционной архитектуры](../integration/readme.md) — нужен для дальнейшей детализации внешних взаимодействий.

@@ -9,11 +9,11 @@
 
 ## Ключевые документы
 
-- [es-tobe-sd-contexts.md](es-tobe-sd-contexts.md)
-- [ddd-bounded-contexts.md](ddd-bounded-contexts.md)
+- [ES TO-BE SD: Контексты](es-tobe-sd-contexts.md) — фиксирует выделенные контексты и их связи.
+- [DDD bounded contexts](ddd-bounded-contexts.md) — описывает bounded contexts и контекстную карту проекта.
 
 ## Связанные документы
 
-- [../readme.md](../readme.md)
-- [../c4/readme.md](../c4/readme.md)
-- [../database/readme.md](../database/readme.md)
+- [Индекс архитектуры](../readme.md) — верхний каталог архитектурных материалов.
+- [Индекс C4 материалов](../c4/readme.md) — показывает, как доменные контексты переходят в C4-модель.
+- [Индекс архитектуры данных](../database/readme.md) — связывает DDD с моделью данных и ERD.
