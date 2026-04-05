@@ -262,7 +262,7 @@ Canvas ведет от вопроса "у кого есть проблема" к
 
 ## Связанные документы
 
-- [impact-map.md](impact-map.md)
-- [project-charter.md](project-charter.md)
-- [user-story-map.md](user-story-map.md)
-- [../process/project-journey.md](../process/project-journey.md)
+- [Impact Map](impact-map.md) — развивает проблемную ситуацию в карту влияния и целевых поставок.
+- [Карточка проекта](project-charter.md) — фиксирует цель и рамки проекта, сформированные на базе Opportunity Canvas.
+- [User Story Map](user-story-map.md) — переводит пользовательские и бизнес-проблемы в сценарии и MVP.
+- [История развития проекта](../process/project-journey.md) — показывает место Opportunity Canvas в общей траектории проекта.

@@ -43,7 +43,7 @@
 
 ## Связанные документы
 
-- [../opportunity-canvas.md](../opportunity-canvas.md)
-- [../impact-map.md](../impact-map.md)
-- [../use-case/use-case-registry.md](../use-case/use-case-registry.md)
-- [../../specs/functional-requirements/fr-parking-session.md](../../specs/functional-requirements/fr-parking-session.md)
+- [Opportunity Canvas](../opportunity-canvas.md) — показывает бизнес-проблемы, связанные с оплатой и клиентским опытом.
+- [Impact Map](../impact-map.md) — связывает улучшение оплаты с целями проекта и ожидаемым влиянием.
+- [Реестр use case](../use-case/use-case-registry.md) — ведет к пользовательским сценариям, связанным с оплатой.
+- [FR Parking Session](../../specs/functional-requirements/fr-parking-session.md) — фиксирует требования на стыке парковочной сессии и оплаты.

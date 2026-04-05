@@ -43,7 +43,7 @@
 
 ## Связанные документы
 
-- [parking-as-is-diagram.md](parking-as-is-diagram.md)
-- [../opportunity-canvas.md](../opportunity-canvas.md)
-- [../impact-map.md](../impact-map.md)
-- [../../process/project-journey.md](../../process/project-journey.md)
+- [Схема парковки AS-IS](parking-as-is-diagram.md) — дополняет событийную модель текущим устройством парковки.
+- [Opportunity Canvas](../opportunity-canvas.md) — связывает выявленные проблемы с целевой ценностью решения.
+- [Impact Map](../impact-map.md) — показывает переход от проблем текущего состояния к бизнес-целям.
+- [История развития проекта](../../process/project-journey.md) — помещает AS-IS Event Storming в общий контекст этапов проекта.

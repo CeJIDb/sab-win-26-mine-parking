@@ -150,7 +150,7 @@
 
 ## Связанные документы
 
-- [event-storming-as-is.md](event-storming-as-is.md)
-- [uml-class-domain-as-is.md](uml-class-domain-as-is.md)
-- [../context-diagram.md](../context-diagram.md)
-- [../../architecture/database/erd/readme.md](../../architecture/database/erd/readme.md)
+- [Event Storming AS-IS](event-storming-as-is.md) — дополняет схему парковки событийной картиной текущего процесса.
+- [UML Class Diagram предметной области AS-IS](uml-class-domain-as-is.md) — показывает сущности и связи, стоящие за текущей схемой парковки.
+- [Контекстная диаграмма](../context-diagram.md) — переводит физическую схему парковки в границы будущей системы.
+- [Индекс ERD](../../architecture/database/erd/readme.md) — связывает текущую структуру парковки с целевой моделью данных.

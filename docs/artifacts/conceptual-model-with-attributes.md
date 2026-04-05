@@ -867,7 +867,7 @@ source:
 
 ## Связанные документы
 
-- [context-diagram.md](context-diagram.md)
-- [project-glossary.md](project-glossary.md)
-- [../architecture/database/erd/readme.md](../architecture/database/erd/readme.md)
-- [../specs/functional-requirements/readme.md](../specs/functional-requirements/readme.md)
+- [Контекстная диаграмма](context-diagram.md) — задает границы системы и участников, для которых строится модель.
+- [Глоссарий проекта](project-glossary.md) — фиксирует терминологию, используемую в описании сущностей и атрибутов.
+- [Индекс ERD](../architecture/database/erd/readme.md) — показывает переход от концептуальной модели к логической структуре данных.
+- [Индекс функциональных требований](../specs/functional-requirements/readme.md) — связывает сущности модели с требованиями к системе.

@@ -44,5 +44,5 @@ Bow-Tie отражает логику слева направо: от источ
 
 ## Связанные документы
 
-- [infosec-analyze-parking.md](infosec-analyze-parking.md)
-- [../../specs/nonfunctional-requirements/nfr-external-quality.md](../../specs/nonfunctional-requirements/nfr-external-quality.md)
+- [Анализ ИБ парковки](infosec-analyze-parking.md) — содержит основную аналитическую рамку, для которой Bow-Tie выступает визуальным дополнением.
+- [NFR External Quality](../../specs/nonfunctional-requirements/nfr-external-quality.md) — фиксирует требования к надежности и безопасности, связанные с этим риском.

@@ -724,7 +724,7 @@ author: System Analyst
 
 ## Связанные документы
 
-- [impact-map.md](impact-map.md)
-- [user-story-map.md](user-story-map.md)
-- [navigation-map.md](navigation-map.md)
-- [../architecture/c4/c4-parking-platform.md](../architecture/c4/c4-parking-platform.md)
+- [Impact Map](impact-map.md) — задает бизнес-контекст и целевые воздействия, отраженные в границах системы.
+- [User Story Map](user-story-map.md) — связывает внешних актеров с пользовательскими сценариями внутри системы.
+- [Карта навигации](navigation-map.md) — развивает контекстную диаграмму в структуру экранов и переходов.
+- [C4-диаграммы платформы](../architecture/c4/c4-parking-platform.md) — переводят контекстную диаграмму в архитектурную модель системы.

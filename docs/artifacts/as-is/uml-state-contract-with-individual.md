@@ -43,7 +43,7 @@
 
 ## Связанные документы
 
-- [../use-case/use-case-registry.md](../use-case/use-case-registry.md)
-- [../user-story-map.md](../user-story-map.md)
-- [../../architecture/database/erd/readme.md](../../architecture/database/erd/readme.md)
-- [../../process/project-journey.md](../../process/project-journey.md)
+- [Реестр use case](../use-case/use-case-registry.md) — связывает состояния договора с пользовательскими сценариями.
+- [User Story Map](../user-story-map.md) — показывает место договорного потока в пользовательском пути.
+- [Индекс ERD](../../architecture/database/erd/readme.md) — ведет к структуре данных, связанной с договорным контуром.
+- [История развития проекта](../../process/project-journey.md) — помещает артефакт в последовательность проектных этапов.

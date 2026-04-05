@@ -82,8 +82,8 @@ CRUDL-матрица показывает ролевое покрытие опе
 
 ## Связанные документы
 
-- [use-case-registry.md](use-case-registry.md)
-- [use-case-diagram.md](use-case-diagram.md)
-- [../conceptual-model-with-attributes.md](../conceptual-model-with-attributes.md)
-- [../../specs/functional-requirements/_template-fr.md](../../specs/functional-requirements/_template-fr.md)
-- [../../process/project-journey.md](../../process/project-journey.md)
+- [Реестр use case](use-case-registry.md) — задает набор сценариев, для которых построена CRUDL-матрица.
+- [Диаграмма вариантов использования](use-case-diagram.md) — визуализирует актеров и сценарии, отраженные в матрице.
+- [Концептуальная модель с атрибутами](../conceptual-model-with-attributes.md) — дает сущности, используемые в CRUDL-разрезе.
+- [Шаблон функционального требования](../../specs/functional-requirements/_template-fr.md) — помогает переводить CRUDL-находки в требования.
+- [История развития проекта](../../process/project-journey.md) — показывает место CRUDL-матрицы в общей траектории проекта.

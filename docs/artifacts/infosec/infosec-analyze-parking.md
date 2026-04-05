@@ -68,11 +68,11 @@
 
 ## Связанные материалы
 
-- [bow-tie-unauthorized-access-to-system-and-data.md](bow-tie-unauthorized-access-to-system-and-data.md) — проектная визуализация риска несанкционированного доступа к системе и данным.
+- [Bow-Tie риска несанкционированного доступа](bow-tie-unauthorized-access-to-system-and-data.md) — проектная визуализация ключевого ИБ-риска и защитных барьеров.
 
 ---
 
-Термины и сокращения проекта (включая ИБ-термины) приведены в глоссарии: [project-glossary.md](../project-glossary.md), раздел [«7. Термины, связанные с аутентификацией и безопасностью»](../project-glossary.md#7-термины-связанные-с-аутентификацией-и-безопасностью).
+Термины и сокращения проекта (включая ИБ-термины) приведены в [Глоссарии проекта](../project-glossary.md), раздел [«7. Термины, связанные с аутентификацией и безопасностью»](../project-glossary.md#7-термины-связанные-с-аутентификацией-и-безопасностью).
 
 ---
 
@@ -258,6 +258,6 @@
 
 ## Связанные документы
 
-- [bow-tie-unauthorized-access-to-system-and-data.md](bow-tie-unauthorized-access-to-system-and-data.md)
-- [../../specs/nonfunctional-requirements/nfr-external-quality.md](../../specs/nonfunctional-requirements/nfr-external-quality.md)
-- [../../architecture/readme.md](../../architecture/readme.md)
+- [Bow-Tie риска несанкционированного доступа](bow-tie-unauthorized-access-to-system-and-data.md) — визуализирует один из ключевых ИБ-рисков, разобранных в документе.
+- [NFR External Quality](../../specs/nonfunctional-requirements/nfr-external-quality.md) — фиксирует требования к внешнему качеству и устойчивости, связанные с ИБ.
+- [Индекс архитектуры](../../architecture/readme.md) — ведет к архитектурным решениям, влияющим на безопасность системы.

@@ -44,7 +44,7 @@
 
 ## Связанные документы
 
-- [parking-as-is-diagram.md](parking-as-is-diagram.md)
-- [event-storming-as-is.md](event-storming-as-is.md)
-- [../../architecture/database/erd/readme.md](../../architecture/database/erd/readme.md)
-- [../conceptual-model-with-attributes.md](../conceptual-model-with-attributes.md)
+- [Схема парковки AS-IS](parking-as-is-diagram.md) — показывает физический контекст сущностей текущей модели.
+- [Event Storming AS-IS](event-storming-as-is.md) — связывает сущности предметной области с событиями и ролями.
+- [Индекс ERD](../../architecture/database/erd/readme.md) — показывает переход от AS-IS модели к целевой структуре данных.
+- [Концептуальная модель с атрибутами](../conceptual-model-with-attributes.md) — развивает предметную область в целевую аналитическую модель.

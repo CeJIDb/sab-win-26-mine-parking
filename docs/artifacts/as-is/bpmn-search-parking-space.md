@@ -43,7 +43,7 @@
 
 ## Связанные документы
 
-- [parking-as-is-diagram.md](parking-as-is-diagram.md)
-- [bpmn-provide-parking-space.md](bpmn-provide-parking-space.md)
-- [../navigation-map.md](../navigation-map.md)
-- [../../architecture/database/erd/readme.md](../../architecture/database/erd/readme.md)
+- [Схема парковки AS-IS](parking-as-is-diagram.md) — задает физический контекст поиска парковочного места.
+- [BPMN AS-IS предоставления парковочного места](bpmn-provide-parking-space.md) — продолжает сценарий после поиска свободного места.
+- [Карта навигации](../navigation-map.md) — показывает, как аналогичный сценарий отражается в интерфейсах целевой системы.
+- [Индекс ERD](../../architecture/database/erd/readme.md) — ведет к данным, связанным с местами, зонами и доступностью.

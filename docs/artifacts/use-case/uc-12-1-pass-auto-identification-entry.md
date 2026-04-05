@@ -174,7 +174,7 @@
 
 ## Связанные документы
 
-- [uc-12-2-create-booking-auto-entry.md](uc-12-2-create-booking-auto-entry.md)
-- [uc-12-4-create-parking-session.md](uc-12-4-create-parking-session.md)
-- [use-case-registry.md](use-case-registry.md)
-- [../../specs/functional-requirements/fr-parking-session.md](../../specs/functional-requirements/fr-parking-session.md)
+- [UC-12.2 Создание бронирования при въезде](uc-12-2-create-booking-auto-entry.md) — описывает продолжение сценария после идентификации.
+- [UC-12.4 Создание парковочной сессии](uc-12-4-create-parking-session.md) — показывает вариант перехода к активной сессии.
+- [Реестр use case](use-case-registry.md) — фиксирует место сценария в общем каталоге use case.
+- [FR Parking Session](../../specs/functional-requirements/fr-parking-session.md) — задает требования к въезду и началу сессии.

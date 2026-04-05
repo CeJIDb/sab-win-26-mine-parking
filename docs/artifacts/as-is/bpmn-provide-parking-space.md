@@ -43,7 +43,7 @@
 
 ## Связанные документы
 
-- [parking-as-is-diagram.md](parking-as-is-diagram.md)
-- [bpmn-search-parking-space.md](bpmn-search-parking-space.md)
-- [../context-diagram.md](../context-diagram.md)
-- [../use-case/use-case-registry.md](../use-case/use-case-registry.md)
+- [Схема парковки AS-IS](parking-as-is-diagram.md) — показывает физический контекст предоставления парковочного места.
+- [BPMN AS-IS поиска парковочного места](bpmn-search-parking-space.md) — описывает предшествующий процесс выбора свободного места.
+- [Контекстная диаграмма](../context-diagram.md) — связывает текущий процесс с границами будущей системы.
+- [Реестр use case](../use-case/use-case-registry.md) — ведет к связанным пользовательским сценариям.

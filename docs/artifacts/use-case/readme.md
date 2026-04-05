@@ -10,22 +10,22 @@
 
 ## Ключевые документы
 
-- [use-case-registry.md](use-case-registry.md) — каноничный реестр use case проекта.
-- [crudl.md](crudl.md) — каноничная CRUDL-матрица по ролям и сущностям проекта.
-- [use-case-diagram.md](use-case-diagram.md) — визуальная карта вариантов использования и актеров.
-- [uc-12-1-pass-auto-identification-entry.md](uc-12-1-pass-auto-identification-entry.md)
-- [uc-12-2-create-booking-auto-entry.md](uc-12-2-create-booking-auto-entry.md)
-- [uc-12-4-create-parking-session.md](uc-12-4-create-parking-session.md)
-- [uc-12-6-pass-auto-identification-exit.md](uc-12-6-pass-auto-identification-exit.md)
-- [uc-12-7-complete-booking-auto-exit.md](uc-12-7-complete-booking-auto-exit.md)
-- [uc-12-9-complete-parking-session.md](uc-12-9-complete-parking-session.md)
+- [Реестр use case](use-case-registry.md) — каноничный список вариантов использования проекта.
+- [CRUDL-матрица](crudl.md) — связывает роли, сущности и операции проекта.
+- [Диаграмма вариантов использования](use-case-diagram.md) — визуализирует актеров и карту use case.
+- [UC-12.1 Автоматическая идентификация на въезде](uc-12-1-pass-auto-identification-entry.md) — описывает сценарий допуска автомобиля на въезд.
+- [UC-12.2 Создание бронирования при въезде](uc-12-2-create-booking-auto-entry.md) — фиксирует сценарий оформления брони на точке входа.
+- [UC-12.4 Создание парковочной сессии](uc-12-4-create-parking-session.md) — описывает запуск парковочной сессии после допуска.
+- [UC-12.6 Автоматическая идентификация на выезде](uc-12-6-pass-auto-identification-exit.md) — описывает сценарий проверки права на выезд.
+- [UC-12.7 Завершение бронирования при авто-выезде](uc-12-7-complete-booking-auto-exit.md) — фиксирует завершение краткосрочного бронирования.
+- [UC-12.9 Завершение парковочной сессии](uc-12-9-complete-parking-session.md) — описывает закрытие сессии и связанные проверки.
 
 ## Подразделы
 
-- [assets/](assets/readme.md) — изображения диаграмм вариантов использования.
+- [Индекс изображений use case](assets/readme.md) — содержит изображения диаграмм вариантов использования.
 
 ## Связанные документы
 
-- [../readme.md](../readme.md)
-- [../../specs/functional-requirements/readme.md](../../specs/functional-requirements/readme.md)
-- [../../process/artifact-placement-guide.md](../../process/artifact-placement-guide.md)
+- [Индекс артефактов](../readme.md) — верхний каталог аналитических материалов проекта.
+- [Индекс функциональных требований](../../specs/functional-requirements/readme.md) — связывает use case с требованиями `FR-*`.
+- [Гайд по размещению артефактов](../../process/artifact-placement-guide.md) — задает правила раскладки и развития документов.

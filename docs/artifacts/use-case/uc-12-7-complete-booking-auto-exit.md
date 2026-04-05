@@ -99,7 +99,7 @@
 
 ## Связанные документы
 
-- [uc-12-9-complete-parking-session.md](uc-12-9-complete-parking-session.md)
-- [uc-12-2-create-booking-auto-entry.md](uc-12-2-create-booking-auto-entry.md)
-- [use-case-registry.md](use-case-registry.md)
-- [../../specs/functional-requirements/fr-booking.md](../../specs/functional-requirements/fr-booking.md)
+- [UC-12.9 Завершение парковочной сессии](uc-12-9-complete-parking-session.md) — показывает смежный сценарий завершения поездки.
+- [UC-12.2 Создание бронирования при въезде](uc-12-2-create-booking-auto-entry.md) — описывает исходный сценарий, который завершается на выезде.
+- [Реестр use case](use-case-registry.md) — содержит место сценария в общем каталоге вариантов использования.
+- [FR Booking](../../specs/functional-requirements/fr-booking.md) — задает требования к бронированию и его завершению.

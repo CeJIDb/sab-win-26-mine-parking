@@ -154,7 +154,7 @@
 
 ## Связанные документы
 
-- [uc-12-1-pass-auto-identification-entry.md](uc-12-1-pass-auto-identification-entry.md)
-- [uc-12-4-create-parking-session.md](uc-12-4-create-parking-session.md)
-- [../../architecture/database/erd/readme.md](../../architecture/database/erd/readme.md)
-- [../../specs/functional-requirements/fr-booking.md](../../specs/functional-requirements/fr-booking.md)
+- [UC-12.1 Автоматическая идентификация на въезде](uc-12-1-pass-auto-identification-entry.md) — задает входной сценарий перед созданием бронирования.
+- [UC-12.4 Создание парковочной сессии](uc-12-4-create-parking-session.md) — описывает смежный сценарий допуска после бронирования.
+- [Индекс ERD](../../architecture/database/erd/readme.md) — ведет к данным, связанным с бронированием и сессией.
+- [FR Booking](../../specs/functional-requirements/fr-booking.md) — фиксирует требования к созданию бронирования.

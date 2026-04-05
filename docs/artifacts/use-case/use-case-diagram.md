@@ -43,7 +43,7 @@
 
 ## Связанные документы
 
-- [use-case-registry.md](use-case-registry.md)
-- [../context-diagram.md](../context-diagram.md)
-- [../user-story-map.md](../user-story-map.md)
-- [../../specs/functional-requirements/readme.md](../../specs/functional-requirements/readme.md)
+- [Реестр use case](use-case-registry.md) — содержит каноничный список сценариев, отображенных на диаграмме.
+- [Контекстная диаграмма](../context-diagram.md) — задает внешних актеров и границы системы.
+- [User Story Map](../user-story-map.md) — связывает use case с пользовательскими потоками и MVP.
+- [Индекс функциональных требований](../../specs/functional-requirements/readme.md) — ведет к требованиям, выведенным из use case.

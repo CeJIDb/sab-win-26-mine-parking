@@ -223,7 +223,7 @@ source:
 
 ## Связанные документы
 
-- [project-charter.md](project-charter.md)
-- [context-diagram.md](context-diagram.md)
-- [conceptual-model-with-attributes.md](conceptual-model-with-attributes.md)
-- [../architecture/database/erd/readme.md](../architecture/database/erd/readme.md)
+- [Карточка проекта](project-charter.md) — задает базовые термины и рамки проекта.
+- [Контекстная диаграмма](context-diagram.md) — использует глоссарий для описания границ системы и внешних участников.
+- [Концептуальная модель с атрибутами](conceptual-model-with-attributes.md) — развивает терминологию в сущности предметной области.
+- [Индекс ERD](../architecture/database/erd/readme.md) — показывает, как термины переходят в структуру данных.

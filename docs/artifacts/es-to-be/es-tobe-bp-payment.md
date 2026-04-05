@@ -63,8 +63,8 @@
 
 ## Связанные документы
 
-- [es-tobe-sd-access-and-parking-flow.md](es-tobe-sd-access-and-parking-flow.md)
-- [../algorithms/drakon-parking-payment.md](../algorithms/drakon-parking-payment.md)
-- [../use-case/use-case-registry.md](../use-case/use-case-registry.md)
-- [../../specs/functional-requirements/fr-payment.md](../../specs/functional-requirements/fr-payment.md)
-- [../../interviews/protocols/interview-protocol-6-2026-02-25-v01.md](../../interviews/protocols/interview-protocol-6-2026-02-25-v01.md)
+- [ES TO-BE SD: Предоставление парковочного места и проверка права доступа](es-tobe-sd-access-and-parking-flow.md) — показывает сценарий, внутри которого срабатывает платежный поток.
+- [DRAKON-схема оплаты парковки](../algorithms/drakon-parking-payment.md) — формализует целевой процесс оплаты в алгоритмическом виде.
+- [Реестр use case](../use-case/use-case-registry.md) — связывает TO-BE оплату с формализованными сценариями системы.
+- [FR Payment](../../specs/functional-requirements/fr-payment.md) — фиксирует требования к целевому процессу оплаты.
+- [Протокол интервью №6](../../interviews/protocols/interview-protocol-6-2026-02-25-v01.md) — содержит обсуждение и валидацию платежного сценария.

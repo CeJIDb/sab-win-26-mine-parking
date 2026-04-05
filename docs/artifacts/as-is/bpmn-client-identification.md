@@ -43,7 +43,7 @@
 
 ## Связанные документы
 
-- [parking-as-is-diagram.md](parking-as-is-diagram.md)
-- [../context-diagram.md](../context-diagram.md)
-- [../use-case/use-case-registry.md](../use-case/use-case-registry.md)
-- [../../specs/functional-requirements/fr-parking-session.md](../../specs/functional-requirements/fr-parking-session.md)
+- [Схема парковки AS-IS](parking-as-is-diagram.md) — показывает контекст точек входа и идентификации клиента.
+- [Контекстная диаграмма](../context-diagram.md) — переносит текущий процесс идентификации в границы проектируемой системы.
+- [Реестр use case](../use-case/use-case-registry.md) — связывает идентификацию с пользовательскими сценариями.
+- [FR Parking Session](../../specs/functional-requirements/fr-parking-session.md) — фиксирует требования, связанные с допуском и началом сессии.

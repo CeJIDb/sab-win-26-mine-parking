@@ -11,25 +11,25 @@
 
 ## Ключевые документы
 
-- [es-tobe-sd-team-board.md](es-tobe-sd-team-board.md)
-- [es-tobe-sd-access-and-parking-flow.md](es-tobe-sd-access-and-parking-flow.md)
-- [es-tobe-bp-booking-and-contract.md](es-tobe-bp-booking-and-contract.md)
-- [es-tobe-bp-payment.md](es-tobe-bp-payment.md)
-- [es-tobe-bp-client-profile-and-vehicles.md](es-tobe-bp-client-profile-and-vehicles.md)
+- [ES TO-BE SD: Командная диаграмма](es-tobe-sd-team-board.md) — показывает общую TO-BE доску с ключевыми доменными потоками.
+- [ES TO-BE SD: Предоставление парковочного места и проверка права доступа](es-tobe-sd-access-and-parking-flow.md) — описывает целевой сценарий допуска и предоставления места.
+- [ES TO-BE BP: Краткосрочное и долгосрочное бронирование, договор](es-tobe-bp-booking-and-contract.md) — фиксирует TO-BE процесс бронирования и работы с договором.
+- [ES TO-BE BP: Оплата](es-tobe-bp-payment.md) — описывает целевой процесс оплаты.
+- [ES TO-BE BP: Управление профилем клиента и списком ТС](es-tobe-bp-client-profile-and-vehicles.md) — показывает TO-BE логику профиля клиента и его транспортных средств.
 
 ## Изображения
 
-- [assets/](assets/readme.md) — каноничные копии актуальных диаграмм, на которые ссылаются `md`-артефакты
+- [Индекс изображений ES TO-BE артефактов](assets/readme.md) — содержит каноничные копии диаграмм, на которые ссылаются `md`-документы.
 
 ## Заметки
 
 - Раздел хранит именно TO-BE модели.
 - Для артефактов, пришедших как изображение, каноничным документом считается текстовая `md`-версия, а не `jpg`.
-- AS-IS материалы вынесены в [`../as-is/`](../as-is/readme.md).
+- AS-IS материалы вынесены в [Индекс AS-IS артефактов](../as-is/readme.md).
 
 ## Связанные документы
 
-- [../readme.md](../readme.md)
-- [../use-case/readme.md](../use-case/readme.md)
-- [../../architecture/ddd/es-tobe-sd-contexts.md](../../architecture/ddd/es-tobe-sd-contexts.md)
-- [../../architecture/ddd/readme.md](../../architecture/ddd/readme.md)
+- [Индекс артефактов](../readme.md) — верхний каталог аналитических материалов проекта.
+- [Индекс use case](../use-case/readme.md) — связывает TO-BE процессы с пользовательскими сценариями.
+- [ES TO-BE SD: Контексты](../../architecture/ddd/es-tobe-sd-contexts.md) — переводит TO-BE материал в архитектурные контексты.
+- [Индекс DDD материалов](../../architecture/ddd/readme.md) — собирает доменные контексты и границы модулей.

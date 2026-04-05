@@ -43,7 +43,7 @@
 
 ## Связанные документы
 
-- [uml-state-contract-with-individual.md](uml-state-contract-with-individual.md)
-- [../user-story-map.md](../user-story-map.md)
-- [../use-case/use-case-registry.md](../use-case/use-case-registry.md)
-- [../../architecture/database/erd/readme.md](../../architecture/database/erd/readme.md)
+- [UML StateChart договора с физлицом AS-IS](uml-state-contract-with-individual.md) — детализирует жизненный цикл договора, используемый в процессе.
+- [User Story Map](../user-story-map.md) — показывает, как процесс заключения договора отражается в пользовательских сценариях.
+- [Реестр use case](../use-case/use-case-registry.md) — связывает процесс с вариантами использования системы.
+- [Индекс ERD](../../architecture/database/erd/readme.md) — ведет к модели данных, затрагиваемой договорным контуром.

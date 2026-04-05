@@ -382,7 +382,7 @@
 
 ## Связанные документы
 
-- [user-story-map.md](user-story-map.md)
-- [context-diagram.md](context-diagram.md)
-- [../demo-days/demo-4/readme.md](../demo-days/demo-4/readme.md)
-- [../../ui/README.md](../../ui/README.md)
+- [User Story Map](user-story-map.md) — задает пользовательские потоки, которые отражены в навигации.
+- [Контекстная диаграмма](context-diagram.md) — показывает границы системы, внутри которых строится карта экранов.
+- [Demo 4](../demo-days/demo-4/readme.md) — использует навигацию как часть демонстрационного narrative.
+- [Wireframe — цифровая платформа парковки](../../ui/README.md) — показывает реализацию карты навигации в интерфейсном макете.

@@ -61,8 +61,8 @@
 
 ## Связанные документы
 
-- [../../architecture/ddd/es-tobe-sd-contexts.md](../../architecture/ddd/es-tobe-sd-contexts.md)
-- [es-tobe-sd-access-and-parking-flow.md](es-tobe-sd-access-and-parking-flow.md)
-- [es-tobe-bp-booking-and-contract.md](es-tobe-bp-booking-and-contract.md)
-- [es-tobe-bp-payment.md](es-tobe-bp-payment.md)
-- [es-tobe-bp-client-profile-and-vehicles.md](es-tobe-bp-client-profile-and-vehicles.md)
+- [ES TO-BE SD: Контексты](../../architecture/ddd/es-tobe-sd-contexts.md) — переводит общую TO-BE доску в архитектурные контексты.
+- [ES TO-BE SD: Предоставление парковочного места и проверка права доступа](es-tobe-sd-access-and-parking-flow.md) — детализирует один из ключевых потоков командной диаграммы.
+- [ES TO-BE BP: Краткосрочное и долгосрочное бронирование, договор](es-tobe-bp-booking-and-contract.md) — раскрывает процесс бронирования на основе общей доски.
+- [ES TO-BE BP: Оплата](es-tobe-bp-payment.md) — детализирует платежный поток целевого состояния.
+- [ES TO-BE BP: Управление профилем клиента и списком ТС](es-tobe-bp-client-profile-and-vehicles.md) — раскрывает клиентский контур TO-BE решения.

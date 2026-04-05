@@ -28,8 +28,8 @@
 
 Текущий каноничный артефакт раздела:
 
-- [drakon-parking-payment.md](drakon-parking-payment.md)
-- [assets/readme.md](assets/readme.md)
+- [DRAKON-схема оплаты парковки](drakon-parking-payment.md) — формализует логику оплаты в виде алгоритмической схемы.
+- [Индекс изображений алгоритмических артефактов](assets/readme.md) — содержит связанные изображения и приложения.
 
 ## Заметки по использованию
 
@@ -39,8 +39,8 @@
 
 ## Связанные документы
 
-- [../readme.md](../readme.md)
-- [assets/readme.md](assets/readme.md)
-- [../../process/artifact-placement-guide.md](../../process/artifact-placement-guide.md)
-- [../../process/templates/artifact-from-image-template.md](../../process/templates/artifact-from-image-template.md)
-- [../../architecture/readme.md](../../architecture/readme.md)
+- [Индекс артефактов](../readme.md) — верхний каталог аналитических материалов проекта.
+- [Индекс изображений алгоритмических артефактов](assets/readme.md) — ведет к изображениям и исходным приложениям.
+- [Гайд по размещению артефактов](../../process/artifact-placement-guide.md) — задает правила раскладки материалов по репозиторию.
+- [Шаблон артефакта из изображения](../../process/templates/artifact-from-image-template.md) — помогает оформлять схемы, пришедшие как изображения.
+- [Индекс архитектуры](../../architecture/readme.md) — нужен, если алгоритм перерастает в архитектурное решение.

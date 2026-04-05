@@ -63,10 +63,10 @@
 
 ## Связанные документы
 
-- [es-tobe-bp-booking-and-contract.md](es-tobe-bp-booking-and-contract.md)
-- [es-tobe-bp-payment.md](es-tobe-bp-payment.md)
-- [es-tobe-bp-client-profile-and-vehicles.md](es-tobe-bp-client-profile-and-vehicles.md)
-- [../use-case/uc-12-1-pass-auto-identification-entry.md](../use-case/uc-12-1-pass-auto-identification-entry.md)
-- [../use-case/uc-12-2-create-booking-auto-entry.md](../use-case/uc-12-2-create-booking-auto-entry.md)
-- [../use-case/uc-12-9-complete-parking-session.md](../use-case/uc-12-9-complete-parking-session.md)
-- [../../architecture/adr/adr-001-online-access-rights-evaluation.md](../../architecture/adr/adr-001-online-access-rights-evaluation.md)
+- [ES TO-BE BP: Краткосрочное и долгосрочное бронирование, договор](es-tobe-bp-booking-and-contract.md) — описывает соседний TO-BE поток, связанный с доступом и местом.
+- [ES TO-BE BP: Оплата](es-tobe-bp-payment.md) — показывает платежную часть целевого процесса.
+- [ES TO-BE BP: Управление профилем клиента и списком ТС](es-tobe-bp-client-profile-and-vehicles.md) — дополняет сценарий клиентскими данными и транспортом.
+- [UC-12.1 Автоматическая идентификация на въезде](../use-case/uc-12-1-pass-auto-identification-entry.md) — связывает TO-BE поток с целевым use case въезда.
+- [UC-12.2 Создание бронирования при въезде](../use-case/uc-12-2-create-booking-auto-entry.md) — описывает целевой сценарий оформления допуска.
+- [UC-12.9 Завершение парковочной сессии](../use-case/uc-12-9-complete-parking-session.md) — продолжает жизненный цикл целевого процесса на выезде.
+- [ADR-001: Онлайн-оценка прав доступа на КПП](../../architecture/adr/adr-001-online-access-rights-evaluation.md) — задает архитектурное решение, лежащее в основе сценария доступа.

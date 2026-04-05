@@ -200,7 +200,7 @@
 
 ## Связанные документы
 
-- [use-case-diagram.md](use-case-diagram.md)
-- [../user-story-map.md](../user-story-map.md)
-- [../../specs/functional-requirements/readme.md](../../specs/functional-requirements/readme.md)
-- [../../process/traceability-matrix-log.md](../../process/traceability-matrix-log.md)
+- [Диаграмма вариантов использования](use-case-diagram.md) — визуализирует состав и связи use case из реестра.
+- [User Story Map](../user-story-map.md) — показывает пользовательские сценарии, которые покрывает реестр.
+- [Индекс функциональных требований](../../specs/functional-requirements/readme.md) — связывает use case с требованиями `FR-*`.
+- [Журнал изменений матрицы трассировки](../../process/traceability-matrix-log.md) — фиксирует развитие связей между use case и требованиями.

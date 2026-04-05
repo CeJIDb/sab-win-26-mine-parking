@@ -63,8 +63,8 @@
 
 ## Связанные документы
 
-- [es-tobe-sd-access-and-parking-flow.md](es-tobe-sd-access-and-parking-flow.md)
-- [../project-charter.md](../project-charter.md)
-- [../user-story-map.md](../user-story-map.md)
-- [../context-diagram.md](../context-diagram.md)
-- [../../specs/nonfunctional-requirements/nfr-ui-quality.md](../../specs/nonfunctional-requirements/nfr-ui-quality.md)
+- [ES TO-BE SD: Предоставление парковочного места и проверка права доступа](es-tobe-sd-access-and-parking-flow.md) — показывает, как клиентский профиль влияет на сценарии доступа.
+- [Карточка проекта](../project-charter.md) — задает рамки и цели, для которых проектируется клиентский контур.
+- [User Story Map](../user-story-map.md) — связывает управление профилем и ТС с пользовательскими историями.
+- [Контекстная диаграмма](../context-diagram.md) — задает место клиентского профиля в границах системы.
+- [NFR UI Quality](../../specs/nonfunctional-requirements/nfr-ui-quality.md) — фиксирует требования к качеству интерфейсов клиентского контура.

@@ -116,7 +116,7 @@
 
 ## Связанные документы
 
-- [uc-12-6-pass-auto-identification-exit.md](uc-12-6-pass-auto-identification-exit.md)
-- [uc-12-7-complete-booking-auto-exit.md](uc-12-7-complete-booking-auto-exit.md)
-- [use-case-registry.md](use-case-registry.md)
-- [../../specs/functional-requirements/fr-parking-session.md](../../specs/functional-requirements/fr-parking-session.md)
+- [UC-12.6 Автоматическая идентификация на выезде](uc-12-6-pass-auto-identification-exit.md) — задает входной сценарий перед завершением сессии.
+- [UC-12.7 Завершение бронирования при авто-выезде](uc-12-7-complete-booking-auto-exit.md) — показывает смежный сценарий завершения поездки.
+- [Реестр use case](use-case-registry.md) — фиксирует место сценария в общем каталоге use case.
+- [FR Parking Session](../../specs/functional-requirements/fr-parking-session.md) — задает требования к закрытию парковочной сессии.

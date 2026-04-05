@@ -115,8 +115,8 @@
 
 ## Связанные документы
 
-- [readme.md](readme.md)
-- [../use-case/uc-12-7-complete-booking-auto-exit.md](../use-case/uc-12-7-complete-booking-auto-exit.md)
-- [../use-case/uc-12-9-complete-parking-session.md](../use-case/uc-12-9-complete-parking-session.md)
-- [../es-to-be/es-tobe-bp-payment.md](../es-to-be/es-tobe-bp-payment.md)
-- [../../specs/functional-requirements/readme.md](../../specs/functional-requirements/readme.md)
+- [Индекс алгоритмических артефактов](readme.md) — показывает место схемы в каталоге алгоритмических материалов.
+- [UC-12.7 Завершение бронирования при авто-выезде](../use-case/uc-12-7-complete-booking-auto-exit.md) — использует логику оплаты при завершении бронирования.
+- [UC-12.9 Завершение парковочной сессии](../use-case/uc-12-9-complete-parking-session.md) — связывает алгоритм оплаты с закрытием парковочной сессии.
+- [ES TO-BE BP: Оплата](../es-to-be/es-tobe-bp-payment.md) — задает целевой бизнес-процесс оплаты, формализованный в DRAKON-схеме.
+- [Индекс функциональных требований](../../specs/functional-requirements/readme.md) — ведет к требованиям, которые поддерживает алгоритм.

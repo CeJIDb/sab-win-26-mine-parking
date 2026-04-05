@@ -132,7 +132,7 @@
 
 ## Связанные документы
 
-- [uc-12-1-pass-auto-identification-entry.md](uc-12-1-pass-auto-identification-entry.md)
-- [uc-12-2-create-booking-auto-entry.md](uc-12-2-create-booking-auto-entry.md)
-- [uc-12-9-complete-parking-session.md](uc-12-9-complete-parking-session.md)
-- [../../specs/functional-requirements/fr-parking-session.md](../../specs/functional-requirements/fr-parking-session.md)
+- [UC-12.1 Автоматическая идентификация на въезде](uc-12-1-pass-auto-identification-entry.md) — задает входной сценарий перед созданием сессии.
+- [UC-12.2 Создание бронирования при въезде](uc-12-2-create-booking-auto-entry.md) — описывает соседний сценарий оформления допуска.
+- [UC-12.9 Завершение парковочной сессии](uc-12-9-complete-parking-session.md) — продолжает жизненный цикл парковочной сессии.
+- [FR Parking Session](../../specs/functional-requirements/fr-parking-session.md) — фиксирует требования к созданию и ведению парковочной сессии.

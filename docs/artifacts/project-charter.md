@@ -264,7 +264,7 @@ type: artifact
 
 ## Связанные документы
 
-- [opportunity-canvas.md](opportunity-canvas.md)
-- [impact-map.md](impact-map.md)
-- [user-story-map.md](user-story-map.md)
-- [project-glossary.md](project-glossary.md)
+- [Opportunity Canvas](opportunity-canvas.md) — раскрывает проблемную ситуацию и ценность решения, зафиксированные в карточке проекта.
+- [Impact Map](impact-map.md) — связывает цель проекта с влияниями и поставками.
+- [User Story Map](user-story-map.md) — развивает рамки проекта в пользовательские сценарии и MVP.
+- [Глоссарий проекта](project-glossary.md) — фиксирует терминологию, используемую в карточке проекта.

@@ -17,17 +17,17 @@
 
 ## Ключевые документы
 
-- [parking-as-is-diagram.md](parking-as-is-diagram.md) — схема текущей парковки и распределения зон.
-- [event-storming-as-is.md](event-storming-as-is.md) — событийная модель текущего состояния.
-- [uml-class-domain-as-is.md](uml-class-domain-as-is.md) — UML-диаграмма классов предметной области в AS-IS.
-- [uml-state-contract-with-individual.md](uml-state-contract-with-individual.md) — жизненный цикл договора с физлицом.
-- [bpmn-client-identification.md](bpmn-client-identification.md)
-- [bpmn-payment-individual-and-legal-clients.md](bpmn-payment-individual-and-legal-clients.md)
-- [bpmn-provide-parking-space.md](bpmn-provide-parking-space.md)
-- [bpmn-search-parking-space.md](bpmn-search-parking-space.md)
-- [bpmn-parking-exit.md](bpmn-parking-exit.md)
-- [bpmn-contract-signing.md](bpmn-contract-signing.md)
-- [assets/](assets/readme.md) — изображения AS-IS артефактов
+- [Схема парковки AS-IS](parking-as-is-diagram.md) — показывает текущее устройство парковки и распределение зон.
+- [Event Storming AS-IS](event-storming-as-is.md) — фиксирует события, роли и проблемные точки текущего процесса.
+- [UML Class Diagram предметной области AS-IS](uml-class-domain-as-is.md) — описывает сущности и связи в текущем состоянии.
+- [UML StateChart договора с физлицом AS-IS](uml-state-contract-with-individual.md) — показывает жизненный цикл договора с физическим лицом.
+- [BPMN AS-IS идентификации клиента](bpmn-client-identification.md) — описывает текущий процесс идентификации клиента.
+- [BPMN AS-IS оплаты для физлиц и юрлиц](bpmn-payment-individual-and-legal-clients.md) — фиксирует текущие сценарии оплаты.
+- [BPMN AS-IS предоставления парковочного места](bpmn-provide-parking-space.md) — показывает процесс допуска и предоставления места.
+- [BPMN AS-IS поиска парковочного места](bpmn-search-parking-space.md) — описывает поиск свободного парковочного места.
+- [BPMN AS-IS выезда с парковки](bpmn-parking-exit.md) — фиксирует текущий процесс выезда.
+- [BPMN AS-IS заключения договора](bpmn-contract-signing.md) — описывает текущий порядок оформления договора.
+- [Индекс изображений AS-IS артефактов](assets/readme.md) — содержит исходные изображения и приложения к AS-IS материалам.
 
 ## Правила ведения
 
@@ -37,7 +37,7 @@
 
 ## Связанные документы
 
-- [../readme.md](../readme.md)
-- [../../process/artifact-placement-guide.md](../../process/artifact-placement-guide.md)
-- [../../process/templates/artifact-from-image-template.md](../../process/templates/artifact-from-image-template.md)
-- [../es-to-be/](../es-to-be/)
+- [Индекс артефактов](../readme.md) — верхний каталог аналитических артефактов проекта.
+- [Гайд по размещению артефактов](../../process/artifact-placement-guide.md) — подсказывает, куда раскладывать материалы по этапам.
+- [Шаблон артефакта из изображения](../../process/templates/artifact-from-image-template.md) — помогает нормализовать артефакты, пришедшие в виде картинки.
+- [Индекс ES TO-BE артефактов](../es-to-be/readme.md) — продолжает линию анализа в целевое состояние.

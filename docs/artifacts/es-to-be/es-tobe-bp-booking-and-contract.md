@@ -65,9 +65,9 @@
 
 ## Связанные документы
 
-- [es-tobe-sd-access-and-parking-flow.md](es-tobe-sd-access-and-parking-flow.md)
-- [es-tobe-bp-payment.md](es-tobe-bp-payment.md)
-- [../project-charter.md](../project-charter.md)
-- [../user-story-map.md](../user-story-map.md)
-- [../../architecture/adr/adr-002-booking-vs-session.md](../../architecture/adr/adr-002-booking-vs-session.md)
-- [../../specs/functional-requirements/fr-booking.md](../../specs/functional-requirements/fr-booking.md)
+- [ES TO-BE SD: Предоставление парковочного места и проверка права доступа](es-tobe-sd-access-and-parking-flow.md) — показывает соседний поток доступа и допуска.
+- [ES TO-BE BP: Оплата](es-tobe-bp-payment.md) — описывает платежный процесс, связанный с бронированием и договором.
+- [Карточка проекта](../project-charter.md) — задает рамки и цели, влияющие на проектирование booking-контуров.
+- [User Story Map](../user-story-map.md) — связывает TO-BE процесс с пользовательскими историями и MVP.
+- [ADR-002: Бронирование vs парковочная сессия](../../architecture/adr/adr-002-booking-vs-session.md) — фиксирует ключевое архитектурное разделение сущностей.
+- [FR Booking](../../specs/functional-requirements/fr-booking.md) — задает требования к бронированию и договорному потоку.
