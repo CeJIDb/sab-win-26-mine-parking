@@ -94,6 +94,6 @@ status: canonical-interview-plan
 
 ## Связанные документы
 
-- [interview-protocol-1-2-2026-01-23-v01.md](../protocols/interview-protocol-1-2-2026-01-23-v01.md)
-- [interview-protocol-1-1-2026-01-21-v01.md](../protocols/interview-protocol-1-1-2026-01-21-v01.md)
-- [readme.md](readme.md)
+- [Протокол интервью №1.2](../protocols/interview-protocol-1-2-2026-01-23-v01.md) — фиксирует результаты встречи по этому плану.
+- [Протокол интервью №1.1](../protocols/interview-protocol-1-1-2026-01-21-v01.md) — дает контекст предыдущего интервью и его выводов.
+- [Индекс планов интервью](readme.md) — ведет к остальным планам встреч проекта.

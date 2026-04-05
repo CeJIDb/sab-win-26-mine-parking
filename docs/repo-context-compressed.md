@@ -17,14 +17,14 @@
 ## 1. Project Summary
 ## Связанные документы
 
-- [docs/architecture/adr/adr-001-online-access-rights-evaluation.md](architecture/adr/adr-001-online-access-rights-evaluation.md)
-- [docs/architecture/adr/adr-002-booking-vs-session.md](architecture/adr/adr-002-booking-vs-session.md)
-- [docs/artifacts/conceptual-model-with-attributes.md](artifacts/conceptual-model-with-attributes.md)
-- [docs/artifacts/context-diagram.md](artifacts/context-diagram.md)
-- [docs/artifacts/infosec/infosec-analyze-parking.md](artifacts/infosec/infosec-analyze-parking.md)
-- [docs/artifacts/navigation-map.md](artifacts/navigation-map.md)
-- [docs/artifacts/project-charter.md](artifacts/project-charter.md)
-- [docs/interviews/readme.md](interviews/readme.md)
+- [ADR-001: Онлайн-оценка прав доступа на КПП](architecture/adr/adr-001-online-access-rights-evaluation.md) — фиксирует решение `allow/deny` для точки доступа.
+- [ADR-002: Бронирование vs парковочная сессия](architecture/adr/adr-002-booking-vs-session.md) — задает ключевое доменное разделение сущностей.
+- [Концептуальная модель с атрибутами](artifacts/conceptual-model-with-attributes.md) — описывает сущности предметной области.
+- [Контекстная диаграмма](artifacts/context-diagram.md) — показывает границы системы и внешние взаимодействия.
+- [Анализ ИБ парковки](artifacts/infosec/infosec-analyze-parking.md) — фиксирует ключевые риски и меры защиты.
+- [Карта навигации](artifacts/navigation-map.md) — связывает сценарии с интерфейсным представлением.
+- [Карточка проекта](artifacts/project-charter.md) — задает цель, рамки и ключевые договоренности проекта.
+- [Индекс интервью](interviews/readme.md) — ведет к исходным протоколам и планам встреч.
 
 - Репозиторий **документации системного анализа/проектирования** для темы **«Цифровая платформа парковки»**.
 - Основная ценность — **набор артефактов**: контекстная диаграмма (DFD0), доменная/концептуальная модель с атрибутами, use case, функциональные требования (FR/UC), ADR, материалы по аутентификации/авторизации и защите данных (152‑ФЗ).

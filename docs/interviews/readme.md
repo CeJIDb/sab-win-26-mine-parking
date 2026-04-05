@@ -9,11 +9,11 @@ last_updated: 2026-04-02
 
 ## Разделы
 
-- [plans/readme.md](plans/readme.md) — планы интервью перед встречами
-- [protocols/readme.md](protocols/readme.md) — протоколы интервью по итогам встреч
+- [Индекс планов интервью](plans/readme.md) — собирает планы встреч и вопросы для интервью.
+- [Индекс протоколов интервью](protocols/readme.md) — собирает результаты встреч и зафиксированные решения.
 
 ## Связанные документы
 
-- [../readme.md](../readme.md)
-- [../process/project-journey.md](../process/project-journey.md)
-- [../process/traceability-matrix-log.md](../process/traceability-matrix-log.md)
+- [Индекс документации](../readme.md) — точка входа в проектную документацию.
+- [История развития проекта](../process/project-journey.md) — показывает, как интервью влияли на артефакты и этапы проекта.
+- [Журнал изменений матрицы трассировки](../process/traceability-matrix-log.md) — связывает решения из интервью с изменениями требований и артефактов.

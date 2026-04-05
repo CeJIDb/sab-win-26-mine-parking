@@ -9,17 +9,17 @@ last_updated: 2026-04-02
 
 ## Состав
 
-- [interview-protocol-1-1-2026-01-21-v01.md](interview-protocol-1-1-2026-01-21-v01.md)
-- [interview-protocol-1-2-2026-01-23-v01.md](interview-protocol-1-2-2026-01-23-v01.md)
-- [interview-protocol-2-2026-01-27-v01.md](interview-protocol-2-2026-01-27-v01.md)
-- [interview-protocol-3-2026-02-04-v01.md](interview-protocol-3-2026-02-04-v01.md)
-- [interview-protocol-4-2026-02-11-v01.md](interview-protocol-4-2026-02-11-v01.md)
-- [interview-protocol-5-2026-02-18-v01.md](interview-protocol-5-2026-02-18-v01.md)
-- [interview-protocol-6-2026-02-25-v01.md](interview-protocol-6-2026-02-25-v01.md)
-- [interview-protocol-7-2026-03-04-v01.md](interview-protocol-7-2026-03-04-v01.md)
+- [Протокол интервью №1.1](interview-protocol-1-1-2026-01-21-v01.md) — фиксирует исходный контекст парковки и текущее состояние.
+- [Протокол интервью №1.2](interview-protocol-1-2-2026-01-23-v01.md) — уточняет AS-IS сценарии въезда, оплаты, договоров и выезда.
+- [Протокол интервью №2](interview-protocol-2-2026-01-27-v01.md) — закрепляет валидацию BPMN и бизнес-процессов.
+- [Протокол интервью №3](interview-protocol-3-2026-02-04-v01.md) — фиксирует проблемную ситуацию, цель и границы решения.
+- [Протокол интервью №4](interview-protocol-4-2026-02-11-v01.md) — задает терминологию, границы MVP и логику требований.
+- [Протокол интервью №5](interview-protocol-5-2026-02-18-v01.md) — описывает концепцию TO-BE и ключевые целевые решения.
+- [Протокол интервью №6](interview-protocol-6-2026-02-25-v01.md) — закрепляет MVP, навигацию и экранные формы.
+- [Протокол интервью №7](interview-protocol-7-2026-03-04-v01.md) — фиксирует детализацию TO-BE, макетов и сценариев.
 
 ## Связанные документы
 
-- [../readme.md](../readme.md)
-- [../../readme.md](../../readme.md)
-- [../../process/traceability-matrix-log.md](../../process/traceability-matrix-log.md)
+- [Индекс интервью](../readme.md) — верхний каталог планов и протоколов проекта.
+- [Индекс документации](../../readme.md) — точка входа в проектную документацию.
+- [Журнал изменений матрицы трассировки](../../process/traceability-matrix-log.md) — связывает решения из интервью с развитием артефактов.
