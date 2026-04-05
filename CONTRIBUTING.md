@@ -42,6 +42,7 @@
 
 - `npm run commit:atomic` — показать план и запросить подтверждение;
 - `npm run commit:atomic:yes` — выполнить без вопроса (удобно в скриптах);
+- `npm run commit:atomic:sh` — shell-fallback для сред, где `node` не может вызвать `git` (например, sandbox с `EPERM`);
 - `node ./scripts/atomic-commit.mjs --dry-run` — только план, без коммитов.
 
 Скрипт группирует изменённые файлы (относительно `HEAD`) по каталогам: `docs/specs/`, `docs/architecture/`, `ui/`, `.cursor/` и т.д., затем создаёт последовательность коммитов в фиксированном порядке.
@@ -50,7 +51,7 @@
 
 Не выполняет `git push`. При незавершённом merge/rebase завершается с ошибкой.
 
-Подробности и порядок групп — в `scripts/atomic-commit.mjs` (комментарии в начале файла).
+Подробности и порядок групп — в `scripts/atomic-commit.mjs` и `scripts/atomic-commit.sh`.
 
 **Субагент git-workflow-master из git-хуков автоматически не вызывается** (технически недоступно). При крупном диффе Husky запускает `scripts/git-workflow-agent-reminder.mjs` и выводит напоминание в терминал (см. `.husky/pre-commit`, `pre-push`).
 
