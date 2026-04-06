@@ -34,14 +34,14 @@
 
 ## Содержимое каталога
 
-- [demo-4-es-tobe-contexts-presentation-5-min.md](demo-4-es-tobe-contexts-presentation-5-min.md) — сценарий выступления на 4–5 минут для части про `ES TO-BE с контекстами`.
-- [slides/demo-4-es-tobe-contexts-all-mockups.md](slides/demo-4-es-tobe-contexts-all-mockups.md) — черновые версии слайдов в `Mermaid`, приближенные к стилю прошлых презентаций проекта.
+- [Сценарий выступления по ES TO-BE с контекстами](demo-4-es-tobe-contexts-presentation-5-min.md) — сценарий выступления на 4–5 минут для части про `ES TO-BE с контекстами`.
+- [Черновики слайдов по ES TO-BE с контекстами](slides/demo-4-es-tobe-contexts-all-mockups.md) — черновые версии слайдов в `Mermaid`, приближенные к стилю прошлых презентаций проекта.
 - `slides/` — каталог для промежуточных и финальных материалов по слайдам Demo 4.
 
 ## Как использовать материалы
 
-- Сначала использовать [demo-4-es-tobe-contexts-presentation-5-min.md](demo-4-es-tobe-contexts-presentation-5-min.md) как основу для устного рассказа.
-- Затем опираться на [slides/demo-4-es-tobe-contexts-all-mockups.md](slides/demo-4-es-tobe-contexts-all-mockups.md) при сборке реальных слайдов.
+- Сначала использовать [сценарий выступления по ES TO-BE с контекстами](demo-4-es-tobe-contexts-presentation-5-min.md) как основу для устного рассказа.
+- Затем опираться на [черновики слайдов по ES TO-BE с контекстами](slides/demo-4-es-tobe-contexts-all-mockups.md) при сборке реальных слайдов.
 - Каноничные аналитические и архитектурные артефакты при этом не дублировать в каталог Demo 4, а использовать по ссылкам из профильных разделов.
 
 Если в Demo 4 будут добавлены другие блоки, например по ERD, C4 или ИБ, их лучше оформлять по той же схеме:
