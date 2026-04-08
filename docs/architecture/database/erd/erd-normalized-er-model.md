@@ -23,7 +23,7 @@
 erDiagram
     parkings ||--o{ parking_schedules : has
     parkings ||--o{ sectors : contains
-    parkings ||--o{ aps : has
+    parkings ||--o{ access_points : has
 
     zone_types ||--o{ sectors : classifies
     zone_types ||--o{ zone_type_vehicle_types : allows
@@ -35,7 +35,7 @@ erDiagram
     operational_statuses ||--o{ parkings : has_status
     operational_statuses ||--o{ sectors : has_status
     operational_statuses ||--o{ parking_places : has_status
-    operational_statuses ||--o{ aps : has_status
+    operational_statuses ||--o{ access_points : has_status
 
     sectors ||--o{ parking_places : contains
     tariffs ||--o{ parking_places : overrides
@@ -64,7 +64,7 @@ erDiagram
     tariffs ||--o{ bookings : priced_by
 
     bookings ||--o{ parking_sessions : results_in
-    aps ||--o{ parking_sessions : entry_exit_for
+    access_points ||--o{ parking_sessions : entry_exit_for
     employee_roles ||--o{ employees : defines
     employees ||--o{ parking_sessions : handles
     employees ||--o| employee_accounts : authenticates
@@ -81,11 +81,11 @@ erDiagram
 
     employees ||--o{ appeals : handles
 
-    aps ||--o{ access_logs : records
+    access_points ||--o{ access_logs : records
 
     access_logs {
         bigint id
-        bigint ap_id
+        bigint access_point_id
         bigint vehicle_id
         string direction
         string decision
@@ -148,7 +148,6 @@ erDiagram
         bigint sector_id
         bigint override_tariff_id
         string place_number
-        bool is_reserved
         bool is_occupied
         bigint operational_status_id
     }
@@ -289,7 +288,7 @@ erDiagram
         string color
     }
 
-    aps {
+    access_points {
         bigint id
         bigint parking_id
         string name
@@ -377,8 +376,8 @@ erDiagram
     parking_sessions {
         bigint id
         bigint booking_id
-        bigint entry_ap_id
-        bigint exit_ap_id
+        bigint entry_access_point_id
+        bigint exit_access_point_id
         bigint employee_id
         datetime entry_time
         datetime exit_time
@@ -551,9 +550,9 @@ erDiagram
 | `sectors` | **BIGINT** | FK **BIGINT** на парковку и тип зоны; `operational_status_id` FK BIGINT → `operational_statuses` |
 | `zone_types` | **BIGINT** | суррогатный `id` без отдельного поля `code`; `name` VARCHAR; `description` TEXT |
 | `vehicle_types` | **BIGINT** | суррогатный `id` без отдельного поля `code`; `name` VARCHAR; `description` TEXT |
-| `operational_statuses` | **BIGINT** | справочник `facility`; суррогатный `id` без отдельного поля `code`; FK из `parkings`, `sectors`, `parking_places`, `aps` |
+| `operational_statuses` | **BIGINT** | справочник `facility`; суррогатный `id` без отдельного поля `code`; FK из `parkings`, `sectors`, `parking_places`, `access_points` |
 | `zone_type_vehicle_types`, `zone_type_tariffs` | составной PK (BIGINT, BIGINT) | FK типов совпадают с PK `zone_types` / `vehicle_types` / `tariffs` |
-| `parking_places` | **BIGINT** | `place_number` VARCHAR; FK **BIGINT** на сектор и опционально на тариф; `is_reserved`/`is_occupied` BOOLEAN; `operational_status_id` FK BIGINT → `operational_statuses` |
+| `parking_places` | **BIGINT** | `place_number` VARCHAR; FK **BIGINT** на сектор и опционально на тариф; `is_occupied` BOOLEAN; `operational_status_id` FK BIGINT → `operational_statuses` |
 | `clients` | **BIGINT** | `type` CHECK('FL','UL'); `status` CHECK('ACTIVE','BLOCKED','PENDING'); ФИО (для FL) в `clients` |
 | `client_accounts` | **BIGINT** | схема `auth`; идентификаторы входа: `login` (nullable), `phone_e164` (nullable), `email_normalized` (nullable); `auth_provider` (открытый список); `account_status` CHECK |
 | `notification_settings`, `payment_settings` | **BIGINT** | FK `client_id` BIGINT NOT NULL UNIQUE; булевы BOOLEAN; `monthly_limit_minor` BIGINT |
@@ -566,7 +565,7 @@ erDiagram
 | `employee_roles` | **BIGINT** | справочник `employee`; `code` VARCHAR UNIQUE; FK из `employees.role_id` |
 | `employee_accounts` | **BIGINT** (PK=FK) | схема `auth`; `login` VARCHAR UNIQUE; `account_status` CHECK; `totp_secret_encrypted` TEXT |
 | `vehicles` | **BIGINT** | FK **BIGINT** на клиента и тип ТС; `license_plate` VARCHAR `UNIQUE` (с нормализацией) |
-| `aps` | **BIGINT** | FK **BIGINT** на парковку; `type` CHECK('MANUAL','AUTOMATIC','SEMI_AUTO'); `direction` CHECK; `operational_status_id` FK BIGINT → `operational_statuses` |
+| `access_points` | **BIGINT** | FK **BIGINT** на парковку; `type` CHECK('MANUAL','AUTOMATIC','SEMI_AUTO'); `direction` CHECK; `operational_status_id` FK BIGINT → `operational_statuses` |
 | `tariffs` | **BIGINT** | `type` CHECK('STANDARD','BENEFIT','SUBSCRIPTION'); `billing_step_unit` CHECK; `benefit_category` CHECK (nullable); `effective_from/to` DATE |
 | `tariff_rates` | **BIGINT** | FK **BIGINT** на тариф; `rate_minor` BIGINT `CHECK (rate_minor >= 0)`; `day_of_week` SMALLINT; `time_from/to` TIME |
 | `contract_templates` | **BIGINT** | `type` CHECK('INDIVIDUAL','CORPORATE'); `body` TEXT; период DATE |
@@ -582,7 +581,7 @@ erDiagram
 | `notification_templates` | **BIGINT** | `type` CHECK('SMS','EMAIL','PUSH'); `body` TEXT; `subject` VARCHAR |
 | `notifications` | **BIGINT** | схема `notification`; `channel` CHECK; `delivery_status` CHECK; `delivery_address` VARCHAR(320) NOT NULL |
 | `appeals` | **BIGINT** | схема `support`; `subject_type` VARCHAR CHECK; `subject_id` BIGINT; CHECK((subject_type IS NULL)=(subject_id IS NULL)) |
-| `access_logs` | **BIGINT** | схема `report`; `ap_id` BIGINT NOT NULL логический; `vehicle_id` BIGINT nullable; `direction` CHECK('IN','OUT'); `decision` CHECK('ALLOW','DENY','MANUAL'); `decided_at` TIMESTAMPTZ NOT NULL; append-only |
+| `access_logs` | **BIGINT** | схема `report`; `access_point_id` BIGINT NOT NULL логический; `vehicle_id` BIGINT nullable; `direction` CHECK('IN','OUT'); `decision` CHECK('ALLOW','DENY','MANUAL'); `decided_at` TIMESTAMPTZ NOT NULL; append-only |
 
 Индексы: на каждом столбце FK на стороне «многие» — B-tree (и частичные индексы под типовые `WHERE`, когда появятся профили нагрузки).
 
@@ -662,7 +661,7 @@ erDiagram
 
 ### `operational_statuses`
 
-> **Схема `facility`.** Единый справочник эксплуатационных статусов для инфраструктурных объектов: `parkings`, `sectors`, `parking_places`, `aps`. Общая таблица гарантирует согласованность набора значений.
+> **Схема `facility`.** Единый справочник эксплуатационных статусов для инфраструктурных объектов: `parkings`, `sectors`, `parking_places`, `access_points`. Общая таблица гарантирует согласованность набора значений.
 
 | Атрибут | Тип PostgreSQL |
 |---------|------------------|
@@ -702,11 +701,12 @@ erDiagram
 | `sector_id` | `BIGINT` `NOT NULL` `REFERENCES sectors(id)` |
 | `override_tariff_id` | `BIGINT` — кросс-схемная логическая ссылка на `tariff.tariffs(id)` (без `REFERENCES`, ADR-003) |
 | `place_number` | `VARCHAR(32)` `NOT NULL` |
-| `is_reserved` | `BOOLEAN` `NOT NULL` `DEFAULT false` |
 | `is_occupied` | `BOOLEAN` `NOT NULL` `DEFAULT false` |
 | `operational_status_id` | `BIGINT` `NOT NULL` `REFERENCES operational_statuses(id)` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+
+Текущее резервирование места не хранится в `parking_places`: оно определяется по связанным `bookings` и интервалу времени запроса.
 
 ### `clients`
 
@@ -933,7 +933,7 @@ erDiagram
 
 `license_plate` хранится в нормализованном виде (UPPER + TRIM); нормализация применяется на уровне приложения или триггером `BEFORE INSERT/UPDATE`.
 
-### `aps`
+### `access_points`
 
 | Атрибут | Тип PostgreSQL |
 |---------|------------------|
@@ -1025,7 +1025,7 @@ erDiagram
 | `end_at` | `TIMESTAMPTZ` |
 | `duration_minutes` | `INTEGER` — nullable; `NULL` для открытых бронирований без фиксированного конца (`end_at IS NULL`); устанавливается Application Service при завершении брони |
 | `license_plate_snapshot` | `VARCHAR(32)` `NOT NULL` |
-| `type` | `VARCHAR(32)` `NOT NULL` `CHECK (type IN ('AUTO', 'SHORT_TERM', 'CONTRACT'))` — `AUTO`: создается системой при въезде ТС через точку доступа `aps`; `SHORT_TERM`: краткосрочное бронирование клиентом; `contracts`: долгосрочное по договору (ЮЛ) |
+| `type` | `VARCHAR(32)` `NOT NULL` `CHECK (type IN ('AUTO', 'SHORT_TERM', 'CONTRACT'))` — `AUTO`: создается системой при въезде ТС через точку доступа `access_points`; `SHORT_TERM`: краткосрочное бронирование клиентом; `contracts`: долгосрочное по договору (ЮЛ) |
 | `status` | `VARCHAR(32)` `NOT NULL` `CHECK (status IN ('PENDING','CONFIRMED','ACTIVE','COMPLETED','CANCELLED','NO_SHOW'))` |
 | `amount_due_minor` | `BIGINT` — NULL при создании AUTO-брони (сумма не известна на момент въезда); заполняется Application Service при завершении сессии. NOT NULL для SHORT_TERM и CONTRACT. Инвариант проверяется Application Service |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
@@ -1064,8 +1064,8 @@ erDiagram
 |---------|------------------|
 | `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
 | `booking_id` | `BIGINT` `NOT NULL` |
-| `entry_ap_id` | `BIGINT` |
-| `exit_ap_id` | `BIGINT` |
+| `entry_access_point_id` | `BIGINT` |
+| `exit_access_point_id` | `BIGINT` |
 | `employee_id` | `BIGINT` |
 | `entry_time` | `TIMESTAMPTZ` `NOT NULL` |
 | `exit_time` | `TIMESTAMPTZ` |
@@ -1218,19 +1218,18 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 
 ### `access_logs`
 
-> Таблица принадлежит схеме `report`. Append-only журнал событий допуска на точках доступа `aps`. Все FK — логические (без REFERENCES-constraint; схемная изоляция ADR-003).
+> Таблица принадлежит схеме `report`. Append-only журнал событий допуска на точках доступа `access_points`. Все FK — логические (без REFERENCES-constraint; схемная изоляция ADR-003).
 
 | Атрибут | Тип PostgreSQL |
 |---------|------------------|
 | `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `ap_id` | `BIGINT` `NOT NULL` |
+| `access_point_id` | `BIGINT` `NOT NULL` |
 | `vehicle_id` | `BIGINT` |
 | `direction` | `VARCHAR(8)` `NOT NULL` `CHECK (direction IN ('IN', 'OUT'))` |
 | `decision` | `VARCHAR(16)` `NOT NULL` `CHECK (decision IN ('ALLOW', 'DENY', 'MANUAL'))` |
 | `reason` | `TEXT` |
 | `decided_at` | `TIMESTAMPTZ` `NOT NULL` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`; для append-only журнала может совпадать с `created_at` |
 
 `vehicle_id` — nullable: при некоторых отказах (нераспознанный ГРЗ) идентифицировать ТС невозможно. Таблица immutable (INSERT only). *DrawSQL: CHECK не поддерживается в UI — указать в Table Notes.*
 
@@ -1238,11 +1237,11 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 
 ## Таблицы
 
-> **Аудит (`created_at`, `updated_at`):** у каждой сущности в разделе [«Атрибуты по сущностям (PostgreSQL)»](#атрибуты-по-сущностям-postgresql) поля заданы явно. В списках «Ключевые поля» ниже они не дублируются.
+> **Аудит (`created_at`, `updated_at`):** у большинства сущностей в разделе [«Атрибуты по сущностям (PostgreSQL)»](#атрибуты-по-сущностям-postgresql) поля заданы явно. Для append-only журнала `access_logs` оставлен только `created_at`. В списках «Ключевые поля» ниже аудитные поля не дублируются.
 
 ### 1. `parkings` — Парковка
 
-Назначение: парковочный объект, в рамках которого определяются сектора, точки доступа `aps` и график работы.
+Назначение: парковочный объект, в рамках которого определяются сектора, точки доступа `access_points` и график работы.
 
 Ключевые поля:
 
@@ -1257,7 +1256,7 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 
 - одна парковка имеет много записей графика работы;
 - одна парковка имеет много секторов;
-- одна парковка имеет много точек доступа `aps`.
+- одна парковка имеет много точек доступа `access_points`.
 
 ### 2. `parking_schedules` — График работы парковки
 
@@ -1329,7 +1328,7 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 
 ### 5б. `operational_statuses` — Эксплуатационный статус
 
-Назначение: единый справочник эксплуатационных статусов для инфраструктурных объектов. Используется таблицами `parkings`, `sectors`, `parking_places`, `aps` через поле `operational_status_id`.
+Назначение: единый справочник эксплуатационных статусов для инфраструктурных объектов. Используется таблицами `parkings`, `sectors`, `parking_places`, `access_points` через поле `operational_status_id`.
 
 Ключевые поля:
 
@@ -1339,7 +1338,7 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 
 Связи:
 
-- один статус назначается многим объектам через `*_id`-поля в `parkings`, `sectors`, `parking_places`, `aps`.
+- один статус назначается многим объектам через `*_id`-поля в `parkings`, `sectors`, `parking_places`, `access_points`.
 
 Комментарий:
 
@@ -1389,7 +1388,6 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 - `sector_id`;
 - `override_tariff_id`;
 - `place_number`;
-- `is_reserved`;
 - `is_occupied`;
 - `operational_status`.
 
@@ -1401,7 +1399,8 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 
 Комментарий:
 
-- `is_reserved` и `is_occupied` хранятся как простые флаги состояния места (см. артефакт `erd-relationships-facility-access-log.md`); более сложные производные (например, `current_booking_id`) намеренно не включены в базовую таблицу, так как их лучше рассчитывать или материализовывать отдельно.
+- в мастер-таблице хранится только `is_occupied` как признак фактической занятости места “сейчас”; резервирование определяется по `bookings` и интервалам времени;
+- производные состояния вроде “зарезервировано на выбранный интервал” или `current_booking_id` лучше рассчитывать или материализовывать отдельно, а не хранить в базовой таблице мест.
 
 ### 9. `clients` — Клиент
 
@@ -1675,7 +1674,7 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 - каждое ТС относится к одному типу ТС;
 - одно ТС может участвовать во многих бронированиях.
 
-### 22. `aps` — точка доступа (Access Point)
+### 22. `access_points` — точка доступа (Access Point)
 
 Назначение: точка въезда, выезда или двустороннего проезда. Поле `direction` явно кодирует направление движения и используется политиками доступа `ПолитикаДопускаНаВъезд` / `ПолитикаДопускаНаВыезд`.
 
@@ -1815,7 +1814,7 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 
 - `id`;
 - `booking_id` — обязательная ссылка на бронирование (инвариант ADR-002; без FK-constraint);
-- `entry_ap_id`, `exit_ap_id` — точки доступа въезда и выезда (без FK-constraint);
+- `entry_access_point_id`, `exit_access_point_id` — точки доступа въезда и выезда (без FK-constraint);
 - `employee_id` — сотрудник, если допуск был ручным (без FK-constraint);
 - `entry_time`;
 - `exit_time`;
@@ -2037,12 +2036,12 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 
 ### 37. `access_logs` — Журнал событий AP
 
-Назначение: append-only журнал каждого события допуска (въезд или выезд) через точку доступа `aps`. Принадлежит схеме `report`. Создается системой при каждом решении о допуске — автоматическом или ручном.
+Назначение: append-only журнал каждого события допуска (въезд или выезд) через точку доступа `access_points`. Принадлежит схеме `report`. Создается системой при каждом решении о допуске — автоматическом или ручном.
 
 Ключевые поля:
 
 - `id`;
-- `ap_id` — логическая ссылка на точку доступа (без FK-constraint);
+- `access_point_id` — логическая ссылка на точку доступа (без FK-constraint);
 - `vehicle_id` — логическая ссылка на ТС; nullable при нераспознанном ГРЗ;
 - `direction` — направление: `'IN'` (въезд) или `'OUT'` (выезд);
 - `decision` — результат: `'ALLOW'`, `'DENY'`, `'MANUAL'`;
@@ -2051,7 +2050,7 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 
 Связи:
 
-- каждая запись относится к одной точке доступа `aps`;
+- каждая запись относится к одной точке доступа `access_points`;
 - каждая запись может ссылаться на ТС (логически).
 
 Комментарий:
@@ -2068,7 +2067,7 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 
 - `parkings` 1:N `parking_schedules`
 - `parkings` 1:N `sectors`
-- `parkings` 1:N `aps`
+- `parkings` 1:N `access_points`
 - `sectors` 1:N `parking_places`
 - `zone_types` 1:N `sectors`
 - `operational_statuses` 1:N `{PARKING, SECTOR, PARKING_PLACE, AP}`
@@ -2109,7 +2108,7 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 
 ### Доступ и аудит
 
-- `aps` 1:N `access_logs` (append-only, логические FK)
+- `access_points` 1:N `access_logs` (append-only, логические FK)
 
 ### Коммуникации и поддержка
 
@@ -2257,14 +2256,14 @@ CREATE INDEX ON organization_bank_accounts(organization_id);  -- счета ор
 -- ИНФРАСТРУКТУРА (FK не индексируются автоматически)
 -- ═══════════════════════════════════════════════════════
 CREATE INDEX ON sectors(parking_id);           -- все секторы парковки
-CREATE INDEX ON aps(parking_id);              -- все точки доступа парковки
+CREATE INDEX ON access_points(parking_id);    -- все точки доступа парковки
 CREATE INDEX ON parking_places(sector_id);     -- все места сектора
 
 -- ═══════════════════════════════════════════════════════
 -- ПАРКОВОЧНЫЕ СЕССИИ — AP-ссылки
 -- ═══════════════════════════════════════════════════════
-CREATE INDEX ON parking_sessions(entry_ap_id);   -- события на въезде точки доступа
-CREATE INDEX ON parking_sessions(exit_ap_id);    -- события на выезде точки доступа
+CREATE INDEX ON parking_sessions(entry_access_point_id);  -- события на въезде точки доступа
+CREATE INDEX ON parking_sessions(exit_access_point_id);   -- события на выезде точки доступа
 
 -- ═══════════════════════════════════════════════════════
 -- AUTH (cross-schema, но индекс обязателен)
@@ -2277,7 +2276,7 @@ CREATE UNIQUE INDEX ON client_accounts(auth_provider, provider_subject_id) WHERE
 -- ═══════════════════════════════════════════════════════
 -- ACCESS_LOG (append-only; основные пути отчетов)
 -- ═══════════════════════════════════════════════════════
-CREATE INDEX ON access_logs(ap_id);                                          -- события по точке доступа
+CREATE INDEX ON access_logs(access_point_id);                                -- события по точке доступа
 CREATE INDEX ON access_logs(decided_at DESC);                                 -- временные диапазоны аудита
 CREATE INDEX ON access_logs(vehicle_id) WHERE vehicle_id IS NOT NULL;         -- история по ТС
 ```
@@ -2309,7 +2308,7 @@ CREATE INDEX ON access_logs(vehicle_id) WHERE vehicle_id IS NOT NULL;         --
 
 ### 7. Схема `report` (контекст `Отчет`)
 
-Схема содержит таблицу `access_logs` — append-only журнал событий точек доступа `aps`. Аналитические агрегаты и read-модели формируются через проекции доменных событий от `Бронирование`, `Сессия`, `Платеж`, `Доступ` и других контекстов. Физически — отдельная схема `report`; в перспективе — materialized views или отдельная read replica (ADR-003, trade-offs).
+Схема содержит таблицу `access_logs` — append-only журнал событий точек доступа `access_points`. Аналитические агрегаты и read-модели формируются через проекции доменных событий от `Бронирование`, `Сессия`, `Платеж`, `Доступ` и других контекстов. Физически — отдельная схема `report`; в перспективе — materialized views или отдельная read replica (ADR-003, trade-offs).
 
 ## Статус документа
 
