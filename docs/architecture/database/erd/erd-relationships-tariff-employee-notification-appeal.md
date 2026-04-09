@@ -213,7 +213,6 @@ Table Notes (DrawSQL):
 - `booking.bookings.tariff_id -> tariff.tariffs.id`
 - `payment.payments.payment_method_id -> payment.payment_methods.id` *(физический FK в `payment`)* → метод оплаты по сути относится к “платежам”, но перечисляется здесь как integration point тарифа/оплаты
 
-- `session.parking_sessions.employee_id -> employee.employees.id`
 - `support.appeals.employee_id -> employee.employees.id`
 - `notification.notifications.initiator_employee_id -> employee.employees.id`
 - `auth.employee_accounts.employee_id -> employee.employees.id`

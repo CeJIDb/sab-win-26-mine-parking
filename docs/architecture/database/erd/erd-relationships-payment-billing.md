@@ -65,8 +65,8 @@ erDiagram
 | `amount_due_minor` | `BIGINT` | NOT NULL | сумма в минорных единицах валюты (для `RUB` — копейки) |
 | `billing_period_from` | `DATE` | NULL | — |
 | `billing_period_to` | `DATE` | NULL | — |
-| `issued_at` | `DATE` | NOT NULL | — |
-| `due_at` | `DATE` | NULL | — |
+| `issued_date` | `DATE` | NOT NULL | — |
+| `due_date` | `DATE` | NULL | — |
 | `paid_at` | `TIMESTAMPTZ` | NULL | — |
 | `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
@@ -155,7 +155,7 @@ Table Notes (DrawSQL):
 | `client_id` | `BIGINT` | NOT NULL | логическая ссылка на `client.clients(id)` (ADR-003) |
 | `amount_minor` | `BIGINT` | NOT NULL | иммутабельный снимок суммы долга (минорные единицы) |
 | `remaining_amount_minor` | `BIGINT` | NOT NULL | текущий остаток (минорные единицы); `CHECK (remaining_amount_minor >= 0 AND remaining_amount_minor <= amount_minor)` |
-| `overdue_since` | `DATE` | NOT NULL | дата просрочки (= `invoices.due_at`) |
+| `overdue_since` | `DATE` | NOT NULL | дата просрочки (= `invoices.due_date`) |
 | `status` | `VARCHAR(32)` | NOT NULL | `CHECK (status IN ('ACTIVE','PAID','WRITTEN_OFF'))` |
 | `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
