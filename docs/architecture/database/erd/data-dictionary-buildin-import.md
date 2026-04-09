@@ -268,8 +268,3 @@ status: imported-working-material
 
 - [Индекс ERD](readme.md) — ведет к каталогу всех материалов по ER-модели.
 - [Нормализованная ER-модель](erd-normalized-er-model.md) — основной источник истины для сверки импортированного словаря данных.
-- [Связи домена бронирования, сессии и договора](erd-relationships-booking-session-contract.md) — показывает доменные связи в booking-контуре.
-- [Связи домена клиента и профиля клиента](erd-relationships-client-client-profile.md) — описывает клиентский домен и его сущности.
-- [Связи домена оплаты и биллинга](erd-relationships-payment-billing.md) — связывает словарь данных с платежным контуром.
-- [Связи домена тарифов, сотрудников, уведомлений и обращений](erd-relationships-tariff-employee-notification-appeal.md) — ведет к административному и сервисному контуру.
-- [Связи домена парковки и журнала доступа](erd-relationships-facility-access-log.md) — описывает объекты парковки и события допуска.
