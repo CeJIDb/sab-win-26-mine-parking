@@ -239,8 +239,8 @@ ERD детально прорабатывалась в `drawsql.app`.
 
 - [Индекс архитектуры данных и БД](../architecture/database/readme.md) — задает общий контур архитектуры данных и БД.
 - [ERD](../architecture/database/erd/readme.md) — собирает каноничные материалы по ERD и словарю данных.
-- [Практические SQL-запросы](../../sql/practice/queries/practice.sql) — содержит учебные SQL-запросы по модели данных.
-- [Экспорт DDL из DrawSQL](../../sql/practice/ddl/drawSQL-pgsql-export-2026-03-29.sql) — хранит экспорт схемы для практической проработки.
+- [DDL ERD для PostgreSQL](../../sql/database/chartdb-postgresql-erd-normalized.sql) — хранит актуальную схему данных для полной ERD-модели.
+- [DDL ERD для PostgreSQL (`public`)](../../sql/database/chartdb-postgresql-erd-normalized-public.sql) — хранит вариант схемы с явным использованием схемы `public`.
 
 ### 4.3. Основы информационной безопасности
 
