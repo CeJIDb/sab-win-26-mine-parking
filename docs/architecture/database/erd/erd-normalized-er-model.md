@@ -21,6 +21,7 @@
 
 ```mermaid
 erDiagram
+    parking_types ||--o{ parkings : classifies
     parkings ||--o{ parking_schedules : has
     parkings ||--o{ sectors : contains
     parkings ||--o{ access_points : has
@@ -46,10 +47,12 @@ erDiagram
     clients ||--|| payment_settings : has
     clients ||--o{ client_accounts : authenticates
     clients ||--o{ vehicles : owns
+    agreement_types ||--o{ agreements : classifies
     clients ||--o{ agreements : agrees
     clients ||--o{ notifications : receives
     clients ||--o{ appeals : creates
     clients ||--o| passport_data : uses
+    benefit_categories ||--o{ benefit_documents : classifies
     clients ||--o| benefit_documents : has
     organizations ||--o{ organization_bank_accounts : has
 
@@ -66,6 +69,9 @@ erDiagram
     bookings ||--o{ parking_sessions : results_in
     employee_roles ||--o{ employees : defines
     employees ||--o| employee_accounts : authenticates
+
+    tariff_types ||--o{ tariffs : classifies
+    benefit_categories ||--o{ tariffs : applies_to
 
     bookings ||--o{ invoices : billed_as
     invoices ||--o{ payments : paid_by
@@ -96,9 +102,16 @@ erDiagram
         bigint id
         string name
         string address
-        string parking_type
+        bigint parking_type_id
         string description
         bigint operational_status_id
+    }
+
+    parking_types {
+        bigint id
+        string code
+        string name
+        string description
     }
 
     parking_schedules {
@@ -214,7 +227,7 @@ erDiagram
 
     benefit_documents {
         bigint id
-        string benefit_category
+        bigint benefit_category_id
         string document_type
         string document_number
         date issue_date
@@ -222,6 +235,13 @@ erDiagram
         string document_image_ref
         string verification_status
         bigint client_id
+    }
+
+    benefit_categories {
+        bigint id
+        string code
+        string name
+        string description
     }
 
     organizations {
@@ -252,10 +272,17 @@ erDiagram
     agreements {
         bigint id
         bigint client_id
-        string agreement_type
+        bigint agreement_type_id
         bool accepted
         datetime accepted_at
         datetime revoked_at
+    }
+
+    agreement_types {
+        bigint id
+        string code
+        string name
+        string description
     }
 
     employees {
@@ -299,14 +326,21 @@ erDiagram
     tariffs {
         bigint id
         string name
-        string type
-        string benefit_category
+        bigint tariff_type_id
+        bigint benefit_category_id
         string billing_step_unit
         int billing_step_value
         bigint max_amount_minor
         int grace_period_minutes
         date effective_from
         date effective_to
+    }
+
+    tariff_types {
+        bigint id
+        string code
+        string name
+        string description
     }
 
     tariff_rates {
@@ -536,7 +570,8 @@ erDiagram
 
 | Сущность | PK | Ключевые атрибуты (целевой PostgreSQL) |
 |----------|-----|----------------------------------------|
-| `parkings` | **BIGINT** | `name` VARCHAR, `address` TEXT; `parking_type` CHECK('SURFACE','MULTILEVEL','UNDERGROUND','ROOFTOP'); `operational_status_id` FK BIGINT → `operational_statuses` |
+| `parkings` | **BIGINT** | `name` VARCHAR, `address` TEXT; `parking_type_id` FK BIGINT → `parking_types`; `operational_status_id` FK BIGINT → `operational_statuses` |
+| `parking_types` | **BIGINT** | справочник `facility`; `code` VARCHAR UNIQUE; `name` VARCHAR; `description` TEXT |
 | `parking_schedules` | **BIGINT** | FK **BIGINT** на парковку; `day_of_week` **SMALLINT** + `CHECK` 1–7; `open_time`/`close_time` TIME; даты DATE |
 | `sectors` | **BIGINT** | FK **BIGINT** на парковку и тип зоны; `operational_status_id` FK BIGINT → `operational_statuses` |
 | `zone_types` | **BIGINT** | суррогатный `id` без отдельного поля `code`; `name` VARCHAR; `description` TEXT |
@@ -544,42 +579,46 @@ erDiagram
 | `operational_statuses` | **BIGINT** | справочник `facility`; суррогатный `id` без отдельного поля `code`; FK из `parkings`, `sectors`, `parking_places`, `access_points` |
 | `zone_type_vehicle_types`, `zone_type_tariffs` | составной PK (BIGINT, BIGINT) | FK типов совпадают с PK `zone_types` / `vehicle_types` / `tariffs` |
 | `parking_places` | **BIGINT** | `place_number` VARCHAR; FK **BIGINT** на сектор и опционально на тариф; `is_occupied` BOOLEAN; `operational_status_id` FK BIGINT → `operational_statuses` |
-| `clients` | **BIGINT** | `type` CHECK('FL','UL'); `status` CHECK('ACTIVE','BLOCKED','PENDING'); ФИО (для FL) в `clients` |
-| `client_accounts` | **BIGINT** | схема `auth`; идентификаторы входа: `login` (nullable), `phone_e164` (nullable), `email_normalized` (nullable); `auth_provider` (открытый список); `account_status` CHECK |
+| `clients` | **BIGINT** | `type` `client_type_enum`; `status` `client_status_enum`; ФИО (для FL) в `clients` |
+| `client_accounts` | **BIGINT** | схема `auth`; идентификаторы входа: `login` (nullable), `phone_e164` (nullable), `email_normalized` (nullable); `auth_provider` (открытый список); `account_status` `client_account_status_enum` |
 | `notification_settings`, `payment_settings` | **BIGINT** | FK `client_id` BIGINT NOT NULL UNIQUE; булевы BOOLEAN; `monthly_limit_minor` BIGINT |
-| `notification_settings_channels` | составной PK (BIGINT, VARCHAR) | FK BIGINT на `notification_settings`; `channel` VARCHAR — литералы `SMS`/`EMAIL`/`PUSH` (не суррогатный id); `CHECK` |
-| `passport_data`, `benefit_documents` | **BIGINT** | схема `pii` (152-ФЗ); связь с `clients` через `client_id` (логическая); в `passport_data` — `series`/`number` BYTEA (зашифровано) и `document_type` CHECK; в `benefit_documents` — реквизиты льготы по разделу ниже; даты DATE |
-| `organizations` | **BIGINT** | профиль ЮЛ; `client_id` BIGINT UNIQUE `REFERENCES clients(id)`; ИНН/КПП/ОГРН VARCHAR; адреса TEXT; `status` CHECK('ACTIVE','BLOCKED','PENDING') |
+| `notification_settings_channels` | составной PK (BIGINT, `notification_channel_enum`) | FK BIGINT на `notification_settings`; `channel` `notification_channel_enum` — литералы `SMS`/`EMAIL`/`PUSH` (не суррогатный id) |
+| `passport_data`, `benefit_documents` | **BIGINT** | схема `pii` (152-ФЗ); связь с `clients` через `client_id` (логическая); в `passport_data` — `series`/`number` BYTEA (зашифровано) и `document_type` `passport_document_type_enum`; в `benefit_documents` — `benefit_category_id` FK BIGINT → `benefit_categories`, `document_type` `benefit_document_type_enum`, `verification_status` `benefit_document_verification_status_enum`; даты DATE |
+| `benefit_categories` | **BIGINT** | справочник `client`; `code` VARCHAR UNIQUE; `name` VARCHAR; `description` TEXT |
+| `organizations` | **BIGINT** | профиль ЮЛ; `client_id` BIGINT UNIQUE `REFERENCES clients(id)`; `legal_form` VARCHAR(64); ИНН/КПП/ОГРН VARCHAR; адреса TEXT; `status` `organization_status_enum` |
 | `organization_bank_accounts` | **BIGINT** | FK **BIGINT** на организацию; реквизиты VARCHAR; `is_primary` BOOLEAN |
-| `agreements` | **BIGINT** | схема `client`; FK **BIGINT** на клиента; `agreement_type` CHECK; `accepted` BOOLEAN; `accepted_at`/`revoked_at` TIMESTAMPTZ |
-| `employees` | **BIGINT** | `role_id` FK BIGINT → `employee_roles`; контакты VARCHAR; `status` CHECK('ACTIVE','DISMISSED') |
+| `agreements` | **BIGINT** | схема `client`; FK **BIGINT** на клиента; `agreement_type_id` FK BIGINT → `agreement_types`; `accepted` BOOLEAN; `accepted_at`/`revoked_at` TIMESTAMPTZ |
+| `agreement_types` | **BIGINT** | справочник `client`; `code` VARCHAR UNIQUE; `name` VARCHAR; `description` TEXT |
+| `employees` | **BIGINT** | `role_id` FK BIGINT → `employee_roles`; контакты VARCHAR; `status` `employee_status_enum` |
 | `employee_roles` | **BIGINT** | справочник `employee`; `code` VARCHAR UNIQUE; FK из `employees.role_id` |
-| `employee_accounts` | **BIGINT** (PK=FK) | схема `auth`; `login` VARCHAR UNIQUE; `account_status` CHECK; `totp_secret_encrypted` TEXT |
+| `employee_accounts` | **BIGINT** (PK=FK) | схема `auth`; `login` VARCHAR UNIQUE; `account_status` `employee_account_status_enum`; `totp_secret_encrypted` TEXT |
 | `vehicles` | **BIGINT** | FK **BIGINT** на клиента и тип ТС; `license_plate` VARCHAR `UNIQUE` (с нормализацией) |
-| `access_points` | **BIGINT** | FK **BIGINT** на парковку; `type` CHECK('MANUAL','AUTOMATIC','SEMI_AUTO'); `direction` CHECK; `operational_status_id` FK BIGINT → `operational_statuses` |
-| `tariffs` | **BIGINT** | `type` CHECK('STANDARD','BENEFIT','SUBSCRIPTION'); `billing_step_unit` CHECK; `benefit_category` CHECK (nullable); `effective_from/to` DATE |
+| `access_points` | **BIGINT** | FK **BIGINT** на парковку; `type` `access_point_type_enum`; `direction` `access_point_direction_enum`; `operational_status_id` FK BIGINT → `operational_statuses` |
+| `tariffs` | **BIGINT** | `tariff_type_id` FK BIGINT → `tariff_types`; `billing_step_unit` `billing_step_unit_enum`; `benefit_category_id` FK BIGINT → `benefit_categories` (nullable); `effective_from/to` DATE |
+| `tariff_types` | **BIGINT** | справочник `tariff`; `code` VARCHAR UNIQUE; `name` VARCHAR; `description` TEXT |
 | `tariff_rates` | **BIGINT** | FK **BIGINT** на тариф; `rate_minor` BIGINT `CHECK (rate_minor >= 0)`; `day_of_week` SMALLINT; `time_from/to` TIME |
-| `contract_templates` | **BIGINT** | `type` CHECK('INDIVIDUAL','CORPORATE'); `body` TEXT; период DATE |
-| `contracts` | **BIGINT** | FK **BIGINT** на клиента; `contract_number` VARCHAR `UNIQUE`; `status` CHECK('DRAFT','ACTIVE','EXPIRED','TERMINATED') |
-| `bookings` | **BIGINT** | FK логические; `status` CHECK; `type` CHECK `('AUTO','SHORT_TERM','CONTRACT')`; `start_at`/`end_at` TIMESTAMPTZ |
-| `invoices` | **BIGINT** | `type` CHECK('SINGLE','PERIODIC'); `status` CHECK('ISSUED','PAID','OVERDUE','CANCELLED'); `amount_due_minor` |
-| `parking_sessions` | **BIGINT** | FK логические; `status` CHECK |
-| `payments` | **BIGINT** | FK **BIGINT** на счет; `payment_method_id` FK BIGINT → `payment_methods`; `status` CHECK; `amount_minor` |
+| `contract_templates` | **BIGINT** | `type` `contract_template_type_enum`; `body` TEXT; период DATE |
+| `contracts` | **BIGINT** | FK **BIGINT** на клиента; `contract_number` VARCHAR `UNIQUE`; `status` `contract_status_enum` |
+| `bookings` | **BIGINT** | FK логические; `status` `booking_status_enum`; `type` `booking_type_enum`; `start_at`/`end_at` TIMESTAMPTZ |
+| `invoices` | **BIGINT** | `type` `invoice_type_enum`; `status` `invoice_status_enum`; `amount_due_minor` |
+| `parking_sessions` | **BIGINT** | FK логические; `status` `parking_session_status_enum` |
+| `payments` | **BIGINT** | FK **BIGINT** на счет; `payment_method_id` FK BIGINT → `payment_methods`; `status` `payment_status_enum`; `amount_minor` |
 | `payment_methods` | **BIGINT** | справочник `payment`; `code` VARCHAR UNIQUE; FK из `payments.payment_method_id` |
-| `receipts` | **BIGINT** | FK **BIGINT** на платеж; `fiscal_number` VARCHAR UNIQUE; `fiscal_status` CHECK('PENDING','ISSUED','FAILED'); `amount_minor` |
-| `refunds` | **BIGINT** | схема `payment`; FK **BIGINT** на `payments`; `amount_minor`; `refund_provider_id` VARCHAR PARTIAL UNIQUE; `status` CHECK |
-| `debts` | **BIGINT** | схема `payment`; FK **BIGINT** на `invoices`; `client_id` BIGINT логический; `amount_minor`; `remaining_amount_minor NOT NULL`; `overdue_since` DATE; `status` CHECK |
-| `notification_templates` | **BIGINT** | `type` CHECK('SMS','EMAIL','PUSH'); `body` TEXT; `subject` VARCHAR |
-| `notifications` | **BIGINT** | схема `notification`; `channel` CHECK; `delivery_status` CHECK; `delivery_address` VARCHAR(320) NOT NULL |
-| `appeals` | **BIGINT** | схема `support`; `subject_type` VARCHAR CHECK; `subject_id` BIGINT; CHECK((subject_type IS NULL)=(subject_id IS NULL)) |
-| `access_logs` | **BIGINT** | схема `report`; `access_point_id` BIGINT NOT NULL логический; `parking_session_id` BIGINT nullable логический; `vehicle_id` BIGINT nullable; `direction` CHECK('IN','OUT'); `decision` CHECK('ALLOW','DENY','MANUAL'); `decided_at` TIMESTAMPTZ NOT NULL; append-only |
+| `receipts` | **BIGINT** | FK **BIGINT** на платеж; `fiscal_number` VARCHAR UNIQUE; `fiscal_status` `receipt_fiscal_status_enum`; `amount_minor` |
+| `refunds` | **BIGINT** | схема `payment`; FK **BIGINT** на `payments`; `amount_minor`; `refund_provider_id` VARCHAR PARTIAL UNIQUE; `status` `refund_status_enum` |
+| `debts` | **BIGINT** | схема `payment`; FK **BIGINT** на `invoices`; `client_id` BIGINT логический; `amount_minor`; `remaining_amount_minor NOT NULL`; `overdue_since` DATE; `status` `debt_status_enum` |
+| `notification_templates` | **BIGINT** | `type` `notification_channel_enum`; `body` TEXT; `subject` VARCHAR |
+| `notifications` | **BIGINT** | схема `notification`; `subject_type` `subject_entity_enum`; `channel` `notification_channel_enum`; `delivery_status` `notification_delivery_status_enum`; `delivery_address` VARCHAR(320) NOT NULL |
+| `appeals` | **BIGINT** | схема `support`; `subject_type` `subject_entity_enum`; `subject_id` BIGINT; `type` `appeal_type_enum`; `channel` `appeal_channel_enum`; `status` `appeal_status_enum`; CHECK((subject_type IS NULL)=(subject_id IS NULL)) |
+| `access_logs` | **BIGINT** | схема `report`; `access_point_id` BIGINT NOT NULL логический; `parking_session_id` BIGINT nullable логический; `vehicle_id` BIGINT nullable; `direction` `access_log_direction_enum`; `decision` `access_decision_enum`; `decided_at` TIMESTAMPTZ NOT NULL; append-only |
 
 Индексы: на каждом столбце FK на стороне «многие» — B-tree (и частичные индексы под типовые `WHERE`, когда появятся профили нагрузки).
 
 ### Аудитные поля и перечисления (применяются ко всем таблицам)
 
 - **Аудитные метки** — в целевой БД у **каждой** таблицы есть `created_at TIMESTAMPTZ NOT NULL DEFAULT now()` и `updated_at TIMESTAMPTZ NOT NULL DEFAULT now()`. Обновление `updated_at` обеспечивается триггером `moddatetime`. Для **наглядности** (и при переносе в DrawSQL) эти два поля **перечислены в каждом разделе атрибутов** ниже; в Mermaid-диаграмме в начале документа они опущены, чтобы не перегружать схему.
-- **Поля-перечисления** (`status`, `type`, `channel` и аналоги) — хранить как `VARCHAR(n)` с `CHECK(field IN (...))` или через `CREATE DOMAIN`. Конкретные допустимые значения фиксируются в ФТ и миграциях; в этом документе тип указывается как `VARCHAR(n)`.
+- **Поля-перечисления** (`status`, `channel`, технические `type` и аналоги) — хранить как PostgreSQL `ENUM`. Конкретные имена enum-типов фиксируются в этом документе и миграциях.
+- **Бизнес-классификаторы** (`parkings.parking_type_id`, `tariffs.tariff_type_id`, `agreements.agreement_type_id`, `benefit_documents.benefit_category_id`, `tariffs.benefit_category_id`) — хранить отдельными lookup-таблицами с суррогатным `id`, стабильным `code`, отображаемым `name` и `description`.
 - **Схемная изоляция** — таблицы распределяются по PostgreSQL-схемам в соответствии с bounded context (ADR-003): `facility`, `booking`, `session`, `tariff`, `payment`, `contract`, `client`, `support`, `employee`, `notification`, `auth`, `pii`. В REFERENCES ниже имена схем опущены — уточняются в миграциях.
 
 ## Атрибуты по сущностям (PostgreSQL)
@@ -595,9 +634,20 @@ erDiagram
 | `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
 | `name` | `VARCHAR(200)` `NOT NULL` |
 | `address` | `TEXT` `NOT NULL` |
-| `parking_type` | `VARCHAR(64)` `NOT NULL` `CHECK (parking_type IN ('SURFACE','MULTILEVEL','UNDERGROUND','ROOFTOP'))` |
+| `parking_type_id` | `BIGINT` `NOT NULL` `REFERENCES parking_types(id)` |
 | `description` | `TEXT` |
 | `operational_status_id` | `BIGINT` `NOT NULL` `REFERENCES operational_statuses(id)` |
+| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+
+### `parking_types`
+
+| Атрибут | Тип PostgreSQL |
+|---------|------------------|
+| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
+| `code` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
+| `name` | `VARCHAR(200)` `NOT NULL` |
+| `description` | `TEXT` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
@@ -704,10 +754,10 @@ erDiagram
 | Атрибут | Тип PostgreSQL |
 |---------|------------------|
 | `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `type` | `VARCHAR(32)` `NOT NULL` `CHECK (type IN ('FL','UL'))` |
+| `type` | `client_type_enum` `NOT NULL` — значения: `FL`, `UL` |
 | `phone` | `VARCHAR(32)` |
 | `email` | `VARCHAR(320)` |
-| `status` | `VARCHAR(32)` `NOT NULL` `CHECK (status IN ('ACTIVE','BLOCKED','PENDING'))` |
+| `status` | `client_status_enum` `NOT NULL` — значения: `ACTIVE`, `BLOCKED`, `PENDING` |
 | `status_reason` | `TEXT` |
 | `last_name` | `VARCHAR(100)` — только для `type='FL'` |
 | `first_name` | `VARCHAR(100)` — только для `type='FL'` |
@@ -729,7 +779,7 @@ erDiagram
 | `email_normalized` | `VARCHAR(320)` — email после нормализации (lower + trim), каноническое представление для поиска и уникальности |
 | `password_hash` | `VARCHAR(255)` — NULL для внешних IdP (GOOGLE, YANDEX, PHONE); NOT NULL при `auth_provider = 'LOCAL'`. Инвариант проверяется триггером или Application Service |
 | `provider_subject_id` | `VARCHAR(255)` |
-| `account_status` | `VARCHAR(32)` `NOT NULL` `CHECK (account_status IN ('ACTIVE','BLOCKED','PENDING_VERIFICATION'))` |
+| `account_status` | `client_account_status_enum` `NOT NULL` — значения: `ACTIVE`, `BLOCKED`, `PENDING_VERIFICATION` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 | `last_login_at` | `TIMESTAMPTZ` |
@@ -755,7 +805,7 @@ erDiagram
 | Атрибут | Тип PostgreSQL |
 |---------|------------------|
 | `settings_id` | `BIGINT` `NOT NULL` `REFERENCES notification_settings(id)` |
-| `channel` | `VARCHAR(32)` `NOT NULL` `CHECK (channel IN ('SMS','EMAIL','PUSH'))` — строковый код канала (`SMS`/`EMAIL`/`PUSH`), не суррогатный ключ |
+| `channel` | `notification_channel_enum` `NOT NULL` — значения: `SMS`, `EMAIL`, `PUSH`; не суррогатный ключ |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
@@ -781,7 +831,7 @@ erDiagram
 | Атрибут | Тип PostgreSQL |
 |---------|------------------|
 | `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `document_type` | `VARCHAR(32)` `NOT NULL` `CHECK (document_type IN ('RF_PASSPORT','FOREIGN_PASSPORT','TEMP_ID'))` |
+| `document_type` | `passport_document_type_enum` `NOT NULL` — значения: `RF_PASSPORT`, `FOREIGN_PASSPORT`, `TEMP_ID` |
 | `series` | `BYTEA` `NOT NULL` — серия документа; *DrawSQL: тип `BYTEA` поддерживается в PostgreSQL dialect* |
 | `number` | `BYTEA` `NOT NULL` — номер документа; *DrawSQL: тип `BYTEA` поддерживается в PostgreSQL dialect* |
 | `issue_date` | `DATE` `NOT NULL` |
@@ -798,18 +848,29 @@ erDiagram
 | Атрибут | Тип PostgreSQL |
 |---------|------------------|
 | `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `benefit_category` | `VARCHAR(64)` `NOT NULL` `CHECK (benefit_category IN ('DISABLED_1','DISABLED_2','DISABLED_3','VETERAN','LARGE_FAMILY','OTHER'))` |
-| `document_type` | `VARCHAR(32)` `NOT NULL` `CHECK (document_type IN ('CERTIFICATE','ID_CARD','BOOKLET','OTHER'))` |
+| `benefit_category_id` | `BIGINT` `NOT NULL` — логическая ссылка на `client.benefit_categories(id)` (без `REFERENCES`; схемная изоляция) |
+| `document_type` | `benefit_document_type_enum` `NOT NULL` — значения: `CERTIFICATE`, `ID_CARD`, `BOOKLET`, `OTHER` |
 | `document_number` | `VARCHAR(64)` `NOT NULL` |
 | `issue_date` | `DATE` `NOT NULL` |
 | `expiry_date` | `DATE` |
 | `document_image_ref` | `VARCHAR(512)` |
-| `verification_status` | `VARCHAR(32)` `NOT NULL` `CHECK (verification_status IN ('PENDING','VERIFIED','REJECTED'))` |
+| `verification_status` | `benefit_document_verification_status_enum` `NOT NULL` — значения: `PENDING`, `VERIFIED`, `REJECTED` |
 | `client_id` | `BIGINT` `NOT NULL` — логическая ссылка на `client.clients(id)` (без `REFERENCES`; схемная изоляция); `UNIQUE(client_id)` для 0..1* |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
 \* Если требуется хранить несколько льготных документов, `UNIQUE(client_id)` убирается и вводится политика “активный/основной документ”.
+
+### `benefit_categories`
+
+| Атрибут | Тип PostgreSQL |
+|---------|------------------|
+| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
+| `code` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
+| `name` | `VARCHAR(200)` `NOT NULL` |
+| `description` | `TEXT` |
+| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
 ### `organizations`
 
@@ -826,7 +887,7 @@ erDiagram
 | `ogrn` | `VARCHAR(13)` `UNIQUE` — ОГРН тоже уникален; *NULL допустим при поэтапном заполнении реквизитов* |
 | `email` | `VARCHAR(320)` |
 | `phone` | `VARCHAR(32)` |
-| `status` | `VARCHAR(32)` `NOT NULL` `CHECK (status IN ('ACTIVE','BLOCKED','PENDING'))` |
+| `status` | `organization_status_enum` `NOT NULL` — значения: `ACTIVE`, `BLOCKED`, `PENDING` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
@@ -856,10 +917,21 @@ erDiagram
 |---------|------------------|
 | `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
 | `client_id` | `BIGINT` `NOT NULL` `REFERENCES clients(id)` |
-| `agreement_type` | `VARCHAR(64)` `NOT NULL` `CHECK (agreement_type IN ('PERSONAL_DATA','MARKETING','ELECTRONIC_DOCS'))` |
+| `agreement_type_id` | `BIGINT` `NOT NULL` `REFERENCES agreement_types(id)` |
 | `accepted` | `BOOLEAN` `NOT NULL` |
 | `accepted_at` | `TIMESTAMPTZ` `NOT NULL` |
 | `revoked_at` | `TIMESTAMPTZ` |
+| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+
+### `agreement_types`
+
+| Атрибут | Тип PostgreSQL |
+|---------|------------------|
+| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
+| `code` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
+| `name` | `VARCHAR(200)` `NOT NULL` |
+| `description` | `TEXT` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
@@ -874,7 +946,7 @@ erDiagram
 | `middle_name` | `VARCHAR(100)` |
 | `phone` | `VARCHAR(32)` |
 | `email` | `VARCHAR(320)` |
-| `status` | `VARCHAR(32)` `NOT NULL` `CHECK (status IN ('ACTIVE','DISMISSED'))` |
+| `status` | `employee_status_enum` `NOT NULL` — значения: `ACTIVE`, `DISMISSED` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
@@ -888,7 +960,7 @@ erDiagram
 | `login` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
 | `password_hash` | `VARCHAR(255)` `NOT NULL` |
 | `totp_secret_encrypted` | `TEXT` |
-| `account_status` | `VARCHAR(32)` `NOT NULL` `CHECK (account_status IN ('ACTIVE','BLOCKED','SUSPENDED'))` |
+| `account_status` | `employee_account_status_enum` `NOT NULL` — значения: `ACTIVE`, `BLOCKED`, `SUSPENDED` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 | `last_login_at` | `TIMESTAMPTZ` |
@@ -931,8 +1003,8 @@ erDiagram
 | `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
 | `parking_id` | `BIGINT` `NOT NULL` `REFERENCES parkings(id)` |
 | `name` | `VARCHAR(200)` `NOT NULL` |
-| `type` | `VARCHAR(32)` `NOT NULL` `CHECK (type IN ('MANUAL','AUTOMATIC','SEMI_AUTO'))` |
-| `direction` | `VARCHAR(16)` `NOT NULL` `CHECK (direction IN ('ENTRY','EXIT','BIDIRECTIONAL'))` |
+| `type` | `access_point_type_enum` `NOT NULL` — значения: `MANUAL`, `AUTOMATIC`, `SEMI_AUTO` |
+| `direction` | `access_point_direction_enum` `NOT NULL` — значения: `ENTRY`, `EXIT`, `BIDIRECTIONAL` |
 | `operational_status_id` | `BIGINT` `NOT NULL` `REFERENCES operational_statuses(id)` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
@@ -943,14 +1015,25 @@ erDiagram
 |---------|------------------|
 | `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
 | `name` | `VARCHAR(200)` `NOT NULL` |
-| `type` | `VARCHAR(32)` `NOT NULL` `CHECK (type IN ('STANDARD','BENEFIT','SUBSCRIPTION'))` |
-| `benefit_category` | `VARCHAR(64)` `CHECK (benefit_category IN ('DISABLED_1','DISABLED_2','DISABLED_3','VETERAN','LARGE_FAMILY','OTHER'))` — NULL для нельготных тарифов; домен совпадает с `benefit_documents.benefit_category` |
-| `billing_step_unit` | `VARCHAR(16)` `NOT NULL` `CHECK (billing_step_unit IN ('MINUTE','HOUR','DAY'))` |
+| `tariff_type_id` | `BIGINT` `NOT NULL` `REFERENCES tariff_types(id)` |
+| `benefit_category_id` | `BIGINT` — логическая ссылка на `client.benefit_categories(id)` (без `REFERENCES`; схемная изоляция); NULL для нельготных тарифов |
+| `billing_step_unit` | `billing_step_unit_enum` `NOT NULL` — значения: `MINUTE`, `HOUR`, `DAY` |
 | `billing_step_value` | `INTEGER` `NOT NULL` `DEFAULT 1` |
 | `max_amount_minor` | `BIGINT` |
 | `grace_period_minutes` | `INTEGER` `NOT NULL` `DEFAULT 0` |
 | `effective_from` | `DATE` `NOT NULL` |
 | `effective_to` | `DATE` |
+| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
+| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+
+### `tariff_types`
+
+| Атрибут | Тип PostgreSQL |
+|---------|------------------|
+| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
+| `code` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
+| `name` | `VARCHAR(200)` `NOT NULL` |
+| `description` | `TEXT` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
@@ -980,7 +1063,7 @@ erDiagram
 | `code` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
 | `name` | `VARCHAR(200)` `NOT NULL` |
 | `version` | `VARCHAR(32)` `NOT NULL` |
-| `type` | `VARCHAR(32)` `NOT NULL` `CHECK (type IN ('INDIVIDUAL','CORPORATE'))` |
+| `type` | `contract_template_type_enum` `NOT NULL` — значения: `INDIVIDUAL`, `CORPORATE` |
 | `body` | `TEXT` `NOT NULL` |
 | `effective_from` | `DATE` `NOT NULL` |
 | `effective_to` | `DATE` |
@@ -997,7 +1080,7 @@ erDiagram
 | `contract_number` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
 | `start_date` | `DATE` `NOT NULL` |
 | `end_date` | `DATE` |
-| `status` | `VARCHAR(32)` `NOT NULL` `CHECK (status IN ('DRAFT','ACTIVE','EXPIRED','TERMINATED'))` |
+| `status` | `contract_status_enum` `NOT NULL` — значения: `DRAFT`, `ACTIVE`, `EXPIRED`, `TERMINATED` |
 | `document_file_ref` | `VARCHAR(512)` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
@@ -1015,8 +1098,8 @@ erDiagram
 | `start_at` | `TIMESTAMPTZ` `NOT NULL` |
 | `end_at` | `TIMESTAMPTZ` |
 | `license_plate_snapshot` | `VARCHAR(32)` `NOT NULL` |
-| `type` | `VARCHAR(32)` `NOT NULL` `CHECK (type IN ('AUTO', 'SHORT_TERM', 'CONTRACT'))` — `AUTO`: создается системой при въезде ТС через точку доступа `access_points`; `SHORT_TERM`: краткосрочное бронирование клиентом; `contracts`: долгосрочное по договору (ЮЛ) |
-| `status` | `VARCHAR(32)` `NOT NULL` `CHECK (status IN ('PENDING','CONFIRMED','ACTIVE','COMPLETED','CANCELLED','NO_SHOW'))` |
+| `type` | `booking_type_enum` `NOT NULL` — значения: `AUTO`, `SHORT_TERM`, `CONTRACT`; `AUTO`: создается системой при въезде ТС через точку доступа `access_points`; `SHORT_TERM`: краткосрочное бронирование клиентом; `CONTRACT`: долгосрочное по договору (ЮЛ) |
+| `status` | `booking_status_enum` `NOT NULL` — значения: `PENDING`, `CONFIRMED`, `ACTIVE`, `COMPLETED`, `CANCELLED`, `NO_SHOW` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
@@ -1032,8 +1115,8 @@ erDiagram
 | `booking_id` | `BIGINT` |
 | `contract_id` | `BIGINT` |
 | `invoice_number` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
-| `type` | `VARCHAR(32)` `NOT NULL` `CHECK (type IN ('SINGLE','PERIODIC'))` |
-| `status` | `VARCHAR(32)` `NOT NULL` `CHECK (status IN ('ISSUED','PAID','OVERDUE','CANCELLED'))` |
+| `type` | `invoice_type_enum` `NOT NULL` — значения: `SINGLE`, `PERIODIC` |
+| `status` | `invoice_status_enum` `NOT NULL` — значения: `ISSUED`, `PAID`, `OVERDUE`, `CANCELLED` |
 | `amount_due_minor` | `BIGINT` `NOT NULL` |
 | `billing_period_from` | `DATE` |
 | `billing_period_to` | `DATE` |
@@ -1055,7 +1138,7 @@ erDiagram
 | `booking_id` | `BIGINT` `NOT NULL` |
 | `entry_time` | `TIMESTAMPTZ` `NOT NULL` |
 | `exit_time` | `TIMESTAMPTZ` |
-| `status` | `VARCHAR(32)` `NOT NULL` `CHECK (status IN ('ACTIVE','COMPLETED'))` |
+| `status` | `parking_session_status_enum` `NOT NULL` — значения: `ACTIVE`, `COMPLETED` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
@@ -1072,7 +1155,7 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 | `amount_minor` | `BIGINT` `NOT NULL` |
 | `currency` | `CHAR(3)` `NOT NULL` `DEFAULT 'RUB'` — ISO 4217; на момент разработки используется только `RUB` |
 | `payment_method_id` | `BIGINT` `NOT NULL` `REFERENCES payment_methods(id)` |
-| `status` | `VARCHAR(32)` `NOT NULL` `CHECK (status IN ('INITIATED','COMPLETED','FAILED','REFUNDED','CANCELLED'))` |
+| `status` | `payment_status_enum` `NOT NULL` — значения: `INITIATED`, `COMPLETED`, `FAILED`, `REFUNDED`, `CANCELLED` |
 | `initiated_at` | `TIMESTAMPTZ` `NOT NULL` |
 | `completed_at` | `TIMESTAMPTZ` |
 | `provider_id` | `VARCHAR(512)` — *DrawSQL: тип `VARCHAR(512)`, без Unique-флажка. Частичный уникальный индекс указать в Table Notes: `CREATE UNIQUE INDEX ON payments(provider_id) WHERE provider_id IS NOT NULL`* |
@@ -1089,7 +1172,7 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 | `payment_id` | `BIGINT` `NOT NULL` `REFERENCES payments(id)` |
 | `fiscal_number` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
 | `receipt_at` | `TIMESTAMPTZ` `NOT NULL` |
-| `fiscal_status` | `VARCHAR(32)` `NOT NULL` `CHECK (fiscal_status IN ('PENDING','ISSUED','FAILED'))` |
+| `fiscal_status` | `receipt_fiscal_status_enum` `NOT NULL` — значения: `PENDING`, `ISSUED`, `FAILED` |
 | `amount_minor` | `BIGINT` `NOT NULL` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
@@ -1105,7 +1188,7 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 | `amount_minor` | `BIGINT` `NOT NULL` |
 | `reason` | `TEXT` |
 | `refund_provider_id` | `VARCHAR(512)` — idempotency key возврата у PSP. Частичный уникальный индекс: `CREATE UNIQUE INDEX ON refunds(refund_provider_id) WHERE refund_provider_id IS NOT NULL`. *DrawSQL: тип `VARCHAR(512)`, без Unique-флажка; индекс указать в Table Notes* |
-| `status` | `VARCHAR(32)` `NOT NULL` `CHECK (status IN ('INITIATED','COMPLETED','FAILED'))` |
+| `status` | `refund_status_enum` `NOT NULL` — значения: `INITIATED`, `COMPLETED`, `FAILED` |
 | `initiated_at` | `TIMESTAMPTZ` `NOT NULL` |
 | `completed_at` | `TIMESTAMPTZ` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
@@ -1123,7 +1206,7 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 | `amount_minor` | `BIGINT` `NOT NULL` — сумма задолженности на момент создания; иммутабельна |
 | `remaining_amount_minor` | `BIGINT` `NOT NULL` — текущий остаток долга; инициализируется `= amount_minor`; уменьшается Payment Service атомарно при каждой частичной оплате; `CHECK (remaining_amount_minor >= 0 AND remaining_amount_minor <= amount_minor)` |
 | `overdue_since` | `DATE` `NOT NULL` — дата возникновения просрочки (= `invoices.due_date`) |
-| `status` | `VARCHAR(32)` `NOT NULL` `CHECK (status IN ('ACTIVE','PAID','WRITTEN_OFF'))` |
+| `status` | `debt_status_enum` `NOT NULL` — значения: `ACTIVE`, `PAID`, `WRITTEN_OFF` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
@@ -1151,7 +1234,7 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 | `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
 | `code` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
 | `name` | `VARCHAR(200)` `NOT NULL` |
-| `type` | `VARCHAR(32)` `NOT NULL` `CHECK (type IN ('SMS','EMAIL','PUSH'))` |
+| `type` | `notification_channel_enum` `NOT NULL` — значения: `SMS`, `EMAIL`, `PUSH` |
 | `subject` | `VARCHAR(500)` |
 | `body` | `TEXT` `NOT NULL` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
@@ -1167,11 +1250,11 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 | `notification_template_id` | `BIGINT` |
 | `client_id` | `BIGINT` `NOT NULL` |
 | `initiator_employee_id` | `BIGINT` |
-| `subject_type` | `VARCHAR(32)` `CHECK (subject_type IN ('BOOKING','SESSION','PAYMENT','RECEIPT','CONTRACT'))` |
+| `subject_type` | `subject_entity_enum` |
 | `subject_id` | `BIGINT` |
-| `channel` | `VARCHAR(32)` `NOT NULL` `CHECK (channel IN ('SMS','EMAIL','PUSH'))` |
+| `channel` | `notification_channel_enum` `NOT NULL` — значения: `SMS`, `EMAIL`, `PUSH` |
 | `delivery_address` | `VARCHAR(320)` `NOT NULL` |
-| `delivery_status` | `VARCHAR(32)` `NOT NULL` `CHECK (delivery_status IN ('PENDING','SENT','DELIVERED','FAILED'))` |
+| `delivery_status` | `notification_delivery_status_enum` `NOT NULL` — значения: `PENDING`, `SENT`, `DELIVERED`, `FAILED` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
@@ -1186,13 +1269,13 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 | `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
 | `client_id` | `BIGINT` `NOT NULL` |
 | `employee_id` | `BIGINT` |
-| `subject_type` | `VARCHAR(32)` `CHECK (subject_type IN ('BOOKING','SESSION','PAYMENT','RECEIPT','CONTRACT'))` |
+| `subject_type` | `subject_entity_enum` |
 | `subject_id` | `BIGINT` |
-| `type` | `VARCHAR(32)` `NOT NULL` `CHECK (type IN ('COMPLAINT','QUESTION','REQUEST','FEEDBACK'))` |
-| `channel` | `VARCHAR(32)` `NOT NULL` `CHECK (channel IN ('APP','EMAIL','PHONE','CHAT'))` |
+| `type` | `appeal_type_enum` `NOT NULL` — значения: `COMPLAINT`, `QUESTION`, `REQUEST`, `FEEDBACK` |
+| `channel` | `appeal_channel_enum` `NOT NULL` — значения: `APP`, `EMAIL`, `PHONE`, `CHAT` |
 | `subject` | `VARCHAR(500)` `NOT NULL` |
 | `description` | `TEXT` |
-| `status` | `VARCHAR(32)` `NOT NULL` `CHECK (status IN ('OPEN','IN_PROGRESS','RESOLVED','CLOSED'))` |
+| `status` | `appeal_status_enum` `NOT NULL` — значения: `OPEN`, `IN_PROGRESS`, `RESOLVED`, `CLOSED` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
@@ -1208,8 +1291,8 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 | `access_point_id` | `BIGINT` `NOT NULL` |
 | `parking_session_id` | `BIGINT` |
 | `vehicle_id` | `BIGINT` |
-| `direction` | `VARCHAR(8)` `NOT NULL` `CHECK (direction IN ('IN', 'OUT'))` |
-| `decision` | `VARCHAR(16)` `NOT NULL` `CHECK (decision IN ('ALLOW', 'DENY', 'MANUAL'))` |
+| `direction` | `access_log_direction_enum` `NOT NULL` — значения: `IN`, `OUT` |
+| `decision` | `access_decision_enum` `NOT NULL` — значения: `ALLOW`, `DENY`, `MANUAL` |
 | `reason` | `TEXT` |
 | `decided_at` | `TIMESTAMPTZ` `NOT NULL` |
 | `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
@@ -1231,15 +1314,31 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 - `id` — идентификатор парковки;
 - `name` — наименование;
 - `address` — адрес;
-- `parking_type` — тип парковки;
+- `parking_type_id` — ссылка на справочник типов парковки `parking_types`;
 - `description` — описание;
-- `operational_status` — статус эксплуатации.
+- `operational_status_id` — ссылка на статус эксплуатации.
 
 Связи:
 
+- каждая парковка относится к одному типу парковки;
 - одна парковка имеет много записей графика работы;
 - одна парковка имеет много секторов;
 - одна парковка имеет много точек доступа `access_points`.
+
+### 1а. `parking_types` — Тип парковки
+
+Назначение: справочник типов парковки.
+
+Ключевые поля:
+
+- `id`;
+- `code` — стабильный код типа парковки;
+- `name` — отображаемое наименование;
+- `description` — описание.
+
+Связи:
+
+- один тип парковки назначается многим парковкам.
 
 ### 2. `parking_schedules` — График работы парковки
 
@@ -1392,7 +1491,7 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 Ключевые поля:
 
 - `id`;
-- `type` — `'FL'` (физическое лицо) или `'UL'` (юридическое лицо);
+- `type` — `client_type_enum`: `'FL'` (физическое лицо) или `'UL'` (юридическое лицо);
 - `phone`;
 - `email`;
 - `status`;
@@ -1466,7 +1565,7 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 Ключевые поля:
 
 - `settings_id` — FK на `notification_settings`;
-- `channel` — строковые литералы `'SMS'`, `'EMAIL'`, `'PUSH'` (тип `VARCHAR`, не числовой id).
+- `channel` — `notification_channel_enum` со значениями `'SMS'`, `'EMAIL'`, `'PUSH'` (не числовой id).
 
 Рекомендация:
 
@@ -1515,7 +1614,7 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 Ключевые поля:
 
 - `id`;
-- `benefit_category`;
+- `benefit_category_id` — ссылка на справочник `benefit_categories`;
 - `document_type`;
 - `document_number`;
 - `issue_date`;
@@ -1527,6 +1626,22 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 Связи:
 
 - принадлежит одному клиенту через `pii.benefit_documents.client_id` (логическая ссылка).
+
+### 16а. `benefit_categories` — Льготная категория
+
+Назначение: справочник льготных категорий, общий для `benefit_documents` и `tariffs`.
+
+Ключевые поля:
+
+- `id`;
+- `code` — стабильный код категории;
+- `name` — отображаемое наименование;
+- `description` — описание.
+
+Связи:
+
+- одна льготная категория может использоваться во многих льготных документах;
+- одна льготная категория может быть связана со многими тарифами.
 
 ### 17. `organizations` — Организация
 
@@ -1579,7 +1694,7 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 
 - `id`;
 - `client_id`;
-- `agreement_type`;
+- `agreement_type_id` — ссылка на справочник `agreement_types`;
 - `accepted`;
 - `accepted_at`;
 - `revoked_at`.
@@ -1588,6 +1703,21 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 
 - каждая запись принадлежит одному клиенту;
 - один клиент может иметь много записей.
+
+### 19а. `agreement_types` — Тип согласия
+
+Назначение: справочник типов согласий клиента.
+
+Ключевые поля:
+
+- `id`;
+- `code` — стабильный код типа согласия;
+- `name` — отображаемое наименование;
+- `description` — описание.
+
+Связи:
+
+- один тип согласия используется во многих записях `agreements`.
 
 ### 20. `employees` — Сотрудник
 
@@ -1683,8 +1813,8 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 
 - `id`;
 - `name`;
-- `type`;
-- `benefit_category`;
+- `tariff_type_id` — ссылка на справочник `tariff_types`;
+- `benefit_category_id` — логическая ссылка на справочник `benefit_categories`;
 - `billing_step_unit` — единица тарифного шага: `'MINUTE'`, `'HOUR'`, `'DAY'`;
 - `billing_step_value` — количество единиц в одном шаге;
 - `max_amount_minor`;
@@ -1694,10 +1824,26 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 
 Связи:
 
+- тариф относится к одному типу тарифа;
 - тариф может быть применим ко многим типам зон через `zone_type_tariffs`;
 - тариф имеет одну или несколько ставок через `tariff_rates`;
 - тариф может использоваться многими бронированиями;
 - тариф может быть опционально назначен конкретному парковочному месту.
+
+### 23б. `tariff_types` — Тип тарифа
+
+Назначение: справочник типов тарифа.
+
+Ключевые поля:
+
+- `id`;
+- `code` — стабильный код типа тарифа;
+- `name` — отображаемое наименование;
+- `description` — описание.
+
+Связи:
+
+- один тип тарифа используется во многих записях `tariffs`.
 
 ### 23а. `tariff_rates` — Ставка тарифа
 

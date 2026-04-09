@@ -60,8 +60,8 @@ erDiagram
 | `booking_id` | `BIGINT` | NULL | логическая ссылка на `booking.bookings(id)` (ADR-003) |
 | `contract_id` | `BIGINT` | NULL | логическая ссылка на `contract.contracts(id)` (ADR-003) |
 | `invoice_number` | `VARCHAR(64)` | NOT NULL | `UNIQUE` |
-| `type` | `VARCHAR(32)` | NOT NULL | `CHECK (type IN ('SINGLE','PERIODIC'))` |
-| `status` | `VARCHAR(32)` | NOT NULL | `CHECK (status IN ('ISSUED','PAID','OVERDUE','CANCELLED'))` |
+| `type` | `invoice_type_enum` | NOT NULL | значения: `SINGLE`, `PERIODIC` |
+| `status` | `invoice_status_enum` | NOT NULL | значения: `ISSUED`, `PAID`, `OVERDUE`, `CANCELLED` |
 | `amount_due_minor` | `BIGINT` | NOT NULL | сумма в минорных единицах валюты (для `RUB` — копейки) |
 | `billing_period_from` | `DATE` | NULL | — |
 | `billing_period_to` | `DATE` | NULL | — |
@@ -91,7 +91,7 @@ Table Notes (DrawSQL):
 | `amount_minor` | `BIGINT` | NOT NULL | сумма в минорных единицах валюты (для `RUB` — копейки) |
 | `currency` | `CHAR(3)` | NOT NULL | `DEFAULT 'RUB'` |
 | `payment_method_id` | `BIGINT` | NOT NULL | `REFERENCES payment_methods(id)` |
-| `status` | `VARCHAR(32)` | NOT NULL | `CHECK (status IN ('INITIATED','COMPLETED','FAILED','REFUNDED','CANCELLED'))` |
+| `status` | `payment_status_enum` | NOT NULL | значения: `INITIATED`, `COMPLETED`, `FAILED`, `REFUNDED`, `CANCELLED` |
 | `initiated_at` | `TIMESTAMPTZ` | NOT NULL | — |
 | `completed_at` | `TIMESTAMPTZ` | NULL | — |
 | `provider_id` | `VARCHAR(512)` | NULL | idempotency key (partial unique, см. Table Notes) |
@@ -114,7 +114,7 @@ Table Notes (DrawSQL):
 | `payment_id` | `BIGINT` | NOT NULL | `REFERENCES payments(id)` |
 | `fiscal_number` | `VARCHAR(64)` | NOT NULL | `UNIQUE` |
 | `receipt_at` | `TIMESTAMPTZ` | NOT NULL | — |
-| `fiscal_status` | `VARCHAR(32)` | NOT NULL | `CHECK (fiscal_status IN ('PENDING','ISSUED','FAILED'))` |
+| `fiscal_status` | `receipt_fiscal_status_enum` | NOT NULL | значения: `PENDING`, `ISSUED`, `FAILED` |
 | `amount_minor` | `BIGINT` | NOT NULL | сумма в минорных единицах валюты (для `RUB` — копейки) |
 | `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
@@ -132,7 +132,7 @@ Table Notes (DrawSQL):
 | `amount_minor` | `BIGINT` | NOT NULL | сумма в минорных единицах валюты (для `RUB` — копейки) |
 | `reason` | `TEXT` | NULL | — |
 | `refund_provider_id` | `VARCHAR(512)` | NULL | idempotency key (partial unique, см. Table Notes) |
-| `status` | `VARCHAR(32)` | NOT NULL | `CHECK (status IN ('INITIATED','COMPLETED','FAILED'))` |
+| `status` | `refund_status_enum` | NOT NULL | значения: `INITIATED`, `COMPLETED`, `FAILED` |
 | `initiated_at` | `TIMESTAMPTZ` | NOT NULL | — |
 | `completed_at` | `TIMESTAMPTZ` | NULL | — |
 | `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
@@ -156,7 +156,7 @@ Table Notes (DrawSQL):
 | `amount_minor` | `BIGINT` | NOT NULL | иммутабельный снимок суммы долга (минорные единицы) |
 | `remaining_amount_minor` | `BIGINT` | NOT NULL | текущий остаток (минорные единицы); `CHECK (remaining_amount_minor >= 0 AND remaining_amount_minor <= amount_minor)` |
 | `overdue_since` | `DATE` | NOT NULL | дата просрочки (= `invoices.due_date`) |
-| `status` | `VARCHAR(32)` | NOT NULL | `CHECK (status IN ('ACTIVE','PAID','WRITTEN_OFF'))` |
+| `status` | `debt_status_enum` | NOT NULL | значения: `ACTIVE`, `PAID`, `WRITTEN_OFF` |
 | `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 

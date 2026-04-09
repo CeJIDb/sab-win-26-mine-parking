@@ -54,7 +54,7 @@ erDiagram
 | `code` | `VARCHAR(64)` | NOT NULL | `UNIQUE` |
 | `name` | `VARCHAR(200)` | NOT NULL | — |
 | `version` | `VARCHAR(32)` | NOT NULL | — |
-| `type` | `VARCHAR(32)` | NOT NULL | `CHECK (type IN ('INDIVIDUAL','CORPORATE'))` |
+| `type` | `contract_template_type_enum` | NOT NULL | значения: `INDIVIDUAL`, `CORPORATE` |
 | `body` | `TEXT` | NOT NULL | — |
 | `effective_from` | `DATE` | NOT NULL | — |
 | `effective_to` | `DATE` | NULL | — |
@@ -75,7 +75,7 @@ erDiagram
 | `contract_number` | `VARCHAR(64)` | NOT NULL | `UNIQUE` |
 | `start_date` | `DATE` | NOT NULL | — |
 | `end_date` | `DATE` | NULL | — |
-| `status` | `VARCHAR(32)` | NOT NULL | `CHECK (status IN ('DRAFT','ACTIVE','EXPIRED','TERMINATED'))` |
+| `status` | `contract_status_enum` | NOT NULL | значения: `DRAFT`, `ACTIVE`, `EXPIRED`, `TERMINATED` |
 | `document_file_ref` | `VARCHAR(512)` | NULL | — |
 | `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
@@ -97,8 +97,8 @@ erDiagram
 | `start_at` | `TIMESTAMPTZ` | NOT NULL | — |
 | `end_at` | `TIMESTAMPTZ` | NULL | — |
 | `license_plate_snapshot` | `VARCHAR(32)` | NOT NULL | иммутабельный снимок ГРЗ |
-| `type` | `VARCHAR(32)` | NOT NULL | `CHECK (type IN ('AUTO', 'SHORT_TERM', 'CONTRACT'))` |
-| `status` | `VARCHAR(32)` | NOT NULL | `CHECK (status IN ('PENDING','CONFIRMED','ACTIVE','COMPLETED','CANCELLED','NO_SHOW'))` |
+| `type` | `booking_type_enum` | NOT NULL | значения: `AUTO`, `SHORT_TERM`, `CONTRACT` |
+| `status` | `booking_status_enum` | NOT NULL | значения: `PENDING`, `CONFIRMED`, `ACTIVE`, `COMPLETED`, `CANCELLED`, `NO_SHOW` |
 | `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
@@ -114,7 +114,7 @@ erDiagram
 | `booking_id` | `BIGINT` | NOT NULL | логическая ссылка на `booking.bookings(id)` (ADR-002, ADR-003) |
 | `entry_time` | `TIMESTAMPTZ` | NOT NULL | — |
 | `exit_time` | `TIMESTAMPTZ` | NULL | — |
-| `status` | `VARCHAR(32)` | NOT NULL | `CHECK (status IN ('ACTIVE','COMPLETED'))`; `INTERRUPTED` — устаревающее значение (см. Table Notes) |
+| `status` | `parking_session_status_enum` | NOT NULL | значения: `ACTIVE`, `COMPLETED`; `INTERRUPTED` — устаревающее значение (см. Table Notes) |
 | `created_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()` |
 | `updated_at` | `TIMESTAMPTZ` | NOT NULL | `DEFAULT now()`; обновление триггером `moddatetime` |
 
