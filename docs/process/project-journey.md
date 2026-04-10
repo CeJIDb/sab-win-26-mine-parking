@@ -129,7 +129,7 @@
 - [UML Use Case Diagram](../artifacts/use-case/use-case-diagram.md) — показывает основные сценарии использования и актеров.
 - [Реестр Use Case](../artifacts/use-case/use-case-registry.md) — собирает перечень use case в структурированном виде.
 - [CRUDL по ролям и сущностям](../artifacts/use-case/crudl.md) — связывает операции системы с объектами предметной области.
-- [ERD](../architecture/database/erd/readme.md) — ведет к материалам по словарю данных и ERD.
+- [ERD](../architecture/database/erd/readme.md) и [DDL ERD для PostgreSQL (`public`)](../../sql/database/chartdb-postgresql-erd-normalized-public.sql) — ведет к материалам по словарю данных, ERD и актуальной SQL-схеме.
 
 ### 2.4. Эскизное макетирование интерфейсов
 
@@ -238,9 +238,8 @@ ERD детально прорабатывалась в `drawsql.app`.
 Связанные артефакты:
 
 - [Индекс архитектуры данных и БД](../architecture/database/readme.md) — задает общий контур архитектуры данных и БД.
-- [ERD](../architecture/database/erd/readme.md) — собирает каноничные материалы по ERD и словарю данных.
+- [ERD](../architecture/database/erd/readme.md) и [DDL ERD для PostgreSQL (`public`)](../../sql/database/chartdb-postgresql-erd-normalized-public.sql) — собирает каноничные материалы по ERD, словарю данных и актуальной SQL-схеме.
 - [DDL ERD для PostgreSQL](../../sql/database/chartdb-postgresql-erd-normalized.sql) — хранит актуальную схему данных для полной ERD-модели.
-- [DDL ERD для PostgreSQL (`public`)](../../sql/database/chartdb-postgresql-erd-normalized-public.sql) — хранит вариант схемы с явным использованием схемы `public`.
 
 ### 4.3. Основы информационной безопасности
 
