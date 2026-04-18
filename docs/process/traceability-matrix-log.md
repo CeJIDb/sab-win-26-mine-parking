@@ -4,6 +4,7 @@
 
 | Change ID        | Source                        | Requirement ID | Changed files                                                     | Validation                   | Evidence |
 |------------------|-------------------------------|----------------|-------------------------------------------------------------------|------------------------------|----------|
+| CHG-20260411-001 | Docs: добавить UML Sequence Diagram для UC-10.2 онлайн-оплаты | INT-004, INT-006, INT-007, INT-010, INT-011 | docs/architecture/integration/{readme.md,sequence-uc-10-2-pay-online-short-term-rental.md}, docs/artifacts/use-case/uc-10-2-pay-online-short-term-rental.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260407-001 | Docs: актуализировать контекстную декомпозицию до 15 контекстов, выделить Расчет стоимости и интеграционные адаптеры | — | docs/architecture/{ddd/ddd-bounded-contexts.md,ddd/es-tobe-sd-contexts.md,c4/{c4-parking-platform.md,c4-l2-container.md}}, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260402-026 | Docs: уточнить роль команды в корневом README как системных аналитиков | — | README.md, docs/process/traceability-matrix-log.md | review + `npm run ci:check` | PR #<TBD> |
 | CHG-20260402-025 | Docs: извлечь каноничный CRUDL из импортированного use-case markdown, обновить индексы и удалить temp | — | docs/artifacts/{readme.md,use-case/{crudl.md,readme.md,temp/**}}, docs/process/{project-journey.md,traceability-matrix-log.md} | review + `npm run ci:check` | PR #<TBD> |
