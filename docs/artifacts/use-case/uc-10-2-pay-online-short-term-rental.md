@@ -179,4 +179,5 @@
 - [Диаграмма вариантов использования](use-case-diagram.md) — показывает место сценария в общей карте use case.
 - [Индекс use case артефактов](readme.md) — верхний каталог use case материалов.
 - [Требования к интеграции](../../specs/integration/integration-requirements.md) — фиксируют требования класса `INT-*`, на которые опирается сценарий онлайн-оплаты.
+- [UML Sequence Diagram — UC-10.2 Онлайн-оплата краткосрочной аренды](../../architecture/integration/sequence-uc-10-2-pay-online-short-term-rental.md) — визуализирует межсистемный поток оплаты, фискализации и уведомления клиента.
 - [Маппинг обмена данными с ЮKassa](../../architecture/integration/yookassa-data-mapping.md) — фиксирует поля запроса оплаты для онлайн-сценария.

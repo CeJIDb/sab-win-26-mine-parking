@@ -19,7 +19,6 @@
 
 Примеры файлов, которые логично хранить в этом разделе:
 
-- `drakon-access-check.md`
 - `drakon-parking-session-lifecycle.md`
 - `algorithm-manual-access-decision.md`
 - `drakon-parking-payment.md`
