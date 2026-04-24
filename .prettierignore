@@ -1,0 +1,41 @@
+# Зависимости и сборка
+node_modules/
+.venv/
+.venv*/
+venv/
+
+# Собранные артефакты ui/ (генерируются build-templates.mjs и sass)
+ui/wireframe.css
+ui/**/*.html
+ui/index.html
+ui/site/
+ui/admin/
+ui/guard/
+
+# Шаблоны Nunjucks (Prettier не умеет их корректно форматировать)
+ui/templates/
+ui/pages/
+ui/components/
+ui/layouts/
+
+# SQL-заготовки (диалект-специфично, форматируем вручную)
+sql/
+
+# Локальные настройки и MCP (могут содержать секреты)
+.claude/settings.local.json
+.cursor/mcp.json
+.cursor/mcp.json.example
+
+# Временный контекст между агентами
+docs/_system-context/
+temp_context/
+
+# Env и логи
+.env
+.env.*
+*.log
+
+# Lock-файлы
+package-lock.json
+pnpm-lock.yaml
+yarn.lock

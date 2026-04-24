@@ -1,0 +1,39 @@
+{
+  "config": {
+    "extends": ".markdownlint.jsonc",
+  },
+  "ignores": [
+    "node_modules/**",
+    ".venv/**",
+    ".venv*/**",
+    ".git/**",
+    ".cursor/**",
+    ".claude/**",
+    "ui/**",
+    "docs/_system-context/**",
+    "temp_context/**",
+    // Сжатый контекст репозитория — авто-подобный снимок, не регулярная документация.
+    "docs/repo-context-compressed.md",
+    // Стенограммы интервью и протоколы — дословные записи, markdown-стиль вторичен.
+    "docs/interviews/**",
+    // Презентационные деки Demo Days — намеренная стилистика (slide-breaks, заголовки с ":").
+    "docs/demo-days/**",
+    // Use-case артефакты с легаси-отступами 3/4 пробела — приводим в отдельном плане.
+    "docs/artifacts/use-case/**",
+    // Legacy-файлы с нестандартной структурой — чистка в отдельном плане.
+    "docs/artifacts/project-glossary.md",
+    "docs/artifacts/conceptual-model-with-attributes.md",
+    "docs/artifacts/project-charter.md",
+    "docs/artifacts/navigation-map.md",
+    "docs/artifacts/as-is/parking-as-is-diagram.md",
+    "docs/architecture/c4/c4-parking-platform.md",
+    "docs/architecture/ddd/ddd-bounded-contexts.md",
+    "docs/architecture/database/erd/data-dictionary-buildin-import.md",
+    "docs/process/first-contribution-path.md",
+    "docs/process/templates/traceability-matrix-template.md",
+    "docs/specs/nonfunctional-requirements/nfr-ui-quality.md",
+    // GitHub-шаблоны — особый формат, не документация для чтения.
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    ".github/ISSUE_TEMPLATE/**",
+  ],
+}
