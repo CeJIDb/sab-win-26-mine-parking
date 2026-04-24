@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(rm -r /*)",
+      "Bash(find * -delete)",
+      "Bash(find * -exec rm *)",
+      "Bash(export *curl*)",
+      "Bash(curl*$*)",
+      "Bash(curl*${*}*)",
+      "Bash(wget*$*)",
+      "Bash(wget*${*}*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f *)",
+      "Bash(git push --force-with-lease*)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean -f*)",
+      "Bash(git branch -D *)",
+      "Bash(vercel *)",
+      "Bash(railway up*)",
+      "Bash(railway deploy*)",
+      "Bash(docker push*)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/secrets*)",
+      "Read(**/credentials*)",
+      "Read(**/*secret*)",
+      "Read(**/*password*)",
+      "Read(**/*passwd*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/*.p12)",
+      "Read(**/*.pfx)",
+      "Read(**/*.sqlite)",
+      "Read(**/*.sqlite3)",
+      "Read(.cursor/mcp.json)",
+      "Read(.cursor/mcp.json.example)"
+    ]
+  }
+}
