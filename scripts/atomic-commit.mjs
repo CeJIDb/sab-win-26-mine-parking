@@ -1,17 +1,26 @@
 #!/usr/bin/env node
 /**
- * Группирует текущие изменения (относительно HEAD) в несколько атомарных коммитов.
+ * Группирует текущие изменения относительно HEAD в несколько атомарных коммитов.
  * Заголовки: Conventional Commits + commitlint; тип и scope — латиницей, описание после «:» — на русском
  * (как в `.cursor/agents/git-workflow-master.md`). Скрипт не вызывает агента — шаблоны зашиты здесь.
+ * Сообщения коммитов генерируются из реальных изменений: имена файлов + тип изменения (A/M/D/R).
  *
  * Использование:
- *   node scripts/atomic-commit.mjs           # план + подтверждение (y/N)
- *   node scripts/atomic-commit.mjs --yes     # без запроса
- *   node scripts/atomic-commit.mjs --dry-run # только план
+ *   node scripts/atomic-commit.mjs                  # план + подтверждение (y/N)
+ *   node scripts/atomic-commit.mjs --yes            # без подтверждения
+ *   node scripts/atomic-commit.mjs --dry-run        # только план, без коммитов
+ *   node scripts/atomic-commit.mjs --staged-only    # коммитить только уже проиндексированные файлы
  *
- * Не выполняет push. Требует чистого рабочего дерева от незавершённых merge/rebase.
+ * Не делает push. Требует чистого состояния от незавершённых merge/rebase.
+ *
+ * Улучшения по сравнению с исходной версией parking:
+ *   • Бакеты дополнены под структуру репозитория: plans/, .claude/, CLAUDE.md, .mcp.json, tooling-конфиги.
+ *   • Корректно обрабатывает удаления и переименования через `git status --porcelain=v1 -z`.
+ *   • Режим `--staged-only` для работы с вручную подготовленным индексом.
+ *   • `git add -A --` вместо `git add --` — удалённые файлы тоже попадают в коммит.
+ *   • Сообщения генерируются из реальных изменений (имена файлов + глагол по типу A/M/D/R).
+ *   • Перед коммитом прогоняется `prettier --write` по форматируемым файлам.
  */
-
 import { execFileSync, execSync } from "node:child_process";
 import { createInterface } from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
@@ -22,25 +31,32 @@ function isSandboxSpawnError(error) {
 
 function printSandboxHint(error) {
   if (!isSandboxSpawnError(error)) return false;
-
   console.error(
-    "atomic-commit: sandbox blocked Node.js from spawning git. " +
-      "Run this command with elevated permissions or use the shell fallback:",
+    "atomic-commit: sandbox заблокировал запуск git из Node. " +
+      "Запусти с повышенными правами или используй shell-версию:",
   );
   console.error("  npm run commit:atomic:sh");
   return true;
 }
 
-function gitStdout(args) {
+function printSandboxHintForTool(tool, error) {
+  if (!isSandboxSpawnError(error)) return false;
+  console.error(`atomic-commit: sandbox заблокировал запуск ${tool} из Node.`);
+  console.error("Запусти с повышенными правами или используй shell-версию:");
+  console.error("  npm run commit:atomic:sh");
+  return true;
+}
+
+function gitStdoutRaw(args) {
   try {
-    return execFileSync("git", args, { encoding: "utf-8" }).trim();
+    return execFileSync("git", args, { encoding: "utf-8" });
   } catch (error) {
     if (printSandboxHint(error)) process.exit(1);
     return "";
   }
 }
 
-function gitRun(args, inherit = false) {
+function gitRun(args, inherit = true) {
   try {
     execFileSync("git", args, inherit ? { stdio: "inherit" } : { encoding: "utf-8" });
   } catch (error) {
@@ -49,26 +65,255 @@ function gitRun(args, inherit = false) {
   }
 }
 
-function getChangedFiles() {
-  const tracked = gitStdout(["diff", "--name-only", "HEAD"]);
-  const untracked = gitStdout(["ls-files", "--others", "--exclude-standard"]);
+const PRETTIER_FILE_RE = /\.(md|json|jsonc|yml|yaml|js|jsx|ts|tsx|css|html)$/i;
+
+function runPrettierWrite(paths) {
+  if (!paths || paths.length === 0) return;
+  try {
+    execFileSync("npx", ["prettier", "--write", ...paths], { stdio: "inherit" });
+  } catch (error) {
+    if (printSandboxHintForTool("prettier", error)) process.exit(1);
+    throw error;
+  }
+}
+
+/**
+ * Собирает список файлов относительно HEAD, корректно обрабатывая rename/delete.
+ * Возвращает массив путей (для rename — путь «куда»).
+ */
+function getChangedFiles({ stagedOnly = false } = {}) {
   const set = new Set();
-  for (const line of tracked.split("\n")) {
-    if (line) set.add(line);
+
+  if (stagedOnly) {
+    const raw = gitStdoutRaw(["diff", "--cached", "--name-only", "-z"]);
+    for (const name of raw.split("\0")) {
+      if (name) set.add(name);
+    }
+    return [...set].sort();
   }
-  for (const line of untracked.split("\n")) {
-    if (line) set.add(line);
+
+  // Используем porcelain=v1 -z для точного разбора статусов, включая R (rename) и D (delete).
+  const raw = gitStdoutRaw(["status", "--porcelain=v1", "-z"]);
+  if (!raw) return [];
+
+  const tokens = raw.split("\0");
+  let i = 0;
+  while (i < tokens.length) {
+    const entry = tokens[i];
+    if (!entry) {
+      i += 1;
+      continue;
+    }
+    const xy = entry.slice(0, 2);
+    const pathPart = entry.slice(3);
+    const isRename = xy.includes("R") || xy.includes("C");
+
+    if (isRename) {
+      // Формат: "XY new-path\0old-path\0"
+      set.add(pathPart);
+      i += 2;
+    } else {
+      set.add(pathPart);
+      i += 1;
+    }
   }
+
   return [...set].sort();
 }
 
+/**
+ * Возвращает Map { path -> 'A' | 'M' | 'D' | 'R' } по `git status --porcelain=v1 -z`.
+ * Для `stagedOnly` учитывает только индекс (X-колонка), иначе берёт X если он есть, иначе Y.
+ */
+function getFileStatus(files, { stagedOnly = false } = {}) {
+  const statusByPath = new Map();
+  const raw = gitStdoutRaw(["status", "--porcelain=v1", "-z"]);
+  if (!raw) return statusByPath;
+
+  const want = new Set(files);
+  const tokens = raw.split("\0");
+  let i = 0;
+  while (i < tokens.length) {
+    const entry = tokens[i];
+    if (!entry) {
+      i += 1;
+      continue;
+    }
+
+    const x = entry[0];
+    const y = entry[1];
+    const pathPart = entry.slice(3);
+    const isRename = entry[0] === "R" || entry[1] === "R" || entry[0] === "C" || entry[1] === "C";
+
+    const pick = stagedOnly ? x : x !== " " ? x : y;
+
+    if (want.has(pathPart) && pick !== " " && !(stagedOnly && pick === "?")) {
+      const normalized =
+        pick === "A" || pick === "?"
+          ? "A"
+          : pick === "D"
+            ? "D"
+            : pick === "R" || pick === "C"
+              ? "R"
+              : "M";
+      statusByPath.set(pathPart, normalized);
+    }
+
+    i += isRename ? 2 : 1;
+  }
+
+  return statusByPath;
+}
+
+function parseHeader(defMessage) {
+  const idx = defMessage.indexOf(":");
+  if (idx === -1) return { header: defMessage.trim(), sep: "" };
+  return { header: defMessage.slice(0, idx).trim(), sep: ": " };
+}
+
+function bucketPrefixForDef(def) {
+  switch (def.id) {
+    case "ci":
+      return ".github/";
+    case "husky":
+      return ".husky/";
+    case "claude":
+      return ".claude/";
+    case "cursor":
+      return ".cursor/";
+    case "scripts":
+      return "scripts/";
+    case "plans":
+      return "plans/";
+    case "specs":
+      return "docs/specs/";
+    case "architecture":
+      return "docs/architecture/";
+    case "artifacts":
+      return "docs/artifacts/";
+    case "process":
+      return "docs/process/";
+    case "protocols":
+      return "docs/protocols/";
+    case "interviews":
+      return "docs/interviews/";
+    case "demo-days":
+      return "docs/demo-days/";
+    case "docs-root":
+      return "docs/";
+    case "ui":
+      return "ui/";
+    case "sql":
+      return "sql/";
+    default:
+      return "";
+  }
+}
+
+function displayName(def, filePath) {
+  if (!def || def.id === "deps" || def.id === "tooling" || def.id === "root-docs") return filePath;
+  const prefix = bucketPrefixForDef(def);
+  if (prefix && filePath.startsWith(prefix)) {
+    const stripped = filePath.slice(prefix.length);
+    if (stripped) return stripped;
+    const clean = filePath.endsWith("/") ? filePath.slice(0, -1) : filePath;
+    const last = clean.split("/").pop();
+    return filePath.endsWith("/") ? `${last}/` : last;
+  }
+  return filePath;
+}
+
+function verbForStatus(status) {
+  switch (status) {
+    case "A":
+      return "добавить";
+    case "D":
+      return "удалить";
+    case "R":
+      return "переименовать в";
+    default:
+      return "обновить";
+  }
+}
+
+function pluralRu(n, one, few, many) {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return one;
+  if (mod10 >= 2 && mod10 <= 4 && !(mod100 >= 12 && mod100 <= 14)) return few;
+  return many;
+}
+
+function truncateMessage(msg, limit = 100) {
+  if (msg.length <= limit) return msg;
+
+  const nameListSep = "): ";
+  const namedParenIdx = msg.indexOf(nameListSep);
+  const listIdx =
+    namedParenIdx !== -1 ? namedParenIdx + nameListSep.length : msg.lastIndexOf(": ") + 2;
+  if (listIdx < 2 || listIdx >= msg.length) return msg.slice(0, Math.max(0, limit - 1)) + "…";
+
+  const base = msg.slice(0, listIdx);
+  const list = msg.slice(listIdx);
+  const parts = list.split(", ").filter(Boolean);
+  if (parts.length <= 1) return msg.slice(0, Math.max(0, limit - 1)) + "…";
+
+  let keep = parts.length;
+  let out = msg;
+  while (keep > 1 && out.length > limit) {
+    keep -= 1;
+    out = base + parts.slice(0, keep).join(", ") + ", …";
+  }
+  if (out.length <= limit) return out;
+  return (base + "…").slice(0, Math.max(0, limit - 1)) + "…";
+}
+
+function buildMessage(def, files, statusMap) {
+  const { header, sep } = parseHeader(def.message || MISC.message);
+  const names = files.map((f) => displayName(def, f));
+  const statuses = files.map((f) => statusMap.get(f) || "M");
+
+  const unique = new Set(statuses);
+  if (files.length === 1) {
+    const v = verbForStatus(statuses[0]);
+    return `${header}${sep}${v} ${names[0]}`;
+  }
+
+  if (unique.size === 1) {
+    const only = statuses[0];
+    const v = verbForStatus(only);
+    const n = files.length;
+    const shown = names.slice(0, 3);
+    const list = shown.join(", ") + (n > shown.length ? ", …" : "");
+    const filesWord = pluralRu(n, "файл", "файла", "файлов");
+    return truncateMessage(`${header}${sep}${v} ${n} ${filesWord}: ${list}`);
+  }
+
+  const counts = { A: 0, D: 0, M: 0, R: 0 };
+  for (const s of statuses) counts[s] += 1;
+  const n = files.length;
+  const counters = [
+    counts.A ? `+${counts.A}` : null,
+    counts.D ? `−${counts.D}` : null,
+    counts.M ? `~${counts.M}` : null,
+    counts.R ? `R${counts.R}` : null,
+  ].filter(Boolean);
+
+  const filesWord = pluralRu(n, "файл", "файла", "файлов");
+  const base = `${header}${sep}обновить ${n} ${filesWord} (${counters.join(" ")})`;
+  if (n <= 3) {
+    return truncateMessage(`${base}: ${names.join(", ")}`);
+  }
+  return truncateMessage(base);
+}
+
+// Бакеты упорядочены от самых «стабильных» к содержательным, чтобы инфраструктурные
+// коммиты шли первыми (удобно при ревью и откате).
 const BUCKET_DEFS = [
   {
     id: "deps",
     test: (f) =>
-      f === "package.json" ||
-      f === "package-lock.json" ||
-      f === "npm-shrinkwrap.json",
+      f === "package.json" || f === "package-lock.json" || f === "npm-shrinkwrap.json",
     message: "chore(deps): обновить метаданные пакета",
   },
   {
@@ -87,9 +332,34 @@ const BUCKET_DEFS = [
     message: "chore(scripts): обновить скрипты репозитория",
   },
   {
+    id: "tooling",
+    test: (f) =>
+      f === ".editorconfig" ||
+      f === ".gitignore" ||
+      f === ".gitattributes" ||
+      f === ".prettierrc.json" ||
+      f === ".prettierignore" ||
+      f === ".markdownlint.jsonc" ||
+      f === ".markdownlint-cli2.jsonc" ||
+      f === ".mcp.json" ||
+      f === "commitlint.config.cjs" ||
+      f.startsWith(".vscode/"),
+    message: "chore(tooling): обновить конфиги инструментов разработки",
+  },
+  {
+    id: "claude",
+    test: (f) => f === "CLAUDE.md" || f.startsWith(".claude/"),
+    message: "docs(claude): обновить навигацию и правила для Claude",
+  },
+  {
     id: "cursor",
     test: (f) => f.startsWith(".cursor/"),
     message: "chore(cursor): обновить правила и команды Cursor",
+  },
+  {
+    id: "plans",
+    test: (f) => f.startsWith("plans/"),
+    message: "docs(plans): обновить технические планы",
   },
   {
     id: "specs",
@@ -117,6 +387,11 @@ const BUCKET_DEFS = [
     message: "docs(protocols): обновить протоколы встреч",
   },
   {
+    id: "interviews",
+    test: (f) => f.startsWith("docs/interviews/"),
+    message: "docs(interviews): обновить материалы интервью",
+  },
+  {
     id: "demo-days",
     test: (f) => f.startsWith("docs/demo-days/"),
     message: "docs(demo-days): обновить материалы demo-days",
@@ -132,8 +407,18 @@ const BUCKET_DEFS = [
     message: "chore(wireframe): обновить wireframe UI",
   },
   {
+    id: "sql",
+    test: (f) => f.startsWith("sql/"),
+    message: "chore(sql): обновить SQL-заготовки",
+  },
+  {
     id: "root-docs",
-    test: (f) => f === "README.md" || f === "CONTRIBUTING.md" || f === "LICENSE",
+    test: (f) =>
+      f === "README.md" ||
+      f === "CONTRIBUTING.md" ||
+      f === "LICENSE" ||
+      f === "SKILLS.md" ||
+      f === "CHANGELOG.md",
     message: "docs(repo): обновить README и руководства в корне",
   },
 ];
@@ -148,36 +433,39 @@ const BUCKET_ORDER = [
   "ci",
   "husky",
   "scripts",
+  "tooling",
+  "claude",
   "cursor",
+  "plans",
   "specs",
   "architecture",
   "artifacts",
   "process",
   "protocols",
+  "interviews",
   "demo-days",
   "docs-root",
   "ui",
+  "sql",
   "root-docs",
   "misc",
 ];
 
-function classifyFile(path) {
+function classifyFile(p) {
   for (const def of BUCKET_DEFS) {
-    if (def.test(path)) return def;
+    if (def.test(p)) return def;
   }
   return MISC;
 }
 
 function groupFiles(files) {
-  /** @type {Map<string, { def: object, files: string[] }>} */
   const map = new Map();
   for (const f of files) {
     const def = classifyFile(f);
-    const key = def.id;
-    if (!map.has(key)) {
-      map.set(key, { def, files: [] });
+    if (!map.has(def.id)) {
+      map.set(def.id, { def, files: [] });
     }
-    map.get(key).files.push(f);
+    map.get(def.id).files.push(f);
   }
   return map;
 }
@@ -191,17 +479,17 @@ function sortBuckets(map) {
 function assertCleanGitState() {
   try {
     execSync("git rev-parse -q --verify MERGE_HEAD", { stdio: "ignore" });
-    console.error("atomic-commit: merge in progress. Resolve or abort before running.");
+    console.error("atomic-commit: идёт merge. Заверши или отмени его перед запуском.");
     process.exit(1);
   } catch {
-    /* no merge */
+    /* нет merge */
   }
   try {
     execSync("git rev-parse -q --verify REBASE_HEAD", { stdio: "ignore" });
-    console.error("atomic-commit: rebase in progress. Continue or abort before running.");
+    console.error("atomic-commit: идёт rebase. Заверши или отмени его перед запуском.");
     process.exit(1);
   } catch {
-    /* no rebase */
+    /* нет rebase */
   }
 }
 
@@ -215,47 +503,56 @@ async function confirm(message) {
 async function main() {
   const dryRun = process.argv.includes("--dry-run");
   const yes = process.argv.includes("--yes");
+  const stagedOnly = process.argv.includes("--staged-only");
 
   assertCleanGitState();
 
-  const files = getChangedFiles();
+  const files = getChangedFiles({ stagedOnly });
+  const statusMap = getFileStatus(files, { stagedOnly });
   if (files.length === 0) {
-    console.log("atomic-commit: nothing to commit (clean working tree vs HEAD).");
+    const what = stagedOnly ? "в индексе" : "относительно HEAD";
+    console.log(`atomic-commit: нечего коммитить (${what} пусто).`);
     process.exit(0);
   }
 
   const map = groupFiles(files);
   const buckets = sortBuckets(map);
 
-  console.log("atomic-commit: planned commits (in order):\n");
+  console.log(`atomic-commit: план коммитов (режим: ${stagedOnly ? "staged-only" : "worktree"}):\n`);
   for (const [, { def, files: fs }] of buckets) {
-    const msg = def.message || MISC.message;
+    const msg = buildMessage(def, fs, statusMap);
     console.log(`  — ${msg}`);
-    console.log(`    files (${fs.length}): ${fs.slice(0, 8).join(", ")}${fs.length > 8 ? ", …" : ""}\n`);
+    const preview = fs.slice(0, 8).join(", ");
+    console.log(`    файлов (${fs.length}): ${preview}${fs.length > 8 ? ", …" : ""}\n`);
   }
 
   if (dryRun) {
-    console.log("Dry run: no commits created.");
+    console.log("Dry run: коммиты не создавались.");
     process.exit(0);
   }
 
   if (!yes) {
-    const ok = await confirm("Create these commits? [y/N] ");
+    const ok = await confirm("Создать эти коммиты? [y/N] ");
     if (!ok) {
-      console.log("Aborted.");
+      console.log("Отменено.");
       process.exit(1);
     }
   }
 
   for (const [, { def, files: fs }] of buckets) {
     if (fs.length === 0) continue;
-    const msg = def.message || MISC.message;
-    gitRun(["add", "--", ...fs], true);
-    gitRun(["commit", "-m", msg], true);
-    console.log(`Created: ${msg}`);
+    const msg = buildMessage(def, fs, statusMap);
+    const prettierTargets = fs.filter(
+      (p) => statusMap.get(p) !== "D" && PRETTIER_FILE_RE.test(p),
+    );
+    runPrettierWrite(prettierTargets);
+    // -A: захватываем и удаления тоже, ограничившись перечисленными путями.
+    gitRun(["add", "-A", "--", ...fs]);
+    gitRun(["commit", "-m", msg]);
+    console.log(`Создан: ${msg}`);
   }
 
-  console.log("\natomic-commit: done. Review with: git log -n 20 --oneline");
+  console.log("\natomic-commit: готово. Проверь историю: git log -n 20 --oneline");
 }
 
 main().catch((e) => {
