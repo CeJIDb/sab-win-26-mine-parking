@@ -287,6 +287,11 @@ ERD детально прорабатывалась в `drawsql.app`.
 Связанные артефакты:
 
 - [Индекс интеграционной архитектуры](../architecture/integration/readme.md) — задает структуру для будущих интеграционных артефактов.
+- [Регламент взаимодействия ИС](../architecture/integration/is-interaction-regulation.md) — сводит в одну таблицу направления межсистемного обмена для блоков СКУД и онлайн-оплаты.
+- [UML Sequence — UC-10.2 Онлайн-оплата краткосрочной аренды](../architecture/integration/sequence-uc-10-2-pay-online-short-term-rental.md) — последовательность вызовов в сценарии онлайн-оплаты.
+- [Маппинг обмена данными с ЮKassa](../architecture/integration/yookassa-data-mapping.md) — соответствие внутренней модели оплат объектам API внешнего платежного провайдера.
+- [JSON-пример ответа — UC-10.2-1](../architecture/integration/payload-uc-10-2-payment.md) — каноничные примеры полезной нагрузки ответа по оплате.
+- [JSON-схема ответа — UC-10.2-1](../architecture/integration/schema-uc-10-2-payment.md) — формальная JSON Schema ответа по оплате.
 
 ## Демо-дни как контрольные точки
 
