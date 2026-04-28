@@ -1,6 +1,10 @@
 {
   "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/specification/main/schema/mcp.schema.json",
   "mcpServers": {
+    "markdown_rag": {
+      "command": "/home/cejidb/.local/bin/uv",
+      "args": ["--directory", "/home/cejidb/.local/share/mcp-markdown-rag", "run", "server.py"]
+    },
     "playwright": {
       "command": "npx",
       "args": [
