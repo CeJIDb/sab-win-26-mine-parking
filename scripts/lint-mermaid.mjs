@@ -23,6 +23,7 @@ const execFileAsync = promisify(execFile);
 const ROOT = process.cwd();
 const DOCS_DIR = path.join(ROOT, "docs");
 const MMDC_BIN = path.join(ROOT, "node_modules", ".bin", "mmdc");
+const PUPPETEER_CONFIG = path.join(ROOT, "puppeteer-config.json");
 
 const EXCLUDE_DIRS = new Set([".git", "node_modules", ".venv", "__pycache__", ".cache"]);
 
@@ -86,6 +87,7 @@ async function checkBlock(body, tmpBase) {
     await execFileAsync(MMDC_BIN, [
       "-i", inputFile,
       "-o", outputFile,
+      "-p", PUPPETEER_CONFIG,
       "--quiet",
     ]);
     return { ok: true, stderr: "" };
