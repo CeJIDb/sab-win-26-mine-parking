@@ -611,49 +611,49 @@ erDiagram
 
 В таблице ниже все **PK** — `BIGINT`; **FK** — `BIGINT` (совпадают с типом PK родителя). **`INT`** в столбце «Ключевые атрибуты» обозначает `INTEGER` для не-ключевых числовых полей.
 
-| Сущность | PK | Ключевые атрибуты (целевой PostgreSQL) |
-|----------|-----|----------------------------------------|
-| `parkings` | **BIGINT** | `name` VARCHAR, `address` TEXT; `parking_type_id` FK BIGINT → `parking_types`; `operational_status_id` FK BIGINT → `operational_statuses` |
-| `parking_types` | **BIGINT** | справочник `facility`; `code` VARCHAR UNIQUE; `name` VARCHAR; `description` TEXT |
-| `parking_schedules` | **BIGINT** | FK **BIGINT** на парковку; `day_of_week` **SMALLINT** + `CHECK` 1–7; `open_time`/`close_time` TIME; даты DATE |
-| `sectors` | **BIGINT** | FK **BIGINT** на парковку и тип зоны; `operational_status_id` FK BIGINT → `operational_statuses` |
-| `zone_types` | **BIGINT** | суррогатный `id` без отдельного поля `code`; `name` VARCHAR; `description` TEXT |
-| `vehicle_types` | **BIGINT** | суррогатный `id` без отдельного поля `code`; `name` VARCHAR; `description` TEXT |
-| `operational_statuses` | **BIGINT** | справочник `facility`; суррогатный `id` без отдельного поля `code`; FK из `parkings`, `sectors`, `parking_places`, `access_points` |
-| `zone_type_vehicle_types`, `zone_type_tariffs` | составной PK (BIGINT, BIGINT) | FK типов совпадают с PK `zone_types` / `vehicle_types` / `tariffs` |
-| `parking_places` | **BIGINT** | `place_number` VARCHAR; FK **BIGINT** на сектор и опционально на тариф; `is_occupied` BOOLEAN; `operational_status_id` FK BIGINT → `operational_statuses` |
-| `clients` | **BIGINT** | `type` `client_type_enum`; `status` `client_status_enum`; ФИО (для FL) в `clients` |
-| `client_accounts` | **BIGINT** | схема `auth`; идентификаторы входа: `login` (nullable), `phone_e164` (nullable), `email_normalized` (nullable); `auth_provider` (открытый список); `account_status` `client_account_status_enum` |
-| `notification_settings`, `payment_settings` | **BIGINT** | FK `client_id` BIGINT NOT NULL UNIQUE; булевы BOOLEAN; `monthly_limit_minor` BIGINT |
-| `notification_settings_channels` | составной PK (BIGINT, `notification_channel_enum`) | FK BIGINT на `notification_settings`; `channel` `notification_channel_enum` — литералы `SMS`/`EMAIL`/`PUSH` (не суррогатный id) |
-| `passport_data`, `benefit_documents` | **BIGINT** | схема `pii` (152-ФЗ); связь с `clients` через `client_id` (логическая); в `passport_data` — `series`/`number` BYTEA (зашифровано) и `document_type` `passport_document_type_enum`; в `benefit_documents` — `benefit_category_id` FK BIGINT → `benefit_categories`, `document_type` `benefit_document_type_enum`, `verification_status` `benefit_document_verification_status_enum`; даты DATE |
-| `benefit_categories` | **BIGINT** | справочник `client`; `code` VARCHAR UNIQUE; `name` VARCHAR; `description` TEXT |
-| `organizations` | **BIGINT** | профиль ЮЛ; `client_id` BIGINT UNIQUE `REFERENCES clients(id)`; `legal_form` VARCHAR(64); ИНН/КПП/ОГРН VARCHAR; адреса TEXT; `status` `organization_status_enum` |
-| `organization_bank_accounts` | **BIGINT** | FK **BIGINT** на организацию; реквизиты VARCHAR; `is_primary` BOOLEAN |
-| `agreements` | **BIGINT** | схема `client`; FK **BIGINT** на клиента; `agreement_type_id` FK BIGINT → `agreement_types`; `accepted` BOOLEAN; `accepted_at`/`revoked_at` TIMESTAMPTZ |
-| `agreement_types` | **BIGINT** | справочник `client`; `code` VARCHAR UNIQUE; `name` VARCHAR; `description` TEXT |
-| `employees` | **BIGINT** | `role_id` FK BIGINT → `employee_roles`; контакты VARCHAR; `status` `employee_status_enum` |
-| `employee_roles` | **BIGINT** | справочник `employee`; `code` VARCHAR UNIQUE; FK из `employees.role_id` |
-| `employee_accounts` | **BIGINT** (PK=FK) | схема `auth`; `login` VARCHAR UNIQUE; `account_status` `employee_account_status_enum`; `totp_secret_encrypted` TEXT |
-| `vehicles` | **BIGINT** | FK **BIGINT** на клиента и тип ТС; `license_plate` VARCHAR `UNIQUE` (с нормализацией) |
-| `access_points` | **BIGINT** | FK **BIGINT** на парковку; `type` `access_point_type_enum`; `direction` `access_point_direction_enum`; `operational_status_id` FK BIGINT → `operational_statuses` |
-| `tariffs` | **BIGINT** | `tariff_type_id` FK BIGINT → `tariff_types`; `billing_step_unit` `billing_step_unit_enum`; `benefit_category_id` FK BIGINT → `benefit_categories` (nullable); `effective_from/to` DATE |
-| `tariff_types` | **BIGINT** | справочник `tariff`; `code` VARCHAR UNIQUE; `name` VARCHAR; `description` TEXT |
-| `tariff_rates` | **BIGINT** | FK **BIGINT** на тариф; `rate_minor` BIGINT `CHECK (rate_minor >= 0)`; `day_of_week` SMALLINT; `time_from/to` TIME |
-| `contract_templates` | **BIGINT** | `type` `contract_template_type_enum`; `body` TEXT; период DATE |
-| `contracts` | **BIGINT** | FK **BIGINT** на клиента; `contract_number` VARCHAR `UNIQUE`; `status` `contract_status_enum` |
-| `bookings` | **BIGINT** | FK логические; `status` `booking_status_enum`; `type` `booking_type_enum`; `start_at`/`end_at` TIMESTAMPTZ |
-| `invoices` | **BIGINT** | `type` `invoice_type_enum`; `status` `invoice_status_enum`; `amount_due_minor` |
-| `parking_sessions` | **BIGINT** | FK логические; `status` `parking_session_status_enum` |
-| `payments` | **BIGINT** | FK **BIGINT** на счет; `payment_method_id` FK BIGINT → `payment_methods`; `status` `payment_status_enum`; `amount_minor` |
-| `payment_methods` | **BIGINT** | справочник `payment`; `code` VARCHAR UNIQUE; FK из `payments.payment_method_id` |
-| `receipts` | **BIGINT** | FK **BIGINT** на платеж; `fiscal_number` VARCHAR UNIQUE; `fiscal_status` `receipt_fiscal_status_enum`; `amount_minor` |
-| `refunds` | **BIGINT** | схема `payment`; FK **BIGINT** на `payments`; `amount_minor`; `refund_provider_id` VARCHAR PARTIAL UNIQUE; `status` `refund_status_enum` |
-| `debts` | **BIGINT** | схема `payment`; FK **BIGINT** на `invoices`; `client_id` BIGINT логический; `amount_minor`; `remaining_amount_minor NOT NULL`; `overdue_since` DATE; `status` `debt_status_enum` |
-| `notification_templates` | **BIGINT** | `type` `notification_channel_enum`; `body` TEXT; `subject` VARCHAR |
-| `notifications` | **BIGINT** | схема `notification`; `subject_type` `subject_entity_enum`; `channel` `notification_channel_enum`; `delivery_status` `notification_delivery_status_enum`; `delivery_address` VARCHAR(320) NOT NULL |
-| `appeals` | **BIGINT** | схема `support`; `subject_type` `subject_entity_enum`; `subject_id` BIGINT; `type` `appeal_type_enum`; `channel` `appeal_channel_enum`; `status` `appeal_status_enum`; CHECK((subject_type IS NULL)=(subject_id IS NULL)) |
-| `access_logs` | **BIGINT** | схема `report`; `access_point_id` BIGINT NOT NULL логический; `parking_session_id` BIGINT nullable логический; `vehicle_id` BIGINT nullable; `direction` `access_log_direction_enum`; `decision` `access_decision_enum`; `decided_at` TIMESTAMPTZ NOT NULL; append-only |
+| Сущность                                       | PK                                                 | Ключевые атрибуты (целевой PostgreSQL)                                                                                                                                                                                                                                                                                                                                                        |
+| ---------------------------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `parkings`                                     | **BIGINT**                                         | `name` VARCHAR, `address` TEXT; `parking_type_id` FK BIGINT → `parking_types`; `operational_status_id` FK BIGINT → `operational_statuses`                                                                                                                                                                                                                                                     |
+| `parking_types`                                | **BIGINT**                                         | справочник `facility`; `code` VARCHAR UNIQUE; `name` VARCHAR; `description` TEXT                                                                                                                                                                                                                                                                                                              |
+| `parking_schedules`                            | **BIGINT**                                         | FK **BIGINT** на парковку; `day_of_week` **SMALLINT** + `CHECK` 1–7; `open_time`/`close_time` TIME; даты DATE                                                                                                                                                                                                                                                                                 |
+| `sectors`                                      | **BIGINT**                                         | FK **BIGINT** на парковку и тип зоны; `operational_status_id` FK BIGINT → `operational_statuses`                                                                                                                                                                                                                                                                                              |
+| `zone_types`                                   | **BIGINT**                                         | суррогатный `id` без отдельного поля `code`; `name` VARCHAR; `description` TEXT                                                                                                                                                                                                                                                                                                               |
+| `vehicle_types`                                | **BIGINT**                                         | суррогатный `id` без отдельного поля `code`; `name` VARCHAR; `description` TEXT                                                                                                                                                                                                                                                                                                               |
+| `operational_statuses`                         | **BIGINT**                                         | справочник `facility`; суррогатный `id` без отдельного поля `code`; FK из `parkings`, `sectors`, `parking_places`, `access_points`                                                                                                                                                                                                                                                            |
+| `zone_type_vehicle_types`, `zone_type_tariffs` | составной PK (BIGINT, BIGINT)                      | FK типов совпадают с PK `zone_types` / `vehicle_types` / `tariffs`                                                                                                                                                                                                                                                                                                                            |
+| `parking_places`                               | **BIGINT**                                         | `place_number` VARCHAR; FK **BIGINT** на сектор и опционально на тариф; `is_occupied` BOOLEAN; `operational_status_id` FK BIGINT → `operational_statuses`                                                                                                                                                                                                                                     |
+| `clients`                                      | **BIGINT**                                         | `type` `client_type_enum`; `status` `client_status_enum`; ФИО (для FL) в `clients`                                                                                                                                                                                                                                                                                                            |
+| `client_accounts`                              | **BIGINT**                                         | схема `auth`; идентификаторы входа: `login` (nullable), `phone_e164` (nullable), `email_normalized` (nullable); `auth_provider` (открытый список); `account_status` `client_account_status_enum`                                                                                                                                                                                              |
+| `notification_settings`, `payment_settings`    | **BIGINT**                                         | FK `client_id` BIGINT NOT NULL UNIQUE; булевы BOOLEAN; `monthly_limit_minor` BIGINT                                                                                                                                                                                                                                                                                                           |
+| `notification_settings_channels`               | составной PK (BIGINT, `notification_channel_enum`) | FK BIGINT на `notification_settings`; `channel` `notification_channel_enum` — литералы `SMS`/`EMAIL`/`PUSH` (не суррогатный id)                                                                                                                                                                                                                                                               |
+| `passport_data`, `benefit_documents`           | **BIGINT**                                         | схема `pii` (152-ФЗ); связь с `clients` через `client_id` (логическая); в `passport_data` — `series`/`number` BYTEA (зашифровано) и `document_type` `passport_document_type_enum`; в `benefit_documents` — `benefit_category_id` FK BIGINT → `benefit_categories`, `document_type` `benefit_document_type_enum`, `verification_status` `benefit_document_verification_status_enum`; даты DATE |
+| `benefit_categories`                           | **BIGINT**                                         | справочник `client`; `code` VARCHAR UNIQUE; `name` VARCHAR; `description` TEXT                                                                                                                                                                                                                                                                                                                |
+| `organizations`                                | **BIGINT**                                         | профиль ЮЛ; `client_id` BIGINT UNIQUE `REFERENCES clients(id)`; `legal_form` VARCHAR(64); ИНН/КПП/ОГРН VARCHAR; адреса TEXT; `status` `organization_status_enum`                                                                                                                                                                                                                              |
+| `organization_bank_accounts`                   | **BIGINT**                                         | FK **BIGINT** на организацию; реквизиты VARCHAR; `is_primary` BOOLEAN                                                                                                                                                                                                                                                                                                                         |
+| `agreements`                                   | **BIGINT**                                         | схема `client`; FK **BIGINT** на клиента; `agreement_type_id` FK BIGINT → `agreement_types`; `accepted` BOOLEAN; `accepted_at`/`revoked_at` TIMESTAMPTZ                                                                                                                                                                                                                                       |
+| `agreement_types`                              | **BIGINT**                                         | справочник `client`; `code` VARCHAR UNIQUE; `name` VARCHAR; `description` TEXT                                                                                                                                                                                                                                                                                                                |
+| `employees`                                    | **BIGINT**                                         | `role_id` FK BIGINT → `employee_roles`; контакты VARCHAR; `status` `employee_status_enum`                                                                                                                                                                                                                                                                                                     |
+| `employee_roles`                               | **BIGINT**                                         | справочник `employee`; `code` VARCHAR UNIQUE; FK из `employees.role_id`                                                                                                                                                                                                                                                                                                                       |
+| `employee_accounts`                            | **BIGINT** (PK=FK)                                 | схема `auth`; `login` VARCHAR UNIQUE; `account_status` `employee_account_status_enum`; `totp_secret_encrypted` TEXT                                                                                                                                                                                                                                                                           |
+| `vehicles`                                     | **BIGINT**                                         | FK **BIGINT** на клиента и тип ТС; `license_plate` VARCHAR `UNIQUE` (с нормализацией)                                                                                                                                                                                                                                                                                                         |
+| `access_points`                                | **BIGINT**                                         | FK **BIGINT** на парковку; `type` `access_point_type_enum`; `direction` `access_point_direction_enum`; `operational_status_id` FK BIGINT → `operational_statuses`                                                                                                                                                                                                                             |
+| `tariffs`                                      | **BIGINT**                                         | `tariff_type_id` FK BIGINT → `tariff_types`; `billing_step_unit` `billing_step_unit_enum`; `benefit_category_id` FK BIGINT → `benefit_categories` (nullable); `effective_from/to` DATE                                                                                                                                                                                                        |
+| `tariff_types`                                 | **BIGINT**                                         | справочник `tariff`; `code` VARCHAR UNIQUE; `name` VARCHAR; `description` TEXT                                                                                                                                                                                                                                                                                                                |
+| `tariff_rates`                                 | **BIGINT**                                         | FK **BIGINT** на тариф; `rate_minor` BIGINT `CHECK (rate_minor >= 0)`; `day_of_week` SMALLINT; `time_from/to` TIME                                                                                                                                                                                                                                                                            |
+| `contract_templates`                           | **BIGINT**                                         | `type` `contract_template_type_enum`; `body` TEXT; период DATE                                                                                                                                                                                                                                                                                                                                |
+| `contracts`                                    | **BIGINT**                                         | FK **BIGINT** на клиента; `contract_number` VARCHAR `UNIQUE`; `status` `contract_status_enum`                                                                                                                                                                                                                                                                                                 |
+| `bookings`                                     | **BIGINT**                                         | FK логические; `status` `booking_status_enum`; `type` `booking_type_enum`; `start_at`/`end_at` TIMESTAMPTZ                                                                                                                                                                                                                                                                                    |
+| `invoices`                                     | **BIGINT**                                         | `type` `invoice_type_enum`; `status` `invoice_status_enum`; `amount_due_minor`                                                                                                                                                                                                                                                                                                                |
+| `parking_sessions`                             | **BIGINT**                                         | FK логические; `status` `parking_session_status_enum`                                                                                                                                                                                                                                                                                                                                         |
+| `payments`                                     | **BIGINT**                                         | FK **BIGINT** на счет; `payment_method_id` FK BIGINT → `payment_methods`; `status` `payment_status_enum`; `amount_minor`                                                                                                                                                                                                                                                                      |
+| `payment_methods`                              | **BIGINT**                                         | справочник `payment`; `code` VARCHAR UNIQUE; FK из `payments.payment_method_id`                                                                                                                                                                                                                                                                                                               |
+| `receipts`                                     | **BIGINT**                                         | FK **BIGINT** на платеж; `fiscal_number` VARCHAR UNIQUE; `fiscal_status` `receipt_fiscal_status_enum`; `amount_minor`                                                                                                                                                                                                                                                                         |
+| `refunds`                                      | **BIGINT**                                         | схема `payment`; FK **BIGINT** на `payments`; `amount_minor`; `refund_provider_id` VARCHAR PARTIAL UNIQUE; `status` `refund_status_enum`                                                                                                                                                                                                                                                      |
+| `debts`                                        | **BIGINT**                                         | схема `payment`; FK **BIGINT** на `invoices`; `client_id` BIGINT логический; `amount_minor`; `remaining_amount_minor NOT NULL`; `overdue_since` DATE; `status` `debt_status_enum`                                                                                                                                                                                                             |
+| `notification_templates`                       | **BIGINT**                                         | `type` `notification_channel_enum`; `body` TEXT; `subject` VARCHAR                                                                                                                                                                                                                                                                                                                            |
+| `notifications`                                | **BIGINT**                                         | схема `notification`; `subject_type` `subject_entity_enum`; `channel` `notification_channel_enum`; `delivery_status` `notification_delivery_status_enum`; `delivery_address` VARCHAR(320) NOT NULL                                                                                                                                                                                            |
+| `appeals`                                      | **BIGINT**                                         | схема `support`; `subject_type` `subject_entity_enum`; `subject_id` BIGINT; `type` `appeal_type_enum`; `channel` `appeal_channel_enum`; `status` `appeal_status_enum`; CHECK((subject_type IS NULL)=(subject_id IS NULL))                                                                                                                                                                     |
+| `access_logs`                                  | **BIGINT**                                         | схема `report`; `access_point_id` BIGINT NOT NULL логический; `parking_session_id` BIGINT nullable логический; `vehicle_id` BIGINT nullable; `direction` `access_log_direction_enum`; `decision` `access_decision_enum`; `decided_at` TIMESTAMPTZ NOT NULL; append-only                                                                                                                       |
 
 Индексы: на каждом столбце FK на стороне «многие» — B-tree (и частичные индексы под типовые `WHERE`, когда появятся профили нагрузки).
 
@@ -668,287 +668,287 @@ erDiagram
 
 Ниже — **целевой тип PostgreSQL для каждого атрибута** из диаграммы. **`INT`** = `INTEGER`. `NULL` допускается там, где в модели связь опциональна или поле необязательно по смыслу; иначе `NOT NULL` (в миграциях уточнять по ФТ). В конце каждой таблицы даны **`created_at`** и **`updated_at`** (общая конвенция; см. подраздел «Аудитные поля» выше).
 
-> **DrawSQL.app — совместимость.** DrawSQL (PostgreSQL dialect) поддерживает: `INTEGER`, `BIGINT`, `SMALLINT`, `VARCHAR(n)`, `TEXT`, `BOOLEAN`, `DATE`, `TIME`, `TIMESTAMPTZ`, `NUMERIC(p,s)`, `CHAR(n)`, `BYTEA`, `UUID`. **Не поддерживаются в UI:** `CHECK` constraints, `GENERATED ALWAYS AS`, частичные индексы (`WHERE`), составные UNIQUE, `DEFAULT`-значения, типы-массивы (`TEXT[]`). Для каждого несовместимого элемента ниже добавлена пометка *DrawSQL*. Используйте поле **Table Notes** / Description в DrawSQL для документирования этих ограничений.
+> **DrawSQL.app — совместимость.** DrawSQL (PostgreSQL dialect) поддерживает: `INTEGER`, `BIGINT`, `SMALLINT`, `VARCHAR(n)`, `TEXT`, `BOOLEAN`, `DATE`, `TIME`, `TIMESTAMPTZ`, `NUMERIC(p,s)`, `CHAR(n)`, `BYTEA`, `UUID`. **Не поддерживаются в UI:** `CHECK` constraints, `GENERATED ALWAYS AS`, частичные индексы (`WHERE`), составные UNIQUE, `DEFAULT`-значения, типы-массивы (`TEXT[]`). Для каждого несовместимого элемента ниже добавлена пометка _DrawSQL_. Используйте поле **Table Notes** / Description в DrawSQL для документирования этих ограничений.
 
 ### `parkings`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `name` | `VARCHAR(200)` `NOT NULL` |
-| `address` | `TEXT` `NOT NULL` |
-| `parking_type_id` | `BIGINT` `NOT NULL` `REFERENCES parking_types(id)` |
-| `description` | `TEXT` |
-| `operational_status_id` | `BIGINT` `NOT NULL` `REFERENCES operational_statuses(id)` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут                 | Тип PostgreSQL                                                                |
+| ----------------------- | ----------------------------------------------------------------------------- |
+| `id`                    | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `name`                  | `VARCHAR(200)` `NOT NULL`                                                     |
+| `address`               | `TEXT` `NOT NULL`                                                             |
+| `parking_type_id`       | `BIGINT` `NOT NULL` `REFERENCES parking_types(id)`                            |
+| `description`           | `TEXT`                                                                        |
+| `operational_status_id` | `BIGINT` `NOT NULL` `REFERENCES operational_statuses(id)`                     |
+| `created_at`            | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
+| `updated_at`            | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
 ### `parking_types`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `code` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
-| `name` | `VARCHAR(200)` `NOT NULL` |
-| `description` | `TEXT` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут       | Тип PostgreSQL                                                                |
+| ------------- | ----------------------------------------------------------------------------- |
+| `id`          | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `code`        | `VARCHAR(64)` `NOT NULL` `UNIQUE`                                             |
+| `name`        | `VARCHAR(200)` `NOT NULL`                                                     |
+| `description` | `TEXT`                                                                        |
+| `created_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
+| `updated_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
 ### `parking_schedules`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `parking_id` | `BIGINT` `NOT NULL` `REFERENCES parkings(id)` |
-| `day_of_week` | `SMALLINT` `NOT NULL` `CHECK (day_of_week BETWEEN 1 AND 7)` |
-| `open_time` | `TIME` |
-| `close_time` | `TIME` |
-| `is_closed` | `BOOLEAN` `NOT NULL` `DEFAULT false` |
-| `effective_from` | `DATE` `NOT NULL` |
-| `effective_to` | `DATE` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут          | Тип PostgreSQL                                                                |
+| ---------------- | ----------------------------------------------------------------------------- |
+| `id`             | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `parking_id`     | `BIGINT` `NOT NULL` `REFERENCES parkings(id)`                                 |
+| `day_of_week`    | `SMALLINT` `NOT NULL` `CHECK (day_of_week BETWEEN 1 AND 7)`                   |
+| `open_time`      | `TIME`                                                                        |
+| `close_time`     | `TIME`                                                                        |
+| `is_closed`      | `BOOLEAN` `NOT NULL` `DEFAULT false`                                          |
+| `effective_from` | `DATE` `NOT NULL`                                                             |
+| `effective_to`   | `DATE`                                                                        |
+| `created_at`     | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
+| `updated_at`     | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
-Уникальное ограничение: `UNIQUE (parking_id, day_of_week, effective_from)`. *DrawSQL: составные UNIQUE в UI не задаются — используйте **Import from SQL** или укажите в Table Notes.*
+Уникальное ограничение: `UNIQUE (parking_id, day_of_week, effective_from)`. _DrawSQL: составные UNIQUE в UI не задаются — используйте **Import from SQL** или укажите в Table Notes._
 
 ### `sectors`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `parking_id` | `BIGINT` `NOT NULL` `REFERENCES parkings(id)` |
-| `zone_type_id` | `BIGINT` `NOT NULL` `REFERENCES zone_types(id)` |
-| `name` | `VARCHAR(200)` `NOT NULL` |
-| `operational_status_id` | `BIGINT` `NOT NULL` `REFERENCES operational_statuses(id)` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут                 | Тип PostgreSQL                                                                |
+| ----------------------- | ----------------------------------------------------------------------------- |
+| `id`                    | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `parking_id`            | `BIGINT` `NOT NULL` `REFERENCES parkings(id)`                                 |
+| `zone_type_id`          | `BIGINT` `NOT NULL` `REFERENCES zone_types(id)`                               |
+| `name`                  | `VARCHAR(200)` `NOT NULL`                                                     |
+| `operational_status_id` | `BIGINT` `NOT NULL` `REFERENCES operational_statuses(id)`                     |
+| `created_at`            | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
+| `updated_at`            | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
 ### `zone_types`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `name` | `VARCHAR(200)` `NOT NULL` |
-| `description` | `TEXT` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут       | Тип PostgreSQL                                                                |
+| ------------- | ----------------------------------------------------------------------------- |
+| `id`          | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `name`        | `VARCHAR(200)` `NOT NULL`                                                     |
+| `description` | `TEXT`                                                                        |
+| `created_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
+| `updated_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
 ### `vehicle_types`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` — стабильный суррогатный идентификатор; отдельное поле `code` не вводится |
-| `name` | `VARCHAR(200)` `NOT NULL` |
-| `description` | `TEXT` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут       | Тип PostgreSQL                                                                                                                      |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `id`          | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` — стабильный суррогатный идентификатор; отдельное поле `code` не вводится |
+| `name`        | `VARCHAR(200)` `NOT NULL`                                                                                                           |
+| `description` | `TEXT`                                                                                                                              |
+| `created_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                                                            |
+| `updated_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`                                                       |
 
 ### `operational_statuses`
 
 > **Схема `facility`.** Единый справочник эксплуатационных статусов для инфраструктурных объектов: `parkings`, `sectors`, `parking_places`, `access_points`. Общая таблица гарантирует согласованность набора значений.
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `name` | `VARCHAR(200)` `NOT NULL` |
-| `description` | `TEXT` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут       | Тип PostgreSQL                                                                |
+| ------------- | ----------------------------------------------------------------------------- |
+| `id`          | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `name`        | `VARCHAR(200)` `NOT NULL`                                                     |
+| `description` | `TEXT`                                                                        |
+| `created_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
+| `updated_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
 ### `zone_type_vehicle_types`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `zone_type_id` | `BIGINT` `NOT NULL` `REFERENCES zone_types(id)` |
+| Атрибут           | Тип PostgreSQL                                                                                      |
+| ----------------- | --------------------------------------------------------------------------------------------------- |
+| `zone_type_id`    | `BIGINT` `NOT NULL` `REFERENCES zone_types(id)`                                                     |
 | `vehicle_type_id` | `BIGINT` `NOT NULL` — логическая ссылка на `facility.vehicle_types(id)` (без `REFERENCES`, ADR-003) |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| `created_at`      | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                            |
+| `updated_at`      | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`                       |
 
 Составной первичный ключ: `PRIMARY KEY (zone_type_id, vehicle_type_id)`.
 
 ### `zone_type_tariffs`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `zone_type_id` | `BIGINT` `NOT NULL` `REFERENCES zone_types(id)` |
-| `tariff_id` | `BIGINT` `NOT NULL` — кросс-схемная логическая ссылка на `tariff.tariffs(id)` (без `REFERENCES`, ADR-003) |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут        | Тип PostgreSQL                                                                                            |
+| -------------- | --------------------------------------------------------------------------------------------------------- |
+| `zone_type_id` | `BIGINT` `NOT NULL` `REFERENCES zone_types(id)`                                                           |
+| `tariff_id`    | `BIGINT` `NOT NULL` — кросс-схемная логическая ссылка на `tariff.tariffs(id)` (без `REFERENCES`, ADR-003) |
+| `created_at`   | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                                  |
+| `updated_at`   | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`                             |
 
 Составной первичный ключ: `PRIMARY KEY (zone_type_id, tariff_id)`.
 
 ### `parking_places`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `sector_id` | `BIGINT` `NOT NULL` `REFERENCES sectors(id)` |
-| `override_tariff_id` | `BIGINT` — кросс-схемная логическая ссылка на `tariff.tariffs(id)` (без `REFERENCES`, ADR-003) |
-| `place_number` | `VARCHAR(32)` `NOT NULL` |
-| `is_occupied` | `BOOLEAN` `NOT NULL` `DEFAULT false` |
-| `operational_status_id` | `BIGINT` `NOT NULL` `REFERENCES operational_statuses(id)` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут                 | Тип PostgreSQL                                                                                 |
+| ----------------------- | ---------------------------------------------------------------------------------------------- |
+| `id`                    | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                                      |
+| `sector_id`             | `BIGINT` `NOT NULL` `REFERENCES sectors(id)`                                                   |
+| `override_tariff_id`    | `BIGINT` — кросс-схемная логическая ссылка на `tariff.tariffs(id)` (без `REFERENCES`, ADR-003) |
+| `place_number`          | `VARCHAR(32)` `NOT NULL`                                                                       |
+| `is_occupied`           | `BOOLEAN` `NOT NULL` `DEFAULT false`                                                           |
+| `operational_status_id` | `BIGINT` `NOT NULL` `REFERENCES operational_statuses(id)`                                      |
+| `created_at`            | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                       |
+| `updated_at`            | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`                  |
 
 Текущее резервирование места не хранится в `parking_places`: оно определяется по связанным `bookings` и интервалу времени запроса.
 
 ### `clients`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `type` | `client_type_enum` `NOT NULL` — значения: `FL`, `UL` |
-| `phone` | `VARCHAR(32)` |
-| `email` | `VARCHAR(320)` |
-| `status` | `client_status_enum` `NOT NULL` — значения: `ACTIVE`, `BLOCKED`, `PENDING` |
-| `status_reason` | `TEXT` |
-| `last_name` | `VARCHAR(100)` — только для `type='FL'` |
-| `first_name` | `VARCHAR(100)` — только для `type='FL'` |
-| `middle_name` | `VARCHAR(100)` — только для `type='FL'` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут         | Тип PostgreSQL                                                                |
+| --------------- | ----------------------------------------------------------------------------- |
+| `id`            | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `type`          | `client_type_enum` `NOT NULL` — значения: `FL`, `UL`                          |
+| `phone`         | `VARCHAR(32)`                                                                 |
+| `email`         | `VARCHAR(320)`                                                                |
+| `status`        | `client_status_enum` `NOT NULL` — значения: `ACTIVE`, `BLOCKED`, `PENDING`    |
+| `status_reason` | `TEXT`                                                                        |
+| `last_name`     | `VARCHAR(100)` — только для `type='FL'`                                       |
+| `first_name`    | `VARCHAR(100)` — только для `type='FL'`                                       |
+| `middle_name`   | `VARCHAR(100)` — только для `type='FL'`                                       |
+| `created_at`    | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
+| `updated_at`    | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
 ### `client_accounts`
 
 > **Схема `auth` (инфраструктурный слой).** Таблица содержит credential-данные клиента и выделена из доменной схемы `client`. Только инфраструктурный слой аутентификации имеет доступ к этой схеме напрямую.
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `client_id` | `BIGINT` `NOT NULL` |
-| `auth_provider` | `VARCHAR(64)` `NOT NULL` — открытый список провайдеров (LOCAL, PHONE, GOOGLE, YANDEX и т.п.); не фиксируется CHECK — расширяется при добавлении нового IdP |
-| `login` | `VARCHAR(255)` |
-| `phone_e164` | `VARCHAR(32)` — телефон в международном формате **E.164** (ITU-T); имя поля задает формат хранения, **по аналогии с** `email_normalized` |
-| `email_normalized` | `VARCHAR(320)` — email после нормализации (lower + trim), каноническое представление для поиска и уникальности |
-| `password_hash` | `VARCHAR(255)` — NULL для внешних IdP (GOOGLE, YANDEX, PHONE); NOT NULL при `auth_provider = 'LOCAL'`. Инвариант проверяется триггером или Application Service |
-| `provider_subject_id` | `VARCHAR(255)` |
-| `account_status` | `client_account_status_enum` `NOT NULL` — значения: `ACTIVE`, `BLOCKED`, `PENDING_VERIFICATION` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
-| `last_login_at` | `TIMESTAMPTZ` |
+| Атрибут               | Тип PostgreSQL                                                                                                                                                 |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                  | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                                                                                                      |
+| `client_id`           | `BIGINT` `NOT NULL`                                                                                                                                            |
+| `auth_provider`       | `VARCHAR(64)` `NOT NULL` — открытый список провайдеров (LOCAL, PHONE, GOOGLE, YANDEX и т.п.); не фиксируется CHECK — расширяется при добавлении нового IdP     |
+| `login`               | `VARCHAR(255)`                                                                                                                                                 |
+| `phone_e164`          | `VARCHAR(32)` — телефон в международном формате **E.164** (ITU-T); имя поля задает формат хранения, **по аналогии с** `email_normalized`                       |
+| `email_normalized`    | `VARCHAR(320)` — email после нормализации (lower + trim), каноническое представление для поиска и уникальности                                                 |
+| `password_hash`       | `VARCHAR(255)` — NULL для внешних IdP (GOOGLE, YANDEX, PHONE); NOT NULL при `auth_provider = 'LOCAL'`. Инвариант проверяется триггером или Application Service |
+| `provider_subject_id` | `VARCHAR(255)`                                                                                                                                                 |
+| `account_status`      | `client_account_status_enum` `NOT NULL` — значения: `ACTIVE`, `BLOCKED`, `PENDING_VERIFICATION`                                                                |
+| `created_at`          | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                                                                                       |
+| `updated_at`          | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`                                                                                  |
+| `last_login_at`       | `TIMESTAMPTZ`                                                                                                                                                  |
 
 ### `notification_settings`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `client_id` | `BIGINT` `NOT NULL` `UNIQUE` `REFERENCES clients(id)` |
-| `parking_session_enabled` | `BOOLEAN` `NOT NULL` `DEFAULT false` |
-| `booking_enabled` | `BOOLEAN` `NOT NULL` `DEFAULT false` |
-| `contract_enabled` | `BOOLEAN` `NOT NULL` `DEFAULT false` |
-| `payment_enabled` | `BOOLEAN` `NOT NULL` `DEFAULT false` |
-| `marketing_enabled` | `BOOLEAN` `NOT NULL` `DEFAULT false` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут                   | Тип PostgreSQL                                                                |
+| ------------------------- | ----------------------------------------------------------------------------- |
+| `id`                      | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `client_id`               | `BIGINT` `NOT NULL` `UNIQUE` `REFERENCES clients(id)`                         |
+| `parking_session_enabled` | `BOOLEAN` `NOT NULL` `DEFAULT false`                                          |
+| `booking_enabled`         | `BOOLEAN` `NOT NULL` `DEFAULT false`                                          |
+| `contract_enabled`        | `BOOLEAN` `NOT NULL` `DEFAULT false`                                          |
+| `payment_enabled`         | `BOOLEAN` `NOT NULL` `DEFAULT false`                                          |
+| `marketing_enabled`       | `BOOLEAN` `NOT NULL` `DEFAULT false`                                          |
+| `created_at`              | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
+| `updated_at`              | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
 Каналы доставки хранятся в отдельной таблице `notification_settings_channels`.
 
 ### `notification_settings_channels`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `settings_id` | `BIGINT` `NOT NULL` `REFERENCES notification_settings(id)` |
-| `channel` | `notification_channel_enum` `NOT NULL` — значения: `SMS`, `EMAIL`, `PUSH`; не суррогатный ключ |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут       | Тип PostgreSQL                                                                                 |
+| ------------- | ---------------------------------------------------------------------------------------------- |
+| `settings_id` | `BIGINT` `NOT NULL` `REFERENCES notification_settings(id)`                                     |
+| `channel`     | `notification_channel_enum` `NOT NULL` — значения: `SMS`, `EMAIL`, `PUSH`; не суррогатный ключ |
+| `created_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                       |
+| `updated_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`                  |
 
-Составной первичный ключ: `PRIMARY KEY (settings_id, channel)`. *DrawSQL: отметьте оба поля как PK через флажок — DrawSQL поддерживает составные PK при PostgreSQL dialect.*
+Составной первичный ключ: `PRIMARY KEY (settings_id, channel)`. _DrawSQL: отметьте оба поля как PK через флажок — DrawSQL поддерживает составные PK при PostgreSQL dialect._
 
 ### `payment_settings`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `client_id` | `BIGINT` `NOT NULL` `UNIQUE` `REFERENCES clients(id)` |
-| `external_payer_id` | `VARCHAR(100)` |
-| `auto_debit_contract` | `BOOLEAN` `NOT NULL` `DEFAULT false` |
-| `auto_debit_parking_session` | `BOOLEAN` `NOT NULL` `DEFAULT false` |
-| `monthly_limit_minor` | `BIGINT` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут                      | Тип PostgreSQL                                                                |
+| ---------------------------- | ----------------------------------------------------------------------------- |
+| `id`                         | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `client_id`                  | `BIGINT` `NOT NULL` `UNIQUE` `REFERENCES clients(id)`                         |
+| `external_payer_id`          | `VARCHAR(100)`                                                                |
+| `auto_debit_contract`        | `BOOLEAN` `NOT NULL` `DEFAULT false`                                          |
+| `auto_debit_parking_session` | `BOOLEAN` `NOT NULL` `DEFAULT false`                                          |
+| `monthly_limit_minor`        | `BIGINT`                                                                      |
+| `created_at`                 | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
+| `updated_at`                 | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
 ### `passport_data`
 
 > **Схема `pii` (152-ФЗ).** Таблица хранится в отдельной схеме с ограниченными GRANT-правами. Только модуль `Клиент` (роль `client_app_role`) имеет доступ к данной схеме. Поля `series` и `number` рекомендуется хранить в зашифрованном виде (pgcrypto или шифрование на уровне приложения с ротацией ключей).
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `document_type` | `passport_document_type_enum` `NOT NULL` — значения: `RF_PASSPORT`, `FOREIGN_PASSPORT`, `TEMP_ID` |
-| `series` | `BYTEA` `NOT NULL` — серия документа; *DrawSQL: тип `BYTEA` поддерживается в PostgreSQL dialect* |
-| `number` | `BYTEA` `NOT NULL` — номер документа; *DrawSQL: тип `BYTEA` поддерживается в PostgreSQL dialect* |
-| `issue_date` | `DATE` `NOT NULL` |
-| `issued_by` | `VARCHAR(500)` |
-| `department_code` | `VARCHAR(32)` |
-| `client_id` | `BIGINT` `NOT NULL` — логическая ссылка на `client.clients(id)` (без `REFERENCES`; схемная изоляция); `UNIQUE(client_id)` для 0..1 |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут           | Тип PostgreSQL                                                                                                                     |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                                                                          |
+| `document_type`   | `passport_document_type_enum` `NOT NULL` — значения: `RF_PASSPORT`, `FOREIGN_PASSPORT`, `TEMP_ID`                                  |
+| `series`          | `BYTEA` `NOT NULL` — серия документа; _DrawSQL: тип `BYTEA` поддерживается в PostgreSQL dialect_                                   |
+| `number`          | `BYTEA` `NOT NULL` — номер документа; _DrawSQL: тип `BYTEA` поддерживается в PostgreSQL dialect_                                   |
+| `issue_date`      | `DATE` `NOT NULL`                                                                                                                  |
+| `issued_by`       | `VARCHAR(500)`                                                                                                                     |
+| `department_code` | `VARCHAR(32)`                                                                                                                      |
+| `client_id`       | `BIGINT` `NOT NULL` — логическая ссылка на `client.clients(id)` (без `REFERENCES`; схемная изоляция); `UNIQUE(client_id)` для 0..1 |
+| `created_at`      | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                                                           |
+| `updated_at`      | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`                                                      |
 
 ### `benefit_documents`
 
 > **Схема `pii` (152-ФЗ).** Аналогично `passport_data` — ограниченный доступ.
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `benefit_category_id` | `BIGINT` `NOT NULL` — логическая ссылка на `client.benefit_categories(id)` (без `REFERENCES`; схемная изоляция) |
-| `document_type` | `benefit_document_type_enum` `NOT NULL` — значения: `CERTIFICATE`, `ID_CARD`, `BOOKLET`, `OTHER` |
-| `document_number` | `VARCHAR(64)` `NOT NULL` |
-| `issue_date` | `DATE` `NOT NULL` |
-| `expiry_date` | `DATE` |
-| `document_image_ref` | `VARCHAR(512)` |
-| `verification_status` | `benefit_document_verification_status_enum` `NOT NULL` — значения: `PENDING`, `VERIFIED`, `REJECTED` |
-| `client_id` | `BIGINT` `NOT NULL` — логическая ссылка на `client.clients(id)` (без `REFERENCES`; схемная изоляция); `UNIQUE(client_id)` для 0..1* |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут               | Тип PostgreSQL                                                                                                                       |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `id`                  | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                                                                            |
+| `benefit_category_id` | `BIGINT` `NOT NULL` — логическая ссылка на `client.benefit_categories(id)` (без `REFERENCES`; схемная изоляция)                      |
+| `document_type`       | `benefit_document_type_enum` `NOT NULL` — значения: `CERTIFICATE`, `ID_CARD`, `BOOKLET`, `OTHER`                                     |
+| `document_number`     | `VARCHAR(64)` `NOT NULL`                                                                                                             |
+| `issue_date`          | `DATE` `NOT NULL`                                                                                                                    |
+| `expiry_date`         | `DATE`                                                                                                                               |
+| `document_image_ref`  | `VARCHAR(512)`                                                                                                                       |
+| `verification_status` | `benefit_document_verification_status_enum` `NOT NULL` — значения: `PENDING`, `VERIFIED`, `REJECTED`                                 |
+| `client_id`           | `BIGINT` `NOT NULL` — логическая ссылка на `client.clients(id)` (без `REFERENCES`; схемная изоляция); `UNIQUE(client_id)` для 0..1\* |
+| `created_at`          | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                                                             |
+| `updated_at`          | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`                                                        |
 
 \* Если требуется хранить несколько льготных документов, `UNIQUE(client_id)` убирается и вводится политика “активный/основной документ”.
 
 ### `benefit_categories`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `code` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
-| `name` | `VARCHAR(200)` `NOT NULL` |
-| `description` | `TEXT` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут       | Тип PostgreSQL                                                                |
+| ------------- | ----------------------------------------------------------------------------- |
+| `id`          | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `code`        | `VARCHAR(64)` `NOT NULL` `UNIQUE`                                             |
+| `name`        | `VARCHAR(200)` `NOT NULL`                                                     |
+| `description` | `TEXT`                                                                        |
+| `created_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
+| `updated_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
 ### `organizations`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `client_id` | `BIGINT` `NOT NULL` `UNIQUE` `REFERENCES clients(id)` — связь 1:1 с `clients` при `clients.type='UL'` |
-| `name` | `VARCHAR(500)` `NOT NULL` |
-| `legal_form` | `VARCHAR(64)` |
-| `legal_address` | `TEXT` |
-| `actual_address` | `TEXT` |
-| `inn` | `VARCHAR(12)` `NOT NULL` `UNIQUE` — ИНН обязателен при регистрации ЮЛ; однозначно идентифицирует организацию; UNIQUE исключает дубли и документирует функциональную зависимость |
-| `kpp` | `VARCHAR(9)` |
-| `ogrn` | `VARCHAR(13)` `UNIQUE` — ОГРН тоже уникален; *NULL допустим при поэтапном заполнении реквизитов* |
-| `email` | `VARCHAR(320)` |
-| `phone` | `VARCHAR(32)` |
-| `status` | `organization_status_enum` `NOT NULL` — значения: `ACTIVE`, `BLOCKED`, `PENDING` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут          | Тип PostgreSQL                                                                                                                                                                  |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`             | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                                                                                                                       |
+| `client_id`      | `BIGINT` `NOT NULL` `UNIQUE` `REFERENCES clients(id)` — связь 1:1 с `clients` при `clients.type='UL'`                                                                           |
+| `name`           | `VARCHAR(500)` `NOT NULL`                                                                                                                                                       |
+| `legal_form`     | `VARCHAR(64)`                                                                                                                                                                   |
+| `legal_address`  | `TEXT`                                                                                                                                                                          |
+| `actual_address` | `TEXT`                                                                                                                                                                          |
+| `inn`            | `VARCHAR(12)` `NOT NULL` `UNIQUE` — ИНН обязателен при регистрации ЮЛ; однозначно идентифицирует организацию; UNIQUE исключает дубли и документирует функциональную зависимость |
+| `kpp`            | `VARCHAR(9)`                                                                                                                                                                    |
+| `ogrn`           | `VARCHAR(13)` `UNIQUE` — ОГРН тоже уникален; _NULL допустим при поэтапном заполнении реквизитов_                                                                                |
+| `email`          | `VARCHAR(320)`                                                                                                                                                                  |
+| `phone`          | `VARCHAR(32)`                                                                                                                                                                   |
+| `status`         | `organization_status_enum` `NOT NULL` — значения: `ACTIVE`, `BLOCKED`, `PENDING`                                                                                                |
+| `created_at`     | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                                                                                                        |
+| `updated_at`     | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`                                                                                                   |
 
 `inn NOT NULL UNIQUE` — ИНН обязателен; устраняет потенциальное нарушение BCNF: ИНН функционально определяет организацию, без UNIQUE `name`/`kpp` транзитивно зависели бы от `inn`, а не от `id`.
 
 ### `organization_bank_accounts`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `organization_id` | `BIGINT` `NOT NULL` `REFERENCES organizations(id)` |
-| `bank_name` | `VARCHAR(255)` `NOT NULL` |
-| `bik` | `VARCHAR(9)` `NOT NULL` |
-| `account_number` | `VARCHAR(32)` `NOT NULL` |
-| `correspondent_account` | `VARCHAR(32)` |
-| `is_primary` | `BOOLEAN` `NOT NULL` — *DrawSQL: тип `BOOLEAN`; снять Unique. Частичный индекс указать в Table Notes: `CREATE UNIQUE INDEX ON organization_bank_accounts(organization_id) WHERE is_primary = true`* |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут                 | Тип PostgreSQL                                                                                                                                                                                      |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                    | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                                                                                                                                           |
+| `organization_id`       | `BIGINT` `NOT NULL` `REFERENCES organizations(id)`                                                                                                                                                  |
+| `bank_name`             | `VARCHAR(255)` `NOT NULL`                                                                                                                                                                           |
+| `bik`                   | `VARCHAR(9)` `NOT NULL`                                                                                                                                                                             |
+| `account_number`        | `VARCHAR(32)` `NOT NULL`                                                                                                                                                                            |
+| `correspondent_account` | `VARCHAR(32)`                                                                                                                                                                                       |
+| `is_primary`            | `BOOLEAN` `NOT NULL` — _DrawSQL: тип `BOOLEAN`; снять Unique. Частичный индекс указать в Table Notes: `CREATE UNIQUE INDEX ON organization_bank_accounts(organization_id) WHERE is_primary = true`_ |
+| `created_at`            | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                                                                                                                            |
+| `updated_at`            | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`                                                                                                                       |
 
 Единственность основного счета обеспечивается частичным уникальным индексом: `CREATE UNIQUE INDEX ON organization_bank_accounts(organization_id) WHERE is_primary = true`.
 
@@ -956,209 +956,209 @@ erDiagram
 
 > **Схема `client`.** Запись о согласии клиента (ПДн, маркетинг, ЭДО). Имя таблицы **`agreements`** (в т.ч. взамен исторического `CONSENT`).
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `client_id` | `BIGINT` `NOT NULL` `REFERENCES clients(id)` |
-| `agreement_type_id` | `BIGINT` `NOT NULL` `REFERENCES agreement_types(id)` |
-| `accepted` | `BOOLEAN` `NOT NULL` |
-| `accepted_at` | `TIMESTAMPTZ` `NOT NULL` |
-| `revoked_at` | `TIMESTAMPTZ` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут             | Тип PostgreSQL                                                                |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `id`                | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `client_id`         | `BIGINT` `NOT NULL` `REFERENCES clients(id)`                                  |
+| `agreement_type_id` | `BIGINT` `NOT NULL` `REFERENCES agreement_types(id)`                          |
+| `accepted`          | `BOOLEAN` `NOT NULL`                                                          |
+| `accepted_at`       | `TIMESTAMPTZ` `NOT NULL`                                                      |
+| `revoked_at`        | `TIMESTAMPTZ`                                                                 |
+| `created_at`        | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
+| `updated_at`        | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
 ### `agreement_types`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `code` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
-| `name` | `VARCHAR(200)` `NOT NULL` |
-| `description` | `TEXT` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут       | Тип PostgreSQL                                                                |
+| ------------- | ----------------------------------------------------------------------------- |
+| `id`          | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `code`        | `VARCHAR(64)` `NOT NULL` `UNIQUE`                                             |
+| `name`        | `VARCHAR(200)` `NOT NULL`                                                     |
+| `description` | `TEXT`                                                                        |
+| `created_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
+| `updated_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
 ### `employees`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `role_id` | `BIGINT` `NOT NULL` `REFERENCES employee_roles(id)` |
-| `last_name` | `VARCHAR(100)` `NOT NULL` |
-| `first_name` | `VARCHAR(100)` `NOT NULL` |
-| `middle_name` | `VARCHAR(100)` |
-| `phone` | `VARCHAR(32)` |
-| `email` | `VARCHAR(320)` |
-| `status` | `employee_status_enum` `NOT NULL` — значения: `ACTIVE`, `DISMISSED` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут       | Тип PostgreSQL                                                                |
+| ------------- | ----------------------------------------------------------------------------- |
+| `id`          | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `role_id`     | `BIGINT` `NOT NULL` `REFERENCES employee_roles(id)`                           |
+| `last_name`   | `VARCHAR(100)` `NOT NULL`                                                     |
+| `first_name`  | `VARCHAR(100)` `NOT NULL`                                                     |
+| `middle_name` | `VARCHAR(100)`                                                                |
+| `phone`       | `VARCHAR(32)`                                                                 |
+| `email`       | `VARCHAR(320)`                                                                |
+| `status`      | `employee_status_enum` `NOT NULL` — значения: `ACTIVE`, `DISMISSED`           |
+| `created_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
+| `updated_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
 ### `employee_accounts`
 
 > **Схема `auth` (инфраструктурный слой).** Credential-данные сотрудника вынесены из доменной таблицы `employee`. `totp_secret_encrypted` хранится в зашифрованном виде (алгоритм и ротация ключей фиксируются в политике ИБ).
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `employee_id` | `BIGINT` `PRIMARY KEY` |
-| `login` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
-| `password_hash` | `VARCHAR(255)` `NOT NULL` |
-| `totp_secret_encrypted` | `TEXT` |
-| `account_status` | `employee_account_status_enum` `NOT NULL` — значения: `ACTIVE`, `BLOCKED`, `SUSPENDED` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
-| `last_login_at` | `TIMESTAMPTZ` |
+| Атрибут                 | Тип PostgreSQL                                                                         |
+| ----------------------- | -------------------------------------------------------------------------------------- |
+| `employee_id`           | `BIGINT` `PRIMARY KEY`                                                                 |
+| `login`                 | `VARCHAR(64)` `NOT NULL` `UNIQUE`                                                      |
+| `password_hash`         | `VARCHAR(255)` `NOT NULL`                                                              |
+| `totp_secret_encrypted` | `TEXT`                                                                                 |
+| `account_status`        | `employee_account_status_enum` `NOT NULL` — значения: `ACTIVE`, `BLOCKED`, `SUSPENDED` |
+| `created_at`            | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                               |
+| `updated_at`            | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`          |
+| `last_login_at`         | `TIMESTAMPTZ`                                                                          |
 
 ### `employee_roles`
 
 > **Схема `employee`.** Справочник ролей сотрудников. Использование словарной таблицы вместо CHECK позволяет добавлять новые роли без изменения схемы БД.
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `code` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
-| `name` | `VARCHAR(200)` `NOT NULL` |
-| `description` | `TEXT` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут       | Тип PostgreSQL                                                                |
+| ------------- | ----------------------------------------------------------------------------- |
+| `id`          | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `code`        | `VARCHAR(64)` `NOT NULL` `UNIQUE`                                             |
+| `name`        | `VARCHAR(200)` `NOT NULL`                                                     |
+| `description` | `TEXT`                                                                        |
+| `created_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
+| `updated_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
-Примеры значений `code`: `OPERATOR`, `ADMIN`, `SECURITY`, `MANAGER`. *DrawSQL: добавить через Table Notes.*
+Примеры значений `code`: `OPERATOR`, `ADMIN`, `SECURITY`, `MANAGER`. _DrawSQL: добавить через Table Notes._
 
 ### `vehicles`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `client_id` | `BIGINT` `NOT NULL` `REFERENCES clients(id)` |
+| Атрибут           | Тип PostgreSQL                                                                                      |
+| ----------------- | --------------------------------------------------------------------------------------------------- |
+| `id`              | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                                           |
+| `client_id`       | `BIGINT` `NOT NULL` `REFERENCES clients(id)`                                                        |
 | `vehicle_type_id` | `BIGINT` `NOT NULL` — логическая ссылка на `facility.vehicle_types(id)` (без `REFERENCES`, ADR-003) |
-| `license_plate` | `VARCHAR(32)` `NOT NULL` `UNIQUE` |
-| `brand` | `VARCHAR(100)` |
-| `model` | `VARCHAR(100)` |
-| `color` | `VARCHAR(64)` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| `license_plate`   | `VARCHAR(32)` `NOT NULL` `UNIQUE`                                                                   |
+| `brand`           | `VARCHAR(100)`                                                                                      |
+| `model`           | `VARCHAR(100)`                                                                                      |
+| `color`           | `VARCHAR(64)`                                                                                       |
+| `created_at`      | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                            |
+| `updated_at`      | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`                       |
 
 `license_plate` хранится в нормализованном виде (UPPER + TRIM); нормализация применяется на уровне приложения или триггером `BEFORE INSERT/UPDATE`.
 
 ### `access_points`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `parking_id` | `BIGINT` `NOT NULL` `REFERENCES parkings(id)` |
-| `name` | `VARCHAR(200)` `NOT NULL` |
-| `type` | `access_point_type_enum` `NOT NULL` — значения: `MANUAL`, `AUTOMATIC`, `SEMI_AUTO` |
-| `direction` | `access_point_direction_enum` `NOT NULL` — значения: `ENTRY`, `EXIT`, `BIDIRECTIONAL` |
-| `operational_status_id` | `BIGINT` `NOT NULL` `REFERENCES operational_statuses(id)` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут                 | Тип PostgreSQL                                                                        |
+| ----------------------- | ------------------------------------------------------------------------------------- |
+| `id`                    | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                             |
+| `parking_id`            | `BIGINT` `NOT NULL` `REFERENCES parkings(id)`                                         |
+| `name`                  | `VARCHAR(200)` `NOT NULL`                                                             |
+| `type`                  | `access_point_type_enum` `NOT NULL` — значения: `MANUAL`, `AUTOMATIC`, `SEMI_AUTO`    |
+| `direction`             | `access_point_direction_enum` `NOT NULL` — значения: `ENTRY`, `EXIT`, `BIDIRECTIONAL` |
+| `operational_status_id` | `BIGINT` `NOT NULL` `REFERENCES operational_statuses(id)`                             |
+| `created_at`            | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                              |
+| `updated_at`            | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`         |
 
 ### `tariffs`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `name` | `VARCHAR(200)` `NOT NULL` |
-| `tariff_type_id` | `BIGINT` `NOT NULL` `REFERENCES tariff_types(id)` |
-| `benefit_category_id` | `BIGINT` — логическая ссылка на `client.benefit_categories(id)` (без `REFERENCES`; схемная изоляция); NULL для нельготных тарифов |
-| `billing_step_unit` | `billing_step_unit_enum` `NOT NULL` — значения: `MINUTE`, `HOUR`, `DAY` |
-| `billing_step_value` | `INTEGER` `NOT NULL` `DEFAULT 1` |
-| `max_amount_minor` | `BIGINT` |
-| `grace_period_minutes` | `INTEGER` `NOT NULL` `DEFAULT 0` |
-| `effective_from` | `DATE` `NOT NULL` |
-| `effective_to` | `DATE` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут                | Тип PostgreSQL                                                                                                                    |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                   | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                                                                         |
+| `name`                 | `VARCHAR(200)` `NOT NULL`                                                                                                         |
+| `tariff_type_id`       | `BIGINT` `NOT NULL` `REFERENCES tariff_types(id)`                                                                                 |
+| `benefit_category_id`  | `BIGINT` — логическая ссылка на `client.benefit_categories(id)` (без `REFERENCES`; схемная изоляция); NULL для нельготных тарифов |
+| `billing_step_unit`    | `billing_step_unit_enum` `NOT NULL` — значения: `MINUTE`, `HOUR`, `DAY`                                                           |
+| `billing_step_value`   | `INTEGER` `NOT NULL` `DEFAULT 1`                                                                                                  |
+| `max_amount_minor`     | `BIGINT`                                                                                                                          |
+| `grace_period_minutes` | `INTEGER` `NOT NULL` `DEFAULT 0`                                                                                                  |
+| `effective_from`       | `DATE` `NOT NULL`                                                                                                                 |
+| `effective_to`         | `DATE`                                                                                                                            |
+| `created_at`           | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                                                          |
+| `updated_at`           | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`                                                     |
 
 ### `tariff_types`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `code` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
-| `name` | `VARCHAR(200)` `NOT NULL` |
-| `description` | `TEXT` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут       | Тип PostgreSQL                                                                |
+| ------------- | ----------------------------------------------------------------------------- |
+| `id`          | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `code`        | `VARCHAR(64)` `NOT NULL` `UNIQUE`                                             |
+| `name`        | `VARCHAR(200)` `NOT NULL`                                                     |
+| `description` | `TEXT`                                                                        |
+| `created_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
+| `updated_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
 ### `tariff_rates`
 
 Ставки тарифа в зависимости от дня недели и времени суток. При отсутствии записи на конкретный интервал применяется базовая ставка (запись с `day_of_week IS NULL` и `time_from IS NULL`).
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `tariff_id` | `BIGINT` `NOT NULL` `REFERENCES tariffs(id)` |
-| `rate_minor` | `BIGINT` `NOT NULL` `CHECK (rate_minor >= 0)` |
-| `day_of_week` | `SMALLINT` `CHECK (day_of_week BETWEEN 1 AND 7)` |
-| `time_from` | `TIME` |
-| `time_to` | `TIME` |
-| `priority` | `INTEGER` `NOT NULL` `DEFAULT 0` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут       | Тип PostgreSQL                                                                |
+| ------------- | ----------------------------------------------------------------------------- |
+| `id`          | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `tariff_id`   | `BIGINT` `NOT NULL` `REFERENCES tariffs(id)`                                  |
+| `rate_minor`  | `BIGINT` `NOT NULL` `CHECK (rate_minor >= 0)`                                 |
+| `day_of_week` | `SMALLINT` `CHECK (day_of_week BETWEEN 1 AND 7)`                              |
+| `time_from`   | `TIME`                                                                        |
+| `time_to`     | `TIME`                                                                        |
+| `priority`    | `INTEGER` `NOT NULL` `DEFAULT 0`                                              |
+| `created_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
+| `updated_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
-Уникальность применимой ставки гарантируется expression UNIQUE index (секция 5) и Application Service-проверкой перед INSERT/UPDATE. *DrawSQL Table Notes: `CREATE UNIQUE INDEX ON tariff_rates(tariff_id, COALESCE(day_of_week,0), COALESCE(time_from,'00:00'::TIME), COALESCE(time_to,'00:00'::TIME));`*
+Уникальность применимой ставки гарантируется expression UNIQUE index (секция 5) и Application Service-проверкой перед INSERT/UPDATE. _DrawSQL Table Notes: `CREATE UNIQUE INDEX ON tariff_rates(tariff_id, COALESCE(day_of_week,0), COALESCE(time_from,'00:00'::TIME), COALESCE(time_to,'00:00'::TIME));`_
 
 ### `contract_templates`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `code` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
-| `name` | `VARCHAR(200)` `NOT NULL` |
-| `version` | `VARCHAR(32)` `NOT NULL` |
-| `type` | `contract_template_type_enum` `NOT NULL` — значения: `INDIVIDUAL`, `CORPORATE` |
-| `body` | `TEXT` `NOT NULL` |
-| `effective_from` | `DATE` `NOT NULL` |
-| `effective_to` | `DATE` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут          | Тип PostgreSQL                                                                 |
+| ---------------- | ------------------------------------------------------------------------------ |
+| `id`             | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                      |
+| `code`           | `VARCHAR(64)` `NOT NULL` `UNIQUE`                                              |
+| `name`           | `VARCHAR(200)` `NOT NULL`                                                      |
+| `version`        | `VARCHAR(32)` `NOT NULL`                                                       |
+| `type`           | `contract_template_type_enum` `NOT NULL` — значения: `INDIVIDUAL`, `CORPORATE` |
+| `body`           | `TEXT` `NOT NULL`                                                              |
+| `effective_from` | `DATE` `NOT NULL`                                                              |
+| `effective_to`   | `DATE`                                                                         |
+| `created_at`     | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                       |
+| `updated_at`     | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`  |
 
 ### `contracts`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `client_id` | `BIGINT` `NOT NULL` `REFERENCES clients(id)` |
-| `contract_template_id` | `BIGINT` `REFERENCES contract_templates(id)` |
-| `contract_number` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
-| `start_date` | `DATE` `NOT NULL` |
-| `end_date` | `DATE` |
-| `status` | `contract_status_enum` `NOT NULL` — значения: `DRAFT`, `ACTIVE`, `EXPIRED`, `TERMINATED` |
-| `document_file_ref` | `VARCHAR(512)` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут                | Тип PostgreSQL                                                                           |
+| ---------------------- | ---------------------------------------------------------------------------------------- |
+| `id`                   | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                                |
+| `client_id`            | `BIGINT` `NOT NULL` `REFERENCES clients(id)`                                             |
+| `contract_template_id` | `BIGINT` `REFERENCES contract_templates(id)`                                             |
+| `contract_number`      | `VARCHAR(64)` `NOT NULL` `UNIQUE`                                                        |
+| `start_date`           | `DATE` `NOT NULL`                                                                        |
+| `end_date`             | `DATE`                                                                                   |
+| `status`               | `contract_status_enum` `NOT NULL` — значения: `DRAFT`, `ACTIVE`, `EXPIRED`, `TERMINATED` |
+| `document_file_ref`    | `VARCHAR(512)`                                                                           |
+| `created_at`           | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                 |
+| `updated_at`           | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`            |
 
 ### `contract_status_history`
 
 Append-only история изменений статуса договора.
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `contract_id` | `BIGINT` `NOT NULL` `REFERENCES contracts(id)` |
-| `old_status` | `contract_status_enum` |
-| `new_status` | `contract_status_enum` `NOT NULL` |
-| `changed_by_employee_id` | `BIGINT` `REFERENCES employees(id)` |
-| `reason` | `TEXT` |
-| `changed_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
+| Атрибут                  | Тип PostgreSQL                                            |
+| ------------------------ | --------------------------------------------------------- |
+| `id`                     | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
+| `contract_id`            | `BIGINT` `NOT NULL` `REFERENCES contracts(id)`            |
+| `old_status`             | `contract_status_enum`                                    |
+| `new_status`             | `contract_status_enum` `NOT NULL`                         |
+| `changed_by_employee_id` | `BIGINT` `REFERENCES employees(id)`                       |
+| `reason`                 | `TEXT`                                                    |
+| `changed_at`             | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                  |
 
 ### `bookings`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `booking_number` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
-| `vehicle_id` | `BIGINT` `NOT NULL` |
-| `parking_place_id` | `BIGINT` |
-| `contract_id` | `BIGINT` |
-| `tariff_id` | `BIGINT` `NOT NULL` |
-| `start_at` | `TIMESTAMPTZ` `NOT NULL` |
-| `end_at` | `TIMESTAMPTZ` |
-| `license_plate_snapshot` | `VARCHAR(32)` `NOT NULL` |
-| `type` | `booking_type_enum` `NOT NULL` — значения: `AUTO`, `SHORT_TERM`, `CONTRACT`; `AUTO`: создается системой при въезде ТС через точку доступа `access_points`; `SHORT_TERM`: краткосрочное бронирование клиентом; `CONTRACT`: долгосрочное по договору (ЮЛ) |
-| `status` | `booking_status_enum` `NOT NULL` — значения: `PENDING`, `CONFIRMED`, `ACTIVE`, `COMPLETED`, `CANCELLED`, `NO_SHOW` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут                  | Тип PostgreSQL                                                                                                                                                                                                                                          |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                     | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                                                                                                                                                                                               |
+| `booking_number`         | `VARCHAR(64)` `NOT NULL` `UNIQUE`                                                                                                                                                                                                                       |
+| `vehicle_id`             | `BIGINT` `NOT NULL`                                                                                                                                                                                                                                     |
+| `parking_place_id`       | `BIGINT`                                                                                                                                                                                                                                                |
+| `contract_id`            | `BIGINT`                                                                                                                                                                                                                                                |
+| `tariff_id`              | `BIGINT` `NOT NULL`                                                                                                                                                                                                                                     |
+| `start_at`               | `TIMESTAMPTZ` `NOT NULL`                                                                                                                                                                                                                                |
+| `end_at`                 | `TIMESTAMPTZ`                                                                                                                                                                                                                                           |
+| `license_plate_snapshot` | `VARCHAR(32)` `NOT NULL`                                                                                                                                                                                                                                |
+| `type`                   | `booking_type_enum` `NOT NULL` — значения: `AUTO`, `SHORT_TERM`, `CONTRACT`; `AUTO`: создается системой при въезде ТС через точку доступа `access_points`; `SHORT_TERM`: краткосрочное бронирование клиентом; `CONTRACT`: долгосрочное по договору (ЮЛ) |
+| `status`                 | `booking_status_enum` `NOT NULL` — значения: `PENDING`, `CONFIRMED`, `ACTIVE`, `COMPLETED`, `CANCELLED`, `NO_SHOW`                                                                                                                                      |
+| `created_at`             | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                                                                                                                                                                                |
+| `updated_at`             | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`                                                                                                                                                                           |
 
 Все FK в `bookings` хранятся без `REFERENCES`-constraint (схемная изоляция ADR-003). `license_plate_snapshot` — иммутабельный снимок ГРЗ на момент создания брони.
 
@@ -1166,52 +1166,52 @@ Append-only история изменений статуса договора.
 
 Append-only история изменений статуса бронирования.
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `booking_id` | `BIGINT` `NOT NULL` `REFERENCES bookings(id)` |
-| `old_status` | `booking_status_enum` |
-| `new_status` | `booking_status_enum` `NOT NULL` |
-| `changed_by_employee_id` | `BIGINT` `REFERENCES employees(id)` |
-| `changed_by_client_id` | `BIGINT` `REFERENCES clients(id)` |
-| `reason` | `TEXT` |
-| `changed_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
+| Атрибут                  | Тип PostgreSQL                                            |
+| ------------------------ | --------------------------------------------------------- |
+| `id`                     | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
+| `booking_id`             | `BIGINT` `NOT NULL` `REFERENCES bookings(id)`             |
+| `old_status`             | `booking_status_enum`                                     |
+| `new_status`             | `booking_status_enum` `NOT NULL`                          |
+| `changed_by_employee_id` | `BIGINT` `REFERENCES employees(id)`                       |
+| `changed_by_client_id`   | `BIGINT` `REFERENCES clients(id)`                         |
+| `reason`                 | `TEXT`                                                    |
+| `changed_at`             | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                  |
 
 ### `invoices`
 
 > Таблица принадлежит схеме `payment` (контекст `Платеж`). FK на `booking` и `contract` хранятся без `REFERENCES`-constraint (схемная изоляция ADR-003).
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `booking_id` | `BIGINT` |
-| `contract_id` | `BIGINT` |
-| `invoice_number` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
-| `type` | `invoice_type_enum` `NOT NULL` — значения: `SINGLE`, `PERIODIC` |
-| `status` | `invoice_status_enum` `NOT NULL` — значения: `ISSUED`, `PAID`, `OVERDUE`, `CANCELLED` |
-| `amount_due_minor` | `BIGINT` `NOT NULL` |
-| `billing_period_from` | `DATE` |
-| `billing_period_to` | `DATE` |
-| `issued_date` | `DATE` `NOT NULL` |
-| `due_date` | `DATE` |
-| `paid_at` | `TIMESTAMPTZ` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут               | Тип PostgreSQL                                                                        |
+| --------------------- | ------------------------------------------------------------------------------------- |
+| `id`                  | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                             |
+| `booking_id`          | `BIGINT`                                                                              |
+| `contract_id`         | `BIGINT`                                                                              |
+| `invoice_number`      | `VARCHAR(64)` `NOT NULL` `UNIQUE`                                                     |
+| `type`                | `invoice_type_enum` `NOT NULL` — значения: `SINGLE`, `PERIODIC`                       |
+| `status`              | `invoice_status_enum` `NOT NULL` — значения: `ISSUED`, `PAID`, `OVERDUE`, `CANCELLED` |
+| `amount_due_minor`    | `BIGINT` `NOT NULL`                                                                   |
+| `billing_period_from` | `DATE`                                                                                |
+| `billing_period_to`   | `DATE`                                                                                |
+| `issued_date`         | `DATE` `NOT NULL`                                                                     |
+| `due_date`            | `DATE`                                                                                |
+| `paid_at`             | `TIMESTAMPTZ`                                                                         |
+| `created_at`          | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                              |
+| `updated_at`          | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`         |
 
-При `type = 'PERIODIC'`: `contract_id NOT NULL`, `billing_period_from NOT NULL`, `billing_period_to NOT NULL`, `booking_id IS NULL`. При `type = 'SINGLE'`: `booking_id NOT NULL`, `contract_id IS NULL`, `billing_period_from/to IS NULL`. Инвариант проверяется триггером или Application Service. *DrawSQL: условные NOT NULL в UI не задаются — указать в Table Notes.*
+При `type = 'PERIODIC'`: `contract_id NOT NULL`, `billing_period_from NOT NULL`, `billing_period_to NOT NULL`, `booking_id IS NULL`. При `type = 'SINGLE'`: `booking_id NOT NULL`, `contract_id IS NULL`, `billing_period_from/to IS NULL`. Инвариант проверяется триггером или Application Service. _DrawSQL: условные NOT NULL в UI не задаются — указать в Table Notes._
 
 Оплаченная сумма по счету вычисляется через запрос: `SELECT COALESCE(SUM(amount_minor), 0) FROM payments WHERE invoice_id = ? AND status = 'COMPLETED'`. Поле `amount_paid` не хранится — исключает риск рассинхронизации между кэшем и фактом.
 
 ### `parking_sessions`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `booking_id` | `BIGINT` `NOT NULL` |
-| `entry_time` | `TIMESTAMPTZ` `NOT NULL` |
-| `exit_time` | `TIMESTAMPTZ` |
-| `status` | `parking_session_status_enum` `NOT NULL` — значения: `ACTIVE`, `COMPLETED` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
+| Атрибут      | Тип PostgreSQL                                                                |
+| ------------ | ----------------------------------------------------------------------------- |
+| `id`         | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `booking_id` | `BIGINT` `NOT NULL`                                                           |
+| `entry_time` | `TIMESTAMPTZ` `NOT NULL`                                                      |
+| `exit_time`  | `TIMESTAMPTZ`                                                                 |
+| `status`     | `parking_session_status_enum` `NOT NULL` — значения: `ACTIVE`, `COMPLETED`    |
+| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
 FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схемная изоляция ADR-003). Детали допуска и прохода через КПП фиксируются в `access_logs`, а `parking_sessions` хранит только факт пребывания ТС на парковке.
@@ -1220,170 +1220,170 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 
 ### `payments`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `invoice_id` | `BIGINT` `NOT NULL` |
-| `amount_minor` | `BIGINT` `NOT NULL` |
-| `currency` | `CHAR(3)` `NOT NULL` `DEFAULT 'RUB'` — ISO 4217; на момент разработки используется только `RUB` |
-| `payment_method_id` | `BIGINT` `NOT NULL` `REFERENCES payment_methods(id)` |
-| `status` | `payment_status_enum` `NOT NULL` — значения: `INITIATED`, `COMPLETED`, `FAILED`, `REFUNDED`, `CANCELLED` |
-| `initiated_at` | `TIMESTAMPTZ` `NOT NULL` |
-| `completed_at` | `TIMESTAMPTZ` |
-| `provider_id` | `VARCHAR(512)` — *DrawSQL: тип `VARCHAR(512)`, без Unique-флажка. Частичный уникальный индекс указать в Table Notes: `CREATE UNIQUE INDEX ON payments(provider_id) WHERE provider_id IS NOT NULL`* |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут             | Тип PostgreSQL                                                                                                                                                                                     |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                                                                                                                                          |
+| `invoice_id`        | `BIGINT` `NOT NULL`                                                                                                                                                                                |
+| `amount_minor`      | `BIGINT` `NOT NULL`                                                                                                                                                                                |
+| `currency`          | `CHAR(3)` `NOT NULL` `DEFAULT 'RUB'` — ISO 4217; на момент разработки используется только `RUB`                                                                                                    |
+| `payment_method_id` | `BIGINT` `NOT NULL` `REFERENCES payment_methods(id)`                                                                                                                                               |
+| `status`            | `payment_status_enum` `NOT NULL` — значения: `INITIATED`, `COMPLETED`, `FAILED`, `REFUNDED`, `CANCELLED`                                                                                           |
+| `initiated_at`      | `TIMESTAMPTZ` `NOT NULL`                                                                                                                                                                           |
+| `completed_at`      | `TIMESTAMPTZ`                                                                                                                                                                                      |
+| `provider_id`       | `VARCHAR(512)` — _DrawSQL: тип `VARCHAR(512)`, без Unique-флажка. Частичный уникальный индекс указать в Table Notes: `CREATE UNIQUE INDEX ON payments(provider_id) WHERE provider_id IS NOT NULL`_ |
+| `created_at`        | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                                                                                                                           |
+| `updated_at`        | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`                                                                                                                      |
 
 `provider_id` — idempotency key от платежного провайдера. Частичный уникальный индекс: `CREATE UNIQUE INDEX ON payments(provider_id) WHERE provider_id IS NOT NULL`.
 
 ### `receipts`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `payment_id` | `BIGINT` `NOT NULL` `REFERENCES payments(id)` |
-| `fiscal_number` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
-| `receipt_at` | `TIMESTAMPTZ` `NOT NULL` |
+| Атрибут         | Тип PostgreSQL                                                                    |
+| --------------- | --------------------------------------------------------------------------------- |
+| `id`            | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                         |
+| `payment_id`    | `BIGINT` `NOT NULL` `REFERENCES payments(id)`                                     |
+| `fiscal_number` | `VARCHAR(64)` `NOT NULL` `UNIQUE`                                                 |
+| `receipt_at`    | `TIMESTAMPTZ` `NOT NULL`                                                          |
 | `fiscal_status` | `receipt_fiscal_status_enum` `NOT NULL` — значения: `PENDING`, `ISSUED`, `FAILED` |
-| `amount_minor` | `BIGINT` `NOT NULL` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| `amount_minor`  | `BIGINT` `NOT NULL`                                                               |
+| `created_at`    | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                          |
+| `updated_at`    | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`     |
 
 ### `refunds`
 
 > Таблица принадлежит схеме `payment`. Фиксирует факт возврата средств — отдельную транзакцию у PSP с собственным идентификатором, суммой и статусом.
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `payment_id` | `BIGINT` `NOT NULL` `REFERENCES payments(id)` |
-| `amount_minor` | `BIGINT` `NOT NULL` |
-| `reason` | `TEXT` |
-| `refund_provider_id` | `VARCHAR(512)` — idempotency key возврата у PSP. Частичный уникальный индекс: `CREATE UNIQUE INDEX ON refunds(refund_provider_id) WHERE refund_provider_id IS NOT NULL`. *DrawSQL: тип `VARCHAR(512)`, без Unique-флажка; индекс указать в Table Notes* |
-| `status` | `refund_status_enum` `NOT NULL` — значения: `INITIATED`, `COMPLETED`, `FAILED` |
-| `initiated_at` | `TIMESTAMPTZ` `NOT NULL` |
-| `completed_at` | `TIMESTAMPTZ` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут              | Тип PostgreSQL                                                                                                                                                                                                                                          |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                 | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                                                                                                                                                                                               |
+| `payment_id`         | `BIGINT` `NOT NULL` `REFERENCES payments(id)`                                                                                                                                                                                                           |
+| `amount_minor`       | `BIGINT` `NOT NULL`                                                                                                                                                                                                                                     |
+| `reason`             | `TEXT`                                                                                                                                                                                                                                                  |
+| `refund_provider_id` | `VARCHAR(512)` — idempotency key возврата у PSP. Частичный уникальный индекс: `CREATE UNIQUE INDEX ON refunds(refund_provider_id) WHERE refund_provider_id IS NOT NULL`. _DrawSQL: тип `VARCHAR(512)`, без Unique-флажка; индекс указать в Table Notes_ |
+| `status`             | `refund_status_enum` `NOT NULL` — значения: `INITIATED`, `COMPLETED`, `FAILED`                                                                                                                                                                          |
+| `initiated_at`       | `TIMESTAMPTZ` `NOT NULL`                                                                                                                                                                                                                                |
+| `completed_at`       | `TIMESTAMPTZ`                                                                                                                                                                                                                                           |
+| `created_at`         | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                                                                                                                                                                                |
+| `updated_at`         | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`                                                                                                                                                                           |
 
 ### `debts`
 
 > Таблица принадлежит схеме `payment`. Фиксирует просроченную задолженность клиента-ЮЛ по периодическому счету. Создается scheduled job при `invoices.due_date < current_date` и `status != 'PAID'`.
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `invoice_id` | `BIGINT` `NOT NULL` `REFERENCES invoices(id)` |
-| `client_id` | `BIGINT` `NOT NULL` — логическая ссылка (без `REFERENCES`; схемная изоляция) |
-| `amount_minor` | `BIGINT` `NOT NULL` — сумма задолженности на момент создания; иммутабельна |
+| Атрибут                  | Тип PostgreSQL                                                                                                                                                                                                                     |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                     | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                                                                                                                                                                          |
+| `invoice_id`             | `BIGINT` `NOT NULL` `REFERENCES invoices(id)`                                                                                                                                                                                      |
+| `client_id`              | `BIGINT` `NOT NULL` — логическая ссылка (без `REFERENCES`; схемная изоляция)                                                                                                                                                       |
+| `amount_minor`           | `BIGINT` `NOT NULL` — сумма задолженности на момент создания; иммутабельна                                                                                                                                                         |
 | `remaining_amount_minor` | `BIGINT` `NOT NULL` — текущий остаток долга; инициализируется `= amount_minor`; уменьшается Payment Service атомарно при каждой частичной оплате; `CHECK (remaining_amount_minor >= 0 AND remaining_amount_minor <= amount_minor)` |
-| `overdue_since` | `DATE` `NOT NULL` — дата возникновения просрочки (= `invoices.due_date`) |
-| `status` | `debt_status_enum` `NOT NULL` — значения: `ACTIVE`, `PAID`, `WRITTEN_OFF` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| `overdue_since`          | `DATE` `NOT NULL` — дата возникновения просрочки (= `invoices.due_date`)                                                                                                                                                           |
+| `status`                 | `debt_status_enum` `NOT NULL` — значения: `ACTIVE`, `PAID`, `WRITTEN_OFF`                                                                                                                                                          |
+| `created_at`             | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                                                                                                                                                           |
+| `updated_at`             | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`                                                                                                                                                      |
 
-Инвариант: при `remaining_amount_minor = 0` Payment Service устанавливает `status = 'PAID'` в той же транзакции. *DrawSQL: CHECK не поддерживается в UI — указать в Table Notes.*
+Инвариант: при `remaining_amount_minor = 0` Payment Service устанавливает `status = 'PAID'` в той же транзакции. _DrawSQL: CHECK не поддерживается в UI — указать в Table Notes._
 
 ### `payment_methods`
 
 > **Схема `payment`.** Справочник способов оплаты. Использование словарной таблицы позволяет добавлять новые методы (например, при интеграции нового PSP) без изменения схемы БД.
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `code` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
-| `name` | `VARCHAR(200)` `NOT NULL` |
-| `description` | `TEXT` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут       | Тип PostgreSQL                                                                |
+| ------------- | ----------------------------------------------------------------------------- |
+| `id`          | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `code`        | `VARCHAR(64)` `NOT NULL` `UNIQUE`                                             |
+| `name`        | `VARCHAR(200)` `NOT NULL`                                                     |
+| `description` | `TEXT`                                                                        |
+| `created_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
+| `updated_at`  | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
-Примеры значений `code`: `CARD`, `SBP`, `ACCOUNT_DEBIT`, `CASH`. *DrawSQL: добавить через Table Notes.*
+Примеры значений `code`: `CARD`, `SBP`, `ACCOUNT_DEBIT`, `CASH`. _DrawSQL: добавить через Table Notes._
 
 ### `notification_templates`
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `code` | `VARCHAR(64)` `NOT NULL` `UNIQUE` |
-| `name` | `VARCHAR(200)` `NOT NULL` |
-| `type` | `notification_channel_enum` `NOT NULL` — значения: `SMS`, `EMAIL`, `PUSH` |
-| `subject` | `VARCHAR(500)` |
-| `body` | `TEXT` `NOT NULL` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
+| Атрибут      | Тип PostgreSQL                                                                |
+| ------------ | ----------------------------------------------------------------------------- |
+| `id`         | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                     |
+| `code`       | `VARCHAR(64)` `NOT NULL` `UNIQUE`                                             |
+| `name`       | `VARCHAR(200)` `NOT NULL`                                                     |
+| `type`       | `notification_channel_enum` `NOT NULL` — значения: `SMS`, `EMAIL`, `PUSH`     |
+| `subject`    | `VARCHAR(500)`                                                                |
+| `body`       | `TEXT` `NOT NULL`                                                             |
+| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                      |
 | `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
 
 ### `notifications`
 
 > Таблица принадлежит схеме `notification`. FK на `client` и `employee` хранятся без `REFERENCES`-constraint (схемная изоляция ADR-003). Адресат доставки передается в поле `delivery_address` и не требует JOIN к `clients`.
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `notification_template_id` | `BIGINT` |
-| `client_id` | `BIGINT` `NOT NULL` |
-| `initiator_employee_id` | `BIGINT` |
-| `subject_type` | `subject_entity_enum` |
-| `subject_id` | `BIGINT` |
-| `channel` | `notification_channel_enum` `NOT NULL` — значения: `SMS`, `EMAIL`, `PUSH` |
-| `delivery_address` | `VARCHAR(320)` `NOT NULL` |
-| `delivery_status` | `notification_delivery_status_enum` `NOT NULL` — значения: `PENDING`, `SENT`, `DELIVERED`, `FAILED` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут                    | Тип PostgreSQL                                                                                      |
+| -------------------------- | --------------------------------------------------------------------------------------------------- |
+| `id`                       | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                                           |
+| `notification_template_id` | `BIGINT`                                                                                            |
+| `client_id`                | `BIGINT` `NOT NULL`                                                                                 |
+| `initiator_employee_id`    | `BIGINT`                                                                                            |
+| `subject_type`             | `subject_entity_enum`                                                                               |
+| `subject_id`               | `BIGINT`                                                                                            |
+| `channel`                  | `notification_channel_enum` `NOT NULL` — значения: `SMS`, `EMAIL`, `PUSH`                           |
+| `delivery_address`         | `VARCHAR(320)` `NOT NULL`                                                                           |
+| `delivery_status`          | `notification_delivery_status_enum` `NOT NULL` — значения: `PENDING`, `SENT`, `DELIVERED`, `FAILED` |
+| `created_at`               | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                            |
+| `updated_at`               | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`                       |
 
-`subject_type IS NULL AND subject_id IS NULL` — уведомление без конкретного предмета; `subject_type IS NOT NULL AND subject_id IS NOT NULL` — предмет задан. Инвариант: оба поля либо оба NULL, либо оба NOT NULL — обеспечивается `CHECK ((subject_type IS NULL) = (subject_id IS NULL))`. *DrawSQL: CHECK не поддерживается в UI — указать в Table Notes. Индекс `(subject_type, subject_id)` также добавить в Table Notes.*
+`subject_type IS NULL AND subject_id IS NULL` — уведомление без конкретного предмета; `subject_type IS NOT NULL AND subject_id IS NOT NULL` — предмет задан. Инвариант: оба поля либо оба NULL, либо оба NOT NULL — обеспечивается `CHECK ((subject_type IS NULL) = (subject_id IS NULL))`. _DrawSQL: CHECK не поддерживается в UI — указать в Table Notes. Индекс `(subject_type, subject_id)` также добавить в Table Notes._
 
 ### `appeals`
 
 > Таблица принадлежит схеме `support`. Все FK хранятся без `REFERENCES`-constraint (схемная изоляция ADR-003). Предмет обращения задается полиморфной парой `subject_type + subject_id`.
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `client_id` | `BIGINT` `NOT NULL` |
-| `employee_id` | `BIGINT` |
-| `subject_type` | `subject_entity_enum` |
-| `subject_id` | `BIGINT` |
-| `type` | `appeal_type_enum` `NOT NULL` — значения: `COMPLAINT`, `QUESTION`, `REQUEST`, `FEEDBACK` |
-| `channel` | `appeal_channel_enum` `NOT NULL` — значения: `APP`, `EMAIL`, `PHONE`, `CHAT` |
-| `subject` | `VARCHAR(500)` `NOT NULL` |
-| `description` | `TEXT` |
-| `status` | `appeal_status_enum` `NOT NULL` — значения: `OPEN`, `IN_PROGRESS`, `RESOLVED`, `CLOSED` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `updated_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime` |
+| Атрибут        | Тип PostgreSQL                                                                           |
+| -------------- | ---------------------------------------------------------------------------------------- |
+| `id`           | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`                                |
+| `client_id`    | `BIGINT` `NOT NULL`                                                                      |
+| `employee_id`  | `BIGINT`                                                                                 |
+| `subject_type` | `subject_entity_enum`                                                                    |
+| `subject_id`   | `BIGINT`                                                                                 |
+| `type`         | `appeal_type_enum` `NOT NULL` — значения: `COMPLAINT`, `QUESTION`, `REQUEST`, `FEEDBACK` |
+| `channel`      | `appeal_channel_enum` `NOT NULL` — значения: `APP`, `EMAIL`, `PHONE`, `CHAT`             |
+| `subject`      | `VARCHAR(500)` `NOT NULL`                                                                |
+| `description`  | `TEXT`                                                                                   |
+| `status`       | `appeal_status_enum` `NOT NULL` — значения: `OPEN`, `IN_PROGRESS`, `RESOLVED`, `CLOSED`  |
+| `created_at`   | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                                 |
+| `updated_at`   | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` — обновление триггером `moddatetime`            |
 
-`subject_type IS NULL AND subject_id IS NULL` — обращение без конкретного предмета; `subject_type IS NOT NULL AND subject_id IS NOT NULL` — предмет задан. Инвариант: оба поля либо оба NULL, либо оба NOT NULL — обеспечивается `CHECK ((subject_type IS NULL) = (subject_id IS NULL))`. *DrawSQL: CHECK не поддерживается в UI — указать в Table Notes. Индекс `(subject_type, subject_id)` также добавить в Table Notes.*
+`subject_type IS NULL AND subject_id IS NULL` — обращение без конкретного предмета; `subject_type IS NOT NULL AND subject_id IS NOT NULL` — предмет задан. Инвариант: оба поля либо оба NULL, либо оба NOT NULL — обеспечивается `CHECK ((subject_type IS NULL) = (subject_id IS NULL))`. _DrawSQL: CHECK не поддерживается в UI — указать в Table Notes. Индекс `(subject_type, subject_id)` также добавить в Table Notes._
 
 ### `access_logs`
 
 > Таблица принадлежит схеме `report`. Append-only журнал событий допуска на точках доступа `access_points`. Все FK — логические (без REFERENCES-constraint; схемная изоляция ADR-003).
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `access_point_id` | `BIGINT` `NOT NULL` |
-| `parking_session_id` | `BIGINT` |
-| `vehicle_id` | `BIGINT` |
-| `direction` | `access_log_direction_enum` `NOT NULL` — значения: `IN`, `OUT` |
-| `decision` | `access_decision_enum` `NOT NULL` — значения: `ALLOW`, `DENY`, `MANUAL` |
-| `reason` | `TEXT` |
-| `decided_at` | `TIMESTAMPTZ` `NOT NULL` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
+| Атрибут              | Тип PostgreSQL                                                          |
+| -------------------- | ----------------------------------------------------------------------- |
+| `id`                 | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY`               |
+| `access_point_id`    | `BIGINT` `NOT NULL`                                                     |
+| `parking_session_id` | `BIGINT`                                                                |
+| `vehicle_id`         | `BIGINT`                                                                |
+| `direction`          | `access_log_direction_enum` `NOT NULL` — значения: `IN`, `OUT`          |
+| `decision`           | `access_decision_enum` `NOT NULL` — значения: `ALLOW`, `DENY`, `MANUAL` |
+| `reason`             | `TEXT`                                                                  |
+| `decided_at`         | `TIMESTAMPTZ` `NOT NULL`                                                |
+| `created_at`         | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                                |
 
-`parking_session_id` — nullable: заполняется для событий, которые привели к созданию или завершению парковочной сессии; при отказах и несвязанных проверках остается `NULL`. `vehicle_id` — nullable: при некоторых отказах (нераспознанный ГРЗ) идентифицировать ТС невозможно. Таблица immutable (INSERT only). *DrawSQL: CHECK не поддерживается в UI — указать в Table Notes.*
+`parking_session_id` — nullable: заполняется для событий, которые привели к созданию или завершению парковочной сессии; при отказах и несвязанных проверках остается `NULL`. `vehicle_id` — nullable: при некоторых отказах (нераспознанный ГРЗ) идентифицировать ТС невозможно. Таблица immutable (INSERT only). _DrawSQL: CHECK не поддерживается в UI — указать в Table Notes._
 
 ### `outbox_events`
 
 Таблица transactional outbox для публикации доменных событий во внешние интеграции.
 
-| Атрибут | Тип PostgreSQL |
-|---------|------------------|
-| `id` | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
-| `event_type` | `VARCHAR(100)` `NOT NULL` |
-| `aggregate_type` | `VARCHAR(100)` `NOT NULL` |
-| `aggregate_id` | `BIGINT` `NOT NULL` |
-| `payload` | `JSONB` `NOT NULL` |
-| `created_at` | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()` |
-| `processed_at` | `TIMESTAMPTZ` |
+| Атрибут          | Тип PostgreSQL                                            |
+| ---------------- | --------------------------------------------------------- |
+| `id`             | `BIGINT` `GENERATED BY DEFAULT AS IDENTITY` `PRIMARY KEY` |
+| `event_type`     | `VARCHAR(100)` `NOT NULL`                                 |
+| `aggregate_type` | `VARCHAR(100)` `NOT NULL`                                 |
+| `aggregate_id`   | `BIGINT` `NOT NULL`                                       |
+| `payload`        | `JSONB` `NOT NULL`                                        |
+| `created_at`     | `TIMESTAMPTZ` `NOT NULL` `DEFAULT now()`                  |
+| `processed_at`   | `TIMESTAMPTZ`                                             |
 
 ---
 
@@ -2444,19 +2444,19 @@ FK в `parking_sessions` хранятся без `REFERENCES`-constraint (схе
 
 ### 4. Как закреплять инварианты в PostgreSQL
 
-| Инвариант | CHECK на строке | Триггер / приложение |
-|-----------|-----------------|----------------------|
-| FL/UL инвариант клиента | `CHECK(type IN ('FL','UL'))` на `clients.type` | `BEFORE INSERT/UPDATE` триггер или Application Service: при FL — обеспечить ФИО; при UL — обеспечить `organizations` (1:1) и очистить ФИО |
-| `appeals.subject_type / subject_id` | `CHECK ((subject_type IS NULL) = (subject_id IS NULL))` | — |
-| `invoices` тип/поля | частично через `type CHECK` | триггер или Application Service |
-| `client_accounts.password_hash` — LOCAL vs OAuth | — | Триггер `BEFORE INSERT/UPDATE`: при LOCAL — `password_hash NOT NULL` и задан хотя бы один из `phone_e164` / `email_normalized` / `login`; при IdP — `provider_subject_id NOT NULL`, `password_hash` допустимо NULL |
-| Консистентность FK без REFERENCES | — | Application Service (валидация при записи) |
-| `parking_schedules` уникальность | `UNIQUE (parking_id, day_of_week, effective_from)` | — |
-| `organization_bank_accounts.is_primary` единственность | `CREATE UNIQUE INDEX ... WHERE is_primary = true` | — |
-| `payments.provider_id` уникальность | `CREATE UNIQUE INDEX ... WHERE provider_id IS NOT NULL` | — |
-| `refunds.refund_provider_id` уникальность | `CREATE UNIQUE INDEX ... WHERE refund_provider_id IS NOT NULL` | — |
-| `debts`: один активный долг на счет | — | Application Service проверяет `WHERE invoice_id = ? AND status = 'ACTIVE'` перед созданием |
-| Уникальность пар в `ZONE_TYPE_*` | составной PK | — |
+| Инвариант                                              | CHECK на строке                                                | Триггер / приложение                                                                                                                                                                                               |
+| ------------------------------------------------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| FL/UL инвариант клиента                                | `CHECK(type IN ('FL','UL'))` на `clients.type`                 | `BEFORE INSERT/UPDATE` триггер или Application Service: при FL — обеспечить ФИО; при UL — обеспечить `organizations` (1:1) и очистить ФИО                                                                          |
+| `appeals.subject_type / subject_id`                    | `CHECK ((subject_type IS NULL) = (subject_id IS NULL))`        | —                                                                                                                                                                                                                  |
+| `invoices` тип/поля                                    | частично через `type CHECK`                                    | триггер или Application Service                                                                                                                                                                                    |
+| `client_accounts.password_hash` — LOCAL vs OAuth       | —                                                              | Триггер `BEFORE INSERT/UPDATE`: при LOCAL — `password_hash NOT NULL` и задан хотя бы один из `phone_e164` / `email_normalized` / `login`; при IdP — `provider_subject_id NOT NULL`, `password_hash` допустимо NULL |
+| Консистентность FK без REFERENCES                      | —                                                              | Application Service (валидация при записи)                                                                                                                                                                         |
+| `parking_schedules` уникальность                       | `UNIQUE (parking_id, day_of_week, effective_from)`             | —                                                                                                                                                                                                                  |
+| `organization_bank_accounts.is_primary` единственность | `CREATE UNIQUE INDEX ... WHERE is_primary = true`              | —                                                                                                                                                                                                                  |
+| `payments.provider_id` уникальность                    | `CREATE UNIQUE INDEX ... WHERE provider_id IS NOT NULL`        | —                                                                                                                                                                                                                  |
+| `refunds.refund_provider_id` уникальность              | `CREATE UNIQUE INDEX ... WHERE refund_provider_id IS NOT NULL` | —                                                                                                                                                                                                                  |
+| `debts`: один активный долг на счет                    | —                                                              | Application Service проверяет `WHERE invoice_id = ? AND status = 'ACTIVE'` перед созданием                                                                                                                         |
+| Уникальность пар в `ZONE_TYPE_*`                       | составной PK                                                   | —                                                                                                                                                                                                                  |
 
 ### 5. Критические индексы
 
@@ -2562,12 +2562,12 @@ CREATE INDEX ON access_logs(vehicle_id) WHERE vehicle_id IS NOT NULL;         --
 
 #### Нормализация (1НФ / 2НФ / 3НФ)
 
-| Таблица | Статус | Комментарий |
-|---------|--------|-------------|
-| Все | **1НФ ✅** | Все атрибуты атомарны; `TEXT[]` заменен отдельной таблицей (`notification_settings_channels`) |
-| `zone_type_vehicle_types`, `zone_type_tariffs` | **2НФ ✅** | Составные PK без не-ключевых атрибутов |
-| `tariff_rates` | **3НФ ✅** | `rate_minor` зависит от `(tariff_id, day_of_week, time_from, time_to)` — корректная специализация тарифа; уникальность через expression UNIQUE index c COALESCE (секция 5) |
-| `organizations.inn` | **BCNF ✅ исправлено** | `inn VARCHAR(12) NOT NULL UNIQUE`; `ogrn UNIQUE`. ИНН обязателен |
+| Таблица                                        | Статус                 | Комментарий                                                                                                                                                                |
+| ---------------------------------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Все                                            | **1НФ ✅**             | Все атрибуты атомарны; `TEXT[]` заменен отдельной таблицей (`notification_settings_channels`)                                                                              |
+| `zone_type_vehicle_types`, `zone_type_tariffs` | **2НФ ✅**             | Составные PK без не-ключевых атрибутов                                                                                                                                     |
+| `tariff_rates`                                 | **3НФ ✅**             | `rate_minor` зависит от `(tariff_id, day_of_week, time_from, time_to)` — корректная специализация тарифа; уникальность через expression UNIQUE index c COALESCE (секция 5) |
+| `organizations.inn`                            | **BCNF ✅ исправлено** | `inn VARCHAR(12) NOT NULL UNIQUE`; `ogrn UNIQUE`. ИНН обязателен                                                                                                           |
 
 #### Архитектурные замечания
 
@@ -2579,7 +2579,7 @@ CREATE INDEX ON access_logs(vehicle_id) WHERE vehicle_id IS NOT NULL;         --
 
 4. **`debts.client_id` — логический FK (cross-schema):** индекс `ON debts(client_id)` добавлен в секцию 5. Application Service проверяет существование клиента при создании `debts`. **`remaining_amount_minor`** инициализируется `= amount_minor` при INSERT; уменьшается Payment Service в той же транзакции, что создает `payments`; при `remaining_amount_minor = 0` — `status = 'PAID'`. Инвариант `CHECK (remaining_amount_minor >= 0 AND remaining_amount_minor <= amount_minor)` добавить в Table Notes DrawSQL.
 
-5. **Создание настроек при регистрации клиента:** `notification_settings` и `payment_settings` имеют `UNIQUE(client_id)`. Application Service обязан создавать дефолтные записи при регистрации клиента — иначе нарушится инвариант `CLIENT 1:1 NOTIFICATION_SETTINGS`. *(Не требует изменений в схеме — это контракт Application Service.)*
+5. **Создание настроек при регистрации клиента:** `notification_settings` и `payment_settings` имеют `UNIQUE(client_id)`. Application Service обязан создавать дефолтные записи при регистрации клиента — иначе нарушится инвариант `CLIENT 1:1 NOTIFICATION_SETTINGS`. _(Не требует изменений в схеме — это контракт Application Service.)_
 
 ### 7. Схема `report` (контекст `Отчет`)
 
