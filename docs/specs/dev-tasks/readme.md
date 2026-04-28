@@ -4,7 +4,7 @@
 
 ## Содержание
 
-- [_template-dev-task.md](_template-dev-task.md) — шаблон постановки задачи на разработку.
+- [\_template-dev-task.md](_template-dev-task.md) — шаблон постановки задачи на разработку.
 - [example-task/example-task.md](example-task/example-task.md) — пример постановки задачи, перенесенный из изображения.
 - [uc-3-1-add-vehicle.md](uc-3-1-add-vehicle.md) — постановка задачи по `UC-3.1` «Добавить ТС».
 
