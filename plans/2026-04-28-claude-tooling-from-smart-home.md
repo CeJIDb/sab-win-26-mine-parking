@@ -43,14 +43,14 @@
 
 ## Тайминг
 
-| Минуты | Блок                                                           | Что делаем                                                                              |
-| ------ | -------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| 0–10   | Подготовка                                                     | Ветка `chore/claude-tooling-from-smart-home`, план, todo                                |
-| 10–40  | Фаза 1 — блокирующие хуки + permissions.allow                  | 5 хуков копируем + дописываем `.claude/settings.json`                                   |
-| 40–70  | Фаза 2 — format-on-write, remind-atomic-commit, /plan, filenames | format-on-write, remind-atomic-commit, /plan команда, check-file-names + ci-common      |
-| 70–90  | Фаза 3 — play-sound, settings.local.example, ast-index, dry-run | play-sound.sh, обновить пример local-settings, ast-index rule, `commit:atomic:dry-run`  |
-| 90–110 | Локальная проверка                                             | `npm run ci:check`, проверить хуки прогоном фейкового `git add -A`                      |
-| 110–120| Атомарные коммиты + Итог + ретро                               | `npm run commit:atomic`, заполнить `## Итог`, ретро в `docs/process/retro/`             |
+| Минуты  | Блок                                                             | Что делаем                                                                             |
+| ------- | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| 0–10    | Подготовка                                                       | Ветка `chore/claude-tooling-from-smart-home`, план, todo                               |
+| 10–40   | Фаза 1 — блокирующие хуки + permissions.allow                    | 5 хуков копируем + дописываем `.claude/settings.json`                                  |
+| 40–70   | Фаза 2 — format-on-write, remind-atomic-commit, /plan, filenames | format-on-write, remind-atomic-commit, /plan команда, check-file-names + ci-common     |
+| 70–90   | Фаза 3 — play-sound, settings.local.example, ast-index, dry-run  | play-sound.sh, обновить пример local-settings, ast-index rule, `commit:atomic:dry-run` |
+| 90–110  | Локальная проверка                                               | `npm run ci:check`, проверить хуки прогоном фейкового `git add -A`                     |
+| 110–120 | Атомарные коммиты + Итог + ретро                                 | `npm run commit:atomic`, заполнить `## Итог`, ретро в `docs/process/retro/`            |
 
 ## Правила коммитов и веток
 
