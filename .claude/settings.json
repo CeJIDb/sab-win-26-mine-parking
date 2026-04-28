@@ -15,7 +15,8 @@
       "Bash(npm run build)",
       "Bash(npm run build:css)",
       "Bash(npm run build:templates)",
-      "Bash(npm run docs:c4-preview)",
+      "Bash(npm run docs:rag-index)",
+      "Bash(npm run docs:rag-index:force)",
       "Bash(npm run commit:atomic:dry-run)",
       "Bash(npm view *)"
     ],

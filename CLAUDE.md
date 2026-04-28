@@ -37,21 +37,22 @@ sab-win-26-mine-parking/
 
 ### Где что искать
 
-| Что нужно                       | Куда смотреть                                                                      |
-| ------------------------------- | ---------------------------------------------------------------------------------- |
-| О проекте, границы системы      | [README.md](README.md)                                                             |
-| Требования (FR/NFR), глоссарий  | [docs/specs/](docs/specs/)                                                         |
-| Архитектура, ADR, C4            | [docs/architecture/](docs/architecture/)                                           |
-| Use-case, BPMN, user flows      | [docs/artifacts/](docs/artifacts/)                                                 |
-| Интервью                        | [docs/interviews/](docs/interviews/)                                               |
-| Регламенты процесса             | [docs/process/readme.md](docs/process/readme.md)                                   |
-| Матрица трассировки (правила)   | [docs/process/traceability-matrix.md](docs/process/traceability-matrix.md)         |
-| Матрица трассировки (журнал)    | [docs/process/traceability-matrix-log.md](docs/process/traceability-matrix-log.md) |
-| Wireframe                       | [ui/pages/](ui/pages/), сборка `npm run build`                                     |
-| Технические планы               | [plans/](plans/), [plans/README.md](plans/README.md)                               |
-| Правила Cursor                  | [.cursor/rules/](.cursor/rules/), [.cursor/commands/](.cursor/commands/)           |
-| Правила Claude (опц. ast-index) | [.claude/rules/ast-index.md](.claude/rules/ast-index.md)                           |
-| Скрипты                         | [scripts/](scripts/)                                                               |
+| Что нужно                       | Куда смотреть                                                                                                          |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| О проекте, границы системы      | [README.md](README.md)                                                                                                 |
+| Требования (FR/NFR), глоссарий  | [docs/specs/](docs/specs/)                                                                                             |
+| Архитектура, ADR, C4            | [docs/architecture/](docs/architecture/)                                                                               |
+| Use-case, BPMN, user flows      | [docs/artifacts/](docs/artifacts/)                                                                                     |
+| Интервью                        | [docs/interviews/](docs/interviews/)                                                                                   |
+| Регламенты процесса             | [docs/process/readme.md](docs/process/readme.md)                                                                       |
+| Матрица трассировки (правила)   | [docs/process/traceability-matrix.md](docs/process/traceability-matrix.md)                                             |
+| Матрица трассировки (журнал)    | [docs/process/traceability-matrix-log.md](docs/process/traceability-matrix-log.md)                                     |
+| Wireframe                       | [ui/pages/](ui/pages/), сборка `npm run build`                                                                         |
+| Технические планы               | [plans/](plans/), [plans/README.md](plans/README.md)                                                                   |
+| Правила Cursor                  | [.cursor/rules/](.cursor/rules/), [.cursor/commands/](.cursor/commands/)                                               |
+| Правила Claude (опц. ast-index) | [.claude/rules/ast-index.md](.claude/rules/ast-index.md)                                                               |
+| Скрипты: обновление RAG-индекса | [scripts/update-rag-index.sh](scripts/update-rag-index.sh), [scripts/update-rag-index.py](scripts/update-rag-index.py) |
+| Скрипты (прочие)                | [scripts/](scripts/)                                                                                                   |
 
 ## Правила для агента
 
@@ -72,7 +73,7 @@ sab-win-26-mine-parking/
 **markdown_rag** — локальный RAG по markdown через Milvus. **Первичный инструмент семантического поиска по [docs/](docs/)**:
 
 - `mcp__markdown_rag__search` — поиск по смыслу. Запускай первым делом, когда ищешь концепцию или формулировку в документации.
-- `mcp__markdown_rag__index_documents` — обнови индекс в начале сессии или после крупных правок в docs/. Параметры: `directory="docs"`, `recursive=true`. Если индекс пуст или устарел — переиндексируй до первого `search`.
+- **Индексацию НЕ запускай через `mcp__markdown_rag__index_documents`** — это медленно и тормозит сессию. Индекс обновляет пользователь вручную: `npm run docs:rag-index` (инкрементально) или `npm run docs:rag-index:force` (полная переиндексация). SessionStart-хук [scripts/claude-hooks/check-rag-index.mjs](scripts/claude-hooks/check-rag-index.mjs) подскажет напомнить пользователю, если в `docs/` накопилось 5+ изменений после последней индексации (порог `RAG_STALE_THRESHOLD`).
 - Grep по docs/ — fallback, когда `search` вернул пустой результат или нужен точный токен/строка.
 
 **github** — issues, PR, коммиты через MCP вместо `gh` CLI. Не пушь и не создавай PR без явной просьбы.
@@ -120,7 +121,8 @@ npm run check:plans             # валидация всех файлов в pl
 npm run check:plans:staged      # валидация только staged-планов
 npm run commit:atomic:dry-run   # предпросмотр атомарных коммитов
 npm run commit:atomic           # атомарные коммиты (запускает пользователь)
-npm run docs:c4-preview         # предпросмотр C4-диаграмм
+npm run docs:rag-index          # обновить индекс markdown_rag по docs/ (инкрементально)
+npm run docs:rag-index:force    # полная переиндексация markdown_rag
 ```
 
 ## Definition of Done для агента
