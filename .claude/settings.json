@@ -99,6 +99,26 @@
             "statusMessage": "Форматирование..."
           }
         ]
+      },
+      {
+        "matcher": "mcp__markdown_rag__index_documents",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PROJECT_DIR/scripts/claude-hooks/touch-rag-index-timestamp.mjs"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PROJECT_DIR/scripts/claude-hooks/check-rag-index.mjs"
+          }
+        ]
       }
     ],
     "Stop": [

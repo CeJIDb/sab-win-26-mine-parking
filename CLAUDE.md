@@ -1,135 +1,140 @@
 # sab-win-26-mine-parking — навигация для Claude Code
 
-Этот файл — карта репозитория для LLM-агента. Читай его в начале каждой сессии: быстрее поймешь, где что лежит, и не полезешь менять то, чего трогать нельзя.
+Карта репозитория для LLM-агента. Читай в начале каждой сессии.
 
-Для людей-контрибьюторов входная точка — [README.md](README.md) и [CONTRIBUTING.md](CONTRIBUTING.md). Этот документ их не заменяет — он дополняет их, адресно для агента.
+Для людей — [README.md](README.md) и [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Что это за проект
 
-Учебный проект курса Systems Analyst Bootcamp. Команда выступает в роли системных аналитиков и проектирует цифровую платформу для частного паркинга на 600 машиномест в Санкт-Петербурге.
-
-**Важно:** основной результат проекта — это артефакты анализа и проектирования, а не программная реализация. Код в репозитории сведен к статическим wireframe в [ui/](ui/) и скриптам для сборки документации и CI. Прод-деплоя у этого репозитория нет.
-
-Подробности — в [README.md](README.md) (раздел «О проекте» и «Что входит в решение»).
+Учебный проект курса Systems Analyst Bootcamp — цифровая платформа для частного паркинга на 600 машиномест в Санкт-Петербурге. Основной результат — артефакты анализа и проектирования в [docs/](docs/), а не код. В [ui/](ui/) — статический wireframe, прод-деплоя нет.
 
 ## Структура репозитория
 
 ```text
 sab-win-26-mine-parking/
 ├── CLAUDE.md                ← этот файл, навигация для агента
-├── README.md                ← вход для людей: о проекте, как пользоваться
+├── README.md                ← вход для людей
 ├── CONTRIBUTING.md          ← регламент участников: ветки, коммиты, DoR/DoD, CI
-├── SKILLS.md                ← baseline глобальных skills для этого репозитория
+├── SKILLS.md                ← baseline глобальных skills
 ├── docs/                    ← вся документация проекта
-│   ├── readme.md            ← оглавление docs/
 │   ├── specs/               ← требования (FR/NFR), глоссарий
 │   ├── architecture/        ← архитектурные решения, ADR, C4
-│   ├── artifacts/           ← артефакты анализа: use-case, BPMN, user flows
-│   ├── interviews/          ← стенограммы интервью и их разборы
+│   ├── artifacts/           ← use-case, BPMN, user flows
+│   ├── interviews/          ← стенограммы интервью и разборы
 │   ├── process/             ← регламенты: DoR/DoD, трассировка, релиз, ретро
 │   ├── demo-days/           ← материалы Demo Days
-│   ├── styleguide.md        ← стиль текстов в документации
-│   └── repo-context-compressed.md
-├── ui/                      ← статический wireframe
-│   ├── scss/                ← исходники стилей (собираются в ui/wireframe.css)
-│   ├── templates/           ← Nunjucks-шаблоны страниц и компонентов
-│   ├── pages/               ← .njk-страницы для сборки в HTML
-│   └── (собранные .html)
+│   └── styleguide.md        ← стиль текстов в документации
+├── ui/                      ← статический wireframe (SCSS + Nunjucks → HTML)
 ├── plans/                   ← технические планы (один план = одна задача)
-├── scripts/                 ← скрипты CI, линтов, atomic-commit
-├── .cursor/                 ← правила и агенты Cursor (rules, commands, agents)
-├── .claude/                 ← настройки Claude Code (deny-правила, hooks)
+├── scripts/                 ← скрипты CI, линтов, atomic-commit, claude-hooks
+├── .cursor/                 ← правила и агенты Cursor
+├── .claude/                 ← настройки Claude Code: rules, hooks, deny-правила
 ├── .husky/                  ← git-хуки: commit-msg, pre-commit, pre-push
 ├── .github/                 ← CI workflows, PR/Issue templates, CODEOWNERS
-├── sql/                     ← SQL-заготовки и миграции для учебной части
+├── sql/                     ← SQL-заготовки для учебной части
 └── evals/                   ← оценочные материалы курса
 ```
 
 ### Где что искать
 
-| Что нужно                                  | Куда смотреть                                                                                                |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| Зачем делаем проект, границы системы       | [README.md](README.md)                                                                                       |
-| Требования (FR/NFR), глоссарий             | [docs/specs/](docs/specs/)                                                                                   |
-| Архитектурные решения, ADR, C4             | [docs/architecture/](docs/architecture/)                                                                     |
-| Use-case, бизнес-процессы, user flows      | [docs/artifacts/](docs/artifacts/)                                                                           |
-| Стенограммы и разборы интервью             | [docs/interviews/](docs/interviews/)                                                                         |
-| Регламенты процесса                        | [docs/process/readme.md](docs/process/readme.md)                                                             |
-| Матрица трассировки (правила)              | [docs/process/traceability-matrix.md](docs/process/traceability-matrix.md)                                   |
-| Матрица трассировки (журнал)               | [docs/process/traceability-matrix-log.md](docs/process/traceability-matrix-log.md)                           |
-| Wireframe страниц                          | [ui/pages/](ui/pages/), сборка через `npm run build`                                                         |
-| Технические планы                          | [plans/](plans/), [plans/README.md](plans/README.md)                                                         |
-| Правила Cursor-агентов, команды, subagents | [.cursor/rules/](.cursor/rules/), [.cursor/commands/](.cursor/commands/), [.cursor/agents/](.cursor/agents/) |
-| Скрипты CI и atomic-commit                 | [scripts/](scripts/)                                                                                         |
-| Skills baseline для этого репозитория      | [SKILLS.md](SKILLS.md)                                                                                       |
-
-## Ключевые принципы проекта
-
-1. **Документ — первичный артефакт.** Большинство изменений в этом репозитории — это обновление markdown-файлов в [docs/](docs/), а не код. Прежде чем писать код, проверь, не решается ли задача правкой спецификации или артефакта.
-2. **Источник истины — [docs/specs/](docs/specs/) и [docs/artifacts/](docs/artifacts/).** Требования не удаляются молча: устаревшие помечаются как устаревшие или замененные. Любое существенное изменение отражается в журнале трассировки.
-3. **Wireframe — не прод.** В [ui/](ui/) лежат статические макеты, они не подключены к реальному backend. Не превращай wireframe в SPA без явной задачи.
-4. **Учебный контекст.** В репозитории работают студенты. Делай меньше магии, больше явности. Именованные скрипты в `package.json` лучше длинных однострочников.
+| Что нужно                       | Куда смотреть                                                                      |
+| ------------------------------- | ---------------------------------------------------------------------------------- |
+| О проекте, границы системы      | [README.md](README.md)                                                             |
+| Требования (FR/NFR), глоссарий  | [docs/specs/](docs/specs/)                                                         |
+| Архитектура, ADR, C4            | [docs/architecture/](docs/architecture/)                                           |
+| Use-case, BPMN, user flows      | [docs/artifacts/](docs/artifacts/)                                                 |
+| Интервью                        | [docs/interviews/](docs/interviews/)                                               |
+| Регламенты процесса             | [docs/process/readme.md](docs/process/readme.md)                                   |
+| Матрица трассировки (правила)   | [docs/process/traceability-matrix.md](docs/process/traceability-matrix.md)         |
+| Матрица трассировки (журнал)    | [docs/process/traceability-matrix-log.md](docs/process/traceability-matrix-log.md) |
+| Wireframe                       | [ui/pages/](ui/pages/), сборка `npm run build`                                     |
+| Технические планы               | [plans/](plans/), [plans/README.md](plans/README.md)                               |
+| Правила Cursor                  | [.cursor/rules/](.cursor/rules/), [.cursor/commands/](.cursor/commands/)           |
+| Правила Claude (опц. ast-index) | [.claude/rules/ast-index.md](.claude/rules/ast-index.md)                           |
+| Скрипты                         | [scripts/](scripts/)                                                               |
 
 ## Правила для агента
 
-Пять правил, которые агент обязан соблюдать в любой сессии.
+1. **Не коммить и не пушить без явной просьбы.** Коммит делает пользователь. При накопившемся диффе — напомни про `npm run commit:atomic` (или `:dry-run` для предпросмотра). Если пользователь явно попросил коммит — добавляй файлы поштучно по имени, никогда `git add -A` или `git add .` (в параллельных чатах могут быть чужие правки).
 
-1. **Коммить только свои изменения.** В параллельных чатах другие агенты могут держать незастейженные правки. Никогда не делай `git add -A`, `git add .` и не коммить чужие файлы, которых сам не трогал. Добавляй файлы поштучно по имени — только то, что реально изменил в этой сессии.
-2. **Не используй букву «е» вместо «ё» — наоборот.** В русскоязычных markdown-файлах репозитория **не используется буква «ё»**: пишем «все», «еще», «подъем», «перенести». Это договоренность проекта (см. [CONTRIBUTING.md](CONTRIBUTING.md#стиль-текстов-в-документации)) — она снижает рассогласованность между раскладками и инструментами. Проверяй свой вывод перед сохранением.
-3. **Не меняй [docs/specs/](docs/specs/) без согласования.** Это источник истины по требованиям. Если требование устарело — пометь его, не удаляй. Любое изменение требований сопровождается записью в [docs/process/traceability-matrix-log.md](docs/process/traceability-matrix-log.md). Если задача не содержит явного согласия на правку спек — сначала уточни у пользователя.
-4. **Сверяйся с трассировкой.** Когда меняешь артефакт, требование или архитектурное решение — проверь, не разорвал ли связь `Источник → Требование → Изменения → Проверка → Доказательство`. Регламент — [docs/process/traceability-matrix.md](docs/process/traceability-matrix.md). Журнал обновляется в том же PR.
-5. **Имена файлов и папок — только латиница, kebab-case.** Даже если содержимое на русском. Примеры: `use-case-booking.md`, `nfr-auth.md`, `traceability-matrix-log.md`. Никаких пробелов, кириллицы, camelCase или PascalCase в именах.
-6. **После выполнения плана — проверь и напиши ретроспективу.** Когда работа по плану из [plans/](plans/) завершена: (a) убедись, что все фазы отмечены `[x]` и секция `## Итог` заполнена; (b) создай файл `docs/process/retro/YYYY-MM-DD-название.md` (то же имя, что и у плана) в формате пяти пунктов из [docs/process/retro/README.md](docs/process/retro/README.md). Это обязательный шаг, а не опциональный.
+2. **При сложной или плохо сформулированной задаче — спрашивай.** Если задача неоднозначна, есть скрытые предположения, или непонятен скоуп — задай уточняющие вопросы в режиме диалога **до** начала работы. Лучше потратить ход на вопрос, чем переделывать.
 
-## Git-политика и коммиты
+3. **Не меняй [docs/specs/](docs/specs/) без разрешения.** Это источник истины по требованиям. Если считаешь что правка нужна — сначала спроси у пользователя с обоснованием (что меняешь и почему). После разрешения — правь, обнови [журнал трассировки](docs/process/traceability-matrix-log.md). Устаревшие требования помечай, не удаляй.
 
-**Ветки.** Допустимые префиксы: `feature/`, `docs/`, `chore/`, `hotfix/`. Проверка — [scripts/check-branch-name.mjs](scripts/check-branch-name.mjs). Прямой push в `main` запрещен политикой.
+4. **Сверяйся с трассировкой.** При правке артефакта, требования или архитектурного решения — проверь связь `Источник → Требование → Изменения → Проверка → Доказательство`. Регламент — [docs/process/traceability-matrix.md](docs/process/traceability-matrix.md). Журнал обновляется в том же PR.
 
-**Коммиты.** Conventional Commits + commitlint. Типы: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `ci`, `build`, `perf`, `revert`. Заголовок — до 100 символов, описание после `:` — на русском без буквы «ё».
+5. **Имена файлов и папок — латиница, kebab-case.** Даже если содержимое на русском. Без пробелов, кириллицы, camelCase, PascalCase. Проверка — `npm run lint:file-names`.
 
-Пример:
+6. **После выполнения плана — пиши ретро.** Когда работа по плану из [plans/](plans/) завершена: (a) все фазы отмечены `[x]`, секция `## Итог` заполнена; (b) создан `docs/process/retro/YYYY-MM-DD-название.md` (то же имя, что у плана) по формату из [docs/process/retro/README.md](docs/process/retro/README.md). Обязательный шаг.
 
-```text
-docs(specs): уточнить NFR по внешнему качеству
-chore(ci): добавить проверку ссылок в markdown
-```
+## MCP-серверы и поиск
 
-**Атомарные коммиты.** При большом диффе не коммить одной кучей. Используй:
+**markdown_rag** — локальный RAG по markdown через Milvus. **Первичный инструмент семантического поиска по [docs/](docs/)**:
 
-- `npm run commit:atomic -- --dry-run` — увидеть план разбивки без коммита.
-- `npm run commit:atomic` — создать коммиты с подтверждением.
-- `npm run commit:atomic:sh` — bash-fallback для окружений, где Node заблокирован.
+- `mcp__markdown_rag__search` — поиск по смыслу. Запускай первым делом, когда ищешь концепцию или формулировку в документации.
+- `mcp__markdown_rag__index_documents` — обнови индекс в начале сессии или после крупных правок в docs/. Параметры: `directory="docs"`, `recursive=true`. Если индекс пуст или устарел — переиндексируй до первого `search`.
+- Grep по docs/ — fallback, когда `search` вернул пустой результат или нужен точный токен/строка.
 
-Скрипт группирует файлы по каталогам (`docs/specs/`, `docs/architecture/`, `ui/`, `.cursor/`, `plans/` и так далее) и создает последовательность коммитов с корректными типом и scope. Описания на русском.
+**github** — issues, PR, коммиты через MCP вместо `gh` CLI. Не пушь и не создавай PR без явной просьбы.
 
-**Git-хуки (husky).** `commit-msg` гоняет commitlint. `pre-commit` напоминает про atomic-commit при крупном диффе и валидирует файлы в [plans/](plans/). `pre-push` запускает `check:branch` и `ci:check`.
+**playwright** — проверка wireframe в браузере при правках [ui/](ui/).
 
-**CI.** GitHub Actions прогоняет на каждый PR:
+**miro** — C4-диаграммы и схемы процессов из [docs/architecture/](docs/architecture/).
 
-- `policy-checks`: имя ветки, guard матрицы трассировки.
-- `quality-gates`: `npm run ci:check` (линт markdown, проверка ссылок, сборка wireframe).
-- `commitlint` по истории PR.
-- Семантический заголовок PR.
+**ast-index** — опциональный бинарь для поиска по коду (JS/TS/shell/python в `scripts/`, `ui/templates/`, `.husky/`). Полные правила — [.claude/rules/ast-index.md](.claude/rules/ast-index.md). Если бинарь не установлен — используй Grep.
+
+## Автоматические блокировки (Claude hooks)
+
+В [.claude/settings.json](.claude/settings.json) подключены хуки в [scripts/claude-hooks/](scripts/claude-hooks/). Если действие заблокировано — это политика, не баг:
+
+- `block-push-to-main.mjs` — запрет push в `main`.
+- `block-unsafe-git-add.mjs` — запрет `git add -A` / `git add .`.
+- `block-secret-write.mjs` — запрет записи в файлы, похожие на секреты.
+- `validate-staged-plans.mjs`, `validate-plan-on-write.mjs` — валидация формата [plans/](plans/).
+- `format-on-write.mjs` — авто-форматирование Prettier после записи.
+
+## Git-хуки (husky) и CI
+
+- `commit-msg` — commitlint, Conventional Commits (типы: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `ci`, `build`, `perf`, `revert`).
+- `pre-commit` — `git-workflow-agent-reminder` (напоминание про atomic-commit) + `check:plans:staged`.
+- `pre-push` — `git-workflow-agent-reminder --worktree` + `check:branch` + `ci:check`.
+
+Ветки: `feature/`, `docs/`, `chore/`, `hotfix/`. Прямой push в `main` запрещен.
+
+CI на PR: `policy-checks`, `quality-gates` (`ci:check`), `commitlint`, семантический заголовок PR.
 
 ## Полезные команды
 
 ```bash
 npm ci                          # установить зависимости
-npm run ci:check                # все локальные проверки (markdown, ссылки, сборка)
+npm run ci:check                # все локальные проверки разом
 npm run build                   # собрать ui/ (SCSS + Nunjucks → HTML)
-npm run check:branch            # проверить имя текущей ветки
-npm run commit:atomic           # атомарные коммиты по зонам
-npm run check:plans             # валидация файлов в plans/
+npm run lint:md                 # markdownlint
+npm run lint:md:fix             # markdownlint с автофиксом
+npm run lint:md-links           # проверка ссылок в .md
+npm run lint:file-names         # имена файлов на латиницу/kebab-case
+npm run format                  # prettier --write
+npm run format:check            # prettier --check
+npm run check:branch            # имя текущей ветки
+npm run check:plans             # валидация всех файлов в plans/
+npm run check:plans:staged      # валидация только staged-планов
+npm run commit:atomic:dry-run   # предпросмотр атомарных коммитов
+npm run commit:atomic           # атомарные коммиты (запускает пользователь)
+npm run docs:c4-preview         # предпросмотр C4-диаграмм
 ```
 
-## Как работать с этим репозиторием
+## Definition of Done для агента
 
-1. Перед задачей прочитай этот файл, затем соответствующий раздел [docs/](docs/).
-2. Если задача связана с требованиями — посмотри [docs/specs/](docs/specs/) и журнал трассировки.
-3. Если изменение нетривиальное — заведи план в [plans/](plans/) и работай по нему.
-4. По итогам сессии актуализируй план и напиши ретроспективу в [docs/process/retro/](docs/process/retro/) (см. правило 6 выше — это обязательный шаг).
-5. Если появляется новая важная папка или меняется структура — обнови этот `CLAUDE.md`.
+Перед тем как сказать «готово», пробеги по чеклисту:
+
+- [ ] Если правил [docs/specs/](docs/specs/) — было явное разрешение пользователя.
+- [ ] [Журнал трассировки](docs/process/traceability-matrix-log.md) обновлен (если затронуты требования/артефакты/архитектура).
+- [ ] Имена новых файлов — латиница kebab-case (`npm run lint:file-names` зеленый).
+- [ ] Локальные проверки прошли (`npm run ci:check`).
+- [ ] Если работал по плану из [plans/](plans/) — фазы `[x]`, `## Итог` заполнен, ретро в [docs/process/retro/](docs/process/retro/) написано.
+- [ ] CLAUDE.md обновлен, если поменялась структура репозитория или появились новые правила.
+- [ ] Пользователю напомнено про `npm run commit:atomic` (если накопился крупный дифф).
 
 ## Язык
 
-Отвечай на русском. В документации и коммитах — без буквы «ё».
+Отвечай на русском. В документации и коммитах **не используется буква «ё»** — это договоренность проекта (см. [CONTRIBUTING.md](CONTRIBUTING.md#стиль-текстов-в-документации)). Пишем «все», «еще», «подъем», «перенести». Проверяй вывод перед сохранением.
