@@ -26,6 +26,7 @@
     "build": "npm run build:css && npm run build:templates",
     "docs:c4-preview": "node ./scripts/build-c4-preview-html.mjs",
     "ci:check": "npm run lint:md && npm run lint:md:legacy && npm run lint:md-links && npm run lint:file-names && npm run check:plans && npm run build",
+    "commit": "npm run format && npm run ci:check && npm run commit:atomic",
     "commit:atomic": "node ./scripts/atomic-commit.mjs",
     "commit:atomic:yes": "node ./scripts/atomic-commit.mjs --yes",
     "commit:atomic:dry-run": "node ./scripts/atomic-commit.mjs --dry-run",
