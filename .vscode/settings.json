@@ -1,17 +1,11 @@
 {
   "markdown.mermaid.enabled": true,
   "cSpell.language": "en,ru",
-  "cSpell.enabledLanguageIds": [
-    "markdown",
-    "plaintext",
-    "git-commit"
-  ],
+  "cSpell.enabledLanguageIds": ["markdown", "plaintext", "git-commit"],
   "ltex.enabled": true,
   "ltex.language": "auto",
   "ltex.diagnosticSeverity": "information",
-  "ltex.enabledScopes": [
-    "markdown"
-  ],
+  "ltex.enabledScopes": ["markdown"],
   "ltex.additionalRules.motherTongue": "ru-RU",
   "[markdown]": {
     "editor.codeActionsOnSave": {

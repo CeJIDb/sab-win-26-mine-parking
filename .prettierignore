@@ -39,3 +39,8 @@ temp_context/
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+
+# Журнал трассировки — широкая markdown-таблица.
+# Prettier выравнивает все ячейки по самой широкой и раздувает строки >500 символов,
+# что ломает scripts/check-markdown.mjs (лимит 500 на строку).
+docs/process/traceability-matrix-log.md
