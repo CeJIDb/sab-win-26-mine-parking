@@ -82,7 +82,7 @@ find "$TMP" -name 'SKILL.md' -not -path '*/.git/*' | sed "s|^$TMP/||; s|/SKILL.m
 > - `skills/pdf`
 > - `skills/docx`
 > - `skills/xlsx`
-> ...
+>   ...
 >
 > Который ставим? (ответь номером или путём, или «отмена»)
 
@@ -145,6 +145,7 @@ bash "$(dirname "$0")/scripts/audit.sh" "$SKILL_DIR"
 Если запускаешься через Skill tool и не знаешь `$0`, используй полный путь к скрипту — `~/.claude/skills/install-skill/scripts/audit.sh` (глобальный) или `<cwd>/.claude/skills/install-skill/scripts/audit.sh` (проектный). Выбери тот, из которого SKILL.md тебя и запустил.
 
 Скрипт возвращает структурированный отчёт со счётчиками `hard_stop`, `warnings`, `binaries` и код выхода:
+
 - **0** — чисто или только warnings
 - **1** — найдены hard-stop (включая бинарники)
 - **2** — ошибка запуска (плохой путь)
