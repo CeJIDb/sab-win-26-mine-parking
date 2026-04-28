@@ -1,6 +1,24 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
+    "allow": [
+      "Bash(npm test)",
+      "Bash(npm run ci:check)",
+      "Bash(npm run lint:md)",
+      "Bash(npm run lint:md:fix)",
+      "Bash(npm run lint:md:legacy)",
+      "Bash(npm run lint:md-links)",
+      "Bash(npm run lint:file-names)",
+      "Bash(npm run check:branch)",
+      "Bash(npm run check:plans)",
+      "Bash(npm run check:plans:staged)",
+      "Bash(npm run build)",
+      "Bash(npm run build:css)",
+      "Bash(npm run build:templates)",
+      "Bash(npm run docs:c4-preview)",
+      "Bash(npm run commit:atomic:dry-run)",
+      "Bash(npm view *)"
+    ],
     "deny": [
       "Bash(rm -rf *)",
       "Bash(rm -r /*)",
@@ -36,6 +54,89 @@
       "Read(**/*.sqlite3)",
       "Read(.cursor/mcp.json)",
       "Read(.cursor/mcp.json.example)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PROJECT_DIR/scripts/claude-hooks/block-secret-write.mjs"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PROJECT_DIR/scripts/claude-hooks/block-unsafe-git-add.mjs"
+          },
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PROJECT_DIR/scripts/claude-hooks/block-push-to-main.mjs"
+          },
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PROJECT_DIR/scripts/claude-hooks/validate-staged-plans.mjs"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PROJECT_DIR/scripts/claude-hooks/validate-plan-on-write.mjs"
+          },
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PROJECT_DIR/scripts/claude-hooks/format-on-write.mjs",
+            "statusMessage": "Форматирование..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $CLAUDE_PROJECT_DIR/scripts/claude-hooks/remind-atomic-commit.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash $CLAUDE_PROJECT_DIR/scripts/claude-hooks/play-sound.sh stop"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $CLAUDE_PROJECT_DIR/scripts/claude-hooks/play-sound.sh notify"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $CLAUDE_PROJECT_DIR/scripts/claude-hooks/play-sound.sh notify"
+          }
+        ]
+      }
     ]
   }
 }
