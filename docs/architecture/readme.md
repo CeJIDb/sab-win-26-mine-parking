@@ -14,9 +14,7 @@
 - [Индекс C4 материалов](c4/readme.md) — ведет к C4-диаграммам системы.
 - [ES TO-BE SD: Контексты](ddd/es-tobe-sd-contexts.md) — переводит TO-BE материал в контексты модулей и архитектурные границы.
 - [DDD bounded contexts](ddd/ddd-bounded-contexts.md) — описывает bounded contexts и контекстную карту.
-- [C4-диаграммы платформы](c4/c4-parking-platform.md) — объединяют Level 1, Level 2 и Level 3 с пояснениями и ключевыми сценариями.
-- [C4 Level 1: System Context](c4/c4-l1-system-context.md) — показывает пользователей и внешние системы вокруг платформы.
-- [C4 Level 2: Container](c4/c4-l2-container.md) — описывает контейнеры платформы и их взаимодействия.
+- [C4-диаграммы цифровой платформы парковки](c4/c4-diagrams.md) — Level 1 (System Context), Level 2 (Container) и Level 3 (Component) в одном документе с пояснениями.
 - [Индекс архитектуры данных](database/readme.md) — ведет к ERD, обоснованию PostgreSQL и решениям по БД.
 - [Индекс интеграционной архитектуры](integration/readme.md) — резервирует пространство под интеграционные сценарии и контракты.
 
