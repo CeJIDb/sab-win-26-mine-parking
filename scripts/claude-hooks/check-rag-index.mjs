@@ -5,15 +5,14 @@
  * Считает, сколько .md-файлов в docs/ изменено после последней индексации
  * markdown_rag. Если набралось «много» (порог STALE_THRESHOLD) или индекс
  * не строился ни разу — инжектит контекст для агента: напомнить пользователю
- * запустить `npm run docs:rag-index` (вручную, чтобы не тормозить сессию).
+ * запустить индексацию через MCP (mcp__markdown_rag__index_documents).
  *
- * Сам индекс хук НЕ обновляет и НЕ просит агента это делать через
- * mcp__markdown_rag__index_documents — это медленная операция.
+ * Сам индекс хук НЕ обновляет — это медленная операция, требует явного
+ * разрешения пользователя.
  *
  * Источник истины — `.claude/cache/markdown-rag-timestamp.json`.
- * Файл обновляет PostToolUse hook touch-rag-index-timestamp.mjs (когда
- * индексация запущена из Claude через MCP) и `scripts/update-rag-index.sh`
- * (когда пользователь запускает `npm run docs:rag-index`).
+ * Файл обновляет PostToolUse hook touch-rag-index-timestamp.mjs после
+ * успешного вызова mcp__markdown_rag__index_documents.
  */
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import path from "node:path";
@@ -77,12 +76,10 @@ const reason = neverIndexed
 const message = [
   "[markdown_rag] Индекс docs/ устарел.",
   reason,
-  "НЕ запускай mcp__markdown_rag__index_documents автоматически — это медленно.",
   "Если в текущей сессии планируется mcp__markdown_rag__search или пользователь",
-  "правит документацию — напомни ему запустить вручную:",
-  "  npm run docs:rag-index           # инкрементально",
-  "  npm run docs:rag-index:force     # полная переиндексация",
-  "Скрипт сам обновит timestamp кеша после успешной индексации.",
+  "правит документацию — предложи запустить индексацию через MCP:",
+  "  mcp__markdown_rag__index_documents   # инкрементально (по умолчанию)",
+  "Запускай только с явного разрешения пользователя — это медленная операция.",
 ].join("\n");
 
 process.stdout.write(
