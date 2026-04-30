@@ -150,7 +150,7 @@ function collectStagedPlans() {
   return output
     .split("\n")
     .map((line) => line.trim())
-    .filter((line) => line && /^plans\/.+\.md$/.test(line) && line !== "plans/README.md")
+    .filter((line) => line && /^plans\/.+\.md$/.test(line) && line !== "plans/README.md" && !line.startsWith("plans/.tmp/"))
     .map((rel) => path.resolve(process.cwd(), rel));
 }
 
