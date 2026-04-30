@@ -69,7 +69,7 @@
 - «События ЮKassa и реакция платформы» — сохранен как самостоятельный 2-колонный раздел про реакцию платформы (это не маппинг).
 - Покрытие полей не меньше текущего — все поля из текущих 4-колонных таблиц и 7-колонных «Табличных» сохранены или явно сняты с обоснованием.
 - Все внутренние якоря (оглавление файла) и обратные ссылки из других документов репо обновлены под новую структуру H2/H3.
-- Сформирован отдельный отчет [docs/architecture/integration/yookassa-mapping-divergences.md](../docs/architecture/integration/yookassa-mapping-divergences.md) о расхождениях текущего маппинга с другими артефактами (specs, ERD, sequence-диаграмма, UC-10.2, payload/schema) и с актуальной документацией ЮKassa.
+- Сформирован отдельный отчет `docs/architecture/integration/yookassa-mapping-divergences.md` о расхождениях текущего маппинга с другими артефактами (specs, ERD, sequence-диаграмма, UC-10.2, payload/schema) и с актуальной документацией ЮKassa.
 - Обновлен [docs/process/traceability-matrix-log.md](../docs/process/traceability-matrix-log.md): запись формата «Источник → Требование → Изменения → Проверка → Доказательство» с ссылкой на INT-004 / INT-006.
 - `npm run lint:md`, `npm run lint:md-links`, `npm run ci:check` зеленые.
 - Имя файла плана и ретро — латиница kebab-case, без буквы «е» в позиции «ё».
@@ -88,7 +88,7 @@
 - Обновление вступительных абзацев и оглавления под новую структуру.
 - Обновление обратных ссылок и якорей: поиск по всему репо вхождений `yookassa-data-mapping.md#...` и кириллических якорей старых разделов, замена на новые.
 - Сверка ссылок на ERD ([erd-normalized-er-model.md](../docs/architecture/database/erd/erd-normalized-er-model.md), [chartdb-postgresql-erd-normalized-public.sql](../sql/database/chartdb-postgresql-erd-normalized-public.sql)) и на UC-10.2 / sequence-диаграмму.
-- Создание отчета [docs/architecture/integration/yookassa-mapping-divergences.md](../docs/architecture/integration/yookassa-mapping-divergences.md).
+- Создание отчета `docs/architecture/integration/yookassa-mapping-divergences.md`.
 - Запись в [docs/process/traceability-matrix-log.md](../docs/process/traceability-matrix-log.md).
 - Ретро в `docs/process/retro/2026-04-30-yookassa-mapping-table-format-alignment.md`.
 
@@ -118,7 +118,7 @@
 - [ ] Оглавление документа обновлено.
 - [ ] Обратные ссылки на старые якоря (`yookassa-data-mapping.md#...`) во всем репо обновлены или явно сняты.
 - [ ] Покрытие полей не меньше текущего; снятые поля — с явным обоснованием в тексте.
-- [ ] Создан отчет [docs/architecture/integration/yookassa-mapping-divergences.md](../docs/architecture/integration/yookassa-mapping-divergences.md), в нем зафиксированы расхождения с specs (INT-_, FR-_), ERD, sequence-диаграммой UC-10.2, UC-10.2, payload/schema UC-10.2 и с актуальной документацией ЮKassa. Каждое расхождение имеет статус и предложение по дальнейшим действиям (отдельный план, обсуждение, принимаем как есть).
+- [ ] Создан отчет `docs/architecture/integration/yookassa-mapping-divergences.md`, в нем зафиксированы расхождения с specs (INT-_, FR-_), ERD, sequence-диаграммой UC-10.2, UC-10.2, payload/schema UC-10.2 и с актуальной документацией ЮKassa. Каждое расхождение имеет статус и предложение по дальнейшим действиям (отдельный план, обсуждение, принимаем как есть).
 - [ ] [docs/process/traceability-matrix-log.md](../docs/process/traceability-matrix-log.md) дополнен записью.
 - [ ] Каждое поле, тип, обязательность, формат значения и набор статусов сверены с актуальной документацией ЮKassa <https://yookassa.ru/developers/api> на дату 2026-04-30. Все обнаруженные расхождения зафиксированы в отчете Фазы 7 и в ретро.
 - [ ] `npm run lint:md` зеленый.
@@ -146,7 +146,7 @@
   - Сохранить «События ЮKassa и реакция платформы» как самостоятельный раздел.
   - Обновить оглавление, вступительные абзацы и подразделы «Правила валидации», «Ограничения текущей модели», «Связанные документы» под новую структуру.
   - **Поиск обратных ссылок:** `grep -rn "yookassa-data-mapping" docs/ sql/ ui/ scripts/ plans/` и поиск кириллических якорей старых разделов (`#табличный-маппинг`, `#маппинг-запроса-на-создание-платежа`, `#маппинг-ответа-юkassa-по-платежу`, `#маппинг-http-уведомлений-юkassa`, `#маппинг-запроса-и-ответа-на-возврат`, `#маппинг-статусов`). Для каждой найденной ссылки — обновление под новый якорь или явное снятие.
-- [x] **Фаза 7. Отчет о расхождениях с другими артефактами.** Создать [docs/architecture/integration/yookassa-mapping-divergences.md](../docs/architecture/integration/yookassa-mapping-divergences.md). Структура отчета:
+- [x] **Фаза 7. Отчет о расхождениях с другими артефактами.** Создать `docs/architecture/integration/yookassa-mapping-divergences.md`. Структура отчета:
   1. Контекст: дата сверки, источник истины (URL ЮKassa), область действия отчета.
   2. Расхождения с актуальной документацией ЮKassa — все, что найдено в Фазах 1-5.
   3. Расхождения с specs ([docs/specs/integration/integration-requirements.md](../docs/specs/integration/integration-requirements.md), FR/NFR-документами) — поля и статусы, упомянутые в специфициях, но отличающиеся от текущего маппинга или от ЮKassa.
@@ -156,7 +156,7 @@
   7. Расхождения с payload/schema UC-10.2 [payload-uc-10-2-payment.md](../docs/architecture/integration/payload-uc-10-2-payment.md), [schema-uc-10-2-payment.md](../docs/architecture/integration/schema-uc-10-2-payment.md) — поля внутреннего контракта против внешнего к ЮKassa.
   8. Для каждого расхождения: что расходится (артефакт А ↔ артефакт Б), цитата с обоих сторон, предлагаемое действие (отдельный план / обсудить / принять как есть), приоритет.
   9. Сводная таблица «Расхождение → Затронутый артефакт → Предлагаемое действие».
-- [x] **Фаза 8. Трассировка и проверки.** Запись в [docs/process/traceability-matrix-log.md](../docs/process/traceability-matrix-log.md) формата «Источник → Требование → Изменения → Проверка → Доказательство» (затронутые требования: INT-004, INT-006; доказательство: yookassa-data-mapping.md и yookassa-mapping-divergences.md). Прогон `npm run lint:md`, `npm run lint:md-links`, `npm run ci:check`, `npm run lint:file-names`. Точечный фикс предупреждений. Финальный grep по букве «ё» во всех затронутых файлах.
+- [x] **Фаза 8. Трассировка и проверки.** Запись в [docs/process/traceability-matrix-log.md](../docs/process/traceability-matrix-log.md) формата «Источник → Требование → Изменения → Проверка → Доказательство» (затронутые требования: INT-004, INT-006; доказательство: yookassa-data-mapping.md). Прогон `npm run lint:md`, `npm run lint:md-links`, `npm run ci:check`, `npm run lint:file-names`. Точечный фикс предупреждений. Финальный grep по букве «ё» во всех затронутых файлах.
 - [x] **Фаза 9. Ретро.** `docs/process/retro/2026-04-30-yookassa-mapping-table-format-alignment.md` по формату из [docs/process/retro/README.md](../docs/process/retro/README.md). Отметить все фазы `[x]`, заполнить секцию «Итог».
 
 ## Открытые риски
@@ -175,7 +175,7 @@
 Что сделано:
 
 - [docs/architecture/integration/yookassa-data-mapping.md](../docs/architecture/integration/yookassa-data-mapping.md) переработан под единую структуру: H2 «Маппинг полей» с шестью H3 в 5-колонном формате с двойной шапкой (создание платежа, ответ ЮKassa по платежу, webhook платежа, webhook возврата, запрос возврата, ответ ЮKassa по возврату); H2 «Маппинг значений» с тремя H3 в 4-колонном формате (статусы платежа, статусы возврата, способы оплаты `payment_method.type`); H2 «События ЮKassa и реакция платформы» сохранен как самостоятельный раздел; «Рекомендуемое преобразование суммы» переехало в «Правила валидации и хранения». Каждая 5-колонная таблица обернута в `<!-- prettier-ignore-start --> ... <!-- prettier-ignore-end -->`.
-- Создан [docs/architecture/integration/yookassa-mapping-divergences.md](../docs/architecture/integration/yookassa-mapping-divergences.md) — отчет о расхождениях с актуальной документацией ЮKassa (`payment_method.type`, `vat_code`, формат `amount.value`, `cancellation_details`, `sources`/`receipt`/`deal` в POST /v3/refunds, `Refund.created_at`), с requirements (INT-004 / INT-006), с ERD (конверсия minor↔major, покрытие справочника, семантика `initiated_at`/`completed_at`), с sequence-диаграммой UC-10.2 (терминология `provider_payment_id` vs `Payment.id`, отсутствие webhook и потока возврата на диаграмме), с UC-10.2 (терминология `invoice_id`/`booking_id`, обработка `waiting_for_capture`, отсутствие потока возврата) и с payload/schema UC-10.2 (`paymentDate` для не-финальных статусов, отсутствие контракта возврата). Сводная таблица фиксирует приоритет каждого расхождения и предлагаемое действие из набора {новый план, обсудить, принять как есть}.
+- Создан `docs/architecture/integration/yookassa-mapping-divergences.md` — отчет о расхождениях с актуальной документацией ЮKassa (`payment_method.type`, `vat_code`, формат `amount.value`, `cancellation_details`, `sources`/`receipt`/`deal` в POST /v3/refunds, `Refund.created_at`), с requirements (INT-004 / INT-006), с ERD (конверсия minor↔major, покрытие справочника, семантика `initiated_at`/`completed_at`), с sequence-диаграммой UC-10.2 (терминология `provider_payment_id` vs `Payment.id`, отсутствие webhook и потока возврата на диаграмме), с UC-10.2 (терминология `invoice_id`/`booking_id`, обработка `waiting_for_capture`, отсутствие потока возврата) и с payload/schema UC-10.2 (`paymentDate` для не-финальных статусов, отсутствие контракта возврата). Сводная таблица фиксирует приоритет каждого расхождения и предлагаемое действие из набора {новый план, обсудить, принять как есть}.
 - В [docs/process/traceability-matrix-log.md](../docs/process/traceability-matrix-log.md) добавлена запись `CHG-20260430-001` с привязкой к INT-004 и INT-006.
 - Ретро написано в [docs/process/retro/2026-04-30-yookassa-mapping-table-format-alignment.md](../docs/process/retro/2026-04-30-yookassa-mapping-table-format-alignment.md).
 
