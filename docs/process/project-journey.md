@@ -289,6 +289,9 @@ ERD детально прорабатывалась в `drawsql.app`.
 - [DFD Level 1](../artifacts/dfd-l1.md) — декомпозирует платформу на 20 компонентов, единое хранилище PostgreSQL и 10 внешних систем; задает контур потоков данных для последующих интеграционных артефактов.
 - [Индекс интеграционной архитектуры](../architecture/integration/readme.md) — задает структуру для будущих интеграционных артефактов.
 - [Регламент взаимодействия ИС](../architecture/integration/is-interaction-regulation.md) — сводит в одну таблицу направления межсистемного обмена для блоков СКУД и онлайн-оплаты.
+- [DFD конвейера потоков данных Kafka — онлайн-бронирование](../architecture/integration/message-flow-kafka-online-booking.md) — двухуровневые DFD K-L1 / K-L2 (учебный TO-BE) для сквозной цепочки «создать бронь → выставить счет → оплатить → подтвердить → уведомить» с явным показом outbox-таблиц, CDC-процесса и адаптеров внешних интеграций.
+- [Требования к Kafka — конвейер онлайн-бронирования](../architecture/integration/kafka-requirements.md) — две таблицы (технические параметры топиков и семантика доставки) для `Topic_BookingCreated`, `Topic_PaymentCompleted`, `Topic_BookingConfirmed`: число разделов, retention, ключ партиционирования, идемпотентность, ack-семантика.
+- [Заметки про кандидатов в RabbitMQ](../architecture/integration/notes-rabbitmq-candidates.md) — фиксирует потоки, которые лучше укладываются на RabbitMQ, а не на Kafka, и обоснование разделения брокеров.
 - [UML Sequence — UC-10.2 Онлайн-оплата краткосрочной аренды](../architecture/integration/sequence-uc-10-2-pay-online-short-term-rental.md) — последовательность вызовов в сценарии онлайн-оплаты.
 - [Маппинг обмена данными с ЮKassa](../architecture/integration/yookassa-data-mapping.md) — соответствие внутренней модели оплат объектам API внешнего платежного провайдера.
 - [JSON-пример ответа — UC-10.2-1](../architecture/integration/payload-uc-10-2-payment.md) — каноничные примеры полезной нагрузки ответа по оплате.
