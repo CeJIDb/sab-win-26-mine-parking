@@ -49,6 +49,8 @@
 - [JSON-схема ответа — UC-10.2-1](schema-uc-10-2-payment.md) — формальная JSON Schema ответа по оплате парковочной сессии.
 - [DFD конвейера сообщений Kafka — онлайн-бронирование (учебный TO-BE)](message-flow-kafka-online-booking.md) — Mermaid K-L1 (обзор с одним блоком Kafka) и K-L2 (три топика синими) для сквозной цепочки «бронь → оплата → подтверждение → уведомление». Outbox-таблицы и CDC-процесс показаны явно. Связан с [ADR-007](../adr/adr-007-kafka-event-bus-online-booking.md).
 - [Требования к Kafka — конвейер онлайн-бронирования (учебный TO-BE)](kafka-requirements.md) — две таблицы по формату телемед-референса: технические параметры топиков и семантика доставки для `Topic_BookingCreated`, `Topic_PaymentCompleted`, `Topic_BookingConfirmed`. Producer'ом во всех строках выступает CDC поверх outbox исходного модуля.
+- [DFD конвейера сообщений RabbitMQ — рассылка уведомлений (учебный TO-BE)](message-flow-rabbitmq-notification.md) — Mermaid R-L1 (RMQ одним блоком) и R-L2 (Direct exchange `notification.direct` с тремя routing keys + Fanout DLX `notification.dlx` с DLQ). Балансировочная таблица «Kafka-событие → команда RMQ → канал → доставка». Связан с [ADR-008](../adr/adr-008-rabbitmq-notification-dispatch.md).
+- [Требования к RabbitMQ — конвейер рассылки уведомлений (учебный TO-BE)](rabbitmq-requirements.md) — таблица обменников и очередей (4 строки: 3 для `notification.direct` × {sms, email, push} + 1 для `notification.dlx` → `notification.dlq`) и раздел «Параметры детально» с расшифровкой `durable`, `x-dead-letter-exchange`, `x-message-ttl`, `x-max-length` и обоснованием отсутствия `x-max-priority`.
 
 ## Связь с текущими артефактами
 
