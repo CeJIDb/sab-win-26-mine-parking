@@ -61,7 +61,7 @@ sab-win-26-mine-parking/
 
 3. **Не меняй [docs/specs/](docs/specs/) без разрешения.** Это источник истины по требованиям. Если считаешь что правка нужна — сначала спроси у пользователя с обоснованием (что меняешь и почему). После разрешения — правь, обнови [журнал трассировки](docs/process/traceability-matrix-log.md). Устаревшие требования помечай, не удаляй.
 
-4. **Сверяйся с трассировкой.** При правке артефакта, требования или архитектурного решения — проверь связь `Источник → Требование → Изменения → Проверка → Доказательство`. Регламент — [docs/process/traceability-matrix.md](docs/process/traceability-matrix.md). Журнал обновляется в том же PR.
+4. **Сверяйся с трассировкой.** При правке артефакта, требования или архитектурного решения — проверь связь `Источник → Требование → Изменения → Проверка → Доказательство`. Регламент — [docs/process/traceability-matrix.md](docs/process/traceability-matrix.md). Журнал обновляется в том же PR. Каждая строка журнала — не длиннее 500 символов (`check-markdown.mjs` проверяет это как часть `npm run ci:check`). Поле Source пиши кратко — детали идут в PR-описание.
 
 5. **Имена файлов и папок — латиница, kebab-case.** Даже если содержимое на русском. Без пробелов, кириллицы, camelCase, PascalCase. Проверка — `npm run lint:file-names`.
 
@@ -80,6 +80,33 @@ sab-win-26-mine-parking/
 **playwright** — проверка wireframe в браузере при правках [ui/](ui/).
 
 **miro** — C4-диаграммы и схемы процессов из [docs/architecture/](docs/architecture/).
+
+**buildin.ai** — внешний knowledge-base команды (use case, ER-модели, заметки). Страницы закрыты от анонимного доступа («Sharing is off») — `WebFetch` и MCP Playwright читают только заглушку. Воркфлоу:
+
+1. **Авторизация (один раз / при истечении сессии).** Креды лежат в `.env` (`BUILDIN_EMAIL`, `BUILDIN_PASSWORD`) — не в контексте Claude. Запуск:
+
+   ```bash
+   .venv/bin/python scripts/buildin-auth.py
+   ```
+
+   Скрипт открывает Chromium (`headless=False`), логинится и сохраняет cookies в `.playwright-session.json`. Файл в `.gitignore`.
+
+   Если `.venv` сломан (например, переезжал каталог проекта) — пересоздать: `python3 -m venv --clear .venv && .venv/bin/pip install playwright python-dotenv`. Повторно ставить браузер через `playwright install chromium` нужно только если Chromium ещё не установлен в кеше.
+
+2. **Чтение страницы.** При наличии `.playwright-session.json`:
+
+   ```bash
+   .venv/bin/python scripts/buildin-explore.py "<url>"
+   ```
+
+   Скрипт ходит headless с сохранённой сессией, скроллит лениво подгружаемые блоки и складывает в `.playwright-mcp/`:
+   - `buildin-explore-text.txt` — `body.innerText` (основной источник для извлечения текста UC и т.п.)
+   - `buildin-explore-full.png` — полный скриншот
+   - `buildin-explore-links.txt`, `buildin-explore-images.txt` — ссылки и картинки
+
+3. **Если сессия истекла** (страница-заглушка / редирект на `/login`) — повторить шаг 1.
+
+Не использовать MCP `playwright__browser_navigate` для buildin-страниц без сессии — он не авторизован и увидит «Sharing is off». Прямой `WebFetch` для buildin тоже бессмыслен — страница SPA и рендерится JS.
 
 **ast-index** — опциональный бинарь для поиска по коду (JS/TS/shell/python в `scripts/`, `ui/templates/`, `.husky/`). Полные правила — [.claude/rules/ast-index.md](.claude/rules/ast-index.md). Если бинарь не установлен — используй Grep.
 
