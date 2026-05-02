@@ -39,7 +39,7 @@ status: учебный TO-BE
 - Тип артефакта: DFD конвейера потоков данных Kafka (двухуровневый).
 - Бизнес-сценарий: склейка [UC-12.2 «Создать бронирование автоматически на въезде»](../../artifacts/use-case/uc-12-2-create-booking-auto-entry.md) и [UC-10.2 «Оплатить онлайн (краткосрочная аренда)»](../../artifacts/use-case/uc-10-2-pay-online-short-term-rental.md) + уведомление клиента.
 - Источник истины: [assets/k-l1.jpg](assets/k-l1.jpg) и [assets/k-l2.jpg](assets/k-l2.jpg) — экспорт из draw.io. При расхождении со словарем потоков и трассировочными таблицами в этом документе побеждает JPG.
-- Источник формата: JPG-референсы в [plans/kafka/](../../../plans/kafka/) (телемед-пример, уровни 1 и 2).
+- Источник формата: ~~JPG-референсы в `plans/kafka/`~~ (удалено).
 - Имена компонентов соответствуют [C4 L3](../c4/c4-diagrams.md): `Booking Service`, `Billing Service`, `Payment Service`, `Pricing Service`, `Notification Service`, `Access Control Service`, `Payment Adapter`, `Notification Adapter`.
 - Связанное архитектурное решение: [ADR-007 «Kafka event bus для онлайн-бронирования»](../adr/adr-007-kafka-event-bus-online-booking.md).
 - Каноничное архитектурное решение, поверх которого вводится учебный TO-BE: [ADR-003 «Модульный монолит»](../adr/adr-003-modular-monolith.md).
@@ -50,7 +50,7 @@ status: учебный TO-BE
 Учебный TO-BE сознательно расходится с действующими инвариантами ADR-003 в трех точках. Расхождения зафиксированы здесь и продублированы в Status ADR-007:
 
 1. **Инв. 4 (transactional outbox)** — паттерн сохранен у producer'ов Kafka: `Booking` и `Payment` коммитят бизнес-данные и запись в outbox-таблицу одной локальной транзакцией PostgreSQL. `Billing` в Kafka не публикует (`InvoiceCreated` намеренно не делаем, интеграция с 1С — синхронная), поэтому outbox-таблицы у него нет. Меняется конечное звено: hand-off из outbox в Kafka выполняет CDC-процесс (Debezium как пример инструмента), а не `Notification Worker`. Это закрывает dual-write и сохраняет at-least-once.
-2. **Инв. 5 (изоляция по схемам в одной БД)** — на DFD логически отдельные «БД Бронирований / Биллинга / Уведомлений» нарисованы для визуальной унификации с телемед-референсом. Физически — одна PostgreSQL со схемами `booking_*`, `billing_*`, `notification_*` (см. [примечание про схемы](#примечание-про-схемы-postgresql-и-outbox)).
+2. **Инв. 5 (изоляция по схемам в одной БД)** — на DFD логически отдельные «БД Бронирований / Биллинга / Уведомлений» нарисованы для визуальной унификации. Физически — одна PostgreSQL со схемами `booking_*`, `billing_*`, `notification_*` (см. [примечание про схемы](#примечание-про-схемы-postgresql-и-outbox)).
 3. **Notification Worker** — переопределен. По ADR-003 это отдельный процесс без своего хранилища, читающий табличную outbox-очередь. В учебном TO-BE `Notification Service` становится Kafka-consumer'ом со своей schema'ой `notification_*` для шаблонов и истории доставки.
 
 [ADR-005](../adr/adr-005-access-control-direct-db-read.md) **сохраняется без изменений**: `Access Control Service` остается pull-моделью, читает чужие агрегаты через именованные SQL view (`v_access_*`) на горячем пути КПП и в Kafka-потоке онлайн-бронирования не участвует. Push через `BookingConfirmed` создал бы race condition при отмене брони и параллельный кеш чужого состояния, что ADR-005 как раз исключает.
